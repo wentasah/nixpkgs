@@ -1353,6 +1353,8 @@ in
 
   imageworsener = callPackage ../tools/graphics/imageworsener { };
 
+  imhex = callPackage ../applications/editors/imhex { };
+
   imgpatchtools = callPackage ../development/mobile/imgpatchtools { };
 
   ipgrep = callPackage ../tools/networking/ipgrep { };
