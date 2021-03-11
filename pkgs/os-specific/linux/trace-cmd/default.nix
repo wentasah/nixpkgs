@@ -1,7 +1,7 @@
 { lib, stdenv, fetchgit, asciidoc, docbook_xsl, libxslt }:
 stdenv.mkDerivation {
   pname = "trace-cmd";
-  version = "2.9-dev";
+  version = "2.9.1+2";           # 2.9.1 + two "fix" commits
 
   src = fetchgit (import ./src.nix);
 

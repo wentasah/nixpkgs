@@ -1,7 +1,7 @@
 { lib, mkDerivation, fetchgit, qtbase, cmake, asciidoc, docbook_xsl, json_c, mesa_glu, freeglut, trace-cmd, pkg-config }:
 mkDerivation {
   pname = "kernelshark";
-  version = "1.1.0";
+  version = "1.2.0";
 
   src = fetchgit (import ./src.nix);
 
@@ -21,6 +21,7 @@ mkDerivation {
     "-DTRACECMD_INCLUDE_DIR=${trace-cmd.dev}/include"
     "-DTRACECMD_LIBRARY=${trace-cmd.lib}/lib/trace-cmd/libtracecmd.a"
     "-DTRACEEVENT_LIBRARY=${trace-cmd.lib}/lib/traceevent/libtraceevent.a"
+    "-DTRACEFS_LIBRARY=${trace-cmd.lib}/lib/tracefs/libtracefs.a"
   ];
 
   preInstall = ''
