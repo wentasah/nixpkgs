@@ -1,0 +1,32 @@
+From b12d33246d9401c415510c9e1d0c728d048152c8 Mon Sep 17 00:00:00 2001
+From: Michal Sojka <michal.sojka@cvut.cz>
+Date: Mon, 27 Dec 2021 00:18:23 +0100
+Subject: [PATCH] Fix constructing of TCPSocket from RawFD
+
+Without this, an attempt to call this function ends with:
+
+ERROR: LoadError: UndefVarError: pipe not defined
+Stacktrace:
+ [1] TCPSocket(fd::RawFD)
+   @ Sockets /nix/store/w0xq12x4gb3ng0pdh1r9ir4z14pmr3pp-julia-bin-1.7.0/share/julia/stdlib/v1.7/Sockets/src/Sockets.jl:100
+ [2] top-level scope
+---
+ stdlib/Sockets/src/Sockets.jl | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/stdlib/Sockets/src/Sockets.jl b/stdlib/Sockets/src/Sockets.jl
+index fb46b9255e..4b5518a1fd 100644
+--- a/stdlib/Sockets/src/Sockets.jl
++++ b/stdlib/Sockets/src/Sockets.jl
+@@ -97,7 +97,7 @@ end
+ function TCPSocket(fd::OS_HANDLE)
+     tcp = TCPSocket()
+     iolock_begin()
+-    err = ccall(:uv_tcp_open, Int32, (Ptr{Cvoid}, OS_HANDLE), pipe.handle, fd)
++    err = ccall(:uv_tcp_open, Int32, (Ptr{Cvoid}, OS_HANDLE), tcp.handle, fd)
+     uv_error("tcp_open", err)
+     tcp.status = StatusOpen
+     iolock_end()
+-- 
+2.34.0
+

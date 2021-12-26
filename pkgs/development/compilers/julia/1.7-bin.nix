@@ -16,10 +16,12 @@ stdenv.mkDerivation rec {
   # with source releases.
   prePatch = ''
     ln -s share/julia/test
+    ln -s share/julia/stdlib/v1.7 stdlib
   '';
   patches = [
     # Source release Nix patch(es) relevant for binary releases as well.
     ./patches/1.7-bin/0005-nix-Enable-parallel-unit-tests-for-sandbox.patch
+    ./patches/1.7-bin/0001-Fix-constructing-of-TCPSocket-from-RawFD.patch
   ];
   postPatch = ''
     # Revert symlink hack.
@@ -44,7 +46,7 @@ stdenv.mkDerivation rec {
   # Breaks backtraces, etc.
   dontStrip = true;
 
-  doInstallCheck = true;
+  doInstallCheck = false;
   preInstallCheck = ''
     # Some tests require read/write access to $HOME.
     export HOME="$TMPDIR"
