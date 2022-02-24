@@ -680,7 +680,7 @@ in
               (if machine.sshKey != null then machine.sshKey else "-")
               (toString machine.maxJobs)
               (toString machine.speedFactor)
-              (concatStringsSep "," machine.supportedFeatures)
+              (concatStringsSep "," (machine.supportedFeatures ++ machine.mandatoryFeatures))
               (concatStringsSep "," machine.mandatoryFeatures)
             ]
             ++ optional (isNixAtLeast "2.4pre") (if machine.publicHostKey != null then machine.publicHostKey else "-")))
@@ -762,7 +762,7 @@ in
     nix.settings = mkMerge [
       {
         trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
-        substituters = [ "https://cache.nixos.org/" ];
+        substituters = mkAfter [ "https://cache.nixos.org/" ];
 
         system-features = mkDefault (
           [ "nixos-test" "benchmark" "big-parallel" "kvm" ] ++
