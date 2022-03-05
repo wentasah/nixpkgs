@@ -31,6 +31,7 @@ profile=/nix/var/nix/profiles/system
 buildHost=localhost
 targetHost=
 remoteSudo=
+noFlake=
 # comma separated list of vars to preserve when using sudo
 preservedSudoVars=NIXOS_INSTALL_BOOTLOADER
 
@@ -109,6 +110,9 @@ while [ "$#" -gt 0 ]; do
         flake="$1"
         flakeFlags=(--extra-experimental-features 'nix-command flakes')
         shift 1
+        ;;
+      --no-flake)
+        noFlake=1
         ;;
       --recreate-lock-file|--no-update-lock-file|--no-write-lock-file|--no-registries|--commit-lock-file)
         lockFlags+=("$i")
@@ -313,7 +317,7 @@ fi
 
 # Use /etc/nixos/flake.nix if it exists. It can be a symlink to the
 # actual flake.
-if [[ -z $flake && -e /etc/nixos/flake.nix ]]; then
+if [[ -z $flake && -e /etc/nixos/flake.nix && -z $noFlake ]]; then
     flake="$(dirname "$(readlink -f /etc/nixos/flake.nix)")"
 fi
 
