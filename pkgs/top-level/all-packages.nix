@@ -24284,8 +24284,10 @@ with pkgs;
   source-code-pro = callPackage ../data/fonts/source-code-pro {};
 
   source-sans = callPackage ../data/fonts/source-sans { };
+  source-sans-pro = callPackage ../data/fonts/source-sans-pro { };
 
   source-serif = callPackage ../data/fonts/source-serif { };
+  source-serif-pro = callPackage ../data/fonts/source-serif-pro { };
 
   source-han-code-jp = callPackage ../data/fonts/source-han-code-jp { };
 
@@ -26120,6 +26122,8 @@ with pkgs;
   goffice = callPackage ../development/libraries/goffice { };
 
   got = callPackage ../applications/version-management/got { };
+
+  gtkterm = callPackage ../tools/misc/gtkterm { };
 
   gtk-pipe-viewer = perlPackages.callPackage ../applications/video/pipe-viewer { withGtk3 = true; };
 
