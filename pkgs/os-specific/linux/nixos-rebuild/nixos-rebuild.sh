@@ -31,6 +31,7 @@ profile=/nix/var/nix/profiles/system
 buildHost=localhost
 targetHost=
 remoteSudo=
+noFlake=
 # comma separated list of vars to preserve when using sudo
 preservedSudoVars=NIXOS_INSTALL_BOOTLOADER
 
@@ -109,6 +110,9 @@ while [ "$#" -gt 0 ]; do
         flake="$1"
         flakeFlags=(--extra-experimental-features 'nix-command flakes')
         shift 1
+        ;;
+      --no-flake)
+        noFlake=1
         ;;
       --recreate-lock-file|--no-update-lock-file|--no-write-lock-file|--no-registries|--commit-lock-file)
         lockFlags+=("$i")
@@ -313,18 +317,8 @@ fi
 
 # Use /etc/nixos/flake.nix if it exists. It can be a symlink to the
 # actual flake.
-if [[ -z $flake && -e /etc/nixos/flake.nix ]]; then
+if [[ -z $flake && -e /etc/nixos/flake.nix && -z $noFlake ]]; then
     flake="$(dirname "$(readlink -f /etc/nixos/flake.nix)")"
-fi
-
-# Re-execute nixos-rebuild from the Nixpkgs tree.
-# FIXME: get nixos-rebuild from $flake.
-if [[ -z $_NIXOS_REBUILD_REEXEC && -n $canRun && -z $fast && -z $flake ]]; then
-    if p=$(nix-build --no-out-link --expr 'with import <nixpkgs/nixos> {}; config.system.build.nixos-rebuild' "${extraBuildFlags[@]}"); then
-        export _NIXOS_REBUILD_REEXEC=1
-        exec "$p/bin/nixos-rebuild" "${origArgs[@]}"
-        exit 1
-    fi
 fi
 
 # For convenience, use the hostname as the default configuration to
@@ -345,6 +339,40 @@ if [[ -n $flake ]]; then
     fi
 fi
 
+
+tmpDir=$(mktemp -t -d nixos-rebuild.XXXXXX)
+
+cleanup() {
+    for ctrl in "$tmpDir"/ssh-*; do
+        ssh -o ControlPath="$ctrl" -O exit dummyhost 2>/dev/null || true
+    done
+    rm -rf "$tmpDir"
+}
+trap cleanup EXIT
+
+
+# Re-execute nixos-rebuild from the Nixpkgs tree.
+if [[ -z $_NIXOS_REBUILD_REEXEC && -n $canRun && -z $fast ]]; then
+    if [[ -z $flake ]]; then
+        if p=$(nix-build --no-out-link --expr 'with import <nixpkgs/nixos> {}; config.system.build.nixos-rebuild' "${extraBuildFlags[@]}"); then
+            SHOULD_REEXEC=1
+        fi
+    else
+        nix "${flakeFlags[@]}" build --out-link "${tmpDir}/nixos-rebuild" "$flake#$flakeAttr.config.system.build.nixos-rebuild" "${extraBuildFlags[@]}" "${lockFlags[@]}"
+        if p=$(readlink -e "${tmpDir}/nixos-rebuild"); then
+            SHOULD_REEXEC=1
+        fi
+    fi
+
+    if [[ -n $SHOULD_REEXEC ]]; then
+        export _NIXOS_REBUILD_REEXEC=1
+        # Manually call cleanup as the EXIT trap is not triggered when using exec
+        cleanup
+        exec "$p/bin/nixos-rebuild" "${origArgs[@]}"
+        exit 1
+    fi
+fi
+
 # Find configuration.nix and open editor instead of building.
 if [ "$action" = edit ]; then
     if [[ -z $flake ]]; then
@@ -359,18 +387,7 @@ if [ "$action" = edit ]; then
     exit 1
 fi
 
-
-tmpDir=$(mktemp -t -d nixos-rebuild.XXXXXX)
 SSHOPTS="$NIX_SSHOPTS -o ControlMaster=auto -o ControlPath=$tmpDir/ssh-%n -o ControlPersist=60"
-
-cleanup() {
-    for ctrl in "$tmpDir"/ssh-*; do
-        ssh -o ControlPath="$ctrl" -O exit dummyhost 2>/dev/null || true
-    done
-    rm -rf "$tmpDir"
-}
-trap cleanup EXIT
-
 
 # First build Nix, since NixOS may require a newer version than the
 # current one.
