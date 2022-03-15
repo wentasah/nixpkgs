@@ -1,4 +1,5 @@
-{ stdenv, lib, fetchFromGitHub, meson, ninja, pkg-config, gtk3, vte, libgudev }:
+{ stdenv, lib, fetchFromGitHub, meson, ninja, pkg-config, gtk3, vte, libgudev, wrapGAppsHook }:
+
 stdenv.mkDerivation rec {
   pname = "gtkterm";
   version = "1.1.1";
@@ -11,11 +12,16 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [
-    meson ninja pkg-config
+    meson
+    ninja
+    pkg-config
+    wrapGAppsHook
   ];
 
   buildInputs = [
-    gtk3 vte libgudev
+    gtk3
+    vte
+    libgudev
   ];
 
   meta = with lib; {
@@ -31,5 +37,6 @@ stdenv.mkDerivation rec {
     '';
     maintainers = with maintainers; [ wentasah ];
     platforms = platforms.linux;
+    mainProgram = "gtkterm";
   };
 }

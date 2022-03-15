@@ -1609,6 +1609,8 @@ in {
 
   chispa = callPackage ../development/python-modules/chispa { };
 
+  chromaprint = callPackage ../development/python-modules/chromaprint { };
+
   ci-info = callPackage ../development/python-modules/ci-info { };
 
   ci-py = callPackage ../development/python-modules/ci-py { };
@@ -4077,6 +4079,8 @@ in {
   intreehooks = callPackage ../development/python-modules/intreehooks { };
 
   invoke = callPackage ../development/python-modules/invoke { };
+
+  iodata = callPackage ../development/python-modules/iodata { };
 
   iocapture = callPackage ../development/python-modules/iocapture { };
 
