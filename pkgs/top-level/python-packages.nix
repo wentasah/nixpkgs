@@ -466,6 +466,8 @@ in {
 
   allpairspy = callPackage ../development/python-modules/allpairspy { };
 
+  allure-behave = callPackage ../development/python-modules/allure-behave { };
+
   allure-python-commons = callPackage ../development/python-modules/allure-python-commons { };
 
   allure-python-commons-test = callPackage ../development/python-modules/allure-python-commons-test { };
@@ -7646,6 +7648,14 @@ in {
   };
 
   pysideTools = callPackage ../development/python-modules/pyside/tools.nix { };
+
+  pysigma = callPackage ../development/python-modules/pysigma { };
+
+  pysigma-backend-splunk = callPackage ../development/python-modules/pysigma-backend-splunk { };
+
+  pysigma-pipeline-crowdstrike = callPackage ../development/python-modules/pysigma-pipeline-crowdstrike { };
+
+  pysigma-pipeline-sysmon = callPackage ../development/python-modules/pysigma-pipeline-sysmon { };
 
   pysignalclirestapi = callPackage ../development/python-modules/pysignalclirestapi { };
 

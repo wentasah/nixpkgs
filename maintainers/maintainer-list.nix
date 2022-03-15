@@ -1688,6 +1688,12 @@
     githubId = 355401;
     name = "Brian Hicks";
   };
+  brianmcgee = {
+    name = "Brian McGee";
+    email = "brian@41north.dev";
+    github = "brianmcgee";
+    githubId = 1173648;
+  };
   Br1ght0ne = {
     email = "brightone@protonmail.com";
     github = "Br1ght0ne";
@@ -5630,6 +5636,12 @@
     email = "duanjingjing@gmail.com";
     github = "jduan";
     githubId = 452450;
+  };
+  jdupak = {
+    name = "Jakub Dupak";
+    email = "dev@jakubdupak.com";
+    github = "jdupak";
+    githubId = 22683640;
   };
   jecaro = {
     email = "jeancharles.quillet@gmail.com";
