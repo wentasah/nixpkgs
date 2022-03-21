@@ -58,11 +58,6 @@ stdenv.mkDerivation rec {
     "SYSTEM_TYPE=rpm"
   ];
 
-  patches = [
-    ./0001-AMC-TXT-New-global-option-ShowGroupText.patch
-    ./0002-Test-8-page-alignment.patch
-  ];
-
   preFixup = ''
     makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
   '';

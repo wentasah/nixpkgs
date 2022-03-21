@@ -1,12 +1,12 @@
-{ lib, stdenv, fetchgit, pkg-config, asciidoc, xmlto, docbook_xsl, docbook_xml_dtd_45, libxslt, libtraceevent, libtracefs, zstd, sourceHighlight }:
+{ lib, stdenv, fetchgit, pkg-config, asciidoc, xmlto, docbook_xsl, libxslt, libtraceevent, libtracefs }:
 stdenv.mkDerivation rec {
   pname = "trace-cmd";
-  version = "3.0";
+  version = "2.9.7";
 
   src = fetchgit {
     url    = "git://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git/";
     rev    = "trace-cmd-v${version}";
-    sha256 = "sha256-k+hUYtfTwNN6gJkXRRR8UrbHX7EtiWJNwgHJ9S1ld4c=";
+    sha256 = "sha256-04qsTlOVYh/jHVWxaGuqYj4DkUpcEYcpfUqnqhphIMg=";
   };
 
   # Don't build and install html documentation
@@ -15,9 +15,9 @@ stdenv.mkDerivation rec {
        Documentation{,/trace-cmd,/libtracecmd}/Makefile
   '';
 
-  nativeBuildInputs = [ asciidoc libxslt pkg-config xmlto docbook_xsl docbook_xml_dtd_45 sourceHighlight ];
+  nativeBuildInputs = [ asciidoc libxslt pkg-config xmlto ];
 
-  buildInputs = [ libtraceevent libtracefs zstd ];
+  buildInputs = [ libtraceevent libtracefs ];
 
   outputs = [ "out" "lib" "dev" "man" ];
 
