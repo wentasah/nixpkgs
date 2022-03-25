@@ -234,6 +234,8 @@ with pkgs;
 
   buf = callPackage ../development/tools/buf { };
 
+  cfn-nag = callPackage ../development/tools/cfn-nag { };
+
   elfcat = callPackage ../tools/misc/elfcat { };
 
   # Zip file format only allows times after year 1980, which makes e.g. Python wheel building fail with:
@@ -1925,6 +1927,8 @@ with pkgs;
 
   gopacked = callPackage ../applications/misc/gopacked { };
 
+  gotktrix = callPackage ../applications/networking/instant-messengers/gotktrix { };
+
   gucci = callPackage ../tools/text/gucci { };
 
   guglielmo = libsForQt5.callPackage ../applications/radio/guglielmo { };
@@ -2301,8 +2305,6 @@ with pkgs;
 
   birdtray = libsForQt5.callPackage ../applications/misc/birdtray { };
 
-  bitbucket-cli = callPackage ../tools/misc/bitbucket-cli { };
-
   bitbucket-server-cli = callPackage ../applications/version-management/git-and-tools/bitbucket-server-cli { };
 
   blitz = callPackage ../development/libraries/blitz { };
@@ -2613,7 +2615,9 @@ with pkgs;
 
   clac = callPackage ../tools/misc/clac {};
 
-  clash = callPackage ../tools/networking/clash { };
+  clash = callPackage ../tools/networking/clash {
+    buildGoModule = buildGo118Module;
+  };
 
   clasp = callPackage ../tools/misc/clasp { };
 
@@ -3537,6 +3541,10 @@ with pkgs;
   meson-tools = callPackage ../misc/meson-tools { };
 
   metabase = callPackage ../servers/metabase { };
+
+  micropad = callPackage ../applications/office/micropad {
+    electron = electron_17;
+  };
 
   midicsv = callPackage ../tools/audio/midicsv { };
 
@@ -5775,6 +5783,8 @@ with pkgs;
 
   gdmap = callPackage ../tools/system/gdmap { };
 
+  gef = callPackage ../development/tools/misc/gef { };
+
   gelasio = callPackage ../data/fonts/gelasio { };
 
   gemget = callPackage ../tools/networking/gemget {};
@@ -6225,7 +6235,7 @@ with pkgs;
 
   gopro = callPackage ../tools/video/gopro { };
 
-  goreleaser = callPackage ../tools/misc/goreleaser { };
+  goreleaser = callPackage ../tools/misc/goreleaser { buildGoModule = buildGo118Module; };
 
   goreplay = callPackage ../tools/networking/goreplay { };
 
@@ -6255,6 +6265,8 @@ with pkgs;
   gpodder = callPackage ../applications/audio/gpodder { };
 
   gpp = callPackage ../development/tools/gpp { };
+
+  gnuastro = callPackage ../applications/science/astronomy/gnuastro { };
 
   gpredict = callPackage ../applications/science/astronomy/gpredict {
     hamlib = hamlib_4;
@@ -6387,7 +6399,9 @@ with pkgs;
 
   gssdp-tools = callPackage ../development/libraries/gssdp/tools.nix { };
 
-  grype = callPackage ../tools/security/grype { };
+  grype = callPackage ../tools/security/grype {
+    buildGoModule = buildGo118Module;
+  };
 
   gt5 = callPackage ../tools/system/gt5 { };
 
@@ -6651,6 +6665,8 @@ with pkgs;
   hubicfuse = callPackage ../tools/filesystems/hubicfuse { };
 
   humanfriendly = with python3Packages; toPythonApplication humanfriendly;
+
+  hut = callPackage ../applications/version-management/git-and-tools/hut { };
 
   hwinfo = callPackage ../tools/system/hwinfo { };
 
@@ -10297,7 +10313,9 @@ with pkgs;
 
   systrayhelper = callPackage ../tools/misc/systrayhelper {};
 
-  syft = callPackage ../tools/admin/syft { };
+  syft = callPackage ../tools/admin/syft {
+    buildGoModule = buildGo118Module;
+  };
 
   Sylk = callPackage ../applications/networking/Sylk {};
 
@@ -13504,9 +13522,7 @@ with pkgs;
     boost = boost172;
   };
 
-  souffle = callPackage ../development/compilers/souffle {
-    autoreconfHook = buildPackages.autoreconfHook269;
-  };
+  souffle = callPackage ../development/compilers/souffle { };
 
   spasm-ng = callPackage ../development/compilers/spasm-ng { };
 
@@ -14382,6 +14398,8 @@ with pkgs;
   anybadge = with python3Packages; toPythonApplication anybadge;
 
   augeas = callPackage ../tools/system/augeas { };
+
+  autoadb = callPackage ../misc/autoadb { };
 
   inherit (callPackage ../tools/admin/ansible { })
     ansible
@@ -15928,7 +15946,7 @@ with pkgs;
 
   travis = callPackage ../development/tools/misc/travis { };
 
-  tree-sitter = callPackage ../development/tools/parsing/tree-sitter {
+  tree-sitter = makeOverridable (callPackage ../development/tools/parsing/tree-sitter) {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
@@ -18686,7 +18704,6 @@ with pkgs;
   libplacebo = callPackage ../development/libraries/libplacebo { };
 
   libpng = callPackage ../development/libraries/libpng { };
-  libpng_apng = libpng.override { apngSupport = true; };
   libpng12 = callPackage ../development/libraries/libpng/12.nix { };
 
   libpostal = callPackage ../development/libraries/libpostal { };
@@ -20712,7 +20729,10 @@ with pkgs;
 
   wxmac = callPackage ../development/libraries/wxwidgets/wxmac30.nix { };
 
-  wxGTK31 = callPackage ../development/libraries/wxwidgets/wxGTK31.nix { };
+  wxGTK31 = callPackage ../development/libraries/wxwidgets/wxGTK31.nix {
+    inherit (darwin.stubs) setfile;
+    inherit (darwin.apple_sdk.frameworks) AGL Carbon Cocoa Kernel QTKit AVFoundation AVKit WebKit;
+  };
   wxGTK31-gtk2 = wxGTK31.override { withGtk2 = true; };
   wxGTK31-gtk3 = wxGTK31.override { withGtk2 = false; };
 
@@ -22732,6 +22752,8 @@ with pkgs;
 
   powerstat = callPackage ../os-specific/linux/powerstat { };
 
+  projecteur = libsForQt5.callPackage ../os-specific/linux/projecteur { };
+
   smemstat = callPackage ../os-specific/linux/smemstat { };
 
   tgt = callPackage ../tools/networking/tgt { };
@@ -23613,6 +23635,8 @@ with pkgs;
   carlito = callPackage ../data/fonts/carlito {};
 
   cascadia-code = callPackage ../data/fonts/cascadia-code { };
+
+  ccsymbols = callPackage ../data/fonts/ccsymbols { };
 
   charis-sil = callPackage ../data/fonts/charis-sil { };
 
@@ -25025,9 +25049,8 @@ with pkgs;
 
   centerim = callPackage ../applications/networking/instant-messengers/centerim { };
 
-  cgit = callPackage ../applications/version-management/git-and-tools/cgit {
-    inherit (python3Packages) python wrapPython pygments markdown;
-  };
+  cgit = callPackage ../applications/version-management/git-and-tools/cgit { };
+  cgit-pink = callPackage ../applications/version-management/git-and-tools/cgit/pink.nix { };
 
   chatty = callPackage ../applications/networking/instant-messengers/chatty { };
 
@@ -25835,6 +25858,8 @@ with pkgs;
     tuigreet = callPackage ../os-specific/linux/tuigreet { };
   };
 
+  goldberg-emu = callPackage ../applications/emulators/goldberg-emu { };
+
   goldendict = libsForQt5.callPackage ../applications/misc/goldendict {
     inherit (darwin) libiconv;
   };
@@ -25948,7 +25973,6 @@ with pkgs;
   firefoxPackages = recurseIntoAttrs (callPackage ../applications/networking/browsers/firefox/packages.nix {
     callPackage = newScope {
       inherit (rustPackages) cargo rustc;
-      libpng = libpng_apng;
       gnused = gnused_422;
       inherit (darwin.apple_sdk.frameworks) CoreMedia ExceptionHandling
                                             Kerberos AVFoundation MediaToolbox
@@ -26373,6 +26397,10 @@ with pkgs;
   gpsd = callPackage ../servers/gpsd { };
 
   gpsprune = callPackage ../applications/misc/gpsprune { };
+
+  gpu-screen-recorder = callPackage ../applications/video/gpu-screen-recorder { };
+
+  gpu-screen-recorder-gtk = callPackage ../applications/video/gpu-screen-recorder/gpu-screen-recorder-gtk.nix { };
 
   gpxlab = libsForQt5.callPackage ../applications/misc/gpxlab { };
 
@@ -28283,8 +28311,6 @@ with pkgs;
 
   palemoon = callPackage ../applications/networking/browsers/palemoon { };
 
-  webbrowser = callPackage ../applications/networking/browsers/webbrowser {};
-
   pamix = callPackage ../applications/audio/pamix { };
 
   pamixer = callPackage ../applications/audio/pamixer { };
@@ -28962,6 +28988,10 @@ with pkgs;
 
   sish = callPackage ../tools/networking/sish { };
 
+  sky = libsForQt5.callPackage ../applications/networking/instant-messengers/sky {
+    libjpeg_turbo = libjpeg_turbo.override { enableJpeg8 = true; };
+  };
+
   skypeforlinux = callPackage ../applications/networking/instant-messengers/skypeforlinux { };
 
   SkypeExport = callPackage ../applications/networking/instant-messengers/SkypeExport { };
@@ -29432,7 +29462,6 @@ with pkgs;
   thunderbirdPackages = recurseIntoAttrs (callPackage ../applications/networking/mailreaders/thunderbird/packages.nix {
     callPackage = newScope {
       inherit (rustPackages) cargo rustc;
-      libpng = libpng_apng;
       gnused = gnused_422;
       inherit (darwin.apple_sdk.frameworks) CoreMedia ExceptionHandling
                                             Kerberos AVFoundation MediaToolbox
@@ -33013,7 +33042,6 @@ with pkgs;
   gravit = callPackage ../applications/science/astronomy/gravit { };
 
   golly = callPackage ../applications/science/misc/golly { wxGTK = wxGTK30; };
-  golly-beta = callPackage ../applications/science/misc/golly/beta.nix { wxGTK = wxGTK30; };
 
   megam = callPackage ../applications/science/misc/megam {
     inherit (ocaml-ng.ocamlPackages_4_07) ocaml;
@@ -33187,6 +33215,8 @@ with pkgs;
   };
 
   clpeak = callPackage ../tools/misc/clpeak { };
+
+  collapseos-cvm = callPackage ../applications/emulators/collapseos-cvm { };
 
   cups = callPackage ../misc/cups { };
 
@@ -33774,7 +33804,6 @@ with pkgs;
 
   nix-repl = throw (
     "nix-repl has been removed because it's not maintained anymore, " +
-    (lib.optionalString (!lib.versionAtLeast "2" (lib.versions.major builtins.nixVersion)) "ugrade your Nix installation to a newer version and ") +
     "use `nix repl` instead. Also see https://github.com/NixOS/nixpkgs/pull/44903"
   );
 

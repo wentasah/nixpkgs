@@ -100,6 +100,7 @@ mapAliases ({
   beegfs = throw "beegfs has been removed"; # Added 2019-11-24
   beret = throw "beret has been removed"; # Added 2021-11-16
   bin_replace_string = throw "bin_replace_string has been removed: deleted by upstream"; # Added 2022-01-07
+  bitbucket-cli = throw "bitbucket-cli has been removed: abandoned by upstream"; # Added 2022-03-21
   bitsnbots = throw "bitsnbots has been removed because it was broken and upstream missing"; # Added 2021-08-22
   blastem = throw "blastem has been removed from nixpkgs as it would still require python2"; # Added 2022-01-01
   bluezFull = bluez; # Added 2019-12-03
@@ -430,6 +431,7 @@ mapAliases ({
   gobby5 = gobby; # Added 2021-02-01
   gobjectIntrospection = throw "'gobjectIntrospection' has been renamed to/replaced by 'gobject-introspection'"; # Converted to throw 2022-02-22
   gogoclient = throw "gogoclient has been removed, because it was unmaintained"; # Added 2021-12-15
+  golly-beta = throw "golly-beta has been removed: use golly instead"; # Added 2022-03-21
   goimports = throw "'goimports' has been renamed to/replaced by 'gotools'"; # Converted to throw 2022-02-22
   gometalinter = throw "gometalinter was abandoned by upstream. Consider switching to golangci-lint instead"; # Added 2020-04-23
   googleAuthenticator = throw "'googleAuthenticator' has been renamed to/replaced by 'google-authenticator'"; # Converted to throw 2022-02-22
@@ -599,6 +601,7 @@ mapAliases ({
   liblrdf = throw "'liblrdf' has been renamed to/replaced by 'lrdf'"; # Converted to throw 2022-02-22
   libmsgpack = throw "'libmsgpack' has been renamed to/replaced by 'msgpack'"; # Converted to throw 2022-02-22
   libosmpbf = throw "libosmpbf was removed because it is no longer required by osrm-backend";
+  libpng_apng = throw "libpng_apng has been removed, because it is equivalent to libpng"; # Added 2021-03-21
   libqmatrixclient = throw "libqmatrixclient was renamed to libquotient"; # Added 2020-04-09
   libqrencode = throw "'libqrencode' has been renamed to/replaced by 'qrencode'"; # Converted to throw 2022-02-22
   librdf = lrdf; # Added 2020-03-22
@@ -638,6 +641,7 @@ mapAliases ({
   linuxPackages_5_10 = linuxKernel.packages.linux_5_10;
   linuxPackages_5_15 = linuxKernel.packages.linux_5_15;
   linuxPackages_5_16 = linuxKernel.packages.linux_5_16;
+  linuxPackages_5_17 = linuxKernel.packages.linux_5_17;
   linuxPackages_5_4 = linuxKernel.packages.linux_5_4;
   linuxPackages_hardkernel_4_14 = linuxKernel.packages.hardkernel_4_14;
   linuxPackages_rpi0 = linuxKernel.packages.linux_rpi1;
@@ -655,6 +659,7 @@ mapAliases ({
   linux_5_10 = linuxKernel.kernels.linux_5_10;
   linux_5_15 = linuxKernel.kernels.linux_5_15;
   linux_5_16 = linuxKernel.kernels.linux_5_16;
+  linux_5_17 = linuxKernel.kernels.linux_5_17;
   linux_5_4 = linuxKernel.kernels.linux_5_4;
   linux_mptcp_95 = linuxKernel.kernels.linux_mptcp_95;
   linux_rpi0 = linuxKernel.kernels.linux_rpi1;
@@ -1275,6 +1280,7 @@ mapAliases ({
   ### W ###
 
   way-cooler = throw "way-cooler is abandoned by its author: https://way-cooler.org/blog/2020/01/09/way-cooler-post-mortem.html"; # Added 2020-01-13
+  webbrowser = throw "webbrowser was removed because it's unmaintained upstream and was marked as broken in nixpkgs for over a year"; # Added 2022-03-21
   webkit = throw "'webkit' has been renamed to/replaced by 'webkitgtk'"; # Converted to throw 2022-02-22
   webkitgtk24x-gtk2 = throw "webkitgtk24x-gtk2 has been removed because it's insecure. Please use webkitgtk"; # Added 2019-12-05
   webkitgtk24x-gtk3 = throw "webkitgtk24x-gtk3 has been removed because it's insecure. Please use webkitgtk"; # Added 2019-12-05
@@ -1439,7 +1445,7 @@ mapAliases ({
     ksshaskpass ksystemlog kteatime ktimer ktorrent ktouch kturtle kwallet-pam
     kwalletmanager kwave kwayland-integration kwin kwrited marble milou minuet
     okular oxygen oxygen-icons5 picmi plasma-browser-integration plasma-desktop
-    plasma-integration plasma-nano plasma-nm plasma-pa plasma-phone-components
+    plasma-integration plasma-nano plasma-nm plasma-pa plasma-mobile
     plasma-systemmonitor plasma-thunderbolt plasma-vault plasma-workspace
     plasma-workspace-wallpapers polkit-kde-agent powerdevil qqc2-breeze-style
     sddm-kcm skanlite spectacle systemsettings xdg-desktop-portal-kde yakuake
