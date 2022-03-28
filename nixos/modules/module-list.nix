@@ -118,6 +118,7 @@
   ./misc/version.nix
   ./misc/wordlist.nix
   ./misc/nixops-autoluks.nix
+  ./programs/_1password-gui.nix
   ./programs/adb.nix
   ./programs/appgate-sdp.nix
   ./programs/atop.nix
@@ -184,6 +185,7 @@
   ./programs/nix-ld.nix
   ./programs/neovim.nix
   ./programs/nm-applet.nix
+  ./programs/nncp.nix
   ./programs/npm.nix
   ./programs/noisetorch.nix
   ./programs/oblogout.nix
@@ -777,6 +779,7 @@
   ./services/networking/headscale.nix
   ./services/networking/hostapd.nix
   ./services/networking/htpdate.nix
+  ./services/networking/https-dns-proxy.nix
   ./services/networking/hylafax/default.nix
   ./services/networking/i2pd.nix
   ./services/networking/i2p.nix

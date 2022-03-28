@@ -358,8 +358,6 @@ let
 
     emile = callPackage ../development/ocaml-modules/emile { };
 
-    enumerate = callPackage ../development/ocaml-modules/enumerate { };
-
     eqaf = callPackage ../development/ocaml-modules/eqaf { };
 
     erm_xml = callPackage ../development/ocaml-modules/erm_xml { };
@@ -709,8 +707,6 @@ let
 
     magic-mime = callPackage ../development/ocaml-modules/magic-mime { };
 
-    magick = callPackage ../development/ocaml-modules/magick { };
-
     mariadb = callPackage ../development/ocaml-modules/mariadb {
       inherit (pkgs) mariadb;
     };
@@ -878,8 +874,6 @@ let
 
     parmap = callPackage ../development/ocaml-modules/parmap { };
 
-    comparelib = callPackage ../development/ocaml-modules/comparelib { };
-
     ocamlbuild =
     if lib.versionOlder "4.03" ocaml.version then
     callPackage ../development/tools/ocaml/ocamlbuild { }
@@ -887,8 +881,6 @@ let
     null;
 
     ocaml_cryptgps = callPackage ../development/ocaml-modules/cryptgps { };
-
-    ocaml_data_notation = callPackage ../development/ocaml-modules/odn { };
 
     ocaml_expat =
     if lib.versionAtLeast ocaml.version "4.02"
