@@ -23548,6 +23548,8 @@ with pkgs;
     libgcrypt = null;
   };
 
+  usbrelay = callPackage ../os-specific/linux/usbrelay { };
+
   usbtop = callPackage ../os-specific/linux/usbtop { };
 
   usbutils = callPackage ../os-specific/linux/usbutils { };
