@@ -386,7 +386,6 @@ in
       services.gnome.rygel.enable = mkDefault true;
       services.gvfs.enable = true;
       services.system-config-printer.enable = (mkIf config.services.printing.enable (mkDefault true));
-      services.telepathy.enable = mkDefault true;
 
       systemd.packages = with pkgs.gnome; [
         gnome-session
@@ -498,6 +497,10 @@ in
       programs.gnome-disks.enable = notExcluded pkgs.gnome.gnome-disk-utility;
       programs.seahorse.enable = notExcluded pkgs.gnome.seahorse;
       services.gnome.sushi.enable = notExcluded pkgs.gnome.sushi;
+
+      # VTE shell integration for gnome-console
+      programs.bash.vteIntegration = mkDefault true;
+      programs.zsh.vteIntegration = mkDefault true;
 
       # Let nautilus find extensions
       # TODO: Create nautilus-with-extensions package
