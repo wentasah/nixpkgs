@@ -10481,6 +10481,8 @@ in {
 
   urwid-readline = callPackage ../development/python-modules/urwid-readline { };
 
+  usbrelay-py = callPackage ../os-specific/linux/usbrelay/python.nix { };
+
   usbtmc = callPackage ../development/python-modules/usbtmc { };
 
   us = callPackage ../development/python-modules/us { };
