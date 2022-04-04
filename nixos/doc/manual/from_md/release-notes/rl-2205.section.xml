@@ -88,6 +88,14 @@
           and their users.
         </para>
       </listitem>
+      <listitem>
+        <para>
+          The default GHC version has been updated from 8.10.7 to 9.0.2.
+          <literal>pkgs.haskellPackages</literal> and
+          <literal>pkgs.ghc</literal> will now use this version by
+          default.
+        </para>
+      </listitem>
     </itemizedlist>
   </section>
   <section xml:id="sec-release-22.05-new-services">
@@ -219,6 +227,13 @@
           a tool that exposes information from the Proxmox VE API for
           use by Prometheus. Available as
           <link xlink:href="options.html#opt-services.prometheus.exporters.pve">services.prometheus.exporters.pve</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link xlink:href="https://github.com/netbox-community/netbox">netbox</link>,
+          infrastructure resource modeling (IRM) tool. Available as
+          <link xlink:href="options.html#opt-services.netbox.enable">services.netbox</link>.
         </para>
       </listitem>
       <listitem>
@@ -1010,8 +1025,8 @@
       <listitem>
         <para>
           <literal>pkgs.pgadmin</literal> now refers to
-          <literal>pkgs.pgadmin4</literal>. If you still need pgadmin3,
-          use <literal>pkgs.pgadmin3</literal>.
+          <literal>pkgs.pgadmin4</literal>. <literal>pgadmin3</literal>
+          has been removed.
         </para>
       </listitem>
       <listitem>
@@ -1253,6 +1268,13 @@
           example.
         </para>
       </listitem>
+      <listitem>
+        <para>
+          <literal>pkgs.cosmopolitan</literal> no longer provides the
+          <literal>cosmoc</literal> command. It has been moved to
+          <literal>pkgs.cosmoc</literal>.
+        </para>
+      </listitem>
     </itemizedlist>
   </section>
   <section xml:id="sec-release-22.05-notable-changes">
@@ -1378,6 +1400,35 @@
           Furthermore, not all Electron apps use the latest Electron
           versions.
         </para>
+      </listitem>
+      <listitem>
+        <para>
+          A new option group
+          <literal>systemd.network.wait-online</literal> was added, with
+          options to configure
+          <literal>systemd-networkd-wait-online.service</literal>:
+        </para>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <para>
+              <literal>anyInterface</literal> allows specifying that the
+              network should be considered online when <emphasis>at
+              least one</emphasis> interface is online (useful on
+              laptops)
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal>timeout</literal> defines how long to wait for
+              the network to come online
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal>extraArgs</literal> for everything else
+            </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
       <listitem>
         <para>
@@ -1633,9 +1684,20 @@
       </listitem>
       <listitem>
         <para>
-          <literal>services.logrotate.enable</literal> now defaults to
-          true if any rotate path has been defined, and some paths have
-          been added by default.
+          <link linkend="opt-services.logrotate.enable">services.logrotate.enable</link>
+          now defaults to true if any rotate path has been defined, and
+          some paths have been added by default.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The logrotate module also has been updated to freeform syntax:
+          <link linkend="opt-services.logrotate.paths">services.logrotate.paths</link>
+          and
+          <link linkend="opt-services.logrotate.extraConfig">services.logrotate.extraConfig</link>
+          will work, but issue deprecation warnings and
+          <link linkend="opt-services.logrotate.settings">services.logrotate.settings</link>
+          should now be used instead.
         </para>
       </listitem>
       <listitem>
@@ -1716,6 +1778,13 @@
           <literal>security.polkit.enable</literal>, is now disabled by
           default. It will automatically be enabled through services and
           desktop environments as needed.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>services.xserver.desktopManager.xfce</literal> now
+          includes Xfce’s screen locker,
+          <literal>xfce4-screensaver</literal>.
         </para>
       </listitem>
       <listitem>

@@ -472,6 +472,8 @@ in {
 
   altair = callPackage ../development/python-modules/altair { };
 
+  amazon-ion = callPackage ../development/python-modules/amazon-ion { };
+
   amazon_kclpy = callPackage ../development/python-modules/amazon_kclpy { };
 
   ambee = callPackage ../development/python-modules/ambee { };
@@ -1457,6 +1459,11 @@ in {
     inherit (self) python numpy boost;
   });
 
+  caffeWithCuda = toPythonModule (pkgs.caffeWithCuda.override {
+    pythonSupport = true;
+    inherit (self) python numpy boost;
+  });
+
   cairocffi = callPackage ../development/python-modules/cairocffi { };
 
   cairosvg = callPackage ../development/python-modules/cairosvg { };
@@ -1959,7 +1966,7 @@ in {
 
   cupy = callPackage ../development/python-modules/cupy {
     cudatoolkit = pkgs.cudatoolkit_11;
-    cudnn = pkgs.cudnn_8_1_cudatoolkit_11;
+    cudnn = pkgs.cudnn_8_3_cudatoolkit_11;
     nccl = pkgs.nccl_cudatoolkit_11;
     cutensor = pkgs.cutensor_cudatoolkit_11;
   };
@@ -3748,6 +3755,8 @@ in {
     inherit python;
   });
 
+  hepunits = callPackage ../development/python-modules/hepunits { };
+
   herepy = callPackage ../development/python-modules/herepy { };
 
   hetzner = callPackage ../development/python-modules/hetzner { };
@@ -4102,6 +4111,8 @@ in {
 
   iocapture = callPackage ../development/python-modules/iocapture { };
 
+  ionhash = callPackage ../development/python-modules/ionhash { };
+
   iotawattpy = callPackage ../development/python-modules/iotawattpy { };
 
   iowait = callPackage ../development/python-modules/iowait { };
@@ -4309,6 +4320,8 @@ in {
   jsmin = callPackage ../development/python-modules/jsmin { };
 
   json5 = callPackage ../development/python-modules/json5 { };
+
+  jsonconversion = callPackage ../development/python-modules/jsonconversion { };
 
   jsondate = callPackage ../development/python-modules/jsondate { };
 
@@ -5984,6 +5997,8 @@ in {
 
   parts = callPackage ../development/python-modules/parts { };
 
+  particle = callPackage ../development/python-modules/particle { };
+
   parver = callPackage ../development/python-modules/parver { };
   arpeggio = callPackage ../development/python-modules/arpeggio { };
 
@@ -7494,6 +7509,8 @@ in {
 
   pypytools = callPackage ../development/python-modules/pypytools { };
 
+  pyqldb = callPackage ../development/python-modules/pyqldb { };
+
   pyqrcode = callPackage ../development/python-modules/pyqrcode { };
 
   pyqt-builder = callPackage ../development/python-modules/pyqt-builder { };
@@ -8354,6 +8371,24 @@ in {
 
   pytorch = callPackage ../development/python-modules/pytorch {
     cudaSupport = pkgs.config.cudaSupport or false;
+
+    # TODO: next time pytorch is updated (to 1.11.0, currently in staging as of
+    # 2022-03-31), make the following changes:
+
+    # -> cudatoolk_11
+    cudatoolkit = pkgs.cudatoolkit_10;
+
+    # -> cudnn_8_3_cudatoolkit_11
+    cudnn = pkgs.cudnn_8_1_cudatoolkit_10;
+
+    # -> cutensor_cudatoolkit_11 (cutensor is a new dependency in v1.11.0)
+    # cutensor = pkgs.cutensor_cudatoolkit_11;
+
+    # -> setting a custom magma should be unnecessary with v1.11.0
+    magma = pkgs.magma.override { cudatoolkit = pkgs.cudatoolkit_10; };
+
+    # -> nccl_cudatoolkit_11
+    nccl = pkgs.nccl.override { cudatoolkit = pkgs.cudatoolkit_10; };
   };
 
   pytorch-bin = callPackage ../development/python-modules/pytorch/bin.nix { };
@@ -9378,6 +9413,10 @@ in {
   });
 
   socketio-client = callPackage ../development/python-modules/socketio-client { };
+
+  social-auth-app-django = callPackage ../development/python-modules/social-auth-app-django { };
+
+  social-auth-core = callPackage ../development/python-modules/social-auth-core { };
 
   socialscan = callPackage ../development/python-modules/socialscan { };
 
@@ -10885,6 +10924,8 @@ in {
   xxh = callPackage ../tools/networking/xxh { };
 
   xxhash = callPackage ../development/python-modules/xxhash { };
+
+  yabadaba = callPackage ../development/python-modules/yabadaba { };
 
   yahooweather = callPackage ../development/python-modules/yahooweather { };
 

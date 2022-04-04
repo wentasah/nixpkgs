@@ -8549,7 +8549,7 @@
   };
   msfjarvis = {
     github = "msfjarvis";
-    githubId = 3348378;
+    githubId = 13348378;
     name = "Harsh Shandilya";
     email = "nixos@msfjarvis.dev";
     keys = [{
@@ -14250,5 +14250,17 @@
     email = "nigel.g.banks@gmail.com";
     github = "nigelgbanks";
     githubId = 487373;
+  };
+  zanculmarktum = {
+    name = "Azure Zanculmarktum";
+    email = "zanculmarktum@gmail.com";
+    github = "zanculmarktum";
+    githubId = 16958511;
+  };
+  kuwii = {
+    name = "kuwii";
+    email = "kuwii.someone@gmail.com";
+    github = "kuwii";
+    githubId = 10705175;
   };
 }
