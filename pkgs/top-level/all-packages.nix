@@ -23492,6 +23492,7 @@ with pkgs;
   };
 
   usbrelay = callPackage ../os-specific/linux/usbrelay { };
+  usbrelayd = callPackage ../os-specific/linux/usbrelay/daemon.nix { };
 
   usbtop = callPackage ../os-specific/linux/usbtop { };
 

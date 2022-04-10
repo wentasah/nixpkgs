@@ -1,5 +1,4 @@
 { stdenv, lib, fetchFromGitHub, hidapi }:
-
 stdenv.mkDerivation rec {
   pname = "usbrelay";
   version = "0.9";
