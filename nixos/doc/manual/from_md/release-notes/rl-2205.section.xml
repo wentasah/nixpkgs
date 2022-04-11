@@ -221,6 +221,15 @@
       </listitem>
       <listitem>
         <para>
+          <link xlink:href="https://github.com/mozilla-mobile/mozilla-vpn-client">mozillavpn</link>,
+          the client for the
+          <link xlink:href="https://vpn.mozilla.org/">Mozilla VPN</link>
+          service. Available as
+          <link xlink:href="options.html#opt-services.mozillavpn">services.mozillavpn</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <link xlink:href="https://github.com/mgumz/mtr-exporter">mtr-exporter</link>,
           a Prometheus exporter for mtr metrics. Available as
           <link xlink:href="options.html#opt-services.mtr-exporter.enable">services.mtr-exporter</link>.
@@ -430,6 +439,12 @@
           <literal>pkgs.emacsPackages.elpaPackages</literal> and
           <literal>pkgs.emacsPackages.nongnuPackages</literal> where the
           new versions will release.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <literal>security.klogd</literal> was removed. Logging of
+          kernel messages is handled by systemd since Linux 3.5.
         </para>
       </listitem>
       <listitem>
@@ -1281,6 +1296,33 @@
       </listitem>
       <listitem>
         <para>
+          Existing <literal>resholve*</literal> functions have been
+          renamed and nested under <literal>pkgs.resholve</literal>.
+          Update uses to:
+        </para>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <para>
+              <literal>resholvePackage</literal> -&gt;
+              <literal>resholve.mkDerivation</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal>resholveScript</literal> -&gt;
+              <literal>resholve.writeScript</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal>resholveScriptBin</literal> -&gt;
+              <literal>resholve.writeScriptBin</literal>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
           <literal>pkgs.cosmopolitan</literal> no longer provides the
           <literal>cosmoc</literal> command. It has been moved to
           <literal>pkgs.cosmoc</literal>.
@@ -1807,6 +1849,17 @@
           <literal>security.polkit.enable</literal>, is now disabled by
           default. It will automatically be enabled through services and
           desktop environments as needed.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          xfsprogs was update to version 5.15, which enables inobtcount
+          and bigtime by default on filesystem creation. Support for
+          these features was added in kernel 5.10 and deemed stable in
+          kernel 5.15. If you want to be able to mount XFS filesystems
+          created with this release of xfsprogs on kernel releases older
+          than 5.10, you need to format them with
+          <literal>mkfs.xfs -m bigtime=0 -m inobtcount=0</literal>.
         </para>
       </listitem>
       <listitem>

@@ -73,7 +73,8 @@ with pkgs;
   ### Helper functions.
   inherit lib config overlays;
 
-  inherit (lib) lowPrio hiPrio appendToName makeOverridable;
+  # do not import 'appendToName' to get consistent package-names with the same set of package-parameters: https://github.com/NixOS/nixpkgs/issues/68519
+  inherit (lib) lowPrio hiPrio makeOverridable;
 
   inherit (lib) recurseIntoAttrs;
 
@@ -1144,6 +1145,8 @@ with pkgs;
   termusic = callPackage ../applications/audio/termusic { };
 
   tfk8s = callPackage ../tools/misc/tfk8s { };
+
+  thumbs = callPackage ../tools/misc/thumbs { };
 
   tnat64 = callPackage ../tools/networking/tnat64 { };
 
@@ -2357,8 +2360,7 @@ with pkgs;
 
   libtensorflow-bin = callPackage ../development/libraries/science/math/tensorflow/bin.nix {
     cudaSupport = config.cudaSupport or false;
-    cudatoolkit = cudatoolkit_10_0;
-    cudnn = cudnn_7_4_cudatoolkit_10_0;
+    cudaPackages = cudaPackages_10_0;
   };
 
   libtensorflow =
@@ -2866,6 +2868,8 @@ with pkgs;
 
   dasher = callPackage ../applications/accessibility/dasher { };
 
+  datafusion-cli = callPackage ../development/misc/datafusion { };
+
   datamash = callPackage ../tools/misc/datamash { };
 
   datasette = with python3Packages; toPythonApplication datasette;
@@ -3097,7 +3101,9 @@ with pkgs;
 
   envsubst = callPackage ../tools/misc/envsubst { };
 
-  errcheck = callPackage ../development/tools/errcheck { };
+  errcheck = callPackage ../development/tools/errcheck {
+    buildGoModule = buildGo118Module;
+  };
 
   eschalot = callPackage ../tools/security/eschalot { };
 
@@ -4612,59 +4618,24 @@ with pkgs;
 
   snooze = callPackage ../tools/system/snooze { };
 
-  cudaPackages = recurseIntoAttrs (callPackage ../development/compilers/cudatoolkit {});
-  inherit (cudaPackages)
-    cudatoolkit_10
-    cudatoolkit_10_0
-    cudatoolkit_10_1
-    cudatoolkit_10_2
-    cudatoolkit_11
-    cudatoolkit_11_0
-    cudatoolkit_11_1
-    cudatoolkit_11_2
-    cudatoolkit_11_3
-    cudatoolkit_11_4
-    cudatoolkit_11_5
-    cudatoolkit_11_6;
+  cudaPackages_10_0 = callPackage ./cuda-packages.nix { cudaVersion = "10.0"; };
+  cudaPackages_10_1 = callPackage ./cuda-packages.nix { cudaVersion = "10.1"; };
+  cudaPackages_10_2 = callPackage ./cuda-packages.nix { cudaVersion = "10.2"; };
+  cudaPackages_10 = cudaPackages_10_2;
 
-  cudatoolkit = cudatoolkit_11;
+  cudaPackages_11_0 = callPackage ./cuda-packages.nix { cudaVersion = "11.0"; };
+  cudaPackages_11_1 = callPackage ./cuda-packages.nix { cudaVersion = "11.1"; };
+  cudaPackages_11_2 = callPackage ./cuda-packages.nix { cudaVersion = "11.2"; };
+  cudaPackages_11_3 = callPackage ./cuda-packages.nix { cudaVersion = "11.3"; };
+  cudaPackages_11_4 = callPackage ./cuda-packages.nix { cudaVersion = "11.4"; };
+  cudaPackages_11_5 = callPackage ./cuda-packages.nix { cudaVersion = "11.5"; };
+  cudaPackages_11_6 = callPackage ./cuda-packages.nix { cudaVersion = "11.6"; };
+  cudaPackages_11 = cudaPackages_11_5;
+  cudaPackages = cudaPackages_11;
 
-  cudnnPackages = callPackages ../development/libraries/science/math/cudnn { };
-  inherit (cudnnPackages)
-    cudnn_7_4_cudatoolkit_10_0
-    cudnn_7_6_cudatoolkit_10_0
-    cudnn_7_6_cudatoolkit_10_1
-    cudnn_8_1_cudatoolkit_10_2
-    cudnn_8_1_cudatoolkit_11_0
-    cudnn_8_1_cudatoolkit_11_1
-    cudnn_8_1_cudatoolkit_11_2
-    cudnn_8_1_cudatoolkit_10
-    cudnn_8_3_cudatoolkit_10_2
-    cudnn_8_3_cudatoolkit_11_0
-    cudnn_8_3_cudatoolkit_11_1
-    cudnn_8_3_cudatoolkit_11_2
-    cudnn_8_3_cudatoolkit_11_3
-    cudnn_8_3_cudatoolkit_11_4
-    cudnn_8_3_cudatoolkit_11_5
-    cudnn_8_3_cudatoolkit_10
-    cudnn_8_3_cudatoolkit_11;
-
-  # Make sure to keep this in sync with the `cudatoolkit` version!
-  cudnn = cudnn_8_3_cudatoolkit_11;
-
-  cutensorPackages = callPackages ../development/libraries/science/math/cutensor { };
-  inherit (cutensorPackages)
-    cutensor_cudatoolkit_10
-    cutensor_cudatoolkit_10_1
-    cutensor_cudatoolkit_10_2
-    cutensor_cudatoolkit_11
-    cutensor_cudatoolkit_11_0
-    cutensor_cudatoolkit_11_1
-    cutensor_cudatoolkit_11_2
-    cutensor_cudatoolkit_11_3
-    cutensor_cudatoolkit_11_4;
-
-  cutensor = cutensor_cudatoolkit_11;
+  # TODO: move to alias
+  cudatoolkit = cudaPackages.cudatoolkit;
+  cudatoolkit_11 = cudaPackages_11.cudatoolkit;
 
   curie = callPackage ../data/fonts/curie { };
 
@@ -5078,6 +5049,8 @@ with pkgs;
   magic-vlsi = callPackage ../applications/science/electronics/magic-vlsi { };
 
   mcrcon = callPackage ../tools/networking/mcrcon {};
+
+  mozillavpn = libsForQt5.callPackage ../tools/networking/mozillavpn { };
 
   mozwire = callPackage ../tools/networking/mozwire {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -8175,10 +8148,6 @@ with pkgs;
   nbd = callPackage ../tools/networking/nbd { };
   xnbd = callPackage ../tools/networking/xnbd { };
 
-  nccl = callPackage ../development/libraries/science/math/nccl { };
-  nccl_cudatoolkit_10 = nccl.override { cudatoolkit = cudatoolkit_10; };
-  nccl_cudatoolkit_11 = nccl.override { cudatoolkit = cudatoolkit_11; };
-
   ndjbdns = callPackage ../tools/networking/ndjbdns { };
 
   ndppd = callPackage ../applications/networking/ndppd { };
@@ -9533,7 +9502,7 @@ with pkgs;
   rescuetime = libsForQt5.callPackage ../applications/misc/rescuetime { };
 
   inherit (callPackage ../development/misc/resholve { })
-    resholve resholvePackage resholveScript resholveScriptBin;
+    resholve;
 
   restool = callPackage ../os-specific/linux/restool {};
 
@@ -10993,23 +10962,9 @@ with pkgs;
 
   witness = callPackage ../tools/security/witness { };
 
-  openconnect = openconnect_gnutls;
+  openconnectPackages = callPackage ../tools/networking/openconnect { };
 
-  openconnect_openssl = callPackage ../tools/networking/openconnect {
-    inherit (darwin.apple_sdk.frameworks) PCSC;
-    gnutls = null;
-  };
-
-  openconnect_gnutls = callPackage ../tools/networking/openconnect {
-    inherit (darwin.apple_sdk.frameworks) PCSC;
-    openssl = null;
-  };
-
-  openconnect_head = callPackage ../tools/networking/openconnect {
-    inherit (darwin.apple_sdk.frameworks) PCSC;
-    head = true;
-    openssl = null;
-  };
+  inherit (openconnectPackages) openconnect openconnect_unstable openconnect_openssl;
 
   globalprotect-openconnect = libsForQt5.callPackage ../tools/networking/globalprotect-openconnect { };
 
@@ -15332,6 +15287,8 @@ with pkgs;
 
   kafka-delta-ingest = callPackage ../development/tools/kafka-delta-ingest { };
 
+  kamid = callPackage ../servers/ftp/kamid { };
+
   kati = callPackage ../development/tools/build-managers/kati { };
 
   kcat = callPackage ../development/tools/kcat { };
@@ -16143,6 +16100,8 @@ with pkgs;
   alure2 = callPackage ../development/libraries/alure2 { };
 
   agg = callPackage ../development/libraries/agg { };
+
+  agkozak-zsh-prompt = callPackage ../shells/zsh/agkozak-zsh-prompt { };
 
   alass = callPackage ../applications/video/alass { };
 
@@ -20308,6 +20267,8 @@ with pkgs;
 
   spirv-cross = callPackage ../tools/graphics/spirv-cross { };
 
+  splat = callPackage ../applications/radio/splat { };
+
   sratom = callPackage ../development/libraries/audio/sratom { };
 
   srm = callPackage ../tools/security/srm { };
@@ -22466,7 +22427,9 @@ with pkgs;
 
   coredns = callPackage ../servers/dns/coredns { };
 
-  corerad = callPackage ../tools/networking/corerad { };
+  corerad = callPackage ../tools/networking/corerad {
+    buildGoModule = buildGo118Module;
+  };
 
   cpufrequtils = callPackage ../os-specific/linux/cpufrequtils { };
 
@@ -23083,7 +23046,9 @@ with pkgs;
 
   go-langserver = callPackage ../development/tools/go-langserver { };
 
-  gopls = callPackage ../development/tools/gopls { };
+  gopls = callPackage ../development/tools/gopls {
+    buildGoModule = buildGo118Module;
+  };
 
   gops = callPackage ../development/tools/gops { };
 
@@ -26409,7 +26374,7 @@ with pkgs;
 
   gpu-screen-recorder = callPackage ../applications/video/gpu-screen-recorder {
     # rm me as soon as this package gains the support for cuda 11
-    cudatoolkit = cudatoolkit_10;
+    inherit (cudaPackages_10) cudatoolkit;
   };
 
   gpu-screen-recorder-gtk = callPackage ../applications/video/gpu-screen-recorder/gpu-screen-recorder-gtk.nix { };
@@ -27864,6 +27829,8 @@ with pkgs;
   };
   mutt-wizard = callPackage ../tools/misc/mutt-wizard { };
 
+  mutt-ics = callPackage ../tools/networking/mutt-ics { };
+
   mwic = callPackage ../applications/misc/mwic {
     pythonPackages = python3Packages;
   };
@@ -28142,6 +28109,7 @@ with pkgs;
   netcoredbg = callPackage ../development/tools/misc/netcoredbg { };
 
   ncdu = callPackage ../tools/misc/ncdu { };
+  ncdu_2 = callPackage ../tools/misc/ncdu_2 { };
 
   ncdc = callPackage ../applications/networking/p2p/ncdc { };
 
@@ -31320,8 +31288,6 @@ with pkgs;
 
   katagoWithCuda = katago.override {
     enableCuda = true;
-    cudnn = cudnn_8_3_cudatoolkit_11;
-    cudatoolkit = cudatoolkit_11;
   };
 
   katagoCPU = katago.override {
@@ -32925,8 +32891,7 @@ with pkgs;
 
   caffe = callPackage ../applications/science/math/caffe ({
     cudaSupport = config.cudaSupport or false;
-    cudatoolkit = cudatoolkit_10_1;
-    cudnn = cudnn_7_6_cudatoolkit_10_1;
+    cudaPackages = cudaPackages_10_1;
     opencv3 = opencv3WithoutCuda; # Used only for image loading.
     blas = openblas;
     inherit (darwin.apple_sdk.frameworks) Accelerate CoreGraphics CoreVideo;
