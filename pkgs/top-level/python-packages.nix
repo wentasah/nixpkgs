@@ -289,8 +289,6 @@ in {
 
   aiogithubapi = callPackage ../development/python-modules/aiogithubapi { };
 
-  aioh2 = callPackage ../development/python-modules/aioh2 { };
-
   aioharmony = callPackage ../development/python-modules/aioharmony { };
 
   aiohomekit = callPackage ../development/python-modules/aiohomekit { };
@@ -642,6 +640,10 @@ in {
   asciitree = callPackage ../development/python-modules/asciitree { };
 
   asdf = callPackage ../development/python-modules/asdf { };
+
+  asdf-standard = callPackage ../development/python-modules/asdf-standard { };
+
+  asdf-transform-schemas = callPackage ../development/python-modules/asdf-transform-schemas { };
 
   ase = callPackage ../development/python-modules/ase { };
 
@@ -6425,6 +6427,8 @@ in {
 
   poezio = callPackage ../applications/networking/instant-messengers/poezio { };
 
+  polars = callPackage ../development/python-modules/polars { };
+
   polarizationsolver = callPackage ../development/python-modules/polarizationsolver { };
 
   polib = callPackage ../development/python-modules/polib { };
@@ -8489,6 +8493,8 @@ in {
   pyvlx = callPackage ../development/python-modules/pyvlx { };
 
   pyvmomi = callPackage ../development/python-modules/pyvmomi { };
+
+  pyvo = callPackage ../development/python-modules/pyvo { };
 
   pyvolumio = callPackage ../development/python-modules/pyvolumio { };
 
