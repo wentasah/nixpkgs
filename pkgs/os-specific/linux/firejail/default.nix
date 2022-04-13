@@ -46,6 +46,9 @@ stdenv.mkDerivation rec {
     # Fix the path to 'xdg-dbus-proxy' hardcoded in the 'common.h' file
     substituteInPlace src/include/common.h \
       --replace '/usr/bin/xdg-dbus-proxy' '${xdg-dbus-proxy}/bin/xdg-dbus-proxy'
+    # Allow running binaries from /nix/store
+    substituteInPlace etc/apparmor/firejail-default \
+      --replace '/{,run/firejail/mnt/oroot/}' '/{,run/firejail/mnt/oroot/,/nix/store/*/}'
   '';
 
   preConfigure = ''

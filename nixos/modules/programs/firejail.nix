@@ -91,6 +91,11 @@ in {
       };
 
     environment.systemPackages = [ pkgs.firejail ] ++ [ wrappedBins ];
+    security.apparmor.enable = true;
+    security.apparmor.packages = [ pkgs.firejail ];
+    security.apparmor.policies."firejail-default".profile = ''
+      include ${pkgs.firejail}/etc/apparmor.d/firejail-default
+    '';
   };
 
   meta.maintainers = with maintainers; [ peterhoeg ];

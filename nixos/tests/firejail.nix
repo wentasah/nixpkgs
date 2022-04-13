@@ -86,6 +86,11 @@ import ./make-test-python.nix ({ pkgs, ...} : {
     machine.fail(
         "sudo -u alice firejail --private-tmp --output=/tmp/foo 'bash -c $(id>/tmp/vuln2;echo id)' && cat /tmp/vuln2"
     )
+
+    # Test apparmor support
+    machine.succeed(
+        "sudo -u alice firejail --apparmor bash -c 'echo XXXXXXXXXXXXXXXXXXX apparmor works >&2'"
+    )
   '';
 })
 
