@@ -37,6 +37,7 @@ PKG_SET = "home-assistant.python.pkgs"
 # If some requirements are matched by multiple or no Python packages, the
 # following can be used to choose the correct one
 PKG_PREFERENCES = {
+    "ha-av": "av",
     "youtube_dl": "youtube-dl-light",
     "tensorflow": "tensorflow",
     "fiblary3": "fiblary3-fork", # https://github.com/home-assistant/core/issues/66466
@@ -247,7 +248,7 @@ def main() -> None:
         f.write("  ];\n")
         f.write("}\n")
 
-    supported_components = reduce(lambda n, c: n + (build_inputs[c][1] == []),
+    supported_components = reduce(lambda n, c: n + (build_inputs[c][2] == []),
                                   components.keys(), 0)
     total_components = len(components)
     print(f"{supported_components} / {total_components} components supported, "

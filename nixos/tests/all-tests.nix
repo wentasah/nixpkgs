@@ -35,6 +35,7 @@ in
   agate = handleTest ./web-servers/agate.nix {};
   agda = handleTest ./agda.nix {};
   airsonic = handleTest ./airsonic.nix {};
+  allTerminfo = handleTest ./all-terminfo.nix {};
   amazon-init-shell = handleTest ./amazon-init-shell.nix {};
   apfs = handleTest ./apfs.nix {};
   apparmor = handleTest ./apparmor.nix {};
@@ -207,6 +208,7 @@ in
   # hibernation. This test happens to work on x86_64-linux but
   # not on other platforms.
   hibernate = handleTestOn ["x86_64-linux"] ./hibernate.nix {};
+  hibernate-systemd-stage-1 = handleTestOn ["x86_64-linux"] ./hibernate.nix { systemdStage1 = true; };
   hitch = handleTest ./hitch {};
   hledger-web = handleTest ./hledger-web.nix {};
   hocker-fetchdocker = handleTest ./hocker-fetchdocker {};
@@ -364,7 +366,7 @@ in
   nginx-variants = handleTest ./nginx-variants.nix {};
   nifi = handleTestOn ["x86_64-linux"] ./web-apps/nifi.nix {};
   nitter = handleTest ./nitter.nix {};
-  nix-ld = handleTest ./nix-ld {};
+  nix-ld = handleTest ./nix-ld.nix {};
   nix-serve = handleTest ./nix-serve.nix {};
   nix-serve-ssh = handleTest ./nix-serve-ssh.nix {};
   nixops = handleTest ./nixops/default.nix {};
@@ -518,6 +520,7 @@ in
   systemd-confinement = handleTest ./systemd-confinement.nix {};
   systemd-cryptenroll = handleTest ./systemd-cryptenroll.nix {};
   systemd-escaping = handleTest ./systemd-escaping.nix {};
+  systemd-initrd-mdraid = handleTest ./systemd-initrd-mdraid.nix {};
   systemd-initrd-simple = handleTest ./systemd-initrd-simple.nix {};
   systemd-journal = handleTest ./systemd-journal.nix {};
   systemd-machinectl = handleTest ./systemd-machinectl.nix {};

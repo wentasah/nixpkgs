@@ -2858,6 +2858,8 @@ with pkgs;
 
   daemontools = callPackage ../tools/admin/daemontools { };
 
+  dagger = callPackage ../development/tools/continuous-integration/dagger { };
+
   dale = callPackage ../development/compilers/dale { };
 
   damon = callPackage ../tools/admin/damon { };
@@ -3422,7 +3424,11 @@ with pkgs;
 
   jellycli = callPackage ../applications/audio/jellycli { };
 
-  jellyfin = callPackage ../servers/jellyfin { };
+  jellyfin = callPackage ../servers/jellyfin {
+    ffmpeg = jellyfin-ffmpeg;
+  };
+
+  jellyfin-ffmpeg = callPackage ../development/libraries/jellyfin-ffmpeg { };
 
   jellyfin-media-player = libsForQt5.callPackage ../applications/video/jellyfin-media-player {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation Cocoa CoreAudio MediaPlayer;
@@ -13111,7 +13117,7 @@ with pkgs;
 
   mozart2-binary = callPackage ../development/compilers/mozart/binary.nix { };
 
-  muon = callPackage ../development/compilers/muon { };
+  muonlang = callPackage ../development/compilers/muonlang { };
 
   inherit (callPackages ../development/compilers/nim { })
     nim-unwrapped nimble-unwrapped nim;
@@ -14293,7 +14299,9 @@ with pkgs;
 
   inav-blackbox-tools = callPackage ../tools/misc/inav-blackbox-tools { };
 
-  infracost = callPackage ../tools/misc/infracost { };
+  infracost = callPackage ../tools/misc/infracost {
+    buildGoModule = buildGo118Module;
+  };
 
   msp430GccSupport = callPackage ../development/misc/msp430/gcc-support.nix { };
 
@@ -14651,6 +14659,7 @@ with pkgs;
   libodb = callPackage ../development/libraries/libodb { };
   libodb-sqlite = callPackage ../development/libraries/libodb-sqlite { };
   bdep = callPackage ../development/tools/build-managers/build2/bdep.nix { };
+  bore-cli = callPackage ../tools/networking/bore-cli/default.nix {};
   bpkg = callPackage ../development/tools/build-managers/build2/bpkg.nix { };
 
   buildkite-agent = callPackage ../development/tools/continuous-integration/buildkite-agent { };
@@ -19726,7 +19735,6 @@ with pkgs;
   protobuf3_7 = callPackage ../development/libraries/protobuf/3.7.nix { };
   protobuf3_6 = callPackage ../development/libraries/protobuf/3.6.nix { };
   protobuf3_1 = callPackage ../development/libraries/protobuf/3.1.nix { };
-  protobuf2_5 = callPackage ../development/libraries/protobuf/2.5.nix { };
 
   protobufc = callPackage ../development/libraries/protobufc/1.3.nix { };
 
@@ -19843,9 +19851,9 @@ with pkgs;
     qt5 = qt515;
   });
 
-  # TODO bump to 5.14 on darwin once it's not broken; see #95199
-  qt5 =        if stdenv.hostPlatform.isDarwin then qt512 else qt515;
-  libsForQt5 = if stdenv.hostPlatform.isDarwin then libsForQt512 else libsForQt515;
+  # TODO bump to 5.15 on darwin once it's not broken; see #125548
+  qt5 =        if stdenv.hostPlatform.isDarwin then qt514 else qt515;
+  libsForQt5 = if stdenv.hostPlatform.isDarwin then libsForQt514 else libsForQt515;
 
   # plasma5Packages maps to the Qt5 packages set that is used to build the plasma5 desktop
   plasma5Packages = libsForQt515;
@@ -20473,6 +20481,10 @@ with pkgs;
   tntdb = callPackage ../development/libraries/tntdb { };
 
   kyotocabinet = callPackage ../development/libraries/kyotocabinet { };
+
+  tomlc99 = callPackage ../development/libraries/tomlc99 { };
+
+  tomlcpp = callPackage ../development/libraries/tomlcpp { };
 
   tokyocabinet = callPackage ../development/libraries/tokyo-cabinet { };
 
@@ -21796,6 +21808,20 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreFoundation Security;
   };
 
+  mongodb-4_4 = callPackage ../servers/nosql/mongodb/4.4.nix {
+    sasl = cyrus_sasl;
+    boost = boost17x.override { enableShared = false; };
+    inherit (darwin) cctools;
+    inherit (darwin.apple_sdk.frameworks) CoreFoundation Security;
+  };
+
+  mongodb-5_0 = callPackage ../servers/nosql/mongodb/5.0.nix {
+    sasl = cyrus_sasl;
+    boost = boost17x.override { enableShared = false; };
+    inherit (darwin) cctools;
+    inherit (darwin.apple_sdk.frameworks) CoreFoundation Security;
+  };
+
   nginx-sso = callPackage ../servers/nginx-sso { };
 
   percona-server56 = callPackage ../servers/sql/percona/5.6.x.nix { };
@@ -22698,6 +22724,8 @@ with pkgs;
   lieer = callPackage ../applications/networking/lieer {};
 
   linuxConsoleTools = callPackage ../os-specific/linux/consoletools { };
+
+  linux-wifi-hotspot = callPackage ../os-specific/linux/linux-wifi-hotspot { };
 
   linthesia = callPackage ../games/linthesia/default.nix { };
 
@@ -34001,6 +34029,8 @@ with pkgs;
   rancher = callPackage ../applications/networking/cluster/rancher { };
 
   rauc = callPackage ../tools/misc/rauc { };
+
+  rbspy = callPackage ../development/tools/rbspy { };
 
   redprl = callPackage ../applications/science/logic/redprl { };
 

@@ -2851,6 +2851,7 @@ in {
 
   fenics = callPackage ../development/libraries/science/math/fenics {
     hdf5 = pkgs.hdf5_1_10;
+    boost = pkgs.boost169;
   };
 
   ffcv = callPackage ../development/python-modules/ffcv { };
@@ -5429,6 +5430,8 @@ in {
 
   napari-console = callPackage ../development/python-modules/napari-console { };
 
+  napari-npe2 = callPackage ../development/python-modules/napari-npe2 { };
+
   napari-plugin-engine = callPackage ../development/python-modules/napari-plugin-engine { };
 
   napari-svg = callPackage ../development/python-modules/napari-svg { };
@@ -7723,9 +7726,13 @@ in {
 
   pysigma-backend-splunk = callPackage ../development/python-modules/pysigma-backend-splunk { };
 
+  pysigma-backend-insightidr = callPackage ../development/python-modules/pysigma-backend-insightidr { };
+
   pysigma-pipeline-crowdstrike = callPackage ../development/python-modules/pysigma-pipeline-crowdstrike { };
 
   pysigma-pipeline-sysmon = callPackage ../development/python-modules/pysigma-pipeline-sysmon { };
+
+  pysigma-pipeline-windows = callPackage ../development/python-modules/pysigma-pipeline-windows { };
 
   pysignalclirestapi = callPackage ../development/python-modules/pysignalclirestapi { };
 
