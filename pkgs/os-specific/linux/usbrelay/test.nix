@@ -47,6 +47,7 @@ import ../../../../nixos/tests/make-test-python.nix ({ pkgs, ... }: {
         import sys
         sys.exit(2)
     machine.start()
+    # usbrelayd is started by udev when an relay is detected
     machine.wait_for_unit("usbrelayd.service")
 
     stdout = machine.succeed("usbrelay")
