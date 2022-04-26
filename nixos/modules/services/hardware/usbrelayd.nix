@@ -19,7 +19,7 @@ in
 
     clientName = mkOption {
       type = str;
-      description = "Name your client connects as.";
+      description = "Name, your client connects as.";
       default = "MyUSBRelay";
     };
   };

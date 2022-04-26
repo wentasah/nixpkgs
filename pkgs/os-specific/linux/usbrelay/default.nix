@@ -10,9 +10,6 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-bxME4r5W5bZKxMZ/Svi1EenqHKVWIjU6iiKaM8U6lmA=";
   };
 
-  nativeBuildInputs = [
-  ];
-
   buildInputs = [
     hidapi
   ];
