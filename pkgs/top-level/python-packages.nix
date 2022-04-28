@@ -513,9 +513,7 @@ in {
 
   ansi2html = callPackage ../development/python-modules/ansi2html { };
 
-  ansible = callPackage ../development/python-modules/ansible/legacy.nix { };
-
-  ansible-base = callPackage ../development/python-modules/ansible/base.nix { };
+  ansible = callPackage ../development/python-modules/ansible { };
 
   ansible-compat = callPackage ../development/python-modules/ansible-compat { };
 
@@ -2877,7 +2875,7 @@ in {
 
   feedparser = callPackage ../development/python-modules/feedparser { };
 
-  fenics = callPackage ../development/libraries/science/math/fenics {
+  fenics = callPackage ../development/python-modules/fenics {
     hdf5 = pkgs.hdf5_1_10;
     boost = pkgs.boost169;
   };
@@ -8957,6 +8955,8 @@ in {
     python3 = python;
   });
 
+  rjpl = callPackage ../development/python-modules/rjpl { };
+
   rjsmin = callPackage ../development/python-modules/rjsmin { };
 
   rki-covid-parser = callPackage ../development/python-modules/rki-covid-parser { };
@@ -10675,7 +10675,9 @@ in {
 
   vispy = callPackage ../development/python-modules/vispy { };
 
-  vivisect = callPackage ../development/python-modules/vivisect { };
+  vivisect = callPackage ../development/python-modules/vivisect {
+    inherit (pkgs.libsForQt5) wrapQtAppsHook;
+  };
 
   viv-utils = callPackage ../development/python-modules/viv-utils { };
 
