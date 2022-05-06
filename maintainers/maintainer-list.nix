@@ -1409,6 +1409,12 @@
     githubId = 164148;
     name = "Ben Darwin";
   };
+  bdd = {
+    email = "bdd@mindcast.org";
+    github = "bdd";
+    githubId = 11135;
+    name = "Berk D. Demir";
+  };
   bdesham = {
     email = "benjamin@esham.io";
     github = "bdesham";
@@ -13288,6 +13294,12 @@
     githubId = 1771332;
     name = "László Vaskó";
   };
+  vlinkz = {
+    email = "vmfuentes64@gmail.com";
+    github = "vlinkz";
+    githubId = 20145996;
+    name = "Victor Fuentes";
+  };
   vlstill = {
     email = "xstill@fi.muni.cz";
     github = "vlstill";
@@ -14198,6 +14210,12 @@
     email = "ext0l@riseup.net";
     github = "deifactor";
     githubId = 30192992;
+  };
+  deinferno = {
+    name = "deinferno";
+    email = "14363193+deinferno@users.noreply.github.com";
+    github = "deinferno";
+    githubId = 14363193;
   };
   fzakaria = {
     name = "Farid Zakaria";
