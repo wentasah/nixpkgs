@@ -1871,6 +1871,8 @@ in {
 
   consul = callPackage ../development/python-modules/consul { };
 
+  container-inspector = callPackage ../development/python-modules/container-inspector { };
+
   contexter = callPackage ../development/python-modules/contexter { };
 
   contextlib2 = callPackage ../development/python-modules/contextlib2 { };
@@ -1938,6 +1940,8 @@ in {
   criticality-score = callPackage ../development/python-modules/criticality-score { };
 
   croniter = callPackage ../development/python-modules/croniter { };
+
+  crossplane = callPackage ../development/python-modules/crossplane { };
 
   crownstone-cloud = callPackage ../development/python-modules/crownstone-cloud { };
 
@@ -2510,6 +2514,8 @@ in {
 
   dparse = callPackage ../development/python-modules/dparse { };
 
+  dparse2 = callPackage ../development/python-modules/dparse2 { };
+
   dpath = callPackage ../development/python-modules/dpath { };
 
   dpkt = callPackage ../development/python-modules/dpkt { };
@@ -2537,6 +2543,8 @@ in {
   dsmr-parser = callPackage ../development/python-modules/dsmr-parser { };
 
   dtlssocket = callPackage ../development/python-modules/dtlssocket { };
+
+  ducc0 = callPackage ../development/python-modules/ducc0 { };
 
   duckdb = callPackage ../development/python-modules/duckdb {
     inherit (pkgs) duckdb;
@@ -3931,7 +3939,11 @@ in {
 
   httpcore = callPackage ../development/python-modules/httpcore { };
 
+  httpie = callPackage ../development/python-modules/httpie { };
+
   http-ece = callPackage ../development/python-modules/http-ece { };
+
+  httpie-ntlm = callPackage ../development/python-modules/httpie-ntlm { };
 
   httplib2 = callPackage ../development/python-modules/httplib2 { };
 
@@ -5348,6 +5360,8 @@ in {
 
   mohawk = callPackage ../development/python-modules/mohawk { };
 
+  moku = callPackage ../development/python-modules/moku { };
+
   monero = callPackage ../development/python-modules/monero { };
 
   mongomock = callPackage ../development/python-modules/mongomock { };
@@ -5360,7 +5374,7 @@ in {
 
   monosat = pkgs.monosat.python {
     inherit buildPythonPackage;
-    inherit (self) cython;
+    inherit (self) cython pytestCheckHook;
   };
 
   monotonic = callPackage ../development/python-modules/monotonic { };
@@ -5518,6 +5532,8 @@ in {
   nameparser = callPackage ../development/python-modules/nameparser { };
 
   names = callPackage ../development/python-modules/names { };
+
+  name-that-hash = callPackage ../development/python-modules/name-that-hash { };
 
   nampa = callPackage ../development/python-modules/nampa { };
 
@@ -6067,6 +6083,8 @@ in {
 
   pandoc-attributes = callPackage ../development/python-modules/pandoc-attributes { };
 
+  pandoc-xnos = callPackage ../development/python-modules/pandoc-xnos { };
+
   pandocfilters = callPackage ../development/python-modules/pandocfilters { };
 
   panel = callPackage ../development/python-modules/panel { };
@@ -6178,6 +6196,8 @@ in {
   pbr = callPackage ../development/python-modules/pbr { };
 
   pc-ble-driver-py = toPythonModule (callPackage ../development/python-modules/pc-ble-driver-py { });
+
+  pcapy-ng = callPackage ../development/python-modules/pcapy-ng { };
 
   pcodedmp = callPackage ../development/python-modules/pcodedmp { };
 
@@ -6351,6 +6371,8 @@ in {
 
   pip-tools = callPackage ../development/python-modules/pip-tools { };
 
+  pip-requirements-parser = callPackage ../development/python-modules/pip-requirements-parser { };
+
   pipx = callPackage ../development/python-modules/pipx { };
 
   pivy = callPackage ../development/python-modules/pivy {
@@ -6365,6 +6387,8 @@ in {
   pkgconfig = callPackage ../development/python-modules/pkgconfig { };
 
   pkginfo = callPackage ../development/python-modules/pkginfo { };
+
+  pkginfo2 = callPackage ../development/python-modules/pkginfo2 { };
 
   pkuseg = callPackage ../development/python-modules/pkuseg { };
 
@@ -8460,6 +8484,8 @@ in {
 
   python-rapidjson = callPackage ../development/python-modules/python-rapidjson { };
 
+  python-rabbitair = callPackage ../development/python-modules/python-rabbitair { };
+
   python-redis-lock = callPackage ../development/python-modules/python-redis-lock { };
 
   python-registry = callPackage ../development/python-modules/python-registry { };
@@ -9707,6 +9733,8 @@ in {
 
   spinners = callPackage ../development/python-modules/spinners { };
 
+  sphinx-better-theme = callPackage ../development/python-modules/sphinx-better-theme { };
+
   sphinxcontrib-actdiag = callPackage ../development/python-modules/sphinxcontrib-actdiag { };
 
   sphinxcontrib-apidoc = callPackage ../development/python-modules/sphinxcontrib-apidoc { };
@@ -10721,6 +10749,8 @@ in {
   validators = callPackage ../development/python-modules/validators { };
 
   validictory = callPackage ../development/python-modules/validictory { };
+
+  validobj = callPackage ../development/python-modules/validobj { };
 
   variants = callPackage ../development/python-modules/variants { };
 
