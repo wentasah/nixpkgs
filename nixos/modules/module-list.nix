@@ -505,6 +505,7 @@
   ./services/mail/postfixadmin.nix
   ./services/mail/postsrsd.nix
   ./services/mail/postgrey.nix
+  ./services/mail/public-inbox.nix
   ./services/mail/spamassassin.nix
   ./services/mail/rspamd.nix
   ./services/mail/rss2email.nix
@@ -936,6 +937,7 @@
   ./services/networking/unifi.nix
   ./services/video/unifi-video.nix
   ./services/video/rtsp-simple-server.nix
+  ./services/networking/uptermd.nix
   ./services/networking/v2ray.nix
   ./services/networking/vsftpd.nix
   ./services/networking/wasabibackend.nix
