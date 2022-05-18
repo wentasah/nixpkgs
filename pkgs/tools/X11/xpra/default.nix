@@ -100,7 +100,7 @@ in buildPythonApplication rec {
     "--with-gtk3"
     # Override these, setup.py checks for headers in /usr/* paths
     "--with-pam"
-    "--with-vsock"
+    "--with-vsock "
   ] ++ lib.optional withNvenc "--with-nvenc";
 
   dontWrapGApps = true;
