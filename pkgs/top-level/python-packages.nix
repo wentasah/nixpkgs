@@ -1105,6 +1105,10 @@ in {
 
   babelgladeextractor = callPackage ../development/python-modules/babelgladeextractor { };
 
+  pulumi = callPackage ../development/python-modules/pulumi { };
+
+  pulumi-aws = callPackage ../development/python-modules/pulumi-aws { };
+
   backcall = callPackage ../development/python-modules/backcall { };
 
   backoff = callPackage ../development/python-modules/backoff { };
@@ -2245,6 +2249,8 @@ in {
 
   directv = callPackage ../development/python-modules/directv { };
 
+  dirty-equals = callPackage ../development/python-modules/dirty-equals { };
+
   discid = callPackage ../development/python-modules/discid { };
 
   discogs-client = callPackage ../development/python-modules/discogs-client { };
@@ -2323,7 +2329,7 @@ in {
 
   django-gravatar2 = callPackage ../development/python-modules/django-gravatar2 { };
 
-  django_guardian = callPackage ../development/python-modules/django_guardian { };
+  django-guardian = callPackage ../development/python-modules/django-guardian { };
 
   django-haystack = callPackage ../development/python-modules/django-haystack { };
 
@@ -2528,9 +2534,13 @@ in {
 
   dragonfly = callPackage ../development/python-modules/dragonfly { };
 
+  dremel3dpy = callPackage ../development/python-modules/dremel3dpy { };
+
   drf-jwt = callPackage ../development/python-modules/drf-jwt { };
 
   drf-nested-routers = callPackage ../development/python-modules/drf-nested-routers { };
+
+  drf-spectacular-sidecar = callPackage ../development/python-modules/drf-spectacular-sidecar { };
 
   drf-yasg = callPackage ../development/python-modules/drf-yasg { };
 
@@ -2571,6 +2581,8 @@ in {
   dunamai = callPackage ../development/python-modules/dunamai { };
 
   dungeon-eos = callPackage ../development/python-modules/dungeon-eos { };
+
+  duo-client = callPackage ../development/python-modules/duo-client { };
 
   durus = callPackage ../development/python-modules/durus {  };
 
@@ -3110,7 +3122,7 @@ in {
 
   flask-versioned = callPackage ../development/python-modules/flask-versioned { };
 
-  flask_wtf = callPackage ../development/python-modules/flask-wtf { };
+  flask-wtf = callPackage ../development/python-modules/flask-wtf { };
 
   flatbuffers = callPackage ../development/python-modules/flatbuffers {
     inherit (pkgs) flatbuffers;
@@ -4021,8 +4033,6 @@ in {
 
   hyperion-py = callPackage ../development/python-modules/hyperion-py { };
 
-  hyperkitty = callPackage ../servers/mail/mailman/hyperkitty.nix { };
-
   hyperlink = callPackage ../development/python-modules/hyperlink { };
 
   hyperopt = callPackage ../development/python-modules/hyperopt { };
@@ -4719,6 +4729,11 @@ in {
 
   leb128 = callPackage ../development/python-modules/leb128 { };
 
+  ledger = (toPythonModule (pkgs.ledger.override {
+    usePython = true;
+    python3 = python;
+  })).py;
+
   ledger_agent = callPackage ../development/python-modules/ledger_agent { };
 
   ledgerblue = callPackage ../development/python-modules/ledgerblue { };
@@ -4982,6 +4997,8 @@ in {
 
   logfury = callPackage ../development/python-modules/logfury { };
 
+  logi-circle = callPackage ../development/python-modules/logi-circle { };
+
   logical-unification = callPackage ../development/python-modules/logical-unification { };
 
   logilab_astng = callPackage ../development/python-modules/logilab_astng { };
@@ -5072,13 +5089,7 @@ in {
 
   mailchimp = callPackage ../development/python-modules/mailchimp { };
 
-  mailman = callPackage ../servers/mail/mailman { };
-
   mailmanclient = callPackage ../development/python-modules/mailmanclient { };
-
-  mailman-hyperkitty = callPackage ../development/python-modules/mailman-hyperkitty { };
-
-  mailman-web = callPackage ../servers/mail/mailman/web.nix { };
 
   rtmixer = callPackage ../development/python-modules/rtmixer { };
 
@@ -5324,6 +5335,7 @@ in {
   mizani = callPackage ../development/python-modules/mizani { };
 
   mkdocs = callPackage ../development/python-modules/mkdocs { };
+  mkdocs-drawio-exporter = callPackage ../development/python-modules/mkdocs-drawio-exporter { };
   mkdocs-material = callPackage ../development/python-modules/mkdocs-material { };
   mkdocs-material-extensions = callPackage ../development/python-modules/mkdocs-material/mkdocs-material-extensions.nix { };
   mkdocs-minify = callPackage ../development/python-modules/mkdocs-minify { };
@@ -6660,8 +6672,6 @@ in {
   posix_ipc = callPackage ../development/python-modules/posix_ipc { };
 
   poster3 = callPackage ../development/python-modules/poster3 { };
-
-  postorius = callPackage ../servers/mail/mailman/postorius.nix { };
 
   pot = callPackage ../development/python-modules/pot { };
 
@@ -9471,7 +9481,7 @@ in {
 
   sharedmem = callPackage ../development/python-modules/sharedmem { };
 
-  sharkiqpy = callPackage ../development/python-modules/sharkiqpy { };
+  sharkiq = callPackage ../development/python-modules/sharkiq { };
 
   sh = callPackage ../development/python-modules/sh { };
 
@@ -9946,6 +9956,8 @@ in {
   stdiomask = callPackage ../development/python-modules/stdiomask { };
 
   stdlib-list = callPackage ../development/python-modules/stdlib-list { };
+
+  steamodd = callPackage ../development/python-modules/steamodd { };
 
   stem = callPackage ../development/python-modules/stem { };
 
@@ -10572,6 +10584,8 @@ in {
 
   types-decorator = callPackage ../development/python-modules/types-decorator { };
 
+  types-docutils = callPackage ../development/python-modules/types-docutils { };
+
   types-enum34 = callPackage ../development/python-modules/types-enum34 { };
 
   types-freezegun = callPackage ../development/python-modules/types-freezegun { };
@@ -10945,6 +10959,8 @@ in {
   watchdog = callPackage ../development/python-modules/watchdog {
     inherit (pkgs.darwin.apple_sdk.frameworks) CoreServices;
   };
+
+  watchfiles = callPackage ../development/python-modules/watchfiles { };
 
   watchgod = callPackage ../development/python-modules/watchgod { };
 
