@@ -1257,6 +1257,8 @@ in {
 
   bitcoinrpc = callPackage ../development/python-modules/bitcoinrpc { };
 
+  bite-parser = callPackage ../development/python-modules/bite-parser { };
+
   bitlist = callPackage ../development/python-modules/bitlist { };
 
   bitmath = callPackage ../development/python-modules/bitmath { };
@@ -1322,6 +1324,8 @@ in {
   boltztrap2 = callPackage ../development/python-modules/boltztrap2 { };
 
   bond-api = callPackage ../development/python-modules/bond-api { };
+
+  bond-async = callPackage ../development/python-modules/bond-async { };
 
   booleanoperations = callPackage ../development/python-modules/booleanoperations { };
 
@@ -1761,6 +1765,8 @@ in {
 
   cloudsplaining = callPackage ../development/python-modules/cloudsplaining { };
 
+  cloup = callPackage ../development/python-modules/cloup { };
+
   clustershell = callPackage ../development/python-modules/clustershell { };
 
   clvm = callPackage ../development/python-modules/clvm { };
@@ -2086,6 +2092,8 @@ in {
   dataclasses = callPackage ../development/python-modules/dataclasses { };
 
   dataclasses-json = callPackage ../development/python-modules/dataclasses-json { };
+
+  dataclasses-serialization = callPackage ../development/python-modules/dataclasses-serialization { };
 
   datadiff = callPackage ../development/python-modules/datadiff { };
 
@@ -2485,6 +2493,8 @@ in {
   dnspythonchia = callPackage ../development/python-modules/dnspythonchia { };
 
   doc8 = callPackage ../development/python-modules/doc8 { };
+
+  docformatter = callPackage ../development/python-modules/docformatter { };
 
   docker = callPackage ../development/python-modules/docker { };
 
@@ -4337,6 +4347,8 @@ in {
 
   isort = callPackage ../development/python-modules/isort { };
 
+  isosurfaces = callPackage ../development/python-modules/isosurfaces { };
+
   isounidecode = callPackage ../development/python-modules/isounidecode { };
 
   isoweek = callPackage ../development/python-modules/isoweek { };
@@ -4769,6 +4781,7 @@ in {
 
   ledger = (toPythonModule (pkgs.ledger.override {
     usePython = true;
+    boost = pkgs.boost179; # Current default boost (1.77) doesn’t work with Python 3.10.
     python3 = python;
   })).py;
 
@@ -5159,6 +5172,8 @@ in {
 
   mapbox = callPackage ../development/python-modules/mapbox { };
 
+  mapbox-earcut = callPackage ../development/python-modules/mapbox-earcut { };
+
   mariadb = callPackage ../development/python-modules/mariadb { };
 
   marisa-trie = callPackage ../development/python-modules/marisa-trie { };
@@ -5453,6 +5468,8 @@ in {
   moonraker-api = callPackage ../development/python-modules/moonraker-api { };
 
   more-itertools = callPackage ../development/python-modules/more-itertools { };
+
+  more-properties = callPackage ../development/python-modules/more-properties { };
 
   moretools = callPackage ../development/python-modules/moretools { };
 
@@ -6376,6 +6393,8 @@ in {
 
   micloud = callPackage ../development/python-modules/micloud { };
 
+  msgraph-core = callPackage ../development/python-modules/msgraph-core { };
+
   netmap = callPackage ../development/python-modules/netmap { };
 
   openai = callPackage ../development/python-modules/openai { };
@@ -7181,8 +7200,6 @@ in {
     inherit (pkgs) graphviz;
   };
 
-  pydrive = callPackage ../development/python-modules/pydrive { };
-
   pydrive2 = callPackage ../development/python-modules/pydrive2 { };
 
   pydroid-ipcam = callPackage ../development/python-modules/pydroid-ipcam  { };
@@ -7394,6 +7411,8 @@ in {
   pyi2cflash = callPackage ../development/python-modules/pyi2cflash { };
 
   pyialarm = callPackage ../development/python-modules/pyialarm { };
+
+  pyialarmxr = callPackage ../development/python-modules/pyialarmxr { };
 
   pyicloud = callPackage ../development/python-modules/pyicloud { };
 
@@ -8435,6 +8454,8 @@ in {
 
   python-hglib = callPackage ../development/python-modules/python-hglib { };
 
+  python-homewizard-energy = callPackage ../development/python-modules/python-homewizard-energy { };
+
   python-hosts = callPackage ../development/python-modules/python-hosts { };
 
   python-hpilo = callPackage ../development/python-modules/python-hpilo { };
@@ -8825,6 +8846,8 @@ in {
   pywizlight = callPackage ../development/python-modules/pywizlight { };
 
   pywlroots = callPackage ../development/python-modules/pywlroots { };
+
+  pyws66i = callPackage ../development/python-modules/pyws66i { };
 
   pyxattr = callPackage ../development/python-modules/pyxattr { };
 
@@ -9960,6 +9983,8 @@ in {
 
   srsly = callPackage ../development/python-modules/srsly { };
 
+  srt = callPackage ../development/python-modules/srt { };
+
   srvlookup = callPackage ../development/python-modules/srvlookup { };
 
   ssdeep = callPackage ../development/python-modules/ssdeep {
@@ -10631,8 +10656,6 @@ in {
 
   typer = callPackage ../development/python-modules/typer { };
 
-  types-cryptography = callPackage ../development/python-modules/types-cryptography { };
-
   types-dateutil = callPackage ../development/python-modules/types-dateutil { };
 
   types-decorator = callPackage ../development/python-modules/types-decorator { };
@@ -10646,8 +10669,6 @@ in {
   types-futures = callPackage ../development/python-modules/types-futures { };
 
   types-ipaddress = callPackage ../development/python-modules/types-ipaddress { };
-
-  types-paramiko = callPackage ../development/python-modules/types-paramiko { };
 
   types-protobuf = callPackage ../development/python-modules/types-protobuf { };
 
@@ -11269,6 +11290,8 @@ in {
 
   xpybutil = callPackage ../development/python-modules/xpybutil { };
 
+  xsdata = callPackage ../development/python-modules/xsdata { };
+
   xstatic-bootbox = callPackage ../development/python-modules/xstatic-bootbox { };
 
   xstatic-bootstrap = callPackage ../development/python-modules/xstatic-bootstrap { };
@@ -11342,6 +11365,8 @@ in {
   yfinance = callPackage ../development/python-modules/yfinance { };
 
   yoda = toPythonModule (pkgs.yoda.override { inherit python; });
+
+  yolink-api = callPackage ../development/python-modules/yolink-api { };
 
   youless-api = callPackage ../development/python-modules/youless-api { };
 
