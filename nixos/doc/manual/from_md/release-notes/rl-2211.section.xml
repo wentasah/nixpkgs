@@ -71,6 +71,13 @@
           <link linkend="opt-services.persistent-evdev.enable">services.persistent-evdev</link>.
         </para>
       </listitem>
+      <listitem>
+        <para>
+          <link xlink:href="https://www.expressvpn.com">expressvpn</link>,
+          the CLI client for ExpressVPN. Available as
+          <link linkend="opt-services.expressvpn.enable">services.expressvpn</link>.
+        </para>
+      </listitem>
     </itemizedlist>
   </section>
   <section xml:id="sec-release-22.11-incompatibilities">
@@ -106,6 +113,12 @@
           a broader set of systems. If you were using this predicate,
           you can replace <literal>foo.isPowerPC</literal> with
           <literal>(with foo; isPower &amp;&amp; is32bit &amp;&amp; isBigEndian)</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          PHP 7.4 is no longer supported due to upstream not supporting
+          this version for the entire lifecycle of the 22.11 release.
         </para>
       </listitem>
     </itemizedlist>
