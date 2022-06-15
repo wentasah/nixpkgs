@@ -255,6 +255,8 @@ with pkgs;
 
   authz0 = callPackage ../tools/security/authz0 { };
 
+  atomic-operator = callPackage ../tools/security/atomic-operator { };
+
   avro-tools = callPackage ../development/tools/avro-tools { };
 
   bacnet-stack = callPackage ../tools/networking/bacnet-stack {};
@@ -403,6 +405,8 @@ with pkgs;
   gojq = callPackage ../development/tools/gojq { };
 
   gpick = callPackage ../tools/misc/gpick { };
+
+  hwatch = callPackage ../tools/misc/hwatch { };
 
   hobbes = callPackage ../development/tools/hobbes { stdenv = gcc10StdenvCompat; };
 
@@ -1206,6 +1210,8 @@ with pkgs;
   sdbus-cpp = callPackage ../development/libraries/sdbus-cpp { };
 
   sdlookup = callPackage ../tools/security/sdlookup { };
+
+  smbscan = callPackage ../tools/security/smbscan { };
 
   spectre-cli = callPackage ../tools/security/spectre-cli { };
 
@@ -4680,6 +4686,8 @@ with pkgs;
 
   cmt = callPackage ../applications/audio/cmt {};
 
+  crlfsuite = callPackage ../tools/security/crlfsuite {};
+
   crlfuzz = callPackage ../tools/security/crlfuzz {};
 
   hedgedoc = callPackage ../servers/web-apps/hedgedoc { };
@@ -7926,6 +7934,8 @@ with pkgs;
 
   lcdf-typetools = callPackage ../tools/misc/lcdf-typetools { };
 
+  ldapmonitor = callPackage ../tools/security/ldapmonitor { };
+
   ldapvi = callPackage ../tools/misc/ldapvi { };
 
   ldeep = python3Packages.callPackage ../tools/security/ldeep { };
@@ -8378,6 +8388,8 @@ with pkgs;
   mirrorbits = callPackage ../servers/mirrorbits { };
 
   mitmproxy = with python3Packages; toPythonApplication mitmproxy;
+
+  mitmproxy2swagger = callPackage ../tools/security/mitmproxy2swagger { };
 
   mjpegtools = callPackage ../tools/video/mjpegtools { };
 
@@ -8930,6 +8942,8 @@ with pkgs;
   odt2txt = callPackage ../tools/text/odt2txt { };
 
   odyssey = callPackage ../tools/misc/odyssey { };
+
+  offensive-azure = callPackage ../tools/security/offensive-azure { };
 
   offlineimap = callPackage ../tools/networking/offlineimap { };
 
@@ -11423,6 +11437,8 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreServices Foundation;
   };
 
+  watchlog = callPackage ../tools/misc/watchlog { };
+
   watchman = callPackage ../development/tools/watchman {
     inherit (darwin.apple_sdk.frameworks) CoreServices;
     autoconf = buildPackages.autoconf269;
@@ -13583,9 +13599,10 @@ with pkgs;
     mlton20130715
     mlton20180207Binary
     mlton20180207
+    mlton20210107
     mltonHEAD;
 
-  mlton = mlton20180207;
+  mlton = mlton20210107;
 
   mono = mono6;
 
@@ -23352,6 +23369,8 @@ with pkgs;
   linux_5_15_hardened = linuxKernel.kernels.linux_5_15_hardened;
   linuxPackages_5_17_hardened = linuxKernel.packages.linux_5_17_hardened;
   linux_5_17_hardened = linuxKernel.kernels.linux_5_17_hardened;
+  linuxPackages_5_18_hardened = linuxKernel.packages.linux_5_18_hardened;
+  linux_5_18_hardened = linuxKernel.kernels.linux_5_18_hardened;
 
   # Hardkernel (Odroid) kernels.
   linuxPackages_hardkernel_latest = linuxKernel.packageAliases.linux_hardkernel_latest;
@@ -26859,8 +26878,6 @@ with pkgs;
   manim = callPackage ../applications/video/manim { };
 
   manuskript = libsForQt5.callPackage ../applications/editors/manuskript { };
-
-  manul = callPackage ../development/tools/manul { };
 
   mindforger = libsForQt5.callPackage ../applications/editors/mindforger { };
 
@@ -30611,6 +30628,8 @@ with pkgs;
 
   wayvnc = callPackage ../applications/networking/remote/wayvnc { };
 
+  webanalyze = callPackage ../tools/security/webanalyze { };
+
   webcamoid = libsForQt5.callPackage ../applications/video/webcamoid { };
 
   webmacs = libsForQt5.callPackage ../applications/networking/browsers/webmacs {};
@@ -34094,6 +34113,8 @@ with pkgs;
   gobuster = callPackage ../tools/security/gobuster { };
 
   gotestwaf = callPackage ../tools/security/gotestwaf { };
+
+  gowitness = callPackage ../tools/security/gowitness { };
 
   guetzli = callPackage ../applications/graphics/guetzli { };
 

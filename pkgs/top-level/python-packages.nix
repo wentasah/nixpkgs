@@ -675,6 +675,8 @@ in {
 
   asgiref = callPackage ../development/python-modules/asgiref { };
 
+  asks = callPackage ../development/python-modules/asks { };
+
   asmog = callPackage ../development/python-modules/asmog { };
 
   asn1 = callPackage ../development/python-modules/asn1 { };
@@ -2066,6 +2068,8 @@ in {
   daemonize = callPackage ../development/python-modules/daemonize { };
 
   daemonocle = callPackage ../development/python-modules/daemonocle { };
+
+  dalle-mini = callPackage ../development/python-modules/dalle-mini { };
 
   daphne = callPackage ../development/python-modules/daphne { };
 
@@ -4546,6 +4550,8 @@ in {
 
   json-schema-for-humans = callPackage ../development/python-modules/json-schema-for-humans { };
 
+  json-stream = callPackage ../development/python-modules/json-stream { };
+
   jsonnet = buildPythonPackage { inherit (pkgs.jsonnet) name src; };
 
   jsonpatch = callPackage ../development/python-modules/jsonpatch { };
@@ -5645,6 +5651,8 @@ in {
 
   mysql-connector = callPackage ../development/python-modules/mysql-connector { };
 
+  myst-parser = callPackage ../development/python-modules/myst-parser { };
+
   nad-receiver = callPackage ../development/python-modules/nad-receiver { };
 
   nagiosplugin = callPackage ../development/python-modules/nagiosplugin { };
@@ -6441,6 +6449,8 @@ in {
 
   openapi-core = callPackage ../development/python-modules/openapi-core { };
 
+  overly = callPackage ../development/python-modules/overly { };
+
   pandas-stubs = callPackage ../development/python-modules/pandas-stubs { };
 
   parameterizedtestcase = callPackage ../development/python-modules/parameterizedtestcase { };
@@ -6466,6 +6476,8 @@ in {
   pi1wire = callPackage ../development/python-modules/pi1wire { };
 
   piccata = callPackage ../development/python-modules/piccata { };
+
+  pick = callPackage ../development/python-modules/pick { };
 
   pickleshare = callPackage ../development/python-modules/pickleshare { };
 
@@ -6553,6 +6565,8 @@ in {
   pyatag = callPackage ../development/python-modules/pyatag { };
 
   pyatome = callPackage ../development/python-modules/pyatome { };
+
+  pycketcasts = callPackage ../development/python-modules/pycketcasts { };
 
   pycontrol4 = callPackage ../development/python-modules/pycontrol4 { };
 
@@ -8334,6 +8348,8 @@ in {
 
   pytest-ordering = callPackage ../development/python-modules/pytest-ordering { };
 
+  pytest-param-files = callPackage ../development/python-modules/pytest-param-files { };
+
   pytest-pylint = callPackage ../development/python-modules/pytest-pylint { };
 
   pytest-qt = callPackage ../development/python-modules/pytest-qt { };
@@ -9260,6 +9276,10 @@ in {
 
   rlp = callPackage ../development/python-modules/rlp { };
 
+  rmcl = callPackage ../development/python-modules/rmcl { };
+
+  rmrl = callPackage ../development/python-modules/rmrl { };
+
   rnc2rng = callPackage ../development/python-modules/rnc2rng { };
 
   rnginline = callPackage ../development/python-modules/rnginline { };
@@ -9425,6 +9445,8 @@ in {
   sanic-routing = callPackage ../development/python-modules/sanic-routing { };
 
   sanic-testing = callPackage ../development/python-modules/sanic-testing { };
+
+  sansio-multipart = callPackage ../development/python-modules/sansio-multipart { };
 
   sarif-om = callPackage ../development/python-modules/sarif-om { };
 
@@ -9906,6 +9928,8 @@ in {
   spinners = callPackage ../development/python-modules/spinners { };
 
   sphinx-better-theme = callPackage ../development/python-modules/sphinx-better-theme { };
+
+  sphinx-pytest = callPackage ../development/python-modules/sphinx-pytest { };
 
   sphinxcontrib-actdiag = callPackage ../development/python-modules/sphinxcontrib-actdiag { };
 
@@ -10802,6 +10826,8 @@ in {
 
   ukrainealarm = callPackage ../development/python-modules/ukrainealarm { };
 
+  ultraheat-api = callPackage ../development/python-modules/ultraheat-api { };
+
   umalqurra = callPackage ../development/python-modules/umalqurra { };
 
   umap-learn = callPackage ../development/python-modules/umap-learn { };
@@ -11037,6 +11063,8 @@ in {
   vowpalwabbit = callPackage ../development/python-modules/vowpalwabbit { };
 
   vpk = callPackage ../development/python-modules/vpk { };
+
+  vqgan-jax = callPackage ../development/python-modules/vqgan-jax { };
 
   vsts = callPackage ../development/python-modules/vsts { };
 
