@@ -4427,6 +4427,8 @@ in {
 
   jaraco_stream = callPackage ../development/python-modules/jaraco_stream { };
 
+  jaraco-test = callPackage ../development/python-modules/jaraco-test { };
+
   jaraco_text = callPackage ../development/python-modules/jaraco_text { };
 
   jarowinkler = callPackage ../development/python-modules/jarowinkler { };
@@ -9339,6 +9341,10 @@ in {
   rpdb = callPackage ../development/python-modules/rpdb { };
 
   rpi-bad-power = callPackage ../development/python-modules/rpi-bad-power { };
+
+  rpi-gpio = callPackage ../development/python-modules/rpi-gpio { };
+
+  rpi-gpio2 = callPackage ../development/python-modules/rpi-gpio2 { };
 
   rply = callPackage ../development/python-modules/rply { };
 
