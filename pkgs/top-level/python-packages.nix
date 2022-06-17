@@ -1119,6 +1119,8 @@ in {
 
   babelgladeextractor = callPackage ../development/python-modules/babelgladeextractor { };
 
+  pad4pi = callPackage ../development/python-modules/pad4pi { };
+
   pulumi = callPackage ../development/python-modules/pulumi { };
 
   pulumi-aws = callPackage ../development/python-modules/pulumi-aws { };
@@ -9345,6 +9347,8 @@ in {
   rpi-gpio = callPackage ../development/python-modules/rpi-gpio { };
 
   rpi-gpio2 = callPackage ../development/python-modules/rpi-gpio2 { };
+
+  rplcd = callPackage ../development/python-modules/rplcd { };
 
   rply = callPackage ../development/python-modules/rply { };
 
