@@ -2440,7 +2440,7 @@ in {
 
   djangorestframework-simplejwt = callPackage ../development/python-modules/djangorestframework-simplejwt { };
 
-  django_reversion = callPackage ../development/python-modules/django_reversion { };
+  django-reversion = callPackage ../development/python-modules/django-reversion { };
 
   django-sampledatahelper = callPackage ../development/python-modules/django-sampledatahelper { };
 
@@ -5437,6 +5437,7 @@ in {
 
   mkdocs = callPackage ../development/python-modules/mkdocs { };
   mkdocs-drawio-exporter = callPackage ../development/python-modules/mkdocs-drawio-exporter { };
+  mkdocs-gitlab = callPackage ../development/python-modules/mkdocs-gitlab-plugin { };
   mkdocs-macros = callPackage ../development/python-modules/mkdocs-macros { };
   mkdocs-material = callPackage ../development/python-modules/mkdocs-material { };
   mkdocs-material-extensions = callPackage ../development/python-modules/mkdocs-material/mkdocs-material-extensions.nix { };
@@ -6423,7 +6424,7 @@ in {
 
   pg8000 = callPackage ../development/python-modules/pg8000 { };
 
-  pgcli = callPackage ../development/tools/database/pgcli { };
+  pgcli = callPackage ../development/python-modules/pgcli { };
 
   pglast = callPackage ../development/python-modules/pglast { };
 
@@ -7147,6 +7148,8 @@ in {
   pychart = callPackage ../development/python-modules/pychart { };
 
   pychef = callPackage ../development/python-modules/pychef { };
+
+  pychm = callPackage ../development/python-modules/pychm { };
 
   PyChromecast = callPackage ../development/python-modules/pychromecast { };
 
@@ -8762,6 +8765,8 @@ in {
 
   pytorch = callPackage ../development/python-modules/pytorch {
     cudaSupport = pkgs.config.cudaSupport or false;
+    inherit (pkgs.darwin.apple_sdk.frameworks) CoreServices;
+    inherit (pkgs.darwin) libobjc;
   };
 
   pytorch-bin = callPackage ../development/python-modules/pytorch/bin.nix { };
@@ -9477,6 +9482,8 @@ in {
   schema-salad = callPackage ../development/python-modules/schema-salad { };
 
   schiene = callPackage ../development/python-modules/schiene { };
+
+  schwifty = callPackage ../development/python-modules/schwifty { };
 
   scikit-bio = callPackage ../development/python-modules/scikit-bio { };
 
@@ -10466,6 +10473,8 @@ in {
 
   threadpoolctl = callPackage ../development/python-modules/threadpoolctl { };
 
+  threat9-test-bed = callPackage ../development/python-modules/threat9-test-bed { };
+
   three-merge = callPackage ../development/python-modules/three-merge { };
 
   thrift = callPackage ../development/python-modules/thrift { };
@@ -10765,6 +10774,8 @@ in {
   types-protobuf = callPackage ../development/python-modules/types-protobuf { };
 
   types-pytz = callPackage ../development/python-modules/types-pytz { };
+
+  types-pyyaml = callPackage ../development/python-modules/types-pyyaml { };
 
   types-redis = callPackage ../development/python-modules/types-redis { };
 
