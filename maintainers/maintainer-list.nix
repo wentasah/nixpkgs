@@ -596,6 +596,12 @@
     githubId = 60479013;
     name = "Alma Cemerlic";
   };
+  alternateved = {
+    email = "alternateved@pm.me";
+    github = "alternateved";
+    githubId = 45176912;
+    name = "Tomasz Hołubowicz";
+  };
   alunduil = {
     email = "alunduil@gmail.com";
     github = "alunduil";
@@ -6346,6 +6352,13 @@
     name = "Joshua Sierles";
     github = "jsierles";
     githubId = 82;
+  };
+  jsimonetti = {
+    email = "jeroen+nixpkgs@simonetti.nl";
+    matrix = "@jeroen:simonetti.nl";
+    name = "Jeroen Simonetti";
+    github = "jsimonetti";
+    githubId = 5478838;
   };
   jtcoolen = {
     email = "jtcoolen@pm.me";
