@@ -5924,7 +5924,7 @@ with pkgs;
   };
 
   ffsend = callPackage ../tools/misc/ffsend {
-    inherit (darwin.apple_sdk.frameworks) CoreFoundation CoreServices Security AppKit;
+    inherit (darwin.apple_sdk.frameworks) Security AppKit;
   };
 
   fgallery = callPackage ../tools/graphics/fgallery { };
@@ -6790,6 +6790,8 @@ with pkgs;
   grpcui = callPackage ../tools/networking/grpcui { };
 
   grpc-tools = callPackage ../development/tools/misc/grpc-tools { };
+
+  grpc-client-cli = callPackage ../development/tools/misc/grpc-client-cli { };
 
   grub = pkgsi686Linux.callPackage ../tools/misc/grub ({
     stdenv = overrideCC stdenv buildPackages.pkgsi686Linux.gcc6;
@@ -7706,6 +7708,10 @@ with pkgs;
   lnav = callPackage ../tools/misc/lnav { };
 
   lnch = callPackage ../tools/misc/lnch { };
+
+  lnx = callPackage ../servers/search/lnx {
+    inherit (darwin.apple_sdk.frameworks) DiskArbitration Foundation;
+  };
 
   loadlibrary = callPackage ../tools/misc/loadlibrary { };
 
@@ -9542,6 +9548,8 @@ with pkgs;
 
   pm2 = nodePackages.pm2;
 
+  pmenu = callPackage ../tools/X11/pmenu { };
+
   pngcheck = callPackage ../tools/graphics/pngcheck { };
 
   pngcrush = callPackage ../tools/graphics/pngcrush { };
@@ -9986,6 +9994,8 @@ with pkgs;
   recoverjpeg = callPackage ../tools/misc/recoverjpeg { };
 
   reftools = callPackage ../development/tools/reftools { };
+
+  regpg = callPackage ../tools/security/regpg { };
 
   remote-touchpad = callPackage ../tools/inputmethods/remote-touchpad { };
 
@@ -13955,7 +13965,9 @@ with pkgs;
   cargo-msrv = callPackage ../development/tools/rust/cargo-msrv {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
-  cargo-nextest = callPackage ../development/tools/rust/cargo-nextest { };
+  cargo-nextest = callPackage ../development/tools/rust/cargo-nextest {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
   cargo-play = callPackage ../development/tools/rust/cargo-play { };
   cargo-raze = callPackage ../development/tools/rust/cargo-raze {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -22439,10 +22451,6 @@ with pkgs;
   percona-server56 = callPackage ../servers/sql/percona/5.6.x.nix { stdenv = gcc10StdenvCompat; };
   percona-server = percona-server56;
 
-  riak = callPackage ../servers/nosql/riak/2.2.0.nix {
-    erlang = erlang_basho_R16B02;
-  };
-
   influxdb = callPackage ../servers/nosql/influxdb { };
   influxdb2-server = callPackage ../servers/nosql/influxdb2 { };
   influxdb2-cli = callPackage ../servers/nosql/influxdb2/cli.nix { };
@@ -26429,6 +26437,8 @@ with pkgs;
 
   fnc = callPackage ../applications/version-management/fnc { };
 
+  focus = callPackage ../tools/X11/focus { };
+
   focuswriter = libsForQt5.callPackage ../applications/editors/focuswriter { };
 
   foliate = callPackage ../applications/office/foliate { };
@@ -27212,6 +27222,10 @@ with pkgs;
 
   homebank = callPackage ../applications/office/homebank {
     gtk = gtk3;
+  };
+
+  hollywood = callPackage ../applications/misc/hollywood {
+    inherit (python3Packages) pygments;
   };
 
   hors = callPackage ../development/tools/hors {
@@ -28786,9 +28800,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreServices Security;
   };
 
-  synfigstudio = callPackage ../applications/graphics/synfigstudio {
-    mlt-qt5 = libsForQt514.mlt;
-  };
+  synfigstudio = callPackage ../applications/graphics/synfigstudio { };
 
   taxi = callPackage ../applications/networking/ftp/taxi { };
 
@@ -29039,6 +29051,8 @@ with pkgs;
   vivaldi-widevine = callPackage ../applications/networking/browsers/vivaldi/widevine.nix { };
 
   libopenmpt = callPackage ../development/libraries/audio/libopenmpt { };
+
+  libopenmpt-modplug = callPackage ../development/libraries/audio/libopenmpt-modplug { };
 
   openrazer-daemon = with python3Packages; toPythonApplication openrazer-daemon;
 
@@ -31933,6 +31947,10 @@ with pkgs;
   factorio-utils = callPackage ../games/factorio/utils.nix { };
 
   fairymax = callPackage ../games/fairymax { };
+
+  ferium = callPackage ../games/ferium {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
 
   fheroes2 = callPackage ../games/fheroes2 { };
 
