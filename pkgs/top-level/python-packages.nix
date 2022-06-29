@@ -3033,6 +3033,8 @@ in {
 
   filebytes = callPackage ../development/python-modules/filebytes { };
 
+  filecheck = callPackage ../development/python-modules/filecheck { };
+
   filelock = callPackage ../development/python-modules/filelock { };
 
   filemagic = callPackage ../development/python-modules/filemagic { };
@@ -10846,7 +10848,9 @@ in {
 
   ueagle = callPackage ../development/python-modules/ueagle { };
 
-  uharfbuzz = callPackage ../development/python-modules/uharfbuzz { };
+  uharfbuzz = callPackage ../development/python-modules/uharfbuzz {
+    inherit (pkgs.darwin.apple_sdk.frameworks) ApplicationServices;
+  };
 
   ujson = callPackage ../development/python-modules/ujson { };
 

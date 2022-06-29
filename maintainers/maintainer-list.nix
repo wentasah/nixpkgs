@@ -3518,7 +3518,7 @@
     githubId = 424946;
     name = "James Earl Douglas";
   };
-  earvstedt = {
+  erikarvstedt = {
     email = "erik.arvstedt@gmail.com";
     matrix = "@erikarvstedt:matrix.org";
     github = "erikarvstedt";
@@ -6003,6 +6003,12 @@
     githubId = 2502736;
     name = "James Hillyerd";
   };
+  jiegec = {
+    name = "Jiajie Chen";
+    email = "c@jia.je";
+    github = "jiegec";
+    githubId = 6127678;
+  };
   jiehong = {
     email = "nixos@majiehong.com";
     github = "Jiehong";
@@ -6519,6 +6525,12 @@
     github = "sofuture";
     githubId = 66669;
     name = "Jeff Zellner";
+  };
+  k3a = {
+    email = "git+nix@catmail.app";
+    name = "Mario Hros";
+    github = "k3a";
+    githubId = 966992;
   };
   k4leg = {
     name = "k4leg";
@@ -10665,6 +10677,12 @@
     githubId = 1142322;
     name = "Martin Lavoie";
   };
+  regadas = {
+    email = "oss@regadas.email";
+    name = "Filipe Regadas";
+    github = "regadas";
+    githubId = 163899;
+  };
   regnat = {
     email = "regnat@regnat.ovh";
     github = "regnat";
@@ -12078,6 +12096,12 @@
     github = "stackshadow";
     githubId = 7512804;
     name = "Martin Langlotz";
+  };
+  stargate01 = {
+    email = "christoph.honal@web.de";
+    github = "StarGate01";
+    githubId = 6362238;
+    name = "Christoph Honal";
   };
   steamwalker = {
     email = "steamwalker@xs4all.nl";
