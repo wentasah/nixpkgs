@@ -16058,7 +16058,9 @@ with pkgs;
 
   kubeprompt = callPackage ../development/tools/kubeprompt { };
 
-  kubescape = callPackage ../tools/security/kubescape { };
+  kubescape = callPackage ../tools/security/kubescape {
+    buildGoModule = buildGo118Module;
+  };
 
   kubesec = callPackage ../tools/security/kubesec { };
 
@@ -27516,6 +27518,8 @@ with pkgs;
 
   mt32emu-smf2wav = callPackage ../applications/audio/munt/mt32emu-smf2wav.nix { };
 
+  offpunk = callPackage ../applications/networking/browsers/offpunk { };
+
   p2pool = callPackage ../applications/misc/p2pool { };
 
   pass2csv = python3Packages.callPackage ../tools/security/pass2csv {};
@@ -30717,6 +30721,10 @@ with pkgs;
   vimacs = callPackage ../applications/editors/vim/vimacs.nix { };
 
   vimv = callPackage ../tools/misc/vimv { };
+
+  vimv-rs = callPackage ../tools/misc/vimv-rs {
+    inherit (darwin.apple_sdk.frameworks) Foundation;
+  };
 
   qpdfview = libsForQt5.callPackage ../applications/misc/qpdfview {};
 
