@@ -32,7 +32,7 @@ stdenv.mkDerivation rec {
   ];
 
   # We do not mention targets (like "doc") explicitly in makeFlags
-  # because the Makefile would not print warnings about to old
+  # because the Makefile would not print warnings about too old
   # libraries (see "warning:" in the Makefile)
   postBuild = ''
     make libs doc -j$NIX_BUILD_CORES -l$NIX_BUILD_CORES
