@@ -4,7 +4,6 @@
 , fetchFromGitHub
 , ftfy
 , mailchecker
-, orjson
 , phonenumbers
 , pytestCheckHook
 , python-dateutil
@@ -20,7 +19,7 @@
 
 buildPythonPackage rec {
   pname = "python-benedict";
-  version = "0.25.2";
+  version = "0.25.1";
   format = "setuptools";
 
   disabled = pythonOlder "3.7";
@@ -29,7 +28,7 @@ buildPythonPackage rec {
     owner = "fabiocaccamo";
     repo = pname;
     rev = "refs/tags/${version}";
-    hash = "sha256-WSsT+p23VctVt9A+WFKNHcgUHFijfT775eMF3RzaXDA=";
+    hash = "sha256-egOrotWgRyB6pdWUIRWogwdoK82g/1JfRDc85W4FrjQ=";
   };
 
   propagatedBuildInputs = [
@@ -40,7 +39,6 @@ buildPythonPackage rec {
     python-slugify
     pyyaml
     ftfy
-    orjson
     requests
     six
     toml

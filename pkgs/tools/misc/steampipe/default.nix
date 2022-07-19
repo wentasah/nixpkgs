@@ -1,6 +1,6 @@
-{ stdenv, lib, buildGoModule, fetchFromGitHub, installShellFiles }:
+{ stdenv, lib, buildGo118Module, fetchFromGitHub, installShellFiles }:
 
-buildGoModule rec {
+buildGo118Module rec {
   pname = "steampipe";
   version = "0.15.0";
 

@@ -8,13 +8,13 @@ with lib;
 
 stdenv.mkDerivation rec {
   pname = "gammu";
-  version = "1.42.0";
+  version = "1.40.0";
 
   src = fetchFromGitHub {
     owner = "gammu";
     repo = "gammu";
     rev = version;
-    sha256 = "sha256-aeaGHVxOMiXRU6RHws+oAnzdO9RY1jw/X/xuGfSt76I=";
+    sha256 = "1jjaa9r3x6i8gv3yn1ngg815s6gsxblsw4wb5ddm77kamn2qyvpf";
   };
 
   patches = [ ./bashcomp-dir.patch ./systemd.patch ];

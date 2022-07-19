@@ -13,15 +13,15 @@
 
 buildPythonPackage rec {
   pname = "django-timezone-field";
-  version = "5.0";
+  version = "4.2.3";
+  format = "setuptools";
   disabled = pythonOlder "3.5";
-  format = "pyproject";
 
   src = fetchFromGitHub {
     owner = "mfogel";
     repo = pname;
     rev = version;
-    sha256 = "sha256-GXkvF/kAOU1JK0GDpUT1irCQlkxIWieYRqPd0fr2HXw=";
+    sha256 = "sha256-purzXzPvnYNVsASsK6s9m4XieUL80FOjeSbUP4bpRj8=";
   };
 
   nativeBuildInputs = [

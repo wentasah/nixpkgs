@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchurl, pkg-config, xapian, perl, pcre2, zlib, libmagic }:
+{ lib, stdenv, fetchurl, pkg-config, xapian, perl, pcre, zlib, libmagic }:
 
 stdenv.mkDerivation rec {
   pname = "xapian-omega";
@@ -6,10 +6,10 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://oligarchy.co.uk/xapian/${version}/xapian-omega-${version}.tar.xz";
-    hash = "sha256-Cf19bGCzlP0A2EcAZJlpofzDqiuIuyxsoiD9+o0liB8=";
+    sha256 = "0zji8ckp4h5xdy2wbir3lvk680w1g1l4h5swmaxsx7ah12lkrjcr";
   };
 
-  buildInputs = [ xapian perl pcre2 zlib libmagic ];
+  buildInputs = [ xapian perl pcre zlib libmagic ];
   nativeBuildInputs = [ pkg-config ];
 
   meta = with lib; {

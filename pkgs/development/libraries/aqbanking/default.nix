@@ -3,14 +3,14 @@
 }:
 
 let
-  inherit ((import ./sources.nix).aqbanking) hash releaseId version;
+  inherit ((import ./sources.nix).aqbanking) sha256 releaseId version;
 in stdenv.mkDerivation rec {
   pname = "aqbanking";
   inherit version;
 
   src = fetchurl {
     url = "https://www.aquamaniac.de/rdm/attachments/download/${releaseId}/${pname}-${version}.tar.gz";
-    inherit hash;
+    inherit sha256;
   };
 
   # Set the include dir explicitly, this fixes a build error when building

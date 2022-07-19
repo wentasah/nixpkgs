@@ -362,6 +362,7 @@ with foo_running:
     ...  # Put `foo` through its paces
 ```
 
+
 `polling_condition` takes the following (optional) arguments:
 
 `seconds_interval`
@@ -405,9 +406,6 @@ import ./make-test-python.nix
   extraPythonPackages = p: [ p.numpy ];
 
   nodes = { };
-
-  # Type checking on extra packages doesn't work yet
-  skipTypeCheck = true;
 
   testScript = ''
     import numpy as np

@@ -20,8 +20,6 @@ in
 
     src = fetchgit (builtins.removeAttrs upstreamInfo.src [ "date" "path" ]);
 
-    separateDebugInfo = true;
-
     patches = [
       ./default-seccomp-policy-dir.diff
     ];

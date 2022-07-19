@@ -2,16 +2,16 @@
 
 buildGoModule rec {
   pname = "hugo";
-  version = "0.101.0";
+  version = "0.99.1";
 
   src = fetchFromGitHub {
     owner = "gohugoio";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-Fodcefp8xdSV2tt6ZYaKdcLqVe2upEngQr6M+wV5wnw=";
+    sha256 = "sha256-NFsXu4UxBmsSM6sNRSSoIUj6QjfB5iSXXbTNftakyHI=";
   };
 
-  vendorSha256 = "sha256-tZQIKxY96G6ReegqjapJ2rLd7n92+axJ7F8UglF61eM=";
+  vendorSha256 = "sha256-A1ct8BjtKudNqfytCiaEGfgbRCMv45MIQxTka4ZFblg=";
 
   doCheck = false;
 
@@ -33,6 +33,7 @@ buildGoModule rec {
   '';
 
   meta = with lib; {
+    broken = stdenv.isDarwin && stdenv.isx86_64;
     description = "A fast and modern static website engine";
     homepage = "https://gohugo.io";
     license = licenses.asl20;

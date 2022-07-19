@@ -11,16 +11,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "cargo-embed";
-  version = "0.13.0";
+  version = "0.12.0";
 
   src = fetchFromGitHub {
     owner = "probe-rs";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-UlQ7KJmzPWu0vVsYPIkYeqkFFhxe7mEMfUVN7iMaUw0=";
+    sha256 = "1is58n8y5lvnvzkbnh3gfk3r3f2r1w4l2qjdp2k8373apxzjxdvr";
   };
 
-  cargoSha256 = "sha256-RkYX5z764Kkr0xK7yYQ0lCw0/7KpmdJmKWqLzwkj4hs=";
+  cargoSha256 = "0kalwigck9lf734zdpzg01sf2zzyrgdgq2rg3qj7hy94gfxlsk63";
 
   nativeBuildInputs = [ pkg-config rustfmt ];
   buildInputs = [ libusb1 libftdi1 ] ++ lib.optionals stdenv.isDarwin [ AppKit ];
@@ -32,6 +32,6 @@ rustPlatform.buildRustPackage rec {
     homepage = "https://probe.rs/";
     changelog = "https://github.com/probe-rs/cargo-embed/blob/v${version}/CHANGELOG.md";
     license = with licenses; [ asl20 /* or */ mit ];
-    maintainers = with maintainers; [ fooker newam ];
+    maintainers = with maintainers; [ fooker ];
   };
 }

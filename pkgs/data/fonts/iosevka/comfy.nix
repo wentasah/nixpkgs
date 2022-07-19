@@ -1,15 +1,10 @@
 {stdenv, lib, nodejs, nodePackages, remarshal, ttfautohint-nox, fetchurl}:
 
 let
-  sets = [ "comfy" "comfy-fixed" "comfy-duo" "comfy-wide" "comfy-wide-fixed" ];
+  sets = [ "comfy" "comfy-duo" "comfy-wide" "comfy-wide-fixed"];
   privateBuildPlan = builtins.readFile ./comfy-private-build-plans.toml;
   overrideAttrs = (attrs: {
-    version = "0.2.1";
-
-    passthru = {
-      updateScript = ./update-comfy.sh;
-    };
-
+    version = "0.1.0";
     meta = with lib; {
       homepage = "https://github.com/protesilaos/iosevka-comfy";
       description = ''

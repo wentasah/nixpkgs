@@ -54,7 +54,7 @@ buildPythonPackage rec {
     description = "Library which communicates with Texas Instruments CC2531 radios for zigpy";
     homepage = "https://github.com/zigpy/zigpy-cc";
     license = licenses.gpl3Plus;
-    maintainers = with maintainers; [ mvnetbiz ];
+    maintainers = with maintainers; [ etu mvnetbiz ];
     platforms = platforms.linux;
   };
 }

@@ -171,7 +171,9 @@ with pkgs;
     autoconf = autoconf269;
   };
 
-  autorestic = callPackage ../tools/backup/autorestic { };
+  autorestic = callPackage ../tools/backup/autorestic {
+    buildGoModule = buildGo118Module;
+  };
 
   autoPatchelfHook = makeSetupHook {
     name = "auto-patchelf-hook";
@@ -286,7 +288,9 @@ with pkgs;
 
   breakpad = callPackage ../development/misc/breakpad { };
 
-  buf = callPackage ../development/tools/buf { };
+  buf = callPackage ../development/tools/buf {
+    buildGoModule = buildGo118Module;
+  };
 
   cfn-nag = callPackage ../development/tools/cfn-nag { };
 
@@ -378,8 +382,6 @@ with pkgs;
 
   cp437 = callPackage ../tools/misc/cp437 { };
 
-  cpm = callPackage ../development/tools/cpm { };
-
   cpu-x = callPackage ../applications/misc/cpu-x { };
 
   crackle = callPackage ../tools/networking/crackle { };
@@ -400,7 +402,7 @@ with pkgs;
 
   deadnix = callPackage ../development/tools/deadnix { };
 
-  dsq = callPackage ../tools/misc/dsq { };
+  dsq = callPackage ../tools/misc/dsq { buildGoModule = buildGo118Module; };
 
   each = callPackage ../tools/text/each { };
 
@@ -470,7 +472,9 @@ with pkgs;
 
   protoc-gen-grpc-web = callPackage ../development/tools/protoc-gen-grpc-web { };
 
-  protoc-gen-connect-go = callPackage ../development/tools/protoc-gen-connect-go { };
+  protoc-gen-connect-go = callPackage ../development/tools/protoc-gen-connect-go {
+    buildGoModule = buildGo118Module;
+  };
 
   protoc-gen-twirp = callPackage ../development/tools/protoc-gen-twirp { };
 
@@ -811,7 +815,9 @@ with pkgs;
 
   installShellFiles = callPackage ../build-support/install-shell-files {};
 
-  lazydocker = callPackage ../tools/misc/lazydocker { };
+  lazydocker = callPackage ../tools/misc/lazydocker {
+    buildGoModule = buildGo118Module;
+  };
 
   ld-is-cc-hook = makeSetupHook { name = "ld-is-cc-hook"; }
     ../build-support/setup-hooks/ld-is-cc-hook.sh;
@@ -1017,7 +1023,9 @@ with pkgs;
 
   acpica-tools = callPackage ../tools/system/acpica-tools { };
 
-  act = callPackage ../development/tools/misc/act { };
+  act = callPackage ../development/tools/misc/act {
+    buildGoModule = buildGo118Module;
+  };
 
   actdiag = with python3.pkgs; toPythonApplication actdiag;
 
@@ -1027,7 +1035,9 @@ with pkgs;
 
   addic7ed-cli = callPackage ../tools/misc/addic7ed-cli { };
 
-  addlicense = callPackage ../tools/misc/addlicense { };
+  addlicense = callPackage ../tools/misc/addlicense {
+    buildGoModule = buildGo118Module;
+  };
 
   adenum  = callPackage ../tools/security/adenum { };
 
@@ -1444,7 +1454,9 @@ with pkgs;
     python = python3;
   };
 
-  packwiz = callPackage ../tools/games/minecraft/packwiz { };
+  packwiz = callPackage ../tools/games/minecraft/packwiz {
+    buildGoModule = buildGo118Module;
+  };
 
   pcem = callPackage ../applications/emulators/pcem { };
 
@@ -2166,11 +2178,11 @@ with pkgs;
     stdenv = gcc10StdenvCompat;
   };
 
-  boron = callPackage ../development/interpreters/boron { };
-
   botamusique = callPackage ../tools/audio/botamusique { };
 
-  boulder = callPackage ../tools/admin/boulder { };
+  boulder = callPackage ../tools/admin/boulder {
+    buildGoModule = buildGo118Module;
+  };
 
   btrfs-heatmap = callPackage ../tools/filesystems/btrfs-heatmap { };
 
@@ -2246,8 +2258,6 @@ with pkgs;
 
   cosign = callPackage ../tools/security/cosign {
     inherit (darwin.apple_sdk.frameworks) PCSC;
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
   };
 
   cozy = callPackage ../applications/audio/cozy { };
@@ -2578,15 +2588,25 @@ with pkgs;
 
   go-audit = callPackage ../tools/system/go-audit { };
 
-  gopass = callPackage ../tools/security/gopass { };
+  gopass = callPackage ../tools/security/gopass {
+    buildGoModule = buildGo118Module;
+  };
 
-  gopass-hibp = callPackage ../tools/security/gopass/hibp.nix { };
+  gopass-hibp = callPackage ../tools/security/gopass/hibp.nix {
+    buildGoModule = buildGo118Module;
+  };
 
-  gopass-jsonapi = callPackage ../tools/security/gopass/jsonapi.nix { };
+  gopass-jsonapi = callPackage ../tools/security/gopass/jsonapi.nix {
+    buildGoModule = buildGo118Module;
+  };
 
-  git-credential-gopass = callPackage ../tools/security/gopass/git-credential.nix { };
+  git-credential-gopass = callPackage ../tools/security/gopass/git-credential.nix {
+    buildGoModule = buildGo118Module;
+  };
 
-  gopass-summon-provider = callPackage ../tools/security/gopass/summon.nix { };
+  gopass-summon-provider = callPackage ../tools/security/gopass/summon.nix {
+    buildGoModule = buildGo118Module;
+  };
 
   gosh = callPackage ../tools/security/gosh { };
 
@@ -3132,7 +3152,9 @@ with pkgs;
 
   map-cmd = callPackage ../tools/misc/map {};
 
-  clash = callPackage ../tools/networking/clash { };
+  clash = callPackage ../tools/networking/clash {
+    buildGoModule = buildGo118Module;
+  };
 
   clasp = callPackage ../tools/misc/clasp { };
 
@@ -3437,8 +3459,6 @@ with pkgs;
     inherit (haskellPackages) ghcWithPackages diagrams-builder;
   };
 
-  dialect = callPackage ../applications/misc/dialect { };
-
   dialog = callPackage ../tools/misc/dialog { };
 
   dialogbox = libsForQt5.callPackage ../tools/misc/dialogbox { };
@@ -3593,7 +3613,7 @@ with pkgs;
 
   element-desktop = callPackage ../applications/networking/instant-messengers/element/element-desktop.nix {
     inherit (darwin.apple_sdk.frameworks) Security AppKit CoreServices;
-    electron = electron_19;
+    electron = electron_17;
   };
   element-desktop-wayland = writeScriptBin "element-desktop" ''
     #!/bin/sh
@@ -3624,7 +3644,9 @@ with pkgs;
 
   er-patcher = callPackage ../tools/games/er-patcher { };
 
-  errcheck = callPackage ../development/tools/errcheck { };
+  errcheck = callPackage ../development/tools/errcheck {
+    buildGoModule = buildGo118Module;
+  };
 
   eschalot = callPackage ../tools/security/eschalot { };
 
@@ -3758,10 +3780,7 @@ with pkgs;
 
   gdu = callPackage ../tools/system/gdu { };
 
-  go-chromecast = callPackage ../applications/video/go-chromecast {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  go-chromecast = callPackage ../applications/video/go-chromecast { };
 
   go-containerregistry = callPackage ../development/tools/go-containerregistry { };
   inherit (go-containerregistry) crane gcrane;
@@ -4358,10 +4377,7 @@ with pkgs;
 
   pixiecore = callPackage ../tools/networking/pixiecore {};
 
-  waitron = callPackage ../tools/networking/waitron {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  waitron = callPackage ../tools/networking/waitron {};
 
   pyCA = python3Packages.callPackage ../applications/video/pyca {};
 
@@ -4685,8 +4701,6 @@ with pkgs;
 
   blueman = callPackage ../tools/bluetooth/blueman { };
 
-  bluetuith = callPackage ../tools/bluetooth/bluetuith { };
-
   bmrsa = callPackage ../tools/security/bmrsa/11.nix { };
 
   bogofilter = callPackage ../tools/misc/bogofilter { };
@@ -4814,7 +4828,9 @@ with pkgs;
 
   cgreen = callPackage ../development/libraries/cgreen { };
 
-  chain-bench = callPackage ../tools/security/chain-bench { };
+  chain-bench = callPackage ../tools/security/chain-bench {
+    buildGoModule = buildGo118Module;
+  };
 
   checkinstall = callPackage ../tools/package-management/checkinstall { };
 
@@ -5378,7 +5394,9 @@ with pkgs;
 
   dnscrypt-wrapper = callPackage ../tools/networking/dnscrypt-wrapper { };
 
-  dnscontrol = callPackage ../applications/networking/dnscontrol { };
+  dnscontrol = callPackage ../applications/networking/dnscontrol {
+    buildGoModule = buildGo118Module;
+  };
 
   dnsenum = callPackage ../tools/security/dnsenum { };
 
@@ -5718,7 +5736,9 @@ with pkgs;
 
   tridactyl-native = callPackage ../tools/networking/tridactyl-native { };
 
-  trivy = callPackage ../tools/admin/trivy { };
+  trivy = callPackage ../tools/admin/trivy {
+    buildGoModule = buildGo118Module;
+  };
 
   trompeloeil = callPackage ../development/libraries/trompeloeil { };
 
@@ -6125,8 +6145,6 @@ with pkgs;
 
   frr = callPackage ../servers/frr { };
 
-  gemstash = callPackage ../development/tools/gemstash { };
-
   hmetis = pkgsi686Linux.callPackage ../applications/science/math/hmetis { };
 
   libbsd = callPackage ../development/libraries/libbsd { };
@@ -6525,10 +6543,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  git-hound = callPackage ../tools/security/git-hound {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  git-hound = callPackage ../tools/security/git-hound { };
 
   git-hub = callPackage ../applications/version-management/git-and-tools/git-hub { };
 
@@ -6643,7 +6658,9 @@ with pkgs;
 
   gitleaks = callPackage ../tools/security/gitleaks { };
 
-  gitsign = callPackage ../tools/security/gitsign { };
+  gitsign = callPackage ../tools/security/gitsign {
+    buildGoModule = buildGo118Module;
+  };
 
   gitaly = callPackage ../applications/version-management/gitlab/gitaly { };
 
@@ -6822,7 +6839,7 @@ with pkgs;
 
   gopro = callPackage ../tools/video/gopro { };
 
-  goreleaser = callPackage ../tools/misc/goreleaser { };
+  goreleaser = callPackage ../tools/misc/goreleaser { buildGoModule = buildGo118Module; };
 
   goreplay = callPackage ../tools/networking/goreplay { };
 
@@ -6987,7 +7004,9 @@ with pkgs;
 
   gssdp-tools = callPackage ../development/libraries/gssdp/tools.nix { };
 
-  grype = callPackage ../tools/security/grype { };
+  grype = callPackage ../tools/security/grype {
+    buildGoModule = buildGo118Module;
+  };
 
   gt5 = callPackage ../tools/system/gt5 { };
 
@@ -7164,7 +7183,9 @@ with pkgs;
 
   heimdall-gui = heimdall.override { enableGUI = true; };
 
-  headscale = callPackage ../servers/headscale { };
+  headscale = callPackage ../servers/headscale {
+    buildGoModule = buildGo118Module;
+  };
 
   healthchecks = callPackage ../servers/web-apps/healthchecks { };
 
@@ -7231,10 +7252,7 @@ with pkgs;
 
   httpdirfs = callPackage ../tools/filesystems/httpdirfs { };
 
-  httpdump = callPackage ../tools/security/httpdump {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  httpdump = callPackage ../tools/security/httpdump { };
 
   httpie = with python3Packages; toPythonApplication httpie;
 
@@ -7282,8 +7300,6 @@ with pkgs;
   i2pd = callPackage ../tools/networking/i2pd { };
 
   iannix = libsForQt5.callPackage ../applications/audio/iannix { };
-
-  iaito = libsForQt5.callPackage ../tools/security/iaito { };
 
   jamulus = libsForQt5.callPackage ../applications/audio/jamulus { };
 
@@ -7434,7 +7450,9 @@ with pkgs;
   ipfs-migrator-unwrapped = callPackage ../applications/networking/ipfs-migrator/unwrapped.nix { };
   ipfs-migrator = callPackage ../applications/networking/ipfs-migrator { };
 
-  ipget = callPackage ../applications/networking/ipget { };
+  ipget = callPackage ../applications/networking/ipget {
+    buildGoModule = buildGo118Module;
+  };
 
   i-pi = with python3Packages; toPythonApplication i-pi;
 
@@ -7610,8 +7628,6 @@ with pkgs;
 
   jsubfinder = callPackage ../tools/security/jsubfinder { };
 
-  jtag-remote-server = callPackage ../development/embedded/jtag-remote-server { };
-
   jtc = callPackage ../development/tools/jtc { };
 
   jumpapp = callPackage ../tools/X11/jumpapp {};
@@ -7671,7 +7687,9 @@ with pkgs;
 
   kdbplus = pkgsi686Linux.callPackage ../applications/misc/kdbplus { };
 
-  kdigger = callPackage ../tools/security/kdigger { };
+  kdigger = callPackage ../tools/security/kdigger {
+    buildGoModule = buildGo118Module;
+  };
 
   keepalived = callPackage ../tools/networking/keepalived { };
 
@@ -7706,10 +7724,7 @@ with pkgs;
     jdk = jdk11;
   };
 
-  kfctl = callPackage ../applications/networking/cluster/kfctl {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  kfctl = callPackage ../applications/networking/cluster/kfctl { };
 
   kibana7 = callPackage ../development/tools/misc/kibana/7.x.nix { };
   kibana = kibana7;
@@ -8128,8 +8143,6 @@ with pkgs;
   kcollectd = libsForQt5.callPackage ../tools/misc/kcollectd {};
 
   kea = callPackage ../tools/networking/kea { };
-
-  iredis = callPackage ../tools/admin/iredis { };
 
   ispell = callPackage ../tools/text/ispell {};
 
@@ -8648,10 +8661,7 @@ with pkgs;
     docbook-xsl = docbook_xsl;
   };
 
-  mole = callPackage ../tools/networking/mole {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  mole = callPackage ../tools/networking/mole { };
 
   morgen = callPackage ../applications/office/morgen {
     electron = electron_15;
@@ -8764,7 +8774,9 @@ with pkgs;
 
   nearcore = callPackage ../applications/blockchains/nearcore { };
 
-  nebula = callPackage ../tools/networking/nebula { };
+  nebula = callPackage ../tools/networking/nebula {
+    buildGoModule = buildGo118Module;
+  };
 
   nemiver = callPackage ../development/tools/nemiver { };
 
@@ -8903,11 +8915,9 @@ with pkgs;
   # Upstream partially documents used Go versions here
   # https://github.com/hashicorp/nomad/blob/master/contributing/golang.md
   nomad_1_2 = callPackage ../applications/networking/cluster/nomad/1.2.nix {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
     buildGoModule = buildGo117Module;
   };
   nomad_1_3 = callPackage ../applications/networking/cluster/nomad/1.3.nix {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
     buildGoModule = buildGo117Module;
   };
 
@@ -9048,7 +9058,9 @@ with pkgs;
 
   ntfy = callPackage ../tools/misc/ntfy {};
 
-  ntfy-sh = callPackage ../tools/misc/ntfy-sh { };
+  ntfy-sh = callPackage ../tools/misc/ntfy-sh {
+    buildGoModule = buildGo118Module;
+  };
 
   ntirpc = callPackage ../development/libraries/ntirpc { };
 
@@ -9127,10 +9139,7 @@ with pkgs;
 
   openfortivpn = callPackage ../tools/networking/openfortivpn { };
 
-  opensnitch = callPackage ../tools/networking/opensnitch/daemon.nix {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  opensnitch = callPackage ../tools/networking/opensnitch/daemon.nix { };
 
   opensnitch-ui = libsForQt5.callPackage ../tools/networking/opensnitch/ui.nix { };
 
@@ -9565,7 +9574,9 @@ with pkgs;
 
   pgcenter = callPackage ../tools/misc/pgcenter { };
 
-  pgmetrics = callPackage ../tools/misc/pgmetrics { };
+  pgmetrics = callPackage ../tools/misc/pgmetrics {
+    buildGoModule = buildGo118Module;
+  };
 
   pgsync = callPackage ../development/tools/database/pgsync { };
 
@@ -9604,8 +9615,6 @@ with pkgs;
   };
 
   pinentry-bemenu = callPackage ../tools/security/pinentry-bemenu { };
-
-  pinentry-rofi = callPackage ../tools/security/pinentry-rofi { };
 
   pingtcp = callPackage ../tools/networking/pingtcp { };
 
@@ -10058,8 +10067,6 @@ with pkgs;
 
   redsocks = callPackage ../tools/networking/redsocks { };
 
-  renpy = callPackage ../development/interpreters/renpy { };
-
   rep = callPackage ../development/tools/rep { };
 
   repseek = callPackage ../applications/science/biology/repseek { };
@@ -10332,10 +10339,7 @@ with pkgs;
 
   sacd = callPackage ../tools/cd-dvd/sacd { };
 
-  safe = callPackage ../tools/security/safe {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  safe = callPackage ../tools/security/safe { };
 
   safety-cli = with python3.pkgs; toPythonApplication safety;
 
@@ -10436,9 +10440,6 @@ with pkgs;
   seehecht = callPackage ../tools/text/seehecht { };
 
   seexpr = callPackage ../development/compilers/seexpr { };
-
-  semgrep = python3.pkgs.callPackage ../tools/security/semgrep { };
-  semgrep-core = callPackage ../tools/security/semgrep/semgrep-core.nix { };
 
   setroot = callPackage  ../tools/X11/setroot { };
 
@@ -10843,10 +10844,7 @@ with pkgs;
 
   svgcleaner = callPackage ../tools/graphics/svgcleaner { };
 
-  ssb = callPackage ../tools/security/ssb {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  ssb = callPackage ../tools/security/ssb { };
 
   ssb-patchwork = callPackage ../applications/networking/ssb-patchwork { };
 
@@ -10960,7 +10958,9 @@ with pkgs;
 
   systrayhelper = callPackage ../tools/misc/systrayhelper {};
 
-  syft = callPackage ../tools/admin/syft { };
+  syft = callPackage ../tools/admin/syft {
+    buildGoModule = buildGo118Module;
+  };
 
   Sylk = callPackage ../applications/networking/Sylk {};
 
@@ -11338,7 +11338,9 @@ with pkgs;
 
   trytond = with python3Packages; toPythonApplication trytond;
 
-  tun2socks = callPackage ../tools/networking/tun2socks { };
+  tun2socks = callPackage ../tools/networking/tun2socks {
+    buildGoModule = buildGo118Module;
+  };
 
   tuntox = callPackage ../tools/networking/tuntox { };
 
@@ -12021,7 +12023,9 @@ with pkgs;
 
   wipe = callPackage ../tools/security/wipe { };
 
-  wireguard-go = callPackage ../tools/networking/wireguard-go { };
+  wireguard-go = callPackage ../tools/networking/wireguard-go {
+    buildGoModule = buildGo118Module;
+  };
 
   wkhtmltopdf = libsForQt514.callPackage ../tools/graphics/wkhtmltopdf { };
 
@@ -12037,10 +12041,7 @@ with pkgs;
 
   wpgtk = callPackage ../tools/X11/wpgtk { };
 
-  wrap = callPackage ../tools/text/wrap {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  wrap = callPackage ../tools/text/wrap { };
 
   wring = nodePackages.wring;
 
@@ -12048,10 +12049,7 @@ with pkgs;
 
   wrk2 = callPackage ../tools/networking/wrk2 { };
 
-  wuzz = callPackage ../tools/networking/wuzz {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  wuzz = callPackage ../tools/networking/wuzz { };
 
   wv = callPackage ../tools/misc/wv { };
 
@@ -12240,10 +12238,7 @@ with pkgs;
 
   zfs-autobackup = callPackage ../tools/backup/zfs-autobackup { };
 
-  zfsbackup = callPackage ../tools/backup/zfsbackup {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  zfsbackup = callPackage ../tools/backup/zfsbackup { };
 
   zfstools = callPackage ../tools/filesystems/zfstools { };
 
@@ -13444,12 +13439,11 @@ with pkgs;
     buildPackages = buildPackages // { stdenv = buildPackages.gcc8Stdenv; };
   });
 
-  # go 1.18 requires a newer Apple SDK to be build. See commit message for more details.
-  go_1_18 = darwin.apple_sdk_11_0.callPackage ../development/compilers/go/1.18.nix {
-    inherit (darwin.apple_sdk_11_0.frameworks) Security Foundation;
+  go_1_18 = callPackage ../development/compilers/go/1.18.nix {
+    inherit (darwin.apple_sdk.frameworks) Security Foundation;
   };
 
-  go = go_1_18;
+  go = go_1_17;
 
   go-junit-report = callPackage ../development/tools/go-junit-report { };
 
@@ -14169,8 +14163,6 @@ with pkgs;
   cargo-whatfeatures = callPackage ../development/tools/rust/cargo-whatfeatures {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
-
-  cargo-public-api = callPackage ../development/tools/rust/cargo-public-api { };
 
   crate2nix = callPackage ../development/tools/rust/crate2nix { };
 
@@ -15070,7 +15062,9 @@ with pkgs;
 
   inav-blackbox-tools = callPackage ../tools/misc/inav-blackbox-tools { };
 
-  infracost = callPackage ../tools/misc/infracost { };
+  infracost = callPackage ../tools/misc/infracost {
+    buildGoModule = buildGo118Module;
+  };
 
   msp430GccSupport = callPackage ../development/misc/msp430/gcc-support.nix { };
 
@@ -15413,7 +15407,9 @@ with pkgs;
 
   bpkg = callPackage ../development/tools/build-managers/build2/bpkg.nix { };
 
-  buildkite-agent = callPackage ../development/tools/continuous-integration/buildkite-agent { };
+  buildkite-agent = callPackage ../development/tools/continuous-integration/buildkite-agent {
+    buildGoModule = buildGo118Module;
+  };
 
   buildkite-agent-metrics = callPackage ../servers/monitoring/buildkite-agent-metrics { };
 
@@ -15677,7 +15673,9 @@ with pkgs;
 
   cli11 = callPackage ../development/tools/misc/cli11 { };
 
-  datree = callPackage ../development/tools/datree { };
+  datree = callPackage ../development/tools/datree {
+    buildGoModule = buildGo118Module;
+  };
 
   dcadec = callPackage ../development/tools/dcadec { };
 
@@ -15739,7 +15737,9 @@ with pkgs;
 
   doit = with python3Packages; toPythonApplication doit;
 
-  dolt = callPackage ../servers/sql/dolt { };
+  dolt = callPackage ../servers/sql/dolt {
+    buildGoModule = buildGo118Module;
+  };
 
   dot2tex = with python3.pkgs; toPythonApplication dot2tex;
 
@@ -15848,8 +15848,6 @@ with pkgs;
   framac = callPackage ../development/tools/analysis/frama-c { };
 
   frame = callPackage ../development/libraries/frame { };
-
-  framesh = callPackage ../applications/blockchains/framesh { };
 
   frp = callPackage ../tools/networking/frp { };
 
@@ -16085,7 +16083,7 @@ with pkgs;
 
   kcov = callPackage ../development/tools/analysis/kcov { };
 
-  kind = callPackage ../development/tools/kind { };
+  kind = callPackage ../development/tools/kind { buildGoModule = buildGo118Module; };
 
   khronos-ocl-icd-loader = callPackage ../development/libraries/khronos-ocl-icd-loader {  };
 
@@ -16115,7 +16113,9 @@ with pkgs;
 
   kubeprompt = callPackage ../development/tools/kubeprompt { };
 
-  kubescape = callPackage ../tools/security/kubescape { };
+  kubescape = callPackage ../tools/security/kubescape {
+    buildGoModule = buildGo118Module;
+  };
 
   kubesec = callPackage ../tools/security/kubesec { };
 
@@ -16462,11 +16462,13 @@ with pkgs;
 
   reviewdog = callPackage ../development/tools/misc/reviewdog { };
 
-  revive = callPackage ../development/tools/revive { };
+  revive = callPackage ../development/tools/revive {
+    buildGoModule = buildGo118Module;
+  };
 
   rman = callPackage ../development/tools/misc/rman { };
 
-  rnix-lsp = callPackage ../development/tools/rnix-lsp { nix = nixVersions.nix_2_9; };
+  rnix-lsp = callPackage ../development/tools/rnix-lsp { };
 
   rnginline = with python3Packages; toPythonApplication rnginline;
 
@@ -16708,7 +16710,9 @@ with pkgs;
 
   tflint = callPackage ../development/tools/analysis/tflint { };
 
-  tfsec = callPackage ../development/tools/analysis/tfsec { };
+  tfsec = callPackage ../development/tools/analysis/tfsec {
+    buildGoModule = buildGo118Module;
+  };
 
   todoist = callPackage ../applications/misc/todoist { };
 
@@ -17549,10 +17553,7 @@ with pkgs;
 
   filter-audio = callPackage ../development/libraries/filter-audio {};
 
-  filtron = callPackage ../servers/filtron {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  filtron = callPackage ../servers/filtron {};
 
   flann = callPackage ../development/libraries/flann { };
 
@@ -17655,10 +17656,7 @@ with pkgs;
 
   ganv = callPackage ../development/libraries/ganv { };
 
-  garble = callPackage ../build-support/go/garble.nix {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  garble = callPackage ../build-support/go/garble.nix { };
 
   gcab = callPackage ../development/libraries/gcab { };
 
@@ -18384,8 +18382,6 @@ with pkgs;
   isocodes = callPackage ../development/libraries/iso-codes { };
 
   iso-flags = callPackage ../data/icons/iso-flags { };
-
-  isort = with python3Packages; toPythonApplication isort;
 
   ispc = callPackage ../development/compilers/ispc {
     inherit (llvmPackages) stdenv;
@@ -20917,10 +20913,7 @@ with pkgs;
 
   sfsexp = callPackage ../development/libraries/sfsexp {};
 
-  shhgit = callPackage ../tools/security/shhgit {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  shhgit = callPackage ../tools/security/shhgit { };
 
   shhmsg = callPackage ../development/libraries/shhmsg { };
 
@@ -21338,10 +21331,7 @@ with pkgs;
 
   umockdev = callPackage ../development/libraries/umockdev { };
 
-  unconvert = callPackage ../development/tools/unconvert {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  unconvert = callPackage ../development/tools/unconvert { };
 
   unibilium = callPackage ../development/libraries/unibilium { };
 
@@ -21688,7 +21678,6 @@ with pkgs;
   libzra = callPackage ../development/libraries/libzra { };
 
   zig = callPackage ../development/compilers/zig {
-    stdenv = if stdenv.isDarwin then darwin.apple_sdk_11_0.stdenv else stdenv;
     llvmPackages = llvmPackages_13;
   };
 
@@ -21802,24 +21791,20 @@ with pkgs;
   buildGo117Package = callPackage ../development/go-packages/generic {
     go = buildPackages.go_1_17;
   };
-
-  # go 1.18 requires a newer Apple SDK to be build. See commit message for more details.
-  buildGo118Package = darwin.apple_sdk_11_0.callPackage ../development/go-packages/generic {
+  buildGo118Package = callPackage ../development/go-packages/generic {
     go = buildPackages.go_1_18;
   };
 
-  buildGoPackage = buildGo118Package;
+  buildGoPackage = buildGo117Package;
 
   buildGo117Module = callPackage ../development/go-modules/generic {
     go = buildPackages.go_1_17;
   };
-
-  # go 1.18 requires a newer Apple SDK to be build. See commit message for more details.
-  buildGo118Module = darwin.apple_sdk_11_0.callPackage ../development/go-modules/generic {
+  buildGo118Module = callPackage ../development/go-modules/generic {
     go = buildPackages.go_1_18;
   };
 
-  buildGoModule = buildGo118Module;
+  buildGoModule = buildGo117Module;
 
   go2nix = callPackage ../development/tools/go2nix { };
 
@@ -22035,8 +22020,6 @@ with pkgs;
 
   sabnzbd = callPackage ../servers/sabnzbd { };
 
-  baserow = python3Packages.callPackage ../servers/baserow { };
-
   bftpd = callPackage ../servers/ftp/bftpd {};
 
   bind = callPackage ../servers/dns/bind { };
@@ -22080,10 +22063,7 @@ with pkgs;
 
   dcnnt = python3Packages.callPackage ../servers/dcnnt { };
 
-  dendrite = callPackage ../servers/dendrite {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  dendrite = callPackage ../servers/dendrite { };
 
   dex-oidc = callPackage ../servers/dex { };
 
@@ -22130,7 +22110,9 @@ with pkgs;
     gn = gn1924;
   };
 
-  ergochat = callPackage ../servers/irc/ergochat { };
+  ergochat = callPackage ../servers/irc/ergochat {
+    buildGoModule = buildGo118Module;
+  };
 
   etcd = etcd_3_3;
   etcd_3_3 = callPackage ../servers/etcd/3.3.nix { };
@@ -22161,7 +22143,9 @@ with pkgs;
     jdk = jdk8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
   };
 
-  eventstore = callPackage ../servers/nosql/eventstore { };
+  eventstore = callPackage ../servers/nosql/eventstore {
+    Nuget = dotnetPackages.Nuget;
+  };
 
   exim = callPackage ../servers/mail/exim { };
 
@@ -22202,10 +22186,7 @@ with pkgs;
   grafana = callPackage ../servers/monitoring/grafana { };
   grafanaPlugins = callPackages ../servers/monitoring/grafana/plugins { };
 
-  grafana-agent = callPackage ../servers/monitoring/grafana-agent {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  grafana-agent = callPackage ../servers/monitoring/grafana-agent { };
 
   grafana-loki = callPackage ../servers/monitoring/loki { };
 
@@ -22223,10 +22204,7 @@ with pkgs;
 
   gerbera = callPackage ../servers/gerbera {};
 
-  gobetween = callPackage ../servers/gobetween {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  gobetween = callPackage ../servers/gobetween { };
 
   gobgpd = callPackage ../servers/misc/gobgpd { };
 
@@ -22266,11 +22244,7 @@ with pkgs;
 
   hydron = callPackage ../servers/hydron { };
 
-  hyprspace = callPackage ../applications/networking/hyprspace {
-    inherit (darwin) iproute2mac;
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  hyprspace = callPackage ../applications/networking/hyprspace { inherit (darwin) iproute2mac; };
 
   ic-keysmith = callPackage ../tools/security/ic-keysmith { };
 
@@ -22428,7 +22402,9 @@ with pkgs;
 
   mullvad-vpn = callPackage ../applications/networking/mullvad-vpn { };
 
-  mycorrhiza = callPackage ../servers/mycorrhiza { };
+  mycorrhiza = callPackage ../servers/mycorrhiza {
+    buildGoModule = buildGo118Module;
+  };
 
   napalm = with python3Packages; toPythonApplication (
     napalm.overridePythonAttrs (attrs: {
@@ -22744,13 +22720,9 @@ with pkgs;
 
   check-openvpn = callPackage ../servers/monitoring/plugins/openvpn.nix { };
 
-  check_smartmon = callPackage ../servers/monitoring/nagios/plugins/smartmon.nix { };
-
   checkSSLCert = callPackage ../servers/monitoring/nagios/plugins/check_ssl_cert.nix { };
 
   check_systemd = callPackage ../servers/monitoring/nagios/plugins/check_systemd.nix { };
-
-  check_zfs = callPackage ../servers/monitoring/nagios/plugins/zfs.nix { };
 
   neo4j = callPackage ../servers/nosql/neo4j {
     jre = jre8_headless;
@@ -22831,7 +22803,7 @@ with pkgs;
   liquibase_redshift_extension = callPackage ../development/java-modules/liquibase_redshift_extension { };
 
   prom2json = callPackage ../servers/monitoring/prometheus/prom2json.nix { };
-  prometheus = callPackage ../servers/monitoring/prometheus { };
+  prometheus = callPackage ../servers/monitoring/prometheus { buildGoModule = buildGo118Module; };
   prometheus-alertmanager = callPackage ../servers/monitoring/prometheus/alertmanager.nix { };
   prometheus-apcupsd-exporter = callPackage ../servers/monitoring/prometheus/apcupsd-exporter.nix { };
   prometheus-artifactory-exporter = callPackage ../servers/monitoring/prometheus/artifactory-exporter.nix { };
@@ -22863,16 +22835,10 @@ with pkgs;
   prometheus-minio-exporter = callPackage ../servers/monitoring/prometheus/minio-exporter { };
   prometheus-modemmanager-exporter = callPackage ../servers/monitoring/prometheus/modemmanager-exporter.nix { };
   prometheus-mysqld-exporter = callPackage ../servers/monitoring/prometheus/mysqld-exporter.nix { };
-  prometheus-nats-exporter = callPackage ../servers/monitoring/prometheus/nats-exporter.nix {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  prometheus-nats-exporter = callPackage ../servers/monitoring/prometheus/nats-exporter.nix { };
   prometheus-nextcloud-exporter = callPackage ../servers/monitoring/prometheus/nextcloud-exporter.nix { };
   prometheus-nginx-exporter = callPackage ../servers/monitoring/prometheus/nginx-exporter.nix { };
-  prometheus-nginxlog-exporter = callPackage ../servers/monitoring/prometheus/nginxlog-exporter.nix {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  prometheus-nginxlog-exporter = callPackage ../servers/monitoring/prometheus/nginxlog-exporter.nix { };
   prometheus-node-exporter = callPackage ../servers/monitoring/prometheus/node-exporter.nix {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation IOKit;
   };
@@ -23061,7 +23027,9 @@ with pkgs;
 
   systemd-journal2gelf = callPackage ../tools/system/systemd-journal2gelf { };
 
-  tailscale = callPackage ../servers/tailscale { };
+  tailscale = callPackage ../servers/tailscale {
+    buildGoModule = buildGo118Module;
+  };
 
   thanos = callPackage ../servers/monitoring/thanos { };
 
@@ -23139,7 +23107,9 @@ with pkgs;
 
   webmetro = callPackage ../servers/webmetro { };
 
-  wishlist = callPackage ../servers/wishlist { };
+  wishlist = callPackage ../servers/wishlist {
+    buildGoModule = buildGo118Module;
+  };
 
   wsdd = callPackage ../servers/wsdd { };
 
@@ -23220,10 +23190,7 @@ with pkgs;
 
   mbtileserver = callPackage ../servers/geospatial/mbtileserver { };
 
-  pg_featureserv = callPackage ../servers/geospatial/pg_featureserv {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  pg_featureserv = callPackage ../servers/geospatial/pg_featureserv { };
 
   pg_tileserv = callPackage ../servers/geospatial/pg_tileserv { };
 
@@ -23253,10 +23220,7 @@ with pkgs;
 
   alfred = callPackage ../os-specific/linux/batman-adv/alfred.nix { };
 
-  alertmanager-bot = callPackage ../servers/monitoring/alertmanager-bot {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  alertmanager-bot = callPackage ../servers/monitoring/alertmanager-bot { };
 
   alertmanager-irc-relay = callPackage ../servers/monitoring/alertmanager-irc-relay { };
 
@@ -23368,7 +23332,9 @@ with pkgs;
 
   coredns = callPackage ../servers/dns/coredns { };
 
-  corerad = callPackage ../tools/networking/corerad { };
+  corerad = callPackage ../tools/networking/corerad {
+    buildGoModule = buildGo118Module;
+  };
 
   cpufrequtils = callPackage ../os-specific/linux/cpufrequtils { };
 
@@ -23503,10 +23469,7 @@ with pkgs;
 
   gomp = callPackage ../applications/version-management/gomp { };
 
-  gomplate = callPackage ../development/tools/gomplate {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  gomplate = callPackage ../development/tools/gomplate {};
 
   gpm = callPackage ../servers/gpm {
     ncurses = null;  # Keep curses disabled for lack of value
@@ -23974,7 +23937,9 @@ with pkgs;
 
   golint = callPackage ../development/tools/golint { };
 
-  golangci-lint = callPackage ../development/tools/golangci-lint { };
+  golangci-lint = callPackage ../development/tools/golangci-lint {
+    buildGoModule = buildGo118Module;
+  };
 
   golangci-lint-langserver = callPackage ../development/tools/golangci-lint-langserver { };
 
@@ -23994,22 +23959,23 @@ with pkgs;
 
   gotest = callPackage ../development/tools/gotest { };
 
-  gotools = callPackage ../development/tools/gotools { };
+  gotools = callPackage ../development/tools/gotools {
+    buildGoModule = buildGo118Module;
+  };
 
   gotop = callPackage ../tools/system/gotop { };
 
   go-migrate = callPackage ../development/tools/go-migrate { };
 
-  go-mockery = callPackage ../development/tools/go-mockery {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  go-mockery = callPackage ../development/tools/go-mockery { };
 
   gomacro = callPackage ../development/tools/gomacro { };
 
   gomodifytags = callPackage ../development/tools/gomodifytags { };
 
-  gopls = callPackage ../development/tools/gopls { };
+  gopls = callPackage ../development/tools/gopls {
+    buildGoModule = buildGo118Module;
+  };
 
   gops = callPackage ../development/tools/gops { };
 
@@ -24077,10 +24043,7 @@ with pkgs;
 
   pam_usb = callPackage ../os-specific/linux/pam_usb { };
 
-  pam_ussh = callPackage ../os-specific/linux/pam_ussh {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  pam_ussh = callPackage ../os-specific/linux/pam_ussh { };
 
   paxctl = callPackage ../os-specific/linux/paxctl { };
 
@@ -24176,8 +24139,6 @@ with pkgs;
   ristate = callPackage ../tools/misc/ristate { };
 
   roccat-tools = callPackage ../os-specific/linux/roccat-tools { };
-
-  rojo = callPackage ../development/tools/rojo { };
 
   rtsp-simple-server = callPackage ../servers/rtsp-simple-server { };
 
@@ -24984,9 +24945,7 @@ with pkgs;
 
   logiops = callPackage ../misc/drivers/logiops { };
 
-  # ltunifi and solaar both provide udev rules but solaar's rules are more
-  # up-to-date so we simply use that instead of having to maintain our own rules
-  logitech-udev-rules = solaar.udev;
+  logitech-udev-rules = callPackage ../os-specific/linux/logitech-udev-rules { };
 
   # lohit-fonts.assamese lohit-fonts.bengali lohit-fonts.devanagari lohit-fonts.gujarati lohit-fonts.gurmukhi
   # lohit-fonts.kannada lohit-fonts.malayalam lohit-fonts.marathi lohit-fonts.nepali lohit-fonts.odia
@@ -25507,10 +25466,7 @@ with pkgs;
 
   vegur = callPackage ../data/fonts/vegur { };
 
-  vegeta = callPackage ../tools/networking/vegeta {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  vegeta = callPackage ../tools/networking/vegeta { };
 
   venta = callPackage ../data/themes/venta { };
 
@@ -26581,10 +26537,7 @@ with pkgs;
 
   exaile = callPackage ../applications/audio/exaile { };
 
-  exercism = callPackage ../applications/misc/exercism {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  exercism = callPackage ../applications/misc/exercism { };
 
   expenses = callPackage ../applications/misc/expenses { };
 
@@ -26910,10 +26863,7 @@ with pkgs;
 
   gopher = callPackage ../applications/networking/gopher/gopher { };
 
-  gophernotes = callPackage ../applications/editors/gophernotes {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  gophernotes = callPackage ../applications/editors/gophernotes { };
 
   goxel = callPackage ../applications/graphics/goxel { };
 
@@ -27145,9 +27095,7 @@ with pkgs;
 
   freerdpUnstable = freerdp;
 
-  friture = libsForQt5.callPackage ../applications/audio/friture {
-    python3Packages = python39Packages;
-  };
+  friture = libsForQt5.callPackage ../applications/audio/friture { };
 
   fte = callPackage ../applications/editors/fte { };
 
@@ -27405,7 +27353,9 @@ with pkgs;
 
   google-chrome-dev = google-chrome.override { chromium = chromiumDev; channel = "dev"; };
 
-  go-graft = callPackage ../applications/networking/go-graft { };
+  go-graft = callPackage ../applications/networking/go-graft {
+    buildGoModule = buildGo118Module;
+  };
 
   gosmore = callPackage ../applications/misc/gosmore { stdenv = gcc10StdenvCompat; };
 
@@ -27560,7 +27510,7 @@ with pkgs;
 
   haunt = callPackage ../applications/misc/haunt { };
 
-  hugo = callPackage ../applications/misc/hugo { };
+  hugo = callPackage ../applications/misc/hugo { buildGoModule = buildGo118Module; };
 
   gatekeeper = callPackage ../applications/networking/cluster/gatekeeper { };
 
@@ -27889,7 +27839,7 @@ with pkgs;
     ghostscript = null;
   });
 
-  imagemagickBig = lowPrio (callPackage ../applications/graphics/ImageMagick {
+  imagemagickBig = lowPrio (callPackage ../applications/graphics/ImageMagick/7.0.nix {
     inherit (darwin.apple_sdk.frameworks) ApplicationServices Foundation;
   });
 
@@ -28016,10 +27966,7 @@ with pkgs;
 
   k3sup = callPackage ../applications/networking/cluster/k3sup {};
 
-  kconf = callPackage ../applications/networking/cluster/kconf {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  kconf = callPackage ../applications/networking/cluster/kconf { };
 
   kail = callPackage ../tools/networking/kail {  };
 
@@ -28134,10 +28081,7 @@ with pkgs;
 
   kube-score = callPackage ../applications/networking/cluster/kube-score { };
 
-  kubectl-evict-pod = callPackage ../applications/networking/cluster/kubectl-evict-pod {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  kubectl-evict-pod = callPackage ../applications/networking/cluster/kubectl-evict-pod { };
 
   kubeval = callPackage ../applications/networking/cluster/kubeval { };
 
@@ -28147,10 +28091,7 @@ with pkgs;
   kubectl = callPackage ../applications/networking/cluster/kubernetes/kubectl.nix { };
   kubectl-convert = kubectl.convert;
 
-  kubemqctl = callPackage ../applications/networking/cluster/kubemqctl {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  kubemqctl = callPackage ../applications/networking/cluster/kubemqctl { };
 
   kubent = callPackage ../applications/networking/cluster/kubent { };
 
@@ -28164,19 +28105,11 @@ with pkgs;
 
   kubebuilder = callPackage ../applications/networking/cluster/kubebuilder { };
 
-  kuttl = callPackage ../applications/networking/cluster/kuttl {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  kuttl = callPackage ../applications/networking/cluster/kuttl { };
 
-  kubectl-doctor = callPackage ../applications/networking/cluster/kubectl-doctor {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  kubectl-doctor = callPackage ../applications/networking/cluster/kubectl-doctor { };
 
   kubectl-example = callPackage ../applications/networking/cluster/kubectl-example { };
-
-  kubectl-node-shell = callPackage ../applications/networking/cluster/kubectl-node-shell { };
 
   kubectl-tree = callPackage ../applications/networking/cluster/kubectl-tree { };
 
@@ -28507,10 +28440,7 @@ with pkgs;
 
   mapmap = libsForQt5.callPackage ../applications/video/mapmap { };
 
-  marathonctl = callPackage ../tools/virtualization/marathonctl {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  marathonctl = callPackage ../tools/virtualization/marathonctl { } ;
 
   markdown-pp = callPackage ../tools/text/markdown-pp { };
 
@@ -28522,10 +28452,7 @@ with pkgs;
     electron = electron_9;
   };
 
-  magnetico = callPackage ../applications/networking/p2p/magnetico {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  magnetico = callPackage ../applications/networking/p2p/magnetico { };
 
   mastodon-bot = nodePackages.mastodon-bot;
 
@@ -28824,7 +28751,9 @@ with pkgs;
 
   nload = callPackage ../applications/networking/nload { };
 
-  nali = callPackage ../applications/networking/nali { };
+  nali = callPackage ../applications/networking/nali {
+    buildGoModule = buildGo118Module;
+   };
 
   normalize = callPackage ../applications/audio/normalize { };
 
@@ -29107,8 +29036,6 @@ with pkgs;
   synfigstudio = callPackage ../applications/graphics/synfigstudio { };
 
   taxi = callPackage ../applications/networking/ftp/taxi { };
-
-  taxi-cli = with python3Packages; toPythonApplication taxi;
 
   librep = callPackage ../development/libraries/librep { };
 
@@ -30036,10 +29963,7 @@ with pkgs;
 
   sfxr-qt = libsForQt5.callPackage ../applications/audio/sfxr-qt { };
 
-  shadowfox = callPackage ../tools/networking/shadowfox {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  shadowfox = callPackage ../tools/networking/shadowfox { };
 
   shfmt = callPackage ../tools/text/shfmt { };
 
@@ -30218,7 +30142,9 @@ with pkgs;
 
   robustirc-bridge = callPackage ../servers/irc/robustirc-bridge { };
 
-  routedns = callPackage ../tools/networking/routedns { };
+  routedns = callPackage ../tools/networking/routedns {
+    buildGoModule = buildGo118Module;
+  };
 
   skrooge = libsForQt5.callPackage ../applications/office/skrooge {};
 
@@ -30419,7 +30345,9 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  talosctl = callPackage ../applications/networking/cluster/talosctl { };
+  talosctl = callPackage ../applications/networking/cluster/talosctl {
+    buildGoModule = buildGo118Module;
+  };
 
   talentedhack = callPackage ../applications/audio/talentedhack { };
 
@@ -30482,9 +30410,13 @@ with pkgs;
 
   tempo = callPackage ../servers/tracing/tempo {};
 
-  temporal = callPackage ../applications/networking/cluster/temporal { };
+  temporal = callPackage ../applications/networking/cluster/temporal {
+    buildGoModule = buildGo118Module;
+  };
 
-  temporal-cli = callPackage ../applications/networking/cluster/temporal-cli { };
+  temporal-cli = callPackage ../applications/networking/cluster/temporal-cli {
+    buildGoModule = buildGo118Module;
+  };
 
   tenacity = callPackage ../applications/audio/tenacity { wxGTK = wxGTK31-gtk3; };
 
@@ -30650,10 +30582,7 @@ with pkgs;
 
   toxic = callPackage ../applications/networking/instant-messengers/toxic { };
 
-  toxiproxy = callPackage ../development/tools/toxiproxy {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  toxiproxy = callPackage ../development/tools/toxiproxy { };
 
   tqsl = callPackage ../applications/radio/tqsl { };
   trustedqsl = tqsl; # Alias added 2019-02-10
@@ -31742,7 +31671,7 @@ with pkgs;
 
   ergo = callPackage ../applications/blockchains/ergo { };
 
-  erigon = callPackage ../applications/blockchains/erigon.nix { };
+  erigon = callPackage ../applications/blockchains/erigon.nix { buildGoModule = buildGo118Module; };
 
   exodus = callPackage ../applications/blockchains/exodus { };
 
@@ -31779,10 +31708,7 @@ with pkgs;
   };
   litecoind = litecoin.override { withGui = false; };
 
-  livedl = callPackage ../tools/misc/livedl {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  livedl = callPackage ../tools/misc/livedl { };
 
   lnd = callPackage ../applications/blockchains/lnd { };
 
@@ -31896,7 +31822,7 @@ with pkgs;
   bench = haskell.lib.compose.justStaticExecutables haskellPackages.bench;
 
   cri-o = callPackage ../applications/virtualization/cri-o/wrapper.nix { };
-  cri-o-unwrapped = callPackage ../applications/virtualization/cri-o { };
+  cri-o-unwrapped = callPackage ../applications/virtualization/cri-o { buildGoModule = buildGo118Module; };
 
   confd = callPackage ../tools/system/confd { };
 
@@ -33362,10 +33288,7 @@ with pkgs;
 
   deepdiff = with python3Packages; toPythonApplication deepdiff;
 
-  deepsea = callPackage ../tools/security/deepsea {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  deepsea = callPackage ../tools/security/deepsea { };
 
   deeptools = callPackage ../applications/science/biology/deeptools { python = python3; };
 
@@ -33418,8 +33341,6 @@ with pkgs;
   macse = callPackage ../applications/science/biology/macse { };
 
   MACS2 = callPackage ../applications/science/biology/MACS2 { };
-
-  mafft = callPackage ../applications/science/biology/mafft { };
 
   migrate = callPackage ../applications/science/biology/migrate { };
 
@@ -33812,6 +33733,8 @@ with pkgs;
 
   groove = callPackage ../applications/science/programming/groove { };
 
+  jflap = callPackage ../applications/science/programming/jflap { };
+
   plm = callPackage ../applications/science/programming/plm { };
 
   ### SCIENCE/LOGIC
@@ -34069,8 +33992,6 @@ with pkgs;
   ### SCIENCE / ENGINEERING
 
   brmodelo = callPackage ../applications/science/engineering/brmodelo { };
-
-  jflap = callPackage ../applications/science/engineering/jflap { };
 
   ### SCIENCE / ELECTRONICS
 
@@ -34626,10 +34547,7 @@ with pkgs;
 
   gotestwaf = callPackage ../tools/security/gotestwaf { };
 
-  gowitness = callPackage ../tools/security/gowitness {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  gowitness = callPackage ../tools/security/gowitness { };
 
   guetzli = callPackage ../applications/graphics/guetzli { };
 
@@ -34681,7 +34599,7 @@ with pkgs;
 
   idsk = callPackage ../tools/filesystems/idsk { stdenv = gcc10StdenvCompat; };
 
-  colima = callPackage ../applications/virtualization/colima { };
+  colima = callPackage ../applications/virtualization/colima { buildGoModule = buildGo118Module; };
 
   lima = callPackage ../applications/virtualization/lima { };
 
@@ -34707,9 +34625,6 @@ with pkgs;
   };
 
   libjack2 = jack2.override { prefix = "lib"; };
-
-  jack-autoconnect = libsForQt5.callPackage ../applications/audio/jack-autoconnect { };
-  jack_autoconnect = jack-autoconnect;
 
   jacktrip = libsForQt5.callPackage ../applications/audio/jacktrip { };
 
@@ -35154,7 +35069,7 @@ with pkgs;
 
   runit = callPackage ../tools/system/runit { };
 
-  runitor = callPackage ../tools/system/runitor { };
+  runitor = callPackage ../tools/system/runitor { buildGoModule = buildGo118Module; };
 
   refind = callPackage ../tools/bootloaders/refind { };
 
@@ -35318,7 +35233,9 @@ with pkgs;
   terraform-full = terraform.full;
 
   terraform-providers = recurseIntoAttrs (
-    callPackage ../applications/networking/cluster/terraform-providers { }
+    callPackage ../applications/networking/cluster/terraform-providers {
+      buildGoModule = buildGo118Module;
+    }
   );
 
   terraforming = callPackage ../applications/networking/cluster/terraforming { };
@@ -35339,7 +35256,9 @@ with pkgs;
 
   tgswitch = callPackage ../applications/networking/cluster/tgswitch {};
 
-  tilt = callPackage ../applications/networking/cluster/tilt { };
+  tilt = callPackage ../applications/networking/cluster/tilt {
+    buildGoModule = buildGo118Module;
+  };
 
   timeular = callPackage ../applications/office/timeular {};
 
@@ -35493,8 +35412,6 @@ with pkgs;
   webkit2-sharp = callPackage ../development/libraries/webkit2-sharp {  };
 
   websocketd = callPackage ../applications/networking/websocketd { };
-
-  wibo = pkgsi686Linux.callPackage ../applications/emulators/wibo { };
 
   wike = callPackage ../applications/misc/wike { };
 
@@ -35916,10 +35833,7 @@ with pkgs;
 
   zfs-replicate = python3Packages.callPackage ../tools/backup/zfs-replicate { };
 
-  zrepl = callPackage ../tools/backup/zrepl {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  zrepl = callPackage ../tools/backup/zrepl { };
 
   uhubctl = callPackage ../tools/misc/uhubctl {};
 
@@ -35937,7 +35851,9 @@ with pkgs;
 
   webwormhole = callPackage ../tools/networking/webwormhole { };
 
-  werf = callPackage ../applications/networking/cluster/werf { };
+  werf = callPackage ../applications/networking/cluster/werf {
+    buildGoModule = buildGo118Module;
+  };
 
   wifi-password = callPackage ../os-specific/darwin/wifi-password {};
 
@@ -35957,10 +35873,7 @@ with pkgs;
 
   kaf = callPackage ../development/tools/kaf { };
 
-  kcli = callPackage ../development/tools/kcli {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  kcli = callPackage ../development/tools/kcli { };
 
   pxlib = callPackage ../development/libraries/pxlib {};
 

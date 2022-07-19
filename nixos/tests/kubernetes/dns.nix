@@ -33,11 +33,7 @@ let
   redisImage = pkgs.dockerTools.buildImage {
     name = "redis";
     tag = "latest";
-    copyToRoot = pkgs.buildEnv {
-      name = "image-root";
-      pathsToLink = [ "/bin" ];
-      paths = [ pkgs.redis pkgs.bind.host ];
-    };
+    contents = [ pkgs.redis pkgs.bind.host ];
     config.Entrypoint = ["/bin/redis-server"];
   };
 
@@ -58,11 +54,7 @@ let
   probeImage = pkgs.dockerTools.buildImage {
     name = "probe";
     tag = "latest";
-    copyToRoot = pkgs.buildEnv {
-      name = "image-root";
-      pathsToLink = [ "/bin" ];
-      paths = [ pkgs.bind.host pkgs.busybox ];
-    };
+    contents = [ pkgs.bind.host pkgs.busybox ];
     config.Entrypoint = ["/bin/tail"];
   };
 

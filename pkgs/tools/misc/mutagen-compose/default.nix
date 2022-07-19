@@ -1,6 +1,6 @@
-{ stdenv, lib, buildGoModule, fetchFromGitHub, fetchzip }:
+{ stdenv, lib, buildGo118Module, fetchFromGitHub, fetchzip }:
 
-buildGoModule rec {
+buildGo118Module rec {
   pname = "mutagen-compose";
   version = "0.14.0";
 

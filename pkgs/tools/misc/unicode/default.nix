@@ -1,19 +1,19 @@
-{ lib, fetchFromGitHub, fetchurl, python3Packages, installShellFiles, gitUpdater }:
+{ lib, fetchFromGitHub, fetchurl, python3Packages, installShellFiles }:
 
 python3Packages.buildPythonApplication rec {
   pname = "unicode";
-  version = "2.9";
+  version = "2.7";
 
   src = fetchFromGitHub {
     owner = "garabik";
     repo = "unicode";
     rev = "v${version}";
-    sha256 = "sha256-FHAlZ5HID/FE9+YR7Dmc3Uh7E16QKORoD8g9jgTeQdY=";
+    sha256 = "15d9yvarxsiy0whx1mxzsjnnkrjdm3ga4qv2yy398mk0jh763q9v";
   };
 
   ucdtxt = fetchurl {
-    url = "https://www.unicode.org/Public/14.0.0/ucd/UnicodeData.txt";
-    sha256 = "sha256-NgGOaGV/3LNIX2NmMP/oyFMuAcl3cD0oA/W4nWxf6vs=";
+    url = "https://www.unicode.org/Public/13.0.0/ucd/UnicodeData.txt";
+    sha256 = "1fz8fcd23lxyl97ay8h42zvkcgcg8l81b2dm05nklkddr2zzpgxx";
   };
 
   nativeBuildInputs = [ installShellFiles ];
@@ -26,12 +26,6 @@ python3Packages.buildPythonApplication rec {
   postInstall = ''
     installManPage paracode.1 unicode.1
   '';
-
-  passthru.updateScript = gitUpdater {
-    inherit version;
-    pname = "unicode-paracode";
-    rev-prefix = "v";
-  };
 
   meta = with lib; {
     description = "Display unicode character properties";

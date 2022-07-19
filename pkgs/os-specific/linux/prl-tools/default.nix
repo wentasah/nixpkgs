@@ -1,59 +1,50 @@
 { stdenv, lib, makeWrapper, p7zip
-, gawk, util-linux, xorg, glib, dbus-glib, zlib, bbe, bash, timetrap, netcat, cups
+, gawk, util-linux, xorg, glib, dbus-glib, zlib
 , kernel ? null, libsOnly ? false
-, fetchurl, undmg, perl, autoPatchelfHook
+, undmg, fetchurl
 }:
 
 assert (!libsOnly) -> kernel != null;
-assert lib.elem stdenv.hostPlatform.system [ "x86_64-linux" "i686-linux" "aarch64-linux" ];
 
+let xorgFullVer = lib.getVersion xorg.xorgserver;
+    xorgVer = lib.versions.majorMinor xorgFullVer;
+    x64 = if stdenv.hostPlatform.system == "x86_64-linux" then true
+          else if stdenv.hostPlatform.system == "i686-linux" then false
+          else throw "Parallels Tools for Linux only support {x86-64,i686}-linux targets";
+in
 stdenv.mkDerivation rec {
-  version = "17.1.4-51567";
+  version = "${prl_major}.2.1-41615";
+  prl_major = "12";
   pname = "prl-tools";
 
   # We download the full distribution to extract prl-tools-lin.iso from
   # => ${dmg}/Parallels\ Desktop.app/Contents/Resources/Tools/prl-tools-lin.iso
   src = fetchurl {
-    url =  "https://download.parallels.com/desktop/v${lib.versions.major version}/${version}/ParallelsDesktop-${version}.dmg";
-    sha256 = "sha256-gjLxQOTFuVghv1Bj+zfbNW97q1IN2rurSnPQi13gzRA=";
+    url =  "https://download.parallels.com/desktop/v${prl_major}/${version}/ParallelsDesktop-${version}.dmg";
+    sha256 = "1jwzwif69qlhmfky9kigjaxpxfj0lyrl1iyrpqy4iwqvajdgbbym";
   };
 
   hardeningDisable = [ "pic" "format" ];
 
-  nativeBuildInputs = [ p7zip undmg perl bbe autoPatchelfHook ]
-    ++ lib.optionals (!libsOnly) [ makeWrapper ] ++ kernel.moduleBuildDependencies;
-
-  buildInputs = with xorg; [ libXrandr libXext libX11 libXcomposite libXinerama ]
-    ++ lib.optionals (!libsOnly) [ libXi glib dbus-glib zlib ];
-
-  runtimeDependencies = [ glib xorg.libXrandr ];
+  # also maybe python2 to generate xorg.conf
+  nativeBuildInputs = [ p7zip undmg ] ++ lib.optionals (!libsOnly) [ makeWrapper ] ++ kernel.moduleBuildDependencies;
 
   inherit libsOnly;
 
   unpackPhase = ''
     undmg "${src}"
+
     export sourceRoot=prl-tools-build
-    7z x "Parallels Desktop.app/Contents/Resources/Tools/prl-tools-lin${lib.optionalString stdenv.isAarch64 "-arm"}.iso" -o$sourceRoot
+    7z x "Parallels Desktop.app/Contents/Resources/Tools/prl-tools-lin.iso" -o$sourceRoot
     if test -z "$libsOnly"; then
       ( cd $sourceRoot/kmods; tar -xaf prl_mod.tar.gz )
     fi
+    ( cd $sourceRoot/tools; tar -xaf prltools${if x64 then ".x64" else ""}.tar.gz )
   '';
 
-  patches = lib.optionals (lib.versionAtLeast kernel.version "5.18") [ ./prl-tools.patch ];
-
-  kernelVersion = lib.optionalString (!libsOnly) kernel.modDirVersion;
-  kernelDir = lib.optionalString (!libsOnly) "${kernel.dev}/lib/modules/${kernelVersion}";
-
-  libPath = lib.concatStringsSep ":" [ "${glib.out}/lib" "${xorg.libXrandr}/lib" ];
-
-  scriptPath = lib.concatStringsSep ":" (lib.optionals (!libsOnly) [
-    "${util-linux}/bin"
-    "${gawk}/bin"
-    "${bash}/bin"
-    "${timetrap}/bin"
-    "${netcat}/bin"
-    "${cups}/sbin"
-  ]);
+  kernelVersion = if libsOnly then "" else lib.getName kernel.name;
+  kernelDir = if libsOnly then "" else "${kernel.dev}/lib/modules/${kernelVersion}";
+  scriptPath = lib.concatStringsSep ":" (lib.optionals (!libsOnly) [ "${util-linux}/bin" "${gawk}/bin" ]);
 
   buildPhase = ''
     if test -z "$libsOnly"; then
@@ -66,80 +57,112 @@ stdenv.mkDerivation rec {
           SRC=$kernelDir/build \
           KVER=$kernelVersion
       )
+
+      # Xorg config (maybe would be useful for other versions)
+      #python2 installer/xserver-config.py xorg ${xorgVer} /dev/null parallels.conf
     fi
   '';
+
+  libPath = with xorg;
+            lib.makeLibraryPath ([ stdenv.cc.cc libXrandr libXext libX11 libXcomposite libXinerama ]
+            ++ lib.optionals (!libsOnly) [ libXi glib dbus-glib zlib ]);
+
 
   installPhase = ''
     if test -z "$libsOnly"; then
       ( # kernel modules
         cd kmods
         mkdir -p $out/lib/modules/${kernelVersion}/extra
+        cp prl_eth/pvmnet/prl_eth.ko $out/lib/modules/${kernelVersion}/extra
+        cp prl_tg/Toolgate/Guest/Linux/prl_tg/prl_tg.ko $out/lib/modules/${kernelVersion}/extra
         cp prl_fs/SharedFolders/Guest/Linux/prl_fs/prl_fs.ko $out/lib/modules/${kernelVersion}/extra
         cp prl_fs_freeze/Snapshot/Guest/Linux/prl_freeze/prl_fs_freeze.ko $out/lib/modules/${kernelVersion}/extra
-        cp prl_tg/Toolgate/Guest/Linux/prl_tg/prl_tg.ko $out/lib/modules/${kernelVersion}/extra
-        ${lib.optionalString stdenv.isAarch64
-        "cp prl_notifier/Installation/lnx/prl_notifier/prl_notifier.ko $out/lib/modules/${kernelVersion}/extra"}
       )
     fi
 
     ( # tools
-      cd tools/tools${if stdenv.isAarch64 then "-arm64" else if stdenv.isx86_64 then "64" else "32"}
+      cd tools
       mkdir -p $out/lib
 
       if test -z "$libsOnly"; then
-        # prltoolsd contains hardcoded /bin/bash path
-        # we're lucky because it uses only -c command
-        # => replace to /bin/sh
-        bbe -e "s:/bin/bash:/bin/sh\x00\x00:" -o bin/prltoolsd.tmp bin/prltoolsd
-        rm -f bin/prltoolsd
-        mv bin/prltoolsd.tmp bin/prltoolsd
-
         # install binaries
         for i in bin/* sbin/prl_nettool sbin/prl_snapshot; do
-          # also patch binaries to replace /usr/bin/XXX to XXX
-          # here a two possible cases:
-          # 1. it is uses as null terminated string and should be truncated by null;
-          # 2. it is uses inside shell script and should be truncated by space.
-          for p in bin/* sbin/prl_nettool sbin/prl_snapshot sbin/prlfsmountd; do
-            p=$(basename $p)
-            bbe -e "s:/usr/bin/$p\x00:./$p\x00\x00\x00\x00\x00\x00\x00\x00:" -o $i.tmp $i
-            bbe -e "s:/usr/sbin/$p\x00:./$p\x00\x00\x00\x00\x00\x00\x00\x00 :" -o $i $i.tmp
-            bbe -e "s:/usr/bin/$p:$p         :" -o $i.tmp $i
-            bbe -e "s:/usr/sbin/$p:$p          :" -o $i $i.tmp
-          done
-
           install -Dm755 $i $out/$i
         done
-
-        install -Dm755 ../../tools/prlfsmountd.sh $out/sbin/prlfsmountd
-        for f in $out/bin/* $out/sbin/*; do
-          wrapProgram $f \
-            --prefix LD_LIBRARY_PATH ':' "$libPath" \
-            --prefix PATH ':' "$scriptPath"
+        # other binaries
+        for i in xorg.7.1/usr/bin/*; do
+          cp $i $out/bin
         done
 
-        for i in lib/libPrl*.0.0; do
+        for i in $out/bin/* $out/sbin/*; do
+          patchelf \
+            --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
+            --set-rpath "$out/lib:$libPath" \
+            $i || true
+        done
+
+        mkdir -p $out/bin
+        install -Dm755 ../installer/prlfsmountd.sh $out/sbin/prlfsmountd
+        wrapProgram $out/sbin/prlfsmountd \
+          --prefix PATH ':' "$scriptPath"
+
+        for i in lib/*.a; do
           cp $i $out/lib
-          ln -s $out/$i $out/''${i%.0.0}
         done
 
-        mkdir -p $out/share/man/man8
-        install -Dm644 ../mount.prl_fs.8 $out/share/man/man8
+        for i in xorg.7.1/usr/lib/libprl_wmouse_watcher.*; do
+          cp $i $out/lib
+        done
 
-        substituteInPlace ../99prltoolsd-hibernate \
-          --replace "/bin/bash" "${bash}/bin/bash"
+        mkdir -p $out/lib/udev/rules.d
+        for i in *.rules; do
+          sed 's,/bin/bash,${stdenv.shell},g' $i > $out/lib/udev/rules.d/$i
+        done
 
-        mkdir -p $out/etc/pm/sleep.d
-        install -Dm644 ../99prltoolsd-hibernate $out/etc/pm/sleep.d
+        (
+          cd xorg.${xorgVer}
+          # Install the X modules.
+          (
+            cd x-server/modules
+            for i in */*; do
+              install -Dm755 $i $out/lib/xorg/modules/$i
+            done
+          )
+          (
+            cd usr/lib
+            libGLXname=$(echo libglx.so*)
+            install -Dm755 $libGLXname $out/lib/xorg/modules/extensions/$libGLXname
+            ln -s $libGLXname $out/lib/xorg/modules/extensions/libglx.so
+            ln -s $libGLXname $out/lib/xorg/modules/extensions/libglx.so.1
+          )
+        )
       fi
+
+      for i in xorg.7.1/usr/lib/libGL.*; do
+        cp $i $out/lib
+      done
+
+      cd $out
+      find -name \*.so\* -type f -exec \
+        patchelf --set-rpath "$out/lib:$libPath" {} \;
+
+      cd lib
+      libGLname=$(echo libGL.so*)
+      ln -s $libGLname libGL.so
+      ln -s $libGLname libGL.so.1
     )
   '';
+
+  dontStrip = true;
+  dontPatchELF = true;
 
   meta = with lib; {
     description = "Parallels Tools for Linux guests";
     homepage = "https://parallels.com";
-    platforms = platforms.linux;
+    platforms = [ "i686-linux" "x86_64-linux" ];
     license = licenses.unfree;
-    maintainers = with maintainers; [ catap wegank ];
+    # I was making this package blindly and requesting testing from the real user,
+    # so I can't even test it by myself and won't provide future updates.
+    maintainers = with maintainers; [ abbradar ];
   };
 }

@@ -15,7 +15,7 @@ buildGoModule rec {
 
   proxyVendor = true;
 
-  vendorSha256 = "sha256-n9XNqXIoqn+f0xKCenJWXUYXtQhtbNBar68onWH/WV4=";
+  vendorSha256 = "sha256-1vlgnY4kZJfoAtbv+r8onxL03Ak32zKLJgtrBYZX09g=";
 
   meta = with lib; {
     description = "RSS/Atom reader with the focus on speed, usability and a bit of unix philosophy";

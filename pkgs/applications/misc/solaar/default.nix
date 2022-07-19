@@ -10,20 +10,17 @@
 }:
 
 # Although we copy in the udev rules here, you probably just want to use
-# `logitech-udev-rules`, which is an alias to `udev` output of this derivation,
-# instead of adding this to `services.udev.packages` on NixOS,
+# logitech-udev-rules instead of adding this to services.udev.packages on NixOS
 python3Packages.buildPythonApplication rec {
   pname = "solaar";
-  version = "1.1.4";
+  version = "1.1.3";
 
   src = fetchFromGitHub {
     owner = "pwr-Solaar";
     repo = "Solaar";
     rev = version;
-    hash = "sha256-nDfVF7g0M54DRpkH1rnZB8o+nCV4A6b1uKMOMRQ3GbI=";
+    hash = "sha256-6z22MnhUL9Da3G7UDmZsBAi2gHLNpiFEwe+pAtnP91s=";
   };
-
-  outputs = [ "out" "udev" ];
 
   nativeBuildInputs = [ wrapGAppsHook gdk-pixbuf ];
   buildInputs = [ libappindicator librsvg ];
@@ -44,8 +41,11 @@ python3Packages.buildPythonApplication rec {
   postInstall = ''
     ln -s $out/bin/solaar $out/bin/solaar-cli
 
-    install -Dm444 -t $udev/etc/udev/rules.d rules.d-uinput/*.rules
+    install -Dm444 -t $out/etc/udev/rules.d rules.d/*.rules
   '';
+
+  # No tests
+  doCheck = false;
 
   meta = with lib; {
     description = "Linux devices manager for the Logitech Unifying Receiver";
@@ -61,7 +61,7 @@ python3Packages.buildPythonApplication rec {
     '';
     homepage = "https://pwr-solaar.github.io/Solaar/";
     license = licenses.gpl2Only;
-    maintainers = with maintainers; [ spinus ysndr oxalica ];
+    maintainers = with maintainers; [ spinus ysndr ];
     platforms = platforms.linux;
   };
 }

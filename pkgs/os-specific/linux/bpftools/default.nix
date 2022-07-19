@@ -1,5 +1,5 @@
 { lib, stdenv
-, libopcodes, libbfd, elfutils, readline
+, libopcodes, libbfd, libelf, readline
 , linuxPackages_latest, zlib
 , python3, bison, flex
 }:
@@ -9,7 +9,7 @@ stdenv.mkDerivation {
   inherit (linuxPackages_latest.kernel) version src;
 
   nativeBuildInputs = [ python3 bison flex ];
-  buildInputs = [ libopcodes libbfd elfutils zlib readline ];
+  buildInputs = [ libopcodes libbfd libelf zlib readline ];
 
   preConfigure = ''
     patchShebangs scripts/bpf_doc.py

@@ -2,15 +2,15 @@
 
 let
   stableVariant = {
-    version = "5.15.53";
+    version = "5.15.43";
     suffix = "xanmod1";
-    hash = "sha256-mLgzaXG6QaJ0hfzfNlLbAEldxHK6iHuMVUv6p8zqRBo=";
+    hash = "sha256-MeH9RUPDiuN22eAZ18v+N3aIT18dQ3FnTkcQV0MjB4k=";
   };
 
   edgeVariant = {
-    version = "5.18.10";
+    version = "5.18.1";
     suffix = "xanmod1";
-    hash = "sha256-RtvrJujd854bKf1YPiPavTh9oplpFN9ykr624K17vKE=";
+    hash = "sha256-dqvB4F2S7cklSJ7XTUNvWVKTsZGLevOXME5lvhmfyis=";
   };
 
   xanmodKernelFor = { version, suffix, hash }: buildLinux (args // rec {
@@ -38,6 +38,9 @@ let
 
         # AMD P-state driver
         X86_AMD_PSTATE = yes;
+
+        # Linux RNG framework
+        LRNG = whenOlder "5.18" yes;
 
         # Paragon's NTFS3 driver
         NTFS3_FS = module;

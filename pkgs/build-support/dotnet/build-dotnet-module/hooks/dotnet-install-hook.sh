@@ -11,7 +11,6 @@ dotnetInstallHook() {
             dotnet publish "$project" \
                 -p:ContinuousIntegrationBuild=true \
                 -p:Deterministic=true \
-                -p:UseAppHost=true \
                 --output "$out/lib/${pname}" \
                 --configuration "@buildType@" \
                 --no-build \

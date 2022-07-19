@@ -1,19 +1,15 @@
-{ lib, clangStdenv, fetchzip }:
+{ lib, clangStdenv, fetchurl }:
 
 clangStdenv.mkDerivation rec {
   pname = "zchaff";
-  version = "2007.3.12";
+  version = "2004.5.13";
 
-  src = fetchzip {
-    url = "https://www.princeton.edu/~chaff/zchaff/zchaff.64bit.${version}.zip";
-    sha256 = "sha256-88fAtJb7o+Qv2GohTdmquxMEq4oCbiKbqLFmS7zs1Ak=";
+  src = fetchurl {
+    url = "https://www.princeton.edu/~chaff/zchaff/zchaff.${version}.tar.gz";
+    sha256 = "sha256-IgOdb2KsFbRV3gPvIPkHa71ixnYRxyx91vt7m0jzIAw=";
   };
 
   patches = [ ./sat_solver.patch ];
-  postPatch = ''
-    substituteInPlace zchaff_solver.cpp --replace "// #define VERIFY_ON" "#define VERIFY_ON"
-  '';
-
   makeFlags = [ "CC=${clangStdenv.cc.targetPrefix}c++" ];
   installPhase= ''
     runHook preInstall

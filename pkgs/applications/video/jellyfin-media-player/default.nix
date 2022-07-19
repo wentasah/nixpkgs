@@ -23,7 +23,6 @@
 , qtwebengine
 , qtx11extras
 , jellyfin-web
-, withDbus ? stdenv.isLinux, dbus
 }:
 
 mkDerivation rec {
@@ -75,8 +74,6 @@ mkDerivation rec {
     "-DCMAKE_BUILD_TYPE=Release"
     "-DQTROOT=${qtbase}"
     "-GNinja"
-  ] ++ lib.optionals (!withDbus) [
-    "-DLINUX_X11POWER=ON"
   ];
 
   preBuild = ''

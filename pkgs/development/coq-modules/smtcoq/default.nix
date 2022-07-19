@@ -1,31 +1,21 @@
-{ lib, stdenv, pkgs, mkCoqDerivation, coq, trakt, veriT, zchaff, fetchurl, version ? null }:
+{ lib, stdenv, mkCoqDerivation, coq, trakt, cvc4, veriT, version ? null }:
 with lib;
-
-let
-  # version of veriT that works with SMTCoq
-  veriT' = veriT.overrideAttrs (oA: {
-    src = fetchurl {
-      url = "https://www.lri.fr/~keller/Documents-recherche/Smtcoq/veriT9f48a98.tar.gz";
-      sha256 = "sha256-Pe46PxQVHWwWwx5Ei4Bl95A0otCiXZuUZ2nXuZPYnhY=";
-    };
-    meta.broken = false;
-  });
-  cvc4 = pkgs.callPackage ./cvc4.nix {};
-in
 
 mkCoqDerivation {
   pname = "smtcoq";
   owner = "smtcoq";
 
-  release."2021-09-17".rev    = "f36bf11e994cc269c2ec92b061b082e3516f472f";
-  release."2021-09-17".sha256 = "sha256-bF7ES+tXraaAJwVEwAMx3CUESpNlAUerQjr4d2eaGJQ=";
+  release."itp22".rev    = "1d60d37558d85a4bfd794220ec48849982bdc979";
+  release."itp22".sha256 = "sha256-CdPfgDfeJy8Q6ZlQeVCSR/x8ZlJ2kSEF6F5UnAespnQ=";
 
   inherit version;
   defaultVersion = with versions; switch coq.version [
-    { case = isEq "8.13"; out = "2021-09-17"; }
+    { case = isEq "8.13"; out = "itp22"; }
   ] null;
 
-  propagatedBuildInputs = [ trakt cvc4 veriT' zchaff ] ++ (with coq.ocamlPackages; [ num zarith ]);
+  propagatedBuildInputs = [ trakt cvc4 ]
+    ++ lib.optionals (!stdenv.isDarwin) [ veriT ]
+    ++ (with coq.ocamlPackages; [ num zarith ]);
   mlPlugin = true;
   nativeBuildInputs = with coq.ocamlPackages; [ ocamlbuild ];
 

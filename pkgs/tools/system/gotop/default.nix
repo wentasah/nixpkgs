@@ -2,17 +2,17 @@
 
 buildGoModule rec {
   pname = "gotop";
-  version = "4.1.4";
+  version = "4.1.3";
 
   src = fetchFromGitHub {
     owner = "xxxserxxx";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-jAUlaj9Nv/ipzxAkG2myd9DIboHj7IarNMVk/FQ274g=";
+    hash = "sha256-oDM+dpAT1vDpp2NkD669hwbgw7HWJGFqhsql9PvbxSk=";
   };
 
   proxyVendor = true;
-  vendorSha256 = "sha256-y4hVouvqMYUrdF7fowsvJLp0FCGCZDeVGUQXG8z8Lyg=";
+  vendorSha256 = "sha256-WGLcpF1NqVQDiU3M9rQ555ZW3sDC3Szch+skTZgt0xg=";
 
   ldflags = [ "-s" "-w" "-X main.Version=v${version}" ];
 

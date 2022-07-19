@@ -1,6 +1,6 @@
-{ lib, buildGoModule, fetchFromGitHub }:
+{ lib, buildGo118Module, fetchFromGitHub }:
 
-buildGoModule rec {
+buildGo118Module rec {
   pname = "spire";
   version = "1.3.1";
 

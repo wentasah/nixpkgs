@@ -20,14 +20,14 @@
 
 buildPythonApplication rec {
   pname = "python-glanceclient";
-  version = "4.0.1";
+  version = "4.0.0";
   format = "setuptools";
 
   disabled = pythonOlder "3.8";
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-pfQnIvrZFw16eRF2kPxmthWpY7qWkBu9SUavQnXO8zQ=";
+    hash = "sha256-a3tFLmSKuaKbBQy32EkU7sPIEQtN5gaDqoGT03gka+w=";
   };
 
   postPatch = ''

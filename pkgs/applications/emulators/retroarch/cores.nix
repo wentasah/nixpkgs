@@ -588,13 +588,6 @@ in
     preBuild = "cd libretro";
   };
 
-  nxengine = mkLibRetroCore {
-    core = "nxengine";
-    description = "NXEngine libretro port";
-    license = lib.licenses.gpl3Only;
-    makefile = "Makefile";
-  };
-
   np2kai = mkLibRetroCore rec {
     core = "np2kai";
     src = getCoreSrc core;

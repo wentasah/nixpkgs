@@ -11,7 +11,6 @@ let
   atLeast24 = lib.versionAtLeast version "2.4pre";
   atLeast25 = lib.versionAtLeast version "2.5pre";
   atLeast27 = lib.versionAtLeast version "2.7pre";
-  atLeast210 = lib.versionAtLeast version "2.10pre";
 in
 { stdenv
 , autoconf-archive
@@ -167,8 +166,6 @@ self = stdenv.mkDerivation {
   ] ++ lib.optionals (!withLibseccomp) [
     # RISC-V support in progress https://github.com/seccomp/libseccomp/pull/50
     "--disable-seccomp-sandboxing"
-  ] ++ lib.optionals (atLeast210 && stdenv.cc.isGNU && !enableStatic) [
-    "--enable-lto"
   ];
 
   makeFlags = [
@@ -179,7 +176,6 @@ self = stdenv.mkDerivation {
   installFlags = [ "sysconfdir=$(out)/etc" ];
 
   doInstallCheck = true;
-  installCheckTarget = if atLeast210 then "installcheck" else null;
 
   # socket path becomes too long otherwise
   preInstallCheck = lib.optionalString stdenv.isDarwin ''

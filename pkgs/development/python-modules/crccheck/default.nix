@@ -20,7 +20,7 @@ in buildPythonPackage {
     description = "Python library for CRCs and checksums";
     homepage = "https://sourceforge.net/projects/crccheck/";
     license = licenses.gpl3Plus;
-    maintainers = with maintainers; [ ];
+    maintainers = with maintainers; [ etu ];
     platforms = platforms.linux;
   };
 }

@@ -1,5 +1,4 @@
 { lib
-, stdenv
 , buildPythonPackage
 , cython
 , devtools
@@ -11,8 +10,6 @@
 , pythonOlder
 , typing-extensions
 # dependencies for building documentation.
-# docs fail to build in Darwin sandbox: https://github.com/samuelcolvin/pydantic/issues/4245
-, withDocs ? (stdenv.hostPlatform == stdenv.buildPlatform && !stdenv.isDarwin)
 , ansi2html
 , markdown-include
 , mkdocs
@@ -28,13 +25,7 @@
 buildPythonPackage rec {
   pname = "pydantic";
   version = "1.9.0";
-
-  outputs = [
-    "out"
-  ] ++ lib.optionals withDocs [
-    "doc"
-  ];
-
+  outputs = [ "out" "doc" ];
   disabled = pythonOlder "3.7";
 
   src = fetchFromGitHub {
@@ -50,7 +41,7 @@ buildPythonPackage rec {
 
   nativeBuildInputs = [
     cython
-  ] ++ lib.optionals withDocs [
+
     # dependencies for building documentation
     ansi2html
     markdown-include
@@ -82,12 +73,12 @@ buildPythonPackage rec {
 
   # Must include current directory into PYTHONPATH, since documentation
   # building process expects "import pydantic" to work.
-  preBuild = lib.optionalString withDocs ''
+  preBuild = ''
     PYTHONPATH=$PWD:$PYTHONPATH make docs
   '';
 
   # Layout documentation in same way as "sphinxHook" does.
-  postInstall = lib.optionalString withDocs ''
+  postInstall = ''
     mkdir -p $out/share/doc/$name
     mv ./site $out/share/doc/$name/html
   '';

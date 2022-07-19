@@ -53,16 +53,16 @@ with lib;
 
       supportedLocales = mkOption {
         type = types.listOf types.str;
-        default = unique
-          (builtins.map (l: (replaceStrings [ "utf8" "utf-8" "UTF8" ] [ "UTF-8" "UTF-8" "UTF-8" ] l) + "/UTF-8") (
+        default = builtins.map (l: l + "/UTF-8")
+          (unique (
             [
               "C.UTF-8"
               config.i18n.defaultLocale
             ] ++ (attrValues (filterAttrs (n: v: n != "LANGUAGE") config.i18n.extraLocaleSettings))
           ));
         defaultText = literalExpression ''
-          unique
-            (builtins.map (l: (replaceStrings [ "utf8" "utf-8" "UTF8" ] [ "UTF-8" "UTF-8" "UTF-8" ] l) + "/UTF-8") (
+          builtins.map (l: l + "/UTF-8")
+            (unique (
               [
                 "C.UTF-8"
                 config.i18n.defaultLocale

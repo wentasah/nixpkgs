@@ -31,12 +31,14 @@
 , CoreServices
 , developer_cmds
 , DarwinTools
-, makeWrapper
 }:
 
 let
-  pythonDeps = with python3.pkgs; [ certifi paramiko pyyaml ];
-  pythonPath = lib.makeSearchPath python3.sitePackages pythonDeps;
+  pythonDeps = [ python3.pkgs.certifi python3.pkgs.paramiko ];
+  site = ''
+
+    import sys; sys.path.extend([${lib.concatStringsSep ", " (map (x: ''"${x}/${python3.sitePackages}"'') pythonDeps)}])
+  '';
 in
 stdenv.mkDerivation rec{
   pname = "mysql-shell";
@@ -60,9 +62,12 @@ stdenv.mkDerivation rec{
     substituteInPlace ../mysql-${version}/cmake/os/Darwin.cmake --replace /usr/bin/libtool libtool
 
     substituteInPlace cmake/libutils.cmake --replace /usr/bin/libtool libtool
+
+    # For python dependencies
+    echo '${site}' >> python/packages/mysqlsh/__init__.py
   '';
 
-  nativeBuildInputs = [ pkg-config cmake git bison makeWrapper ] ++ lib.optionals (!stdenv.isDarwin) [ rpcsvc-proto ];
+  nativeBuildInputs = [ pkg-config cmake git bison ] ++ lib.optionals (!stdenv.isDarwin) [ rpcsvc-proto ];
 
   buildInputs = [
     boost
@@ -115,10 +120,6 @@ stdenv.mkDerivation rec{
   ];
 
   CXXFLAGS = [ "-DV8_COMPRESS_POINTERS=1" "-DV8_31BIT_SMIS_ON_64BIT_ARCH=1" ];
-
-  postFixup = ''
-    wrapProgram $out/bin/mysqlsh --set PYTHONPATH "${pythonPath}"
-  '';
 
   meta = with lib; {
     homepage = "https://dev.mysql.com/doc/mysql-shell/${lib.versions.majorMinor version}/en/";

@@ -28,7 +28,7 @@ buildPythonPackage rec {
     description = "Asyncio extension package for pyserial";
     homepage = "https://github.com/pyserial/pyserial-asyncio";
     license = licenses.bsd3;
-    maintainers = with maintainers; [ ];
+    maintainers = with maintainers; [ etu ];
     platforms = platforms.linux;
   };
 }

@@ -1,11 +1,11 @@
 { lib
-, buildGoModule
+, buildGo118Module
 , fetchFromGitHub
 , installShellFiles
 , nixosTests
 }:
 
-buildGoModule rec {
+buildGo118Module rec {
   pname = "upterm";
   version = "0.8.2";
 

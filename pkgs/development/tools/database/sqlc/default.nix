@@ -15,14 +15,17 @@ buildGoModule {
   };
 
   proxyVendor = true;
-  vendorSha256 = "sha256-miyNIF6RNOuvNEA9Hf+hOyRJG+5IcXU4Vo4Fzn+nIb4=";
+  vendorSha256 = "sha256-zZ0IrtfQvczoB7th9ZCUlYOtyZr3Y3yF0pKzRCqmCjo=";
 
   subPackages = [ "cmd/sqlc" ];
 
-  meta = with lib; {
-    description = "Generate type-safe code from SQL";
+  meta = let
+    inherit (lib) licenses platforms maintainers;
+  in {
+    description = " Generate type-safe code from SQL";
     homepage = "https://sqlc.dev/";
     license = licenses.mit;
+    platforms = platforms.all;
     maintainers = [ maintainers.adisbladis ];
   };
 }

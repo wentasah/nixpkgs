@@ -20,5 +20,8 @@ buildGoModule rec {
     description = "Keyless Git signing using Sigstore";
     license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [ lesuisse ];
+    # Need updated macOS SDK
+    # https://github.com/NixOS/nixpkgs/issues/101229
+    broken = (stdenv.isDarwin && stdenv.isx86_64);
   };
 }

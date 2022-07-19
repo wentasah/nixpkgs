@@ -4,14 +4,12 @@
 , icu #passing icu as an argument, because dotnet 3.1 has troubles with icu71
 }:
 
-assert builtins.elem type [ "aspnetcore" "runtime" "sdk" ];
+assert builtins.elem type [ "aspnetcore" "runtime" "sdk"];
 
 { lib
 , stdenv
 , fetchurl
 , writeText
-, autoPatchelfHook
-, makeWrapper
 , libunwind
 , openssl
 , libuuid
@@ -21,21 +19,19 @@ assert builtins.elem type [ "aspnetcore" "runtime" "sdk" ];
 }:
 
 let
-  pname =
-    if type == "aspnetcore" then
-      "aspnetcore-runtime"
-    else if type == "runtime" then
-      "dotnet-runtime"
-    else
-      "dotnet-sdk";
+  pname = if type == "aspnetcore" then
+    "aspnetcore-runtime"
+  else if type == "runtime" then
+    "dotnet-runtime"
+  else
+    "dotnet-sdk";
 
   descriptions = {
     aspnetcore = "ASP.NET Core Runtime ${version}";
     runtime = ".NET Runtime ${version}";
     sdk = ".NET SDK ${version}";
   };
-in
-stdenv.mkDerivation rec {
+in stdenv.mkDerivation rec {
   inherit pname version;
 
   # Some of these dependencies are `dlopen()`ed.
@@ -51,19 +47,8 @@ stdenv.mkDerivation rec {
     lttng-ust_2_12
   ]);
 
-  nativeBuildInputs = [
-    autoPatchelfHook
-    makeWrapper
-  ];
-
-  buildInputs = [
-    stdenv.cc.cc
-  ];
-
-  src = fetchurl (
-    srcs."${stdenv.hostPlatform.system}" or (throw
-      "Missing source (url and hash) for host system: ${stdenv.hostPlatform.system}")
-  );
+  src = fetchurl (srcs."${stdenv.hostPlatform.system}" or (throw
+    "Missing source (url and hash) for host system: ${stdenv.hostPlatform.system}"));
 
   sourceRoot = ".";
 
@@ -83,16 +68,10 @@ stdenv.mkDerivation rec {
     patchelf --set-rpath "${rpath}" $out/dotnet
     find $out -type f -name "*.so" -exec patchelf --set-rpath '$ORIGIN:${rpath}' {} \;
     find $out -type f \( -name "apphost" -or -name "createdump" \) -exec patchelf --set-interpreter "${stdenv.cc.bintools.dynamicLinker}" --set-rpath '$ORIGIN:${rpath}' {} \;
-
-    wrapProgram $out/bin/dotnet \
-      --prefix LD_LIBRARY_PATH : ${icu}/lib
   '';
 
   doInstallCheck = true;
   installCheckPhase = ''
-    # Fixes cross
-    export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
-
     $out/bin/dotnet --info
   '';
 
@@ -105,10 +84,6 @@ stdenv.mkDerivation rec {
     export DOTNET_NOLOGO=1 # Disables the welcome message
     export DOTNET_CLI_TELEMETRY_OPTOUT=1
   '';
-
-  passthru = {
-    inherit icu;
-  };
 
   meta = with lib; {
     description = builtins.getAttr type descriptions;

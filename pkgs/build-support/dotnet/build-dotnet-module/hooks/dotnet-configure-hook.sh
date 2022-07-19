@@ -1,6 +1,6 @@
 declare -a projectFile testProjectFile
 
-# Inherit arguments from derivation
+# inherit arguments from derivation
 dotnetFlags=( ${dotnetFlags[@]-} )
 dotnetRestoreFlags=( ${dotnetRestoreFlags[@]-} )
 
