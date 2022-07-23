@@ -292,6 +292,8 @@ with pkgs;
 
   cfn-nag = callPackage ../development/tools/cfn-nag { };
 
+  cxx-rs = callPackage ../development/libraries/cxx-rs { };
+
   elfcat = callPackage ../tools/misc/elfcat { };
 
   # Zip file format only allows times after year 1980, which makes e.g. Python
@@ -827,6 +829,10 @@ with pkgs;
   copyDesktopItems = makeSetupHook { } ../build-support/setup-hooks/copy-desktop-items.sh;
 
   makeDesktopItem = callPackage ../build-support/make-desktopitem { };
+
+  copyPkgconfigItems = makeSetupHook { } ../build-support/setup-hooks/copy-pkgconfig-items.sh;
+
+  makePkgconfigItem = callPackage ../build-support/make-pkgconfigitem { };
 
   makeDarwinBundle = callPackage ../build-support/make-darwin-bundle { };
 
@@ -8621,6 +8627,8 @@ with pkgs;
 
   mktorrent = callPackage ../tools/misc/mktorrent { };
 
+  mloader = callPackage ../tools/misc/mloader { };
+
   mmake = callPackage ../tools/misc/mmake { };
 
   mmixware = callPackage ../development/tools/mmixware { };
@@ -9705,6 +9713,8 @@ with pkgs;
 
   pngquant = callPackage ../tools/graphics/pngquant { };
 
+  po4a = perlPackages.Po4a;
+
   podiff = callPackage ../tools/text/podiff { };
 
   podman = callPackage ../applications/virtualization/podman/wrapper.nix { };
@@ -10095,6 +10105,8 @@ with pkgs;
   rtss = callPackage ../development/tools/misc/rtss { };
 
   realvnc-vnc-viewer = callPackage ../tools/admin/realvnc-vnc-viewer {};
+
+  re-isearch = callPackage ../applications/search/re-isearch { };
 
   reaverwps = callPackage ../tools/networking/reaver-wps {};
 
@@ -12028,7 +12040,9 @@ with pkgs;
 
   wkhtmltopdf = libsForQt514.callPackage ../tools/graphics/wkhtmltopdf { };
 
-  wkhtmltopdf-bin = callPackage ../tools/graphics/wkhtmltopdf-bin { };
+  wkhtmltopdf-bin = callPackage ../tools/graphics/wkhtmltopdf-bin {
+    libjpeg8 = libjpeg.override { enableJpeg8 = true; };
+  };
 
   wml = callPackage ../development/web/wml { };
 
@@ -14010,18 +14024,18 @@ with pkgs;
     inherit (darwin) apple_sdk;
   };
 
-  rust_1_61 = callPackage ../development/compilers/rust/1_61.nix {
+  rust_1_62 = callPackage ../development/compilers/rust/1_62.nix {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation Security SystemConfiguration;
     llvm_14 = llvmPackages_14.libllvm;
   };
-  rust = rust_1_61;
+  rust = rust_1_62;
 
   mrustc = callPackage ../development/compilers/mrustc { };
   mrustc-minicargo = callPackage ../development/compilers/mrustc/minicargo.nix { };
   mrustc-bootstrap = callPackage ../development/compilers/mrustc/bootstrap.nix { stdenv = gcc10StdenvCompat; };
 
-  rustPackages_1_61 = rust_1_61.packages.stable;
-  rustPackages = rustPackages_1_61;
+  rustPackages_1_62 = rust_1_62.packages.stable;
+  rustPackages = rustPackages_1_62;
 
   inherit (rustPackages) cargo clippy rustc rustPlatform;
 
@@ -14912,7 +14926,9 @@ with pkgs;
 
   inherit (ocamlPackages) reason;
 
-  buildRubyGem = callPackage ../development/ruby-modules/gem { };
+  buildRubyGem = callPackage ../development/ruby-modules/gem {
+    inherit (darwin) libobjc;
+  };
   defaultGemConfig = callPackage ../development/ruby-modules/gem-config {
     inherit (darwin) DarwinTools cctools;
     inherit (darwin.apple_sdk.frameworks) CoreServices;
@@ -15733,7 +15749,9 @@ with pkgs;
       binutils = binutils;
     };
 
-  dive = callPackage ../development/tools/dive { };
+  dive = callPackage ../development/tools/dive {
+    buildGoModule = buildGo117Module;
+  };
 
   doclifter = callPackage ../development/tools/misc/doclifter { };
 
@@ -16105,7 +16123,9 @@ with pkgs;
 
   kubeaudit = callPackage ../tools/security/kubeaudit { };
 
-  kubectx = callPackage ../development/tools/kubectx { };
+  kubectx = callPackage ../development/tools/kubectx {
+    buildGoModule = buildGo117Module;
+  };
 
   kube-linter = callPackage ../development/tools/kube-linter { };
 
@@ -16948,6 +16968,8 @@ with pkgs;
   arrayfire = callPackage ../development/libraries/arrayfire {};
 
   arrow-cpp = callPackage ../development/libraries/arrow-cpp {};
+
+  arrow-glib = callPackage ../development/libraries/arrow-glib {};
 
   arsenal = callPackage ../tools/security/arsenal { };
 
@@ -18718,6 +18740,8 @@ with pkgs;
   libuchardet = callPackage ../development/libraries/libuchardet { };
 
   libchop = callPackage ../development/libraries/libchop { };
+
+  libcifpp = callPackage ../development/libraries/libcifpp { };
 
   libcint = callPackage ../development/libraries/libcint { };
 
@@ -23119,6 +23143,8 @@ with pkgs;
 
   unifi = unifi7;
 
+  unifi-protect-backup = callPackage ../applications/backup/unifi-protect-backup { };
+
   unifi-video = callPackage ../servers/unifi-video { };
 
   unpackerr = callPackage ../servers/unpackerr {
@@ -23777,6 +23803,8 @@ with pkgs;
   linux_xanmod = linuxKernel.kernels.linux_xanmod;
   linuxPackages_xanmod_latest = linuxKernel.packages.linux_xanmod_latest;
   linux_xanmod_latest = linuxKernel.kernels.linux_xanmod_latest;
+  linuxPackages_xanmod_tt = linuxKernel.packages.linux_xanmod_tt;
+  linux_xanmod_tt = linuxKernel.kernels.linux_xanmod_tt;
 
   linux-doc = callPackage ../os-specific/linux/kernel/htmldocs.nix { };
 
@@ -24467,6 +24495,7 @@ with pkgs;
     nlsSupport = false;
     ncursesSupport = false;
     systemdSupport = false;
+    translateManpages = false;
   } else util-linux;
 
   v4l-utils = qt5.callPackage ../os-specific/linux/v4l-utils { };
@@ -26039,6 +26068,8 @@ with pkgs;
   caerbannog = callPackage ../applications/misc/caerbannog { };
 
   cardboard = callPackage ../applications/window-managers/cardboard { };
+
+  cardo = callPackage ../data/fonts/cardo { };
 
   cage = callPackage ../applications/window-managers/cage {
     wlroots = wlroots_0_14;
@@ -33399,6 +33430,8 @@ with pkgs;
 
   diamond = callPackage ../applications/science/biology/diamond { };
 
+  dssp = callPackage ../applications/science/biology/dssp { };
+
   ecopcr = callPackage ../applications/science/biology/ecopcr { };
 
   eggnog-mapper = callPackage ../applications/science/biology/eggnog-mapper { };
@@ -34370,6 +34403,8 @@ with pkgs;
   geant4 = libsForQt5.callPackage ../development/libraries/physics/geant4 { };
 
   cernlib = callPackage ../development/libraries/physics/cernlib { };
+
+  clhep = callPackage ../development/libraries/physics/clhep { };
 
   hepmc2 = callPackage ../development/libraries/physics/hepmc2 { };
 
