@@ -3138,6 +3138,13 @@
     githubId = 1311761;
     name = "Didier J. Devroye";
   };
+  desttinghim = {
+    email = "opensource@louispearson.work";
+    matrix = "@desttinghim:matrix.org";
+    github = "desttinghim";
+    githubId = 10042482;
+    name = "Louis Pearson";
+  };
   devhell = {
     email = ''"^"@regexmail.net'';
     github = "devhell";
@@ -9453,6 +9460,12 @@
     github = "nshalman";
     githubId = 20391;
     name = "Nahum Shalman";
+  };
+  nsnelson = {
+    email = "noah.snelson@protonmail.com";
+    github = "peeley";
+    githubId = 30942198;
+    name = "Noah Snelson";
   };
   nthorne = {
     email = "notrupertthorne@gmail.com";
