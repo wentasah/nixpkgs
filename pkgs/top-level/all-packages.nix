@@ -386,6 +386,8 @@ with pkgs;
 
   coordgenlibs  = callPackage ../development/libraries/coordgenlibs { };
 
+  copilot-cli = callPackage ../tools/admin/copilot-cli { };
+
   cp437 = callPackage ../tools/misc/cp437 { };
 
   cpm = callPackage ../development/tools/cpm { };
@@ -1192,6 +1194,8 @@ with pkgs;
   ejson2env = callPackage ../tools/admin/ejson2env { };
 
   davinci-resolve = callPackage ../applications/video/davinci-resolve { };
+
+  dwarfs = callPackage ../tools/filesystems/dwarfs { };
 
   gamemode = callPackage ../tools/games/gamemode {
     libgamemode32 = pkgsi686Linux.gamemode.lib;
@@ -2275,8 +2279,6 @@ with pkgs;
 
   cosign = callPackage ../tools/security/cosign {
     inherit (darwin.apple_sdk.frameworks) PCSC;
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
   };
 
   cozy = callPackage ../applications/audio/cozy { };
@@ -4074,6 +4076,12 @@ with pkgs;
   klaus = with python3Packages; toPythonApplication klaus;
 
   klipper = callPackage ../servers/klipper { };
+
+  klipper-firmware = callPackage ../servers/klipper/klipper-firmware.nix { };
+
+  klipper-flash = callPackage ../servers/klipper/klipper-flash.nix { };
+
+  klipper-genconf = callPackage ../servers/klipper/klipper-genconf.nix { };
 
   klog = qt5.callPackage ../applications/radio/klog { };
 
@@ -7757,6 +7765,8 @@ with pkgs;
 
   kdigger = callPackage ../tools/security/kdigger { };
 
+  kdiskmark = libsForQt5.callPackage ../tools/filesystems/kdiskmark { };
+
   keepalived = callPackage ../tools/networking/keepalived { };
 
   kexec-tools = callPackage ../os-specific/linux/kexec-tools { };
@@ -10530,7 +10540,9 @@ with pkgs;
 
   secp256k1 = callPackage ../tools/security/secp256k1 { };
 
-  securefs = callPackage ../tools/filesystems/securefs { };
+  securefs = callPackage ../tools/filesystems/securefs {
+    stdenv = clangStdenv;
+  };
 
   seehecht = callPackage ../tools/text/seehecht { };
 
@@ -15398,7 +15410,9 @@ with pkgs;
 
   bazel-remote = callPackage ../development/tools/build-managers/bazel/bazel-remote { };
 
-  bazel-watcher = callPackage ../development/tools/bazel-watcher { };
+  bazel-watcher = callPackage ../development/tools/bazel-watcher {
+    go = go_1_18;
+  };
 
   bazel-gazelle = callPackage ../development/tools/bazel-gazelle { };
 
@@ -17035,6 +17049,8 @@ with pkgs;
 
   arb = callPackage ../development/libraries/arb {};
 
+  argparse = callPackage ../development/libraries/argparse { };
+
   argp-standalone = callPackage ../development/libraries/argp-standalone {};
 
   aribb25 = callPackage ../development/libraries/aribb25 {
@@ -18651,7 +18667,9 @@ with pkgs;
 
   libad9361 = callPackage ../development/libraries/libad9361 { };
 
-  libadwaita = callPackage ../development/libraries/libadwaita { };
+  libadwaita = callPackage ../development/libraries/libadwaita {
+    inherit (pkgs.darwin.apple_sdk.frameworks) AppKit Foundation;
+  };
 
   libaec = callPackage ../development/libraries/libaec { };
 
@@ -20800,6 +20818,8 @@ with pkgs;
   quesoglc = callPackage ../development/libraries/quesoglc { };
 
   quickder = callPackage ../development/libraries/quickder {};
+
+  quickmem = callPackage ../development/libraries/quickmem {};
 
   quicksynergy = callPackage ../applications/misc/quicksynergy { };
 
@@ -26856,10 +26876,6 @@ with pkgs;
 
   fbpanel = callPackage ../applications/window-managers/fbpanel { };
 
-  fbreader = callPackage ../applications/misc/fbreader {
-    inherit (darwin.apple_sdk.frameworks) AppKit Cocoa;
-  };
-
   fdr = libsForQt5.callPackage ../applications/science/programming/fdr { };
 
   feedbackd = callPackage ../applications/misc/feedbackd { };
@@ -27288,6 +27304,10 @@ with pkgs;
   foxtrotgps = callPackage ../applications/misc/foxtrotgps { };
 
   fractal = callPackage ../applications/networking/instant-messengers/fractal { };
+
+  fractal-next = callPackage ../applications/networking/instant-messengers/fractal-next {
+    inherit (gst_all_1) gstreamer gst-plugins-base gst-plugins-bad;
+  };
 
   fragments = callPackage ../applications/networking/p2p/fragments { };
 
@@ -32491,7 +32511,7 @@ with pkgs;
 
   fishfight = callPackage ../games/fishfight {
     inherit (xorg) libX11 libXi;
-    inherit (darwin.apple_sdk.frameworks) AudioToolbox Cocoa CoreAudio OpenGL;
+    inherit (darwin.apple_sdk.frameworks) Cocoa OpenGL;
   };
 
   flightgear = libsForQt5.callPackage ../games/flightgear { };
@@ -34421,6 +34441,8 @@ with pkgs;
 
   pynac = callPackage ../applications/science/math/pynac { };
 
+  scalp = callPackage ../applications/science/math/scalp { };
+
   singular = callPackage ../applications/science/math/singular { };
 
   scilab-bin = callPackage ../applications/science/math/scilab-bin {};
@@ -34860,7 +34882,7 @@ with pkgs;
 
   hplipWithPlugin = hplip.override { withPlugin = true; };
 
-  hyfetch = callPackage ../tools/misc/hyfetch { };
+  hyfetch = python3Packages.callPackage ../tools/misc/hyfetch { };
 
   hyperfine = callPackage ../tools/misc/hyperfine {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -35525,8 +35547,6 @@ with pkgs;
     ;
 
   terraform = terraform_1;
-  # deprecated
-  terraform-full = terraform.full;
 
   terraform-providers = recurseIntoAttrs (
     callPackage ../applications/networking/cluster/terraform-providers { }
@@ -35598,6 +35618,8 @@ with pkgs;
   tvbrowser-bin = callPackage ../applications/misc/tvbrowser/bin.nix { };
 
   tvheadend = callPackage ../servers/tvheadend { };
+
+  twiggy = callPackage ../development/tools/twiggy { };
 
   uacme = callPackage ../tools/admin/uacme { };
 
@@ -35747,6 +35769,8 @@ with pkgs;
 
   with-shell = callPackage ../applications/misc/with-shell { };
 
+  wizer = darwin.apple_sdk_11_0.callPackage ../development/tools/wizer {};
+
   wmutils-core = callPackage ../tools/X11/wmutils-core { };
 
   wmutils-libwm = callPackage ../tools/X11/wmutils-libwm { };
@@ -35784,8 +35808,6 @@ with pkgs;
   xortool = python3Packages.callPackage ../tools/security/xortool { };
 
   xorex = callPackage ../tools/security/xorex { };
-
-  xow = callPackage ../misc/drivers/xow { };
 
   xbps = callPackage ../tools/package-management/xbps { };
 
@@ -36198,7 +36220,7 @@ with pkgs;
     udev = systemdMinimal;
     jack = libjack2;
   };
-  inherit (jami) jami-daemon jami-libclient jami-client-qt;
+  inherit (jami) jami-daemon jami-client-qt;
 
   jitsi-meet-electron = callPackage ../applications/networking/instant-messengers/jitsi-meet-electron {
     electron = electron_17;

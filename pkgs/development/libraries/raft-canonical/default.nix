@@ -18,7 +18,7 @@ stdenv.mkDerivation rec {
 
   # Ignore broken test, likely not causing huge breakage
   # (https://github.com/canonical/raft/issues/292)
-  prePatch = ''
+  postPatch = ''
     substituteInPlace test/integration/test_uv_tcp_connect.c --replace \
       "TEST(tcp_connect, closeDuringHandshake, setUp, tearDownDeps, 0, NULL)" \
       "TEST(tcp_connect, closeDuringHandshake, setUp, tearDownDeps, MUNIT_TEST_OPTION_TODO, NULL)"
