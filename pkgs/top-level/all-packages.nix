@@ -500,6 +500,8 @@ with pkgs;
 
   ptags = callPackage ../development/tools/misc/ptags { };
 
+  resolve-march-native = callPackage ../development/tools/resolve-march-native { };
+
   ptouch-print = callPackage ../misc/ptouch-print { };
 
   demoit = callPackage ../servers/demoit { };
@@ -2611,44 +2613,15 @@ with pkgs;
 
   go-audit = callPackage ../tools/system/go-audit { };
 
-  gopass = callPackage ../tools/security/gopass {
-    buildGoModule = __buildGo118ModuleCL417615;
-  };
+  gopass = callPackage ../tools/security/gopass { };
 
-  gopass-hibp = callPackage ../tools/security/gopass/hibp.nix {
-    buildGoModule = __buildGo118ModuleCL417615;
-  };
+  gopass-hibp = callPackage ../tools/security/gopass/hibp.nix { };
 
-  gopass-jsonapi = callPackage ../tools/security/gopass/jsonapi.nix {
-    buildGoModule = __buildGo118ModuleCL417615;
-  };
+  gopass-jsonapi = callPackage ../tools/security/gopass/jsonapi.nix { };
 
-  git-credential-gopass = callPackage ../tools/security/gopass/git-credential.nix {
-    buildGoModule = __buildGo118ModuleCL417615;
-  };
+  git-credential-gopass = callPackage ../tools/security/gopass/git-credential.nix { };
 
-  gopass-summon-provider = callPackage ../tools/security/gopass/summon.nix {
-    buildGoModule = __buildGo118ModuleCL417615;
-  };
-
-  # custom override for go 1.18 including the revert of CL411617, CL417615.
-  # Can be dropped if/once go 1.18.5 is released with CL417615.
-  # or when staging go 1.18.4 includes the revert.
-  __buildGo118ModuleCL417615 = let
-    fetchBase64Patch = args: (fetchpatch args).overrideAttrs (o: {
-      postFetch = "mv $out p; base64 -d p > $out; " + o.postFetch;
-    });
-  in darwin.apple_sdk_11_0.callPackage ../development/go-modules/generic {
-    go = buildPackages.go_1_18.overrideAttrs (oldAttrs: rec {
-      patches = oldAttrs.patches or [] ++ [
-        # https://go-review.googlesource.com/c/go/+/417615/
-        (fetchBase64Patch {
-          url = "https://go-review.googlesource.com/changes/go~417615/revisions/3/patch";
-          sha256 = "sha256-Gu5eZUwGGch7et75A/BNynbs4VlQUBClVUxjxPkdjOs=";
-        })
-      ];
-    });
-  };
+  gopass-summon-provider = callPackage ../tools/security/gopass/summon.nix { };
 
   gosh = callPackage ../tools/security/gosh { };
 
@@ -13052,9 +13025,9 @@ with pkgs;
   clangMultiStdenv = overrideCC stdenv buildPackages.clang_multi;
   multiStdenv = if stdenv.cc.isClang then clangMultiStdenv else gccMultiStdenv;
 
-  gcc_debug = lowPrio (wrapCC (gcc.cc.override {
-    stripped = false;
-  }));
+  gcc_debug = lowPrio (wrapCC (gcc.cc.overrideAttrs (_: {
+    dontStrip = true;
+  })));
 
   gccCrossLibcStdenv = overrideCC stdenv buildPackages.gccCrossStageStatic;
 
@@ -21978,6 +21951,17 @@ with pkgs;
     go = buildPackages.go_1_18;
   };
 
+  # requires a newer Apple SDK
+  go_1_19 = darwin.apple_sdk_11_0.callPackage ../development/compilers/go/1.19.nix {
+    inherit (darwin.apple_sdk_11_0.frameworks) Foundation Security;
+  };
+  buildGo119Module = darwin.apple_sdk_11_0.callPackage ../development/go-modules/generic {
+    go = buildPackages.go_1_19;
+  };
+  buildGo119Package = darwin.apple_sdk_11_0.callPackage ../development/go-packages/generic {
+    go = buildPackages.go_1_19;
+  };
+
   go2nix = callPackage ../development/tools/go2nix { };
 
   leaps = callPackage ../development/tools/leaps { };
@@ -27430,6 +27414,7 @@ with pkgs;
   gitMinimal = git.override {
     withManual = false;
     pythonSupport = false;
+    perlSupport = false;
     withpcre2 = false;
   };
 
