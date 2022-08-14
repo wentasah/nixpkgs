@@ -242,6 +242,8 @@ with pkgs;
 
   atkinson-hyperlegible = callPackage ../data/fonts/atkinson-hyperlegible { };
 
+  _0x =  callPackage ../tools/misc/0x { };
+
   atuin = callPackage ../tools/misc/atuin {
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
@@ -3317,6 +3319,8 @@ with pkgs;
 
   wayland-proxy-virtwl = callPackage ../tools/wayland/wayland-proxy-virtwl { };
 
+  wayout = callPackage ../tools/wayland/wayout { };
+
   way-displays = callPackage ../tools/wayland/way-displays { };
 
   wev = callPackage ../tools/wayland/wev { };
@@ -4940,6 +4944,8 @@ with pkgs;
   circus = callPackage ../tools/networking/circus { };
 
   cirrus-cli = callPackage ../development/tools/continuous-integration/cirrus-cli { };
+
+  cirrusgo = callPackage ../tools/security/cirrusgo { };
 
   inherit (callPackage ../applications/networking/remote/citrix-workspace { })
     citrix_workspace_21_01_0
@@ -7855,6 +7861,8 @@ with pkgs;
 
   krunner-pass = libsForQt5.callPackage ../tools/security/krunner-pass { };
 
+  krunvm = callPackage ../applications/virtualization/krunvm { };
+
   kronometer = libsForQt5.callPackage ../tools/misc/kronometer { };
 
   krop = callPackage ../applications/graphics/krop { };
@@ -10155,6 +10163,10 @@ with pkgs;
   radsecproxy = callPackage ../tools/networking/radsecproxy { };
 
   radvd = callPackage ../tools/networking/radvd { };
+
+  rain = callPackage ../development/tools/rain {
+    buildGoModule = buildGo117Module;
+  };
 
   rainbowstream = with python3.pkgs; toPythonApplication rainbowstream;
 
@@ -19541,9 +19553,7 @@ with pkgs;
 
   libmilter = callPackage ../development/libraries/libmilter { };
 
-  libminc = callPackage ../development/libraries/libminc {
-    hdf5 = hdf5_1_10;
-  };
+  libminc = callPackage ../development/libraries/libminc { };
 
   libmkv = callPackage ../development/libraries/libmkv { };
 
@@ -20161,6 +20171,8 @@ with pkgs;
     deps = [ memorymapping ];
   } ../development/libraries/memorymapping/setup-hook.sh;
 
+  memray = callPackage ../development/tools/memray { };
+
   memstream = callPackage ../development/libraries/memstream { };
   memstreamHook = makeSetupHook {
     deps = [ memstream ];
@@ -20216,6 +20228,8 @@ with pkgs;
   MIDIVisualizer = callPackage ../applications/audio/midi-visualizer { };
 
   mimalloc = callPackage ../development/libraries/mimalloc { };
+
+  miniz = callPackage ../development/libraries/miniz { };
 
   minizip = callPackage ../development/libraries/minizip { };
 
@@ -22321,10 +22335,7 @@ with pkgs;
 
   dcnnt = python3Packages.callPackage ../servers/dcnnt { };
 
-  dendrite = callPackage ../servers/dendrite {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
-  };
+  dendrite = callPackage ../servers/dendrite { };
 
   dex-oidc = callPackage ../servers/dex { };
 
@@ -22997,9 +23008,7 @@ with pkgs;
 
   check_zfs = callPackage ../servers/monitoring/nagios/plugins/zfs.nix { };
 
-  neo4j = callPackage ../servers/nosql/neo4j {
-    jre = jre8_headless;
-  };
+  neo4j = callPackage ../servers/nosql/neo4j { };
 
   neo4j-desktop = callPackage ../applications/misc/neo4j-desktop { };
 
@@ -23875,6 +23884,12 @@ with pkgs;
   libatasmart = callPackage ../os-specific/linux/libatasmart { };
 
   libcgroup = callPackage ../os-specific/linux/libcgroup { };
+
+  libkrun = callPackage ../development/libraries/libkrun { };
+
+  libkrun-sev = callPackage ../development/libraries/libkrun { sevVariant = true; };
+
+  libkrunfw = callPackage ../development/libraries/libkrunfw { };
 
   libnl = callPackage ../os-specific/linux/libnl { };
 
@@ -30794,6 +30809,8 @@ with pkgs;
 
   telegram-cli = callPackage ../applications/networking/instant-messengers/telegram/telegram-cli { };
 
+  tg = python3Packages.callPackage ../applications/networking/instant-messengers/telegram/tg { };
+
   telepathy-gabble = callPackage ../applications/networking/instant-messengers/telepathy/gabble { };
 
   telepathy-haze = callPackage ../applications/networking/instant-messengers/telepathy/haze {};
@@ -33676,6 +33693,10 @@ with pkgs;
 
   cd-hit = callPackage ../applications/science/biology/cd-hit {
     inherit (llvmPackages) openmp;
+  };
+
+  ciftilib = callPackage ../development/libraries/science/biology/ciftilib {
+    boost = boost16x;
   };
 
   cmtk = callPackage ../applications/science/biology/cmtk { };
