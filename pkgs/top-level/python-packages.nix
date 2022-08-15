@@ -205,6 +205,8 @@ in {
 
   adjusttext = callPackage ../development/python-modules/adjusttext { };
 
+  adlfs = callPackage ../development/python-modules/adlfs { };
+
   advantage-air = callPackage ../development/python-modules/advantage-air { };
 
   advocate = callPackage ../development/python-modules/advocate { };
@@ -486,6 +488,20 @@ in {
   alembic = callPackage ../development/python-modules/alembic { };
 
   algebraic-data-types = callPackage ../development/python-modules/algebraic-data-types { };
+
+  aliyun-python-sdk-cdn = callPackage ../development/python-modules/aliyun-python-sdk-cdn { };
+
+  aliyun-python-sdk-config = callPackage ../development/python-modules/aliyun-python-sdk-config { };
+
+  aliyun-python-sdk-core = callPackage ../development/python-modules/aliyun-python-sdk-core { };
+
+  aliyun-python-sdk-dbfs = callPackage ../development/python-modules/aliyun-python-sdk-dbfs { };
+
+  aliyun-python-sdk-iot = callPackage ../development/python-modules/aliyun-python-sdk-iot { };
+
+  aliyun-python-sdk-kms = callPackage ../development/python-modules/aliyun-python-sdk-kms { };
+
+  aliyun-python-sdk-sts = callPackage ../development/python-modules/aliyun-python-sdk-sts { };
 
   allpairspy = callPackage ../development/python-modules/allpairspy { };
 
@@ -6343,6 +6359,10 @@ in {
 
   osqp = callPackage ../development/python-modules/osqp { };
 
+  oss2 = callPackage ../development/python-modules/oss2 { };
+
+  ossfs = callPackage ../development/python-modules/ossfs { };
+
   outcome = callPackage ../development/python-modules/outcome { };
 
   ovh = callPackage ../development/python-modules/ovh { };
@@ -11424,6 +11444,8 @@ in {
 
   webcolors = callPackage ../development/python-modules/webcolors { };
 
+  webdav4 = callPackage ../development/python-modules/webdav4 { };
+
   webdavclient3 = callPackage ../development/python-modules/webdavclient3 { };
 
   webencodings = callPackage ../development/python-modules/webencodings { };
@@ -11529,6 +11551,8 @@ in {
   wsdiscovery = callPackage ../development/python-modules/wsdiscovery { };
 
   wsgi-intercept = callPackage ../development/python-modules/wsgi-intercept { };
+
+  wsgidav = callPackage ../development/python-modules/wsgidav { };
 
   wsgiprox = callPackage ../development/python-modules/wsgiprox { };
 
