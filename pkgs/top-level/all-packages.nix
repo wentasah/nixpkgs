@@ -282,6 +282,8 @@ with pkgs;
 
   beyond-identity = callPackage ../tools/security/beyond-identity {};
 
+  binbloom = callPackage ../tools/security/binbloom {};
+
   bingo = callPackage ../development/tools/bingo {};
 
   binserve = callPackage ../servers/binserve {
@@ -365,6 +367,8 @@ with pkgs;
   };
 
   conftest = callPackage ../development/tools/conftest { };
+
+  colemak-dh = callPackage ../data/misc/colemak-dh { };
 
   colmena = callPackage ../tools/admin/colmena { };
 
@@ -5454,11 +5458,14 @@ with pkgs;
 
   ddrutility = callPackage ../tools/system/ddrutility { };
 
-  deluge-2_x = callPackage ../applications/networking/p2p/deluge {
-    pythonPackages = python3Packages;
+  inherit (callPackages ../applications/networking/p2p/deluge {
     libtorrent-rasterbar = libtorrent-rasterbar-1_2_x.override { python = python3; };
-  };
-  deluge = deluge-2_x;
+  })
+    deluge-gtk
+    deluged
+    deluge;
+
+  deluge-2_x = deluge;
 
   desktop-file-utils = callPackage ../tools/misc/desktop-file-utils { };
 
@@ -8069,7 +8076,7 @@ with pkgs;
 
   mcfly = callPackage ../tools/misc/mcfly { };
 
-  m2r = python3Packages.callPackage ../tools/text/m2r { };
+  m2r = with python3Packages; toPythonApplication m2r;
 
   md2gemini = with python3.pkgs; toPythonApplication md2gemini;
 
@@ -11641,6 +11648,8 @@ with pkgs;
 
   up = callPackage ../tools/misc/up { };
 
+  upbound = callPackage ../development/tools/upbound { };
+
   upterm = callPackage ../tools/misc/upterm { };
 
   upx = callPackage ../tools/compression/upx { };
@@ -12398,6 +12407,8 @@ with pkgs;
   };
 
   zdelta = callPackage ../tools/compression/zdelta { };
+
+  zed = callPackage ../development/tools/zed { };
 
   zellij = callPackage ../tools/misc/zellij {
     inherit (darwin.apple_sdk.frameworks) DiskArbitration Foundation;
@@ -16270,6 +16281,8 @@ with pkgs;
   kafka-delta-ingest = callPackage ../development/tools/kafka-delta-ingest { };
 
   kamid = callPackage ../servers/ftp/kamid { };
+
+  karate = callPackage ../development/tools/karate { };
 
   kati = callPackage ../development/tools/build-managers/kati { };
 
@@ -20996,7 +21009,7 @@ with pkgs;
 
   qgnomeplatform = libsForQt5.callPackage ../development/libraries/qgnomeplatform { };
 
-  randomx = callPackage ../development/libraries/randomx { };
+  randomx = darwin.apple_sdk_11_0.callPackage ../development/libraries/randomx { };
 
   remodel = callPackage ../development/tools/remodel {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -25049,6 +25062,8 @@ with pkgs;
 
   fira-code = callPackage ../data/fonts/fira-code { };
   fira-code-symbols = callPackage ../data/fonts/fira-code/symbols.nix { };
+
+  fira-go = callPackage ../data/fonts/fira-go { };
 
   fira-mono = callPackage ../data/fonts/fira-mono { };
 
@@ -30613,16 +30628,6 @@ with pkgs;
   spotify-unwrapped = callPackage ../applications/audio/spotify { };
 
   spotify = callPackage ../applications/audio/spotify/wrapper.nix { };
-
-  sourcetrail = let
-    llvmPackages = llvmPackages_10;
-  in libsForQt5.callPackage ../development/tools/sourcetrail {
-    stdenv = if stdenv.cc.isClang then llvmPackages.stdenv else stdenv;
-    jdk = jdk8;
-    pythonPackages = python3Packages;
-    inherit llvmPackages;
-    boost = boost16x; # Filesystem tests in the checkPhase fail with Boost 1.77
-  };
 
   spotifywm = callPackage ../applications/audio/spotifywm { };
 

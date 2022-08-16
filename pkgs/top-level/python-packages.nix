@@ -1383,6 +1383,8 @@ in {
 
   bluetooth-adapters = callPackage ../development/python-modules/bluetooth-adapters { };
 
+  bluetooth-data-tools= callPackage ../development/python-modules/bluetooth-data-tools { };
+
   bluetooth-sensor-state-data = callPackage ../development/python-modules/bluetooth-sensor-state-data { };
 
   blurhash = callPackage ../development/python-modules/blurhash { };
@@ -5572,11 +5574,7 @@ in {
 
   mistletoe = callPackage ../development/python-modules/mistletoe { };
 
-  inherit (import ../development/python-modules/mistune self)
-    mistune
-    mistune_0_8
-    mistune_2_0
-  ;
+  mistune = callPackage ../development/python-modules/mistune { };
 
   mitmproxy = callPackage ../development/python-modules/mitmproxy { };
 
@@ -6181,6 +6179,8 @@ in {
   obspy = callPackage ../development/python-modules/obspy { };
 
   oci = callPackage ../development/python-modules/oci { };
+
+  ocifs = callPackage ../development/python-modules/ocifs { };
 
   ocrmypdf = callPackage ../development/python-modules/ocrmypdf { };
 
