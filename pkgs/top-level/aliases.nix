@@ -760,7 +760,6 @@ mapAliases ({
   lightdm_gtk_greeter = lightdm-gtk-greeter; # Added 2022-08-01
   lighthouse = throw "lighthouse has been removed: abandoned by upstream"; # Added 2022-04-24
   lighttable = throw "'lighttable' crashes (SIGSEGV) on startup, has not been updated in years and depends on deprecated GTK2"; # Added 2022-06-15
-  lilypond-unstable = lilypond; # Added 2021-03-11
   lilyterm = throw "lilyterm has been removed from nixpkgs, because it was relying on a vte version that depended on python2"; # Added 2022-01-14
   lilyterm-git = throw "lilyterm-git has been removed from nixpkgs, because it was relying on a vte version that depended on python2"; # Added 2022-01-14
   links = throw "'links' has been renamed to/replaced by 'links2'"; # Converted to throw 2022-02-22
@@ -990,7 +989,6 @@ mapAliases ({
   odpdown = throw "odpdown has been removed because it lacks python3 support"; # Added 2022-04-25
   ofp = throw "ofp is not compatible with odp-dpdk";
   olifant = throw "olifant has been removed from nixpkgs, as it was unmaintained"; # Added 2021-08-05
-  onnxruntime = throw "onnxruntime has been removed due to poor maintainability"; # Added 2020-12-04
   openbazaar = throw "openbazzar has been removed from nixpkgs as upstream has abandoned the project"; # Added 2022-01-06
   openbazaar-client = throw "openbazzar-client has been removed from nixpkgs as upstream has abandoned the project"; # Added 2022-01-06
   opencascade_oce = throw "'opencascade_oce' has been renamed to/replaced by 'opencascade'"; # Converted to throw 2022-02-22
@@ -1648,6 +1646,7 @@ mapAliases ({
   torchat = throw "torchat was removed because it was broken and requires Python 2"; # added 2022-06-05
   ttyrec = ovh-ttyrec; # Added 2021-01-02
   zplugin = zinit; # Added 2021-01-30
+  zyn-fusion = zynaddsubfx; # Added 2022-08-05
 
   inherit (stdenv.hostPlatform) system; # Added 2021-10-22
 
