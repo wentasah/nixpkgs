@@ -811,6 +811,8 @@ in {
 
   asysocks = callPackage ../development/python-modules/asysocks { };
 
+  atc-ble = callPackage ../development/python-modules/atc-ble { };
+
   atenpdu = callPackage ../development/python-modules/atenpdu { };
 
   atlassian-python-api = callPackage ../development/python-modules/atlassian-python-api { };
@@ -1185,6 +1187,8 @@ in {
 
   backoff = callPackage ../development/python-modules/backoff { };
 
+  backports-cached-property = callPackage ../development/python-modules/backports-cached-property { };
+
   backports_abc = callPackage ../development/python-modules/backports_abc { };
 
   backports_csv = callPackage ../development/python-modules/backports_csv { };
@@ -1362,6 +1366,8 @@ in {
   bleak-retry-connector = callPackage ../development/python-modules/bleak-retry-connector { };
 
   blebox-uniapi = callPackage ../development/python-modules/blebox-uniapi { };
+
+  bless = callPackage ../development/python-modules/bless { };
 
   blessed = callPackage ../development/python-modules/blessed { };
 
@@ -1633,6 +1639,8 @@ in {
   cement = callPackage ../development/python-modules/cement { };
 
   censys = callPackage ../development/python-modules/censys { };
+
+  cexprtk = callPackage ../development/python-modules/cexprtk { };
 
   coincurve = callPackage ../development/python-modules/coincurve {
     inherit (pkgs) secp256k1;
@@ -3042,6 +3050,8 @@ in {
 
   ezdxf = callPackage ../development/python-modules/ezdxf { };
 
+  ezyrb = callPackage ../development/python-modules/ezyrb { };
+
   f90nml = callPackage ../development/python-modules/f90nml { };
 
   Fabric = callPackage ../development/python-modules/Fabric { };
@@ -3944,6 +3954,8 @@ in {
 
   grpcio-tools = callPackage ../development/python-modules/grpcio-tools { };
 
+  grpclib = callPackage ../development/python-modules/grpclib { };
+
   gruut = callPackage ../development/python-modules/gruut { };
 
   gruut-ipa = callPackage ../development/python-modules/gruut-ipa {
@@ -4676,6 +4688,8 @@ in {
   jq = callPackage ../development/python-modules/jq {
     inherit (pkgs) jq;
   };
+
+  js2py = callPackage ../development/python-modules/js2py { };
 
   jsbeautifier = callPackage ../development/python-modules/jsbeautifier { };
 
@@ -6089,6 +6103,8 @@ in {
   nosexcover = callPackage ../development/python-modules/nosexcover { };
 
   notebook = callPackage ../development/python-modules/notebook { };
+
+  notebook-shim = callPackage ../development/python-modules/notebook-shim { };
 
   notedown = callPackage ../development/python-modules/notedown { };
 
@@ -7734,6 +7750,8 @@ in {
 
   pyjson5 = callPackage ../development/python-modules/pyjson5 { };
 
+  pyjsparser = callPackage ../development/python-modules/pyjsparser { };
+
   pyjwkest = callPackage ../development/python-modules/pyjwkest { };
 
   pyjwt = callPackage ../development/python-modules/pyjwt { };
@@ -9341,6 +9359,8 @@ in {
 
   recommonmark = callPackage ../development/python-modules/recommonmark { };
 
+  recordlinkage = callPackage ../development/python-modules/recordlinkage { };
+
   redbaron = callPackage ../development/python-modules/redbaron { };
 
   redis = callPackage ../development/python-modules/redis { };
@@ -10421,6 +10441,8 @@ in {
   strategies = callPackage ../development/python-modules/strategies { };
 
   stravalib = callPackage ../development/python-modules/stravalib { };
+
+  strawberry-graphql = callPackage ../development/python-modules/strawberry-graphql { };
 
   streamdeck = callPackage ../development/python-modules/streamdeck { };
 

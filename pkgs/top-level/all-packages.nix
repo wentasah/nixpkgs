@@ -327,6 +327,8 @@ with pkgs;
 
   buildMaven = callPackage ../build-support/build-maven.nix {};
 
+  caroline = callPackage ../development/libraries/caroline { };
+
   castget = callPackage ../applications/networking/feedreaders/castget { };
 
   castxml = callPackage ../development/tools/castxml {
@@ -1284,6 +1286,8 @@ with pkgs;
 
   pferd = callPackage ../tools/misc/pferd {};
 
+  q = callPackage ../tools/networking/q {};
+
   qFlipper = libsForQt515.callPackage ../tools/misc/qflipper { };
 
   quich = callPackage ../tools/misc/quich { } ;
@@ -1364,6 +1368,8 @@ with pkgs;
   archi = callPackage ../tools/misc/archi { };
 
   breitbandmessung = callPackage ../applications/networking/breitbandmessung { };
+
+  zq = callPackage ../development/tools/zq { buildGoModule = buildGo118Module; };
 
   ### APPLICATIONS/EMULATORS
 
@@ -1448,6 +1454,8 @@ with pkgs;
   hatari = callPackage ../applications/emulators/hatari { };
 
   hercules = callPackage ../applications/emulators/hercules { };
+
+  hostapd-mana = callPackage ../tools/networking/hostapd-mana { };
 
   image-analyzer = callPackage ../applications/emulators/cdemu/analyzer.nix { };
 
@@ -1834,7 +1842,7 @@ with pkgs;
   lilo = callPackage ../tools/misc/lilo { };
 
   logseq = callPackage ../applications/misc/logseq {
-    electron = electron_15;
+    electron = electron_19;
   };
 
   natls = callPackage ../tools/misc/natls { };
@@ -3987,6 +3995,10 @@ with pkgs;
   heatseeker = callPackage ../tools/misc/heatseeker { };
 
   hebcal = callPackage ../tools/misc/hebcal {};
+
+  hebbot = callPackage ../servers/matrix-hebbot {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
 
   hexio = callPackage ../development/tools/hexio { };
 
@@ -12950,6 +12962,8 @@ with pkgs;
 
   clean = callPackage ../development/compilers/clean { };
 
+  clickable = python3Packages.callPackage ../development/tools/clickable { };
+
   closurecompiler = callPackage ../development/compilers/closure { };
 
   cmdstan = callPackage ../development/compilers/cmdstan { };
@@ -17485,6 +17499,8 @@ with pkgs;
   soxt = callPackage ../development/libraries/soxt { };
 
   CoinMP = callPackage ../development/libraries/CoinMP { };
+
+  coinlive = callPackage ../tools/misc/coinlive { };
 
   cointop = callPackage ../applications/misc/cointop { };
 
@@ -24293,6 +24309,8 @@ with pkgs;
 
   gofumpt = callPackage ../development/tools/gofumpt { };
 
+  gotags = callPackage ../development/tools/gotags { };
+
   go-task = callPackage ../development/tools/go-task { };
 
   golint = callPackage ../development/tools/golint { };
@@ -25448,7 +25466,10 @@ with pkgs;
     stdenv = gccStdenv;
   };
 
-  numix-icon-theme = callPackage ../data/icons/numix-icon-theme { };
+  numix-icon-theme = callPackage ../data/icons/numix-icon-theme {
+    inherit (gnome) adwaita-icon-theme;
+    inherit (plasma5Packages) breeze-icons;
+  };
 
   numix-icon-theme-circle = callPackage ../data/icons/numix-icon-theme-circle { };
 
@@ -26861,7 +26882,6 @@ with pkgs;
   em = callPackage ../applications/editors/em { };
 
   emacs = emacs28;
-  emacsNativeComp = emacs28NativeComp;
   emacs-nox = emacs28-nox;
 
   emacs28 = callPackage ../applications/editors/emacs/28.nix {
@@ -26874,10 +26894,6 @@ with pkgs;
     gpm = null;
     inherit (darwin.apple_sdk.frameworks) AppKit GSS ImageIO;
     inherit (darwin) sigtool;
-  };
-
-  emacs28NativeComp = emacs28.override {
-    nativeComp = true;
   };
 
   emacs28-nox = lowPrio (emacs28.override {
@@ -35605,6 +35621,8 @@ with pkgs;
   runitor = callPackage ../tools/system/runitor { };
 
   refind = callPackage ../tools/bootloaders/refind { };
+
+  spectra = callPackage ../development/libraries/spectra { };
 
   spectrojack = callPackage ../applications/audio/spectrojack { };
 

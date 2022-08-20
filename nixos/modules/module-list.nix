@@ -1078,6 +1078,7 @@
   ./services/web-apps/jirafeau.nix
   ./services/web-apps/jitsi-meet.nix
   ./services/web-apps/keycloak.nix
+  ./services/web-apps/komga.nix
   ./services/web-apps/lemmy.nix
   ./services/web-apps/invidious.nix
   ./services/web-apps/invoiceplane.nix
@@ -1138,6 +1139,7 @@
   ./services/web-servers/pomerium.nix
   ./services/web-servers/unit/default.nix
   ./services/web-servers/tomcat.nix
+  ./services/web-servers/keter
   ./services/web-servers/traefik.nix
   ./services/web-servers/trafficserver/default.nix
   ./services/web-servers/ttyd.nix
