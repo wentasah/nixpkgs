@@ -1,4 +1,4 @@
-{ fetchurl, bash, glibc, lib, stdenv }:
+{ fetchurl, bash, glibc, lib, stdenv, installShellFiles }:
 
 let
   man-pages = fetchurl {
@@ -18,6 +18,8 @@ stdenv.mkDerivation rec {
   patches = [ ./fix-nix-usernamespace-build.patch ];
 
   outputs = [ "out" "man" ];
+
+  nativeBuildInputs = [ installShellFiles ];
 
   configurePhase = ''
     cd daemontools-${version}
@@ -42,7 +44,7 @@ stdenv.mkDerivation rec {
     done
 
     tar -xz --strip-components=2 -f ${man-pages}
-    install -v -Dm644 -t $man/share/man/man8 daemontools-man/*.8
+    installManPage daemontools-man/*.8
     install -v -Dm644 daemontools-man/README $man/share/doc/daemontools/README.man
   '';
 
