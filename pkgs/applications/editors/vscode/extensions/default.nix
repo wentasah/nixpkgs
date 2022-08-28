@@ -16,6 +16,7 @@
 , racket
 , clojure-lsp
 , alejandra
+, millet
 }:
 
 let
@@ -308,6 +309,26 @@ let
           homepage = "https://github.com/attilabuti/brainfuck-syntax";
           license = licenses.mit;
           maintainers = with maintainers; [ superherointj ];
+        };
+      };
+
+      azdavis.millet = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "Millet";
+          publisher = "azdavis";
+          version = "0.3.5";
+          sha256 = "sha256-lQ7EMs6nsTEgP9BESMpyoZG7QVOe7DXzfg/iZr1+DCQ=";
+        };
+        nativeBuildInputs = [ jq moreutils ];
+        postInstall = ''
+          cd "$out/$installPrefix"
+          jq '.contributes.configuration.properties."millet.server.path".default = "${millet}/bin/lang-srv"' package.json | sponge package.json
+        '';
+        meta = with lib; {
+          description = "Standard ML support for VS Code";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=azdavis.millet";
+          license = licenses.mit;
+          maintainers = with maintainers; [ smasher164 ];
         };
       };
 
@@ -1623,6 +1644,21 @@ let
         };
         meta = {
           license = lib.licenses.mit;
+        };
+      };
+
+      mkhl.direnv = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "direnv";
+          publisher = "mkhl";
+          version = "0.6.1";
+          sha256 = "sha256-5/Tqpn/7byl+z2ATflgKV1+rhdqj+XMEZNbGwDmGwLQ=";
+        };
+        meta = with lib; {
+          description = "direnv support for Visual Studio Code";
+          license = licenses.bsd0;
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=mkhl.direnv";
+          maintainers = with maintainers; [ nullx76 ];
         };
       };
 
