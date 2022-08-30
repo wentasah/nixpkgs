@@ -10219,6 +10219,8 @@ with pkgs;
 
   qosmic = libsForQt5.callPackage ../applications/graphics/qosmic { };
 
+  qovery-cli = callPackage ../tools/admin/qovery-cli { };
+
   qownnotes = libsForQt5.callPackage ../applications/office/qownnotes { };
 
   qpdf = callPackage ../development/libraries/qpdf { };
@@ -22432,6 +22434,8 @@ with pkgs;
 
   archiveopteryx = callPackage ../servers/mail/archiveopteryx { };
 
+  asouldocs = callPackage ../servers/asouldocs { };
+
   atlassian-bamboo = callPackage ../servers/atlassian/bamboo.nix { };
   atlassian-confluence = callPackage ../servers/atlassian/confluence.nix { };
   atlassian-crowd = callPackage ../servers/atlassian/crowd.nix { };
@@ -24059,6 +24063,8 @@ with pkgs;
   juju = callPackage ../applications/networking/juju { };
 
   jujuutils = callPackage ../os-specific/linux/jujuutils { };
+
+  karabiner-elements = callPackage ../os-specific/darwin/karabiner-elements { };
 
   kbd = callPackage ../os-specific/linux/kbd { };
 
@@ -30026,8 +30032,6 @@ with pkgs;
     inherit (gst_all_1) gstreamer gst-plugins-base gst-plugins-good gst-libav;
   };
 
-  peach = callPackage ../servers/peach { };
-
   peaclock = callPackage ../applications/misc/peaclock {
     stdenv = gccStdenv;
   };
@@ -32889,6 +32893,8 @@ with pkgs;
   flightgear = libsForQt5.callPackage ../games/flightgear { };
 
   flock = callPackage ../development/tools/flock { };
+
+  forge-mtg = callPackage ../games/forge-mtg { };
 
   freecell-solver = callPackage ../games/freecell-solver { };
 
