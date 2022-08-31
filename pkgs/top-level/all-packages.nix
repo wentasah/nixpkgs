@@ -2245,8 +2245,6 @@ with pkgs;
 
   inherit (nodePackages) concurrently;
 
-  inherit (nodePackages) hyperspace-cli;
-
   bklk = callPackage ../applications/misc/bklk { };
 
   bkyml = callPackage ../tools/misc/bkyml { };
@@ -4243,8 +4241,6 @@ with pkgs;
 
   mapcidr = callPackage ../tools/misc/mapcidr { };
 
-  mapproxy = callPackage ../applications/misc/mapproxy { };
-
   marl = callPackage ../development/libraries/marl {};
 
   marlin-calc = callPackage ../tools/misc/marlin-calc {};
@@ -4800,7 +4796,17 @@ with pkgs;
 
   bdsync = callPackage ../tools/backup/bdsync { };
 
-  beamerpresenter = qt6Packages.callPackage ../applications/office/beamerpresenter { };
+  beamerpresenter = beamerpresenter-mupdf;
+
+  beamerpresenter-mupdf = qt6Packages.callPackage ../applications/office/beamerpresenter {
+    useMupdf = true;
+    usePoppler = false;
+  };
+
+  beamerpresenter-poppler = qt6Packages.callPackage ../applications/office/beamerpresenter {
+    useMupdf = false;
+    usePoppler = true;
+  };
 
   beanstalkd = callPackage ../servers/beanstalkd { };
 
@@ -10008,6 +10014,8 @@ with pkgs;
 
   pre-commit = callPackage ../tools/misc/pre-commit { };
 
+  pretender = callPackage ../tools/security/pretender { };
+
   pretty-simple = callPackage ../development/tools/pretty-simple { };
 
   prettyping = callPackage ../tools/networking/prettyping { };
@@ -10184,6 +10192,8 @@ with pkgs;
   prowlarr = callPackage ../servers/prowlarr { };
 
   qarte = libsForQt5.callPackage ../applications/video/qarte { };
+
+  qdrant = callPackage ../servers/search/qdrant { };
 
   qlcplus = libsForQt5.callPackage ../applications/misc/qlcplus { };
 
@@ -10827,6 +10837,8 @@ with pkgs;
   sile = callPackage ../tools/typesetting/sile {
     lua = lua5_3;
   };
+
+  silice = callPackage ../development/compilers/silice { };
 
   silver-searcher = callPackage ../tools/text/silver-searcher { };
 
@@ -14220,7 +14232,7 @@ with pkgs;
   inherit (callPackage ../development/tools/ocaml/ocamlformat { })
     ocamlformat # latest version
     ocamlformat_0_19_0 ocamlformat_0_20_0 ocamlformat_0_20_1 ocamlformat_0_21_0
-    ocamlformat_0_22_4 ocamlformat_0_23_0 ocamlformat_0_24_0;
+    ocamlformat_0_22_4 ocamlformat_0_23_0 ocamlformat_0_24_1;
 
   orc = callPackage ../development/compilers/orc { };
 
@@ -14416,6 +14428,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) AppKit;
   };
   cargo-expand = callPackage ../development/tools/rust/cargo-expand { };
+  cargo-hakari = callPackage ../development/tools/rust/cargo-hakari { };
   cargo-feature = callPackage ../development/tools/rust/cargo-feature { };
   cargo-flash = callPackage ../development/tools/rust/cargo-flash {
     inherit (darwin.apple_sdk.frameworks) AppKit;
@@ -14451,6 +14464,9 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
   cargo-readme = callPackage ../development/tools/rust/cargo-readme {};
+  cargo-semver-checks = callPackage ../development/tools/rust/cargo-semver-checks {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
   cargo-sort = callPackage ../development/tools/rust/cargo-sort { };
   cargo-spellcheck = callPackage ../development/tools/rust/cargo-spellcheck {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -16451,6 +16467,8 @@ with pkgs;
 
   kati = callPackage ../development/tools/build-managers/kati { };
 
+  kafkactl = callPackage ../development/tools/kafkactl { };
+
   kcat = callPackage ../development/tools/kcat { };
 
   kcc = libsForQt5.callPackage ../applications/graphics/kcc { };
@@ -16934,7 +16952,7 @@ with pkgs;
 
   scenebuilder = callPackage ../development/tools/scenebuilder { };
 
-  scenic-view = callPackage ../development/tools/scenic-view { };
+  scenic-view = callPackage ../development/tools/scenic-view { jdk = jdk11; };
 
   shncpd = callPackage ../tools/networking/shncpd { };
 
@@ -21150,8 +21168,6 @@ with pkgs;
 
   lambda-mod-zsh-theme = callPackage ../shells/zsh/lambda-mod-zsh-theme { };
 
-  libgme = callPackage ../development/libraries/audio/libgme { };
-
   librdf_raptor = callPackage ../development/libraries/librdf/raptor.nix { };
 
   librdf_raptor2 = callPackage ../development/libraries/librdf/raptor2.nix { };
@@ -23672,6 +23688,8 @@ with pkgs;
 
   mapcache = callPackage ../servers/geospatial/mapcache { };
 
+  mapproxy = callPackage ../servers/geospatial/mapproxy { };
+
   mapserver = callPackage ../servers/geospatial/mapserver { };
 
   martin = callPackage ../servers/geospatial/martin {
@@ -25254,6 +25272,8 @@ with pkgs;
   };
   flat-remix-gtk = callPackage ../data/themes/flat-remix-gtk { };
   flat-remix-gnome = callPackage ../data/themes/flat-remix-gnome { };
+
+  fluent-icon-theme = callPackage ../data/icons/fluent-icon-theme { };
 
   font-awesome_4 = (callPackage ../data/fonts/font-awesome { }).v4;
   font-awesome_5 = (callPackage ../data/fonts/font-awesome { }).v5;
@@ -27671,7 +27691,9 @@ with pkgs;
       shiboken2;
   };
 
-  freedv = callPackage ../applications/radio/freedv { };
+  freedv = callPackage ../applications/radio/freedv {
+    inherit (darwin.apple_sdk.frameworks) AppKit AVFoundation Cocoa CoreMedia;
+  };
 
   freemind = callPackage ../applications/misc/freemind {
     jdk = jdk8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
@@ -28707,8 +28729,6 @@ with pkgs;
   kube-score = callPackage ../applications/networking/cluster/kube-score { };
 
   kubectl-evict-pod = callPackage ../applications/networking/cluster/kubectl-evict-pod {
-    # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
-    buildGoModule = buildGo117Module;
   };
 
   kubeval = callPackage ../applications/networking/cluster/kubeval { };
@@ -32365,8 +32385,9 @@ with pkgs;
 
   lightning-pool = callPackage ../applications/blockchains/lightning-pool { };
 
-  litecoin  = libsForQt514.callPackage ../applications/blockchains/litecoin {
+  litecoin  = libsForQt5.callPackage ../applications/blockchains/litecoin {
     inherit (darwin.apple_sdk.frameworks) AppKit;
+    boost = pkgs.boost174;
   };
   litecoind = litecoin.override { withGui = false; };
 

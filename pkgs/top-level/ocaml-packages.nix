@@ -787,11 +787,13 @@ let
     menhirSdk = callPackage ../development/ocaml-modules/menhir/sdk.nix { };
 
     merlin =
-      if lib.versionAtLeast ocaml.version "4.11"
+      if lib.versionAtLeast ocaml.version "4.12"
       then callPackage ../development/tools/ocaml/merlin/4.x.nix { }
       else callPackage ../development/tools/ocaml/merlin { };
 
     merlin-extend = callPackage ../development/ocaml-modules/merlin-extend { };
+
+    merlin-lib = callPackage ../development/tools/ocaml/merlin/lib.nix { };
 
     dot-merlin-reader = callPackage ../development/tools/ocaml/merlin/dot-merlin-reader.nix { };
 
@@ -1230,7 +1232,7 @@ let
     tls-mirage = callPackage ../development/ocaml-modules/tls/mirage.nix { };
 
     torch = callPackage ../development/ocaml-modules/torch {
-      inherit (pkgs.python3Packages) pytorch;
+      inherit (pkgs.python3Packages) torch;
     };
 
     ocaml-protoc = callPackage ../development/ocaml-modules/ocaml-protoc { };

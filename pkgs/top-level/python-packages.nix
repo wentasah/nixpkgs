@@ -2851,6 +2851,8 @@ in {
 
   ed25519 = callPackage ../development/python-modules/ed25519 { };
 
+  edalize = callPackage ../development/python-modules/edalize { };
+
   editables = callPackage ../development/python-modules/editables { };
 
   editdistance = callPackage ../development/python-modules/editdistance { };
@@ -5447,6 +5449,8 @@ in {
 
   markdown-macros = callPackage ../development/python-modules/markdown-macros { };
 
+  markdownify  = callPackage ../development/python-modules/markdownify { };
+
   markdownsuperscript = callPackage ../development/python-modules/markdownsuperscript { };
 
   markerlib = callPackage ../development/python-modules/markerlib { };
@@ -6468,6 +6472,8 @@ in {
 
   palettable = callPackage ../development/python-modules/palettable { };
 
+  pallets-sphinx-themes = callPackage ../development/python-modules/pallets-sphinx-themes { };
+
   pamela = callPackage ../development/python-modules/pamela { };
 
   pamqp = callPackage ../development/python-modules/pamqp { };
@@ -6737,6 +6743,8 @@ in {
   pick = callPackage ../development/python-modules/pick { };
 
   pickleshare = callPackage ../development/python-modules/pickleshare { };
+
+  picobox = callPackage ../development/python-modules/picobox { };
 
   picos = callPackage ../development/python-modules/picos { };
 
@@ -9037,27 +9045,11 @@ in {
 
   pytools = callPackage ../development/python-modules/pytools { };
 
-  pytorch = callPackage ../development/python-modules/pytorch {
-    cudaSupport = pkgs.config.cudaSupport or false;
-    inherit (pkgs.darwin.apple_sdk.frameworks) CoreServices;
-    inherit (pkgs.darwin) libobjc;
-  };
-
-  pytorch-bin = callPackage ../development/python-modules/pytorch/bin.nix { };
-
   pytorch-lightning = callPackage ../development/python-modules/pytorch-lightning { };
 
   pytorch-metric-learning = callPackage ../development/python-modules/pytorch-metric-learning { };
 
   pytorch-pfn-extras = callPackage ../development/python-modules/pytorch-pfn-extras { };
-
-  pytorchWithCuda = self.pytorch.override {
-    cudaSupport = true;
-  };
-
-  pytorchWithoutCuda = self.pytorch.override {
-    cudaSupport = false;
-  };
 
   pytraccar = callPackage ../development/python-modules/pytraccar { };
 
@@ -9658,6 +9650,8 @@ in {
   rq = callPackage ../development/python-modules/rq { };
 
   rsa = callPackage ../development/python-modules/rsa { };
+
+  rsskey = callPackage ../development/python-modules/rsskey { };
 
   rst2ansi = callPackage ../development/python-modules/rst2ansi { };
 
@@ -10348,6 +10342,8 @@ in {
 
   sphinx-navtree = callPackage ../development/python-modules/sphinx-navtree { };
 
+  sphinx-mdinclude = callPackage ../development/python-modules/sphinx-mdinclude { };
+
   sphinx_pypi_upload = callPackage ../development/python-modules/sphinx_pypi_upload { };
 
   sphinx-rtd-theme = callPackage ../development/python-modules/sphinx-rtd-theme { };
@@ -10921,6 +10917,23 @@ in {
 
   toposort = callPackage ../development/python-modules/toposort { };
 
+  torch = callPackage ../development/python-modules/torch {
+    cudaSupport = pkgs.config.cudaSupport or false;
+    inherit (pkgs.darwin.apple_sdk.frameworks) CoreServices;
+    inherit (pkgs.darwin) libobjc;
+  };
+
+  torch-bin = callPackage ../development/python-modules/torch/bin.nix { };
+
+
+  torchWithCuda = self.torch.override {
+    cudaSupport = true;
+  };
+
+  torchWithoutCuda = self.torch.override {
+    cudaSupport = false;
+  };
+
   torch-tb-profiler = callPackage ../development/python-modules/torch-tb-profiler/default.nix { };
 
   torchaudio-bin = callPackage ../development/python-modules/torchaudio/bin.nix { };
@@ -11162,6 +11175,8 @@ in {
   typing-extensions = callPackage ../development/python-modules/typing-extensions { };
 
   typing-inspect = callPackage ../development/python-modules/typing-inspect { };
+
+  typish = callPackage ../development/python-modules/typish { };
 
   typogrify = callPackage ../development/python-modules/typogrify { };
 
