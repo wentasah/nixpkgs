@@ -92,6 +92,6 @@ stdenv.mkDerivation {
       used to publish or subscribe.
     '';
     maintainers = with maintainers; [ wentasah ];
-    platforms = platforms.all;
+    platforms = openjdk8.meta.platforms;
   };
 }
