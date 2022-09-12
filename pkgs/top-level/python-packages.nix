@@ -3251,6 +3251,8 @@ in {
 
   fire = callPackage ../development/python-modules/fire { };
 
+  fireflyalgorithm = callPackage ../development/python-modules/fireflyalgorithm { };
+
   firetv = callPackage ../development/python-modules/firetv { };
 
   first = callPackage ../development/python-modules/first { };
@@ -4803,6 +4805,8 @@ in {
   jsonrpclib-pelix = callPackage ../development/python-modules/jsonrpclib-pelix { };
 
   jsonrpc-websocket = callPackage ../development/python-modules/jsonrpc-websocket { };
+
+  jsons = callPackage ../development/python-modules/jsons { };
 
   jsonschema = callPackage ../development/python-modules/jsonschema { };
 
