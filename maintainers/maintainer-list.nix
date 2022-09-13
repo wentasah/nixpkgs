@@ -2780,6 +2780,12 @@
     githubId = 34543609;
     name = "creator54";
   };
+  crinklywrappr = {
+    email = "crinklywrappr@pm.me";
+    name = "Daniel Fitzpatrick";
+    github = "crinklywrappr";
+    githubId = 56522;
+  };
   cript0nauta = {
     email = "shareman1204@gmail.com";
     github = "cript0nauta";
@@ -4309,6 +4315,12 @@
     github = "fedeinthemix";
     githubId = 7670450;
     name = "Federico Beffa";
+  };
+  fbergroth = {
+    email = "fbergroth@gmail.com";
+    github = "fbergroth";
+    githubId = 1211003;
+    name = "Fredrik Bergroth";
   };
   fbrs = {
     email = "yuuki@protonmail.com";
@@ -10958,6 +10970,13 @@
     github = "RaitoBezarius";
     githubId = 314564;
     name = "Ryan Lahfa";
+  };
+  raphaelr = {
+    email = "raphael-git@tapesoftware.net";
+    matrix = "@raphi:tapesoftware.net";
+    github = "raphaelr";
+    githubId = 121178;
+    name = "Raphael Robatsch";
   };
   raquelgb = {
     email = "raquel.garcia.bautista@gmail.com";
