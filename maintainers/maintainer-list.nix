@@ -603,6 +603,12 @@
     githubId = 782180;
     name = "Alex Vorobiev";
   };
+  alexwinter = {
+    email = "git@alexwinter.net";
+    github = "lxwntr";
+    githubId = 50754358;
+    name = "Alex Winter";
+  };
   alexeyre = {
     email = "A.Eyre@sms.ed.ac.uk";
     github = "alexeyre";
@@ -13420,6 +13426,12 @@
     githubId = 1292007;
     name = "Sébastien Maccagnoni";
   };
+  tirex = {
+    email = "szymon@kliniewski.pl";
+    name = "Szymon Kliniewski";
+    github = "NoneTirex";
+    githubId = 26038207;
+  };
   titanous = {
     email = "jonathan@titanous.com";
     github = "titanous";
@@ -15363,14 +15375,19 @@
     githubId = 31394095;
   };
   cafkafk = {
-    email = "cafkafk@cafkafk.com";
+    email = "christina@cafkafk.com";
     matrix = "@cafkafk:matrix.cafkafk.com";
     name = "Christina Sørensen";
     github = "cafkafk";
     githubId = 89321978;
-    keys = [{
-      fingerprint = "7B9E E848 D074 AE03 7A0C  651A 8ED4 DEF7 375A 30C8";
-    }];
+    keys = [
+      {
+        fingerprint = "7B9E E848 D074 AE03 7A0C  651A 8ED4 DEF7 375A 30C8";
+      }
+      {
+        fingerprint = "208A 2A66 8A2F CDE7 B5D3 8F64 CDDC 792F 6552 51ED";
+      }
+    ];
   };
   rb = {
     email = "maintainers@cloudposse.com";
