@@ -319,6 +319,8 @@ let
 
     dns-tsig = callPackage ../development/ocaml-modules/dns/tsig.nix { };
 
+    dnssec = callPackage ../development/ocaml-modules/dns/dnssec.nix { };
+
     dolmen =  callPackage ../development/ocaml-modules/dolmen { };
 
     dolog = callPackage ../development/ocaml-modules/dolog { };
@@ -835,6 +837,8 @@ let
     mezzo = callPackage ../development/compilers/mezzo { };
 
     mimic = callPackage ../development/ocaml-modules/mimic { };
+
+    mimic-happy-eyeballs = callPackage ../development/ocaml-modules/mimic/happy-eyeballs.nix { };
 
     minisat = callPackage ../development/ocaml-modules/minisat { };
 
