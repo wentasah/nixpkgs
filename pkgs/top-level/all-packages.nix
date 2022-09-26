@@ -2580,6 +2580,8 @@ with pkgs;
 
   glasgow = with python3Packages; toPythonApplication glasgow;
 
+  glasstty-ttf = callPackage ../data/fonts/glasstty-ttf { };
+
   gmid = callPackage ../servers/gemini/gmid { };
 
   gmni = callPackage ../applications/networking/browsers/gmni { };
@@ -13392,8 +13394,6 @@ with pkgs;
 
   fasmg = callPackage ../development/compilers/fasmg { };
 
-  fennel = callPackage ../development/compilers/fennel { };
-
   firrtl = callPackage ../development/compilers/firrtl { };
 
   flasm = callPackage ../development/compilers/flasm { };
@@ -14694,6 +14694,7 @@ with pkgs;
   cargo-embed = callPackage ../development/tools/rust/cargo-embed {
     inherit (darwin.apple_sdk.frameworks) AppKit;
   };
+  cargo-espmonitor = callPackage ../development/tools/rust/cargo-espmonitor { };
   cargo-expand = callPackage ../development/tools/rust/cargo-expand { };
   cargo-hakari = callPackage ../development/tools/rust/cargo-hakari { };
   cargo-feature = callPackage ../development/tools/rust/cargo-feature { };
@@ -15473,6 +15474,8 @@ with pkgs;
   pysideGeneratorrunner = callPackage ../development/python-modules/pyside/generatorrunner.nix { };
 
   svg2tikz = python27Packages.svg2tikz;
+
+  svg2pdf = callPackage ../tools/graphics/svg2pdf { };
 
   pew = callPackage ../development/tools/pew {};
 
@@ -16829,6 +16832,8 @@ with pkgs;
 
   kubespy = callPackage ../applications/networking/cluster/kubespy { };
 
+  kubeswitch = callPackage ../development/tools/kubeswitch { };
+
   kubie = callPackage ../development/tools/kubie {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -16870,6 +16875,8 @@ with pkgs;
   lit = callPackage ../development/tools/misc/lit { };
 
   litecli = callPackage ../development/tools/database/litecli {};
+
+  litefs = callPackage ../development/tools/database/litefs {};
 
   litestream = callPackage ../development/tools/database/litestream {};
 
@@ -16997,6 +17004,8 @@ with pkgs;
   omniorb = callPackage ../development/tools/omniorb { };
 
   openai = with python3Packages; toPythonApplication openai;
+
+  openai-whisper = with python3.pkgs; toPythonApplication openai-whisper;
 
   opengrok = callPackage ../development/tools/misc/opengrok { };
 
@@ -17194,6 +17203,12 @@ with pkgs;
   rufo = callPackage ../development/tools/rufo { };
 
   samurai = callPackage ../development/tools/build-managers/samurai { };
+
+  muon = callPackage ../development/tools/build-managers/muon { };
+  muonStandalone = muon.override {
+    embedSamurai = true;
+    buildDocs = false;
+  };
 
   saleae-logic = callPackage ../development/tools/misc/saleae-logic { };
 
@@ -18680,7 +18695,7 @@ with pkgs;
   gns3-gui = gns3Packages.guiStable;
   gns3-server = gns3Packages.serverStable;
 
-  gobject-introspection = if (!stdenv.hostPlatform.canExecute stdenv.targetPlatform)
+  gobject-introspection = if (!stdenv.hostPlatform.canExecute stdenv.targetPlatform) && stdenv.targetPlatform.emulatorAvailable buildPackages
     then callPackage ../development/libraries/gobject-introspection/wrapper.nix { } else gobject-introspection-unwrapped;
 
   gobject-introspection-unwrapped = callPackage ../development/libraries/gobject-introspection {
@@ -21727,6 +21742,7 @@ with pkgs;
 
   serf = callPackage ../development/libraries/serf {
     openssl = openssl_1_1;
+    aprutil = aprutil.override { openssl = openssl_1_1; };
   };
 
   sfsexp = callPackage ../development/libraries/sfsexp {};
@@ -22235,6 +22251,8 @@ with pkgs;
   vkdisplayinfo = callPackage ../tools/graphics/vkdisplayinfo { };
 
   vlock = callPackage ../misc/screensavers/vlock { };
+
+  virtualpg = callPackage ../development/libraries/virtualpg { };
 
   vmime = callPackage ../development/libraries/vmime { };
 
@@ -24681,6 +24699,10 @@ with pkgs;
     python = python3;
   };
 
+  librasterlite2 = callPackage ../development/libraries/librasterlite2 {
+    inherit (darwin.apple_sdk.frameworks) ApplicationServices;
+  };
+
   libraw = callPackage ../development/libraries/libraw { };
   libraw_unstable = callPackage ../development/libraries/libraw/unstable.nix { };
 
@@ -26534,6 +26556,11 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Cocoa;
   };
 
+  spatialite_gui = callPackage ../applications/gis/spatialite-gui {
+    inherit (darwin.apple_sdk.frameworks) Carbon Cocoa IOKit;
+    wxGTK = wxGTK30-gtk3;
+  };
+
   spatialite_tools = callPackage ../applications/gis/spatialite-tools { };
 
   udig = callPackage ../applications/gis/udig { };
@@ -26930,6 +26957,8 @@ with pkgs;
   };
 
   bluejeans-gui = callPackage ../applications/networking/instant-messengers/bluejeans { };
+
+  bluemail = callPackage ../applications/networking/mailreaders/bluemail { };
 
   blugon = callPackage ../applications/misc/blugon { };
 
@@ -31399,6 +31428,7 @@ with pkgs;
     sublime-merge-dev;
 
   inherit (callPackages ../applications/version-management/subversion {
+    openssl = openssl_1_1;
     sasl = cyrus_sasl;
     inherit (darwin.apple_sdk.frameworks) CoreServices Security;
   }) subversion;
