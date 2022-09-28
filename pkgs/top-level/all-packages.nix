@@ -208,9 +208,7 @@ with pkgs;
       }
     '');
 
-  chkservice = callPackage ../tools/admin/chkservice {
-    stdenv = gcc10StdenvCompat;
-  };
+  chkservice = callPackage ../tools/admin/chkservice { };
 
   addOpenGLRunpath = callPackage ../build-support/add-opengl-runpath { };
 
@@ -429,6 +427,8 @@ with pkgs;
   crow-translate = libsForQt5.callPackage ../applications/misc/crow-translate { };
 
   cryptowatch-desktop = callPackage ../applications/finance/cryptowatch { };
+
+  databricks-sql-cli = python3Packages.callPackage ../applications/misc/databricks-sql-cli { };
 
   datalad = callPackage ../applications/version-management/datalad {
     python3 = python39;  # `boto` currently broken with Python3.10
@@ -4131,6 +4131,8 @@ with pkgs;
   hr = callPackage ../applications/misc/hr { };
 
   humioctl = callPackage ../applications/logging/humioctl {};
+
+  huniq = callPackage ../tools/text/huniq { };
 
   hyprland = callPackage ../applications/window-managers/hyprland {
     wlroots = wlroots.overrideAttrs (_: {
@@ -9533,7 +9535,9 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  onetun = callPackage ../tools/networking/onetun { };
+  onetun = callPackage ../tools/networking/onetun {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
 
   opencorsairlink = callPackage ../tools/misc/opencorsairlink { };
 
@@ -10663,6 +10667,8 @@ with pkgs;
   };
 
   rnp = callPackage ../tools/security/rnp { };
+
+  rnr = callPackage ../tools/text/rnr { };
 
   rnv = callPackage ../tools/text/xml/rnv { };
 
@@ -14043,6 +14049,10 @@ with pkgs;
 
   gwt240 = callPackage ../development/compilers/gwt/2.4.0.nix { };
 
+  hvm = callPackage ../development/compilers/hvm {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
+
   idrisPackages = dontRecurseIntoAttrs (callPackage ../development/idris-modules {
     idris-no-deps = haskellPackages.idris;
   });
@@ -14204,6 +14214,8 @@ with pkgs;
   julia-bin = julia-stable-bin;
 
   jwasm =  callPackage ../development/compilers/jwasm { };
+
+  kind2 = callPackage ../development/compilers/kind2 { };
 
   knightos-genkfs = callPackage ../development/tools/knightos/genkfs { };
 
@@ -17105,6 +17117,10 @@ with pkgs;
   premake = premake4;
 
   privacyidea = callPackage ../applications/misc/privacyidea { };
+
+  process-viewer = callPackage ../applications/misc/process-viewer {
+    inherit (darwin.apple_sdk.frameworks) DiskArbitration Foundation IOKit;
+  };
 
   procodile = callPackage ../tools/system/procodile { };
 
@@ -20403,10 +20419,6 @@ with pkgs;
 
   libtorrent-rasterbar-1_2_x = callPackage ../development/libraries/libtorrent-rasterbar/1.2.nix {
     inherit (darwin.apple_sdk.frameworks) SystemConfiguration;
-    python = python2;
-  };
-
-  libtorrent-rasterbar-1_1_x = callPackage ../development/libraries/libtorrent-rasterbar/1.1.nix {
     python = python2;
   };
 
@@ -23810,6 +23822,8 @@ with pkgs;
   prometheus-xmpp-alerts = callPackage ../servers/monitoring/prometheus/xmpp-alerts.nix { };
 
   prometheus-cpp = callPackage ../development/libraries/prometheus-cpp { };
+
+  proximity-sort = callPackage ../tools/misc/proximity-sort { };
 
   psqlodbc = callPackage ../development/libraries/psqlodbc { };
 
@@ -33404,8 +33418,7 @@ with pkgs;
 
   dwarf-therapist = dwarf-fortress-packages.dwarf-therapist;
 
-  dxx-rebirth = callPackage ../games/dxx-rebirth
-    { stdenv = gcc10StdenvCompat; physfs = physfs_2; };
+  dxx-rebirth = callPackage ../games/dxx-rebirth { };
 
   inherit (callPackages ../games/dxx-rebirth/assets.nix { })
     descent1-assets
