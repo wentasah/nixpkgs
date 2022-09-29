@@ -455,6 +455,7 @@
   ./services/hardware/lcd.nix
   ./services/hardware/lirc.nix
   ./services/hardware/nvidia-optimus.nix
+  ./services/hardware/openrgb.nix
   ./services/hardware/pcscd.nix
   ./services/hardware/pommed.nix
   ./services/hardware/power-profiles-daemon.nix
@@ -1235,6 +1236,7 @@
   ./system/boot/systemd/journald.nix
   ./system/boot/systemd/logind.nix
   ./system/boot/systemd/nspawn.nix
+  ./system/boot/systemd/oomd.nix
   ./system/boot/systemd/shutdown.nix
   ./system/boot/systemd/tmpfiles.nix
   ./system/boot/systemd/user.nix

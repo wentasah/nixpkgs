@@ -235,6 +235,13 @@
       </listitem>
       <listitem>
         <para>
+          <link xlink:href="https://gitlab.com/CalcProgrammer1/OpenRGB/-/tree/master">OpenRGB</link>,
+          a FOSS tool for controlling RGB lighting. Available as
+          <link xlink:href="options.html#opt-services-hardware-openrgb-enable">services.hardware.openrgb.enable</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <link xlink:href="https://www.getoutline.com/">Outline</link>,
           a wiki and knowledge base similar to Notion. Available as
           <link linkend="opt-services.outline.enable">services.outline</link>.
@@ -708,6 +715,21 @@
       <listitem>
         <para>
           Add udev rules for the Teensy family of microcontrollers.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          systemd-oomd is enabled by default. Depending on which systemd
+          units have <literal>ManagedOOMSwap=kill</literal> or
+          <literal>ManagedOOMMemoryPressure=kill</literal>, systemd-oomd
+          will SIGKILL all the processes under the appropriate
+          descendant cgroups when the configured limits are exceeded.
+          NixOS does currently not configure cgroups with oomd by
+          default, this can be enabled using
+          <link xlink:href="options.html#opt-systemd.oomd.enableRootSlice">systemd.oomd.enableRootSlice</link>,
+          <link xlink:href="options.html#opt-systemd.oomd.enableSystemSlice">systemd.oomd.enableSystemSlice</link>,
+          and
+          <link xlink:href="options.html#opt-systemd.oomd.enableUserServices">systemd.oomd.enableUserServices</link>.
         </para>
       </listitem>
       <listitem>

@@ -140,14 +140,14 @@ with pkgs;
   nixosTests = import ../../nixos/tests/all-tests.nix {
     inherit pkgs;
     system = stdenv.hostPlatform.system;
-    callTest = t: t.test;
+    callTest = config: config.test;
   } // {
     # for typechecking of the scripts and evaluation of
     # the nodes, without running VMs.
     allDrivers = import ../../nixos/tests/all-tests.nix {
       inherit pkgs;
       system = stdenv.hostPlatform.system;
-      callTest = t: t.test.driver;
+      callTest = config: config.test.driver;
     };
   };
 
@@ -1508,6 +1508,10 @@ with pkgs;
 
   fuse-emulator = callPackage ../applications/emulators/fuse-emulator {};
 
+  fw = callPackage ../tools/misc/fw {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
+
   gcdemu = callPackage ../applications/emulators/cdemu/gui.nix { };
 
   gensgs = pkgsi686Linux.callPackage ../applications/emulators/gens-gs { };
@@ -2088,6 +2092,10 @@ with pkgs;
 
   asciinema = callPackage ../tools/misc/asciinema {};
 
+  asciinema-agg = callPackage ../tools/misc/asciinema-agg {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
+
   asciinema-scenario = callPackage ../tools/misc/asciinema-scenario {};
 
   asciiquarium = callPackage ../applications/misc/asciiquarium {};
@@ -2361,6 +2369,8 @@ with pkgs;
   clair = callPackage ../tools/admin/clair { };
 
   cloud-sql-proxy = callPackage ../tools/misc/cloud-sql-proxy { };
+
+  cloudfox = callPackage ../tools/security/cloudfox { };
 
   cloudsmith-cli = callPackage ../development/tools/cloudsmith-cli { };
 
@@ -2864,6 +2874,8 @@ with pkgs;
   apprise = with python3Packages; toPythonApplication apprise;
 
   aptdec = callPackage ../development/libraries/aptdec {};
+
+  argc = callPackage ../development/tools/argc { };
 
   aria2 = callPackage ../tools/networking/aria2 {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -3508,6 +3520,8 @@ with pkgs;
   };
 
   compsize = callPackage ../os-specific/linux/compsize { };
+
+  comrak = callPackage ../tools/text/comrak { };
 
   cot = with python3Packages; toPythonApplication cot;
 
@@ -5768,6 +5782,10 @@ with pkgs;
 
   dockbarx = callPackage ../applications/misc/dockbarx { };
 
+  doctave = callPackage ../applications/misc/doctave {
+    inherit (darwin.apple_sdk.frameworks) CoreServices;
+  };
+
   dog = callPackage ../tools/system/dog { };
 
   dogdns = callPackage ../tools/networking/dogdns {
@@ -7786,7 +7804,9 @@ with pkgs;
   ipfs = callPackage ../applications/networking/ipfs {
     openssl = openssl_1_1;
   };
-  ipfs-cluster = callPackage ../applications/networking/ipfs-cluster { };
+  ipfs-cluster = callPackage ../applications/networking/ipfs-cluster {
+    buildGoModule = buildGo119Module;
+  };
 
   ipfs-migrator-all-fs-repo-migrations = callPackage ../applications/networking/ipfs-migrator/all-migrations.nix { };
   ipfs-migrator-unwrapped = callPackage ../applications/networking/ipfs-migrator/unwrapped.nix { };
@@ -11568,6 +11588,8 @@ with pkgs;
   ted = callPackage ../tools/typesetting/ted { };
 
   teamviewer = libsForQt515.callPackage ../applications/networking/remote/teamviewer { };
+
+  teip = callPackage ../tools/text/teip { };
 
   telegraf = callPackage ../servers/monitoring/telegraf { };
 
@@ -16439,6 +16461,8 @@ with pkgs;
 
   dive = callPackage ../development/tools/dive { };
 
+  dioxus-cli = callPackage ../development/tools/rust/dioxus-cli { };
+
   doclifter = callPackage ../development/tools/misc/doclifter { };
 
   docutils = with python3Packages; toPythonApplication docutils;
@@ -17378,6 +17402,8 @@ with pkgs;
   stm32cubemx = callPackage ../development/embedded/stm32/stm32cubemx { };
 
   stm32flash = callPackage ../development/embedded/stm32/stm32flash { };
+
+  stm8flash = callPackage ../development/embedded/stm8/stm8flash { };
 
   strace = callPackage ../development/tools/misc/strace { };
 
@@ -23842,6 +23868,7 @@ with pkgs;
   rabbitmq-server = callPackage ../servers/amqp/rabbitmq-server {
     inherit (darwin.apple_sdk.frameworks) AppKit Carbon Cocoa;
     elixir = elixir_1_12;
+    erlang = erlang.override { opensslPackage = openssl_1_1; };
   };
 
   radicale2 = callPackage ../servers/radicale/2.x.nix { };
@@ -31679,6 +31706,8 @@ with pkgs;
   themechanger = callPackage ../applications/misc/themechanger { };
 
   thinkingRock = callPackage ../applications/misc/thinking-rock { };
+
+  thokr = callPackage ../applications/misc/thokr { };
 
   thonny = callPackage ../applications/editors/thonny { };
 
