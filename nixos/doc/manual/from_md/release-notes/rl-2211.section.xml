@@ -144,6 +144,13 @@
       </listitem>
       <listitem>
         <para>
+          An image configuration and generator has been added for Linode
+          images, largely based on the present GCE configuration and
+          image.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <literal>hardware.nvidia</literal> has a new option
           <literal>open</literal> that can be used to opt in the
           opensource version of NVIDIA kernel driver. Note that the
@@ -283,6 +290,13 @@
           an enterprise resource planning and customer relationship
           manager. Enable using
           <link linkend="opt-services.dolibarr.enable">services.dolibarr</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link xlink:href="https://freshrss.org/">FreshRSS</link>, a
+          free, self-hostable RSS feed aggregator. Available as
+          <link linkend="opt-services.freshrss.enable">services.freshrss</link>.
         </para>
       </listitem>
       <listitem>
@@ -491,14 +505,6 @@
       </listitem>
       <listitem>
         <para>
-          The (previously undocumented) Nixpkgs configuration option
-          <literal>checkMeta</literal> now defaults to
-          <literal>true</literal>. This may cause evaluation failures
-          for packages with incorrect <literal>meta</literal> attribute.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
           xow package removed along with the
           <literal>hardware.xow</literal> module, due to the project
           being deprecated in favor of <literal>xone</literal>, which is
@@ -642,6 +648,12 @@
       </listitem>
       <listitem>
         <para>
+          The <literal>networking.wireguard</literal> module now can set
+          the mtu on interfaces and tag its packets with an fwmark.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           The <literal>services.matrix-synapse</literal> systemd unit
           has been hardened.
         </para>
@@ -749,6 +761,13 @@
       </listitem>
       <listitem>
         <para>
+          The Wordpress module got support for installing language packs
+          through
+          <literal>services.wordpress.sites.&lt;site&gt;.languages</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           There is a new module for the <literal>thunar</literal>
           program (the Xfce file manager), which depends on the
           <literal>xfconf</literal> dbus service, and also has a dbus
@@ -770,6 +789,18 @@
         <para>
           The <literal>nomad</literal> package now defaults to 1.3,
           which no longer has a downgrade path to releases 1.2 or older.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The <literal>nodePackages</literal> package set now defaults
+          to the LTS release in the <literal>nodejs</literal> package
+          again, instead of being pinned to
+          <literal>nodejs-14_x</literal>. Several updates to node2nix
+          have been made for compatibility with newer Node.js and npm
+          versions and a new <literal>postRebuild</literal> hook has
+          been added for packages to perform extra build steps before
+          the npm install step prunes dev dependencies.
         </para>
       </listitem>
     </itemizedlist>

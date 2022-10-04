@@ -4,10 +4,6 @@ let
 in
 {
   options = {
-    callTest = mkOption {
-      internal = true;
-      type = types.functionTo types.raw;
-    };
     result = mkOption {
       internal = true;
       default = config;
