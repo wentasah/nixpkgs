@@ -1241,6 +1241,15 @@
     githubId = 12923;
     name = "Astro";
   };
+  astrobeastie = {
+    email = "fischervincent98@gmail.com";
+    github = "astrobeastie";
+    githubId = 26362368;
+    name = "Vincent Fischer";
+    keys = [{
+      fingerprint = "BF47 81E1 F304 1ADF 18CE  C401 DE16 C7D1 536D A72F";
+    }];
+  };
   astsmtl = {
     email = "astsmtl@yandex.ru";
     github = "astsmtl";
@@ -1540,6 +1549,12 @@
     github = "basvandijk";
     githubId = 576355;
     name = "Bas van Dijk";
+  };
+  BattleCh1cken = {
+    email = "BattleCh1cken@larkov.de";
+    github = "BattleCh1cken";
+    githubId = 75806385;
+    name = "Felix Hass";
   };
   Baughn = {
     email = "sveina@gmail.com";
@@ -6382,6 +6397,15 @@
     githubId = 1204734;
     name = "Emil Karlson";
   };
+  jlamur = {
+    email = "contact@juleslamur.fr";
+    github = "jlamur";
+    githubId = 7054317;
+    name = "Jules Lamur";
+    keys = [{
+      fingerprint = "B768 6CD7 451A 650D 9C54  4204 6710 CF0C 1CBD 7762";
+    }];
+  };
   jlesquembre = {
     email = "jl@lafuente.me";
     github = "jlesquembre";
@@ -6506,6 +6530,12 @@
     github = "JosephSalisbury";
     githubId = 297653;
     name = "Joe Salisbury";
+  };
+  john-shaffer = {
+    email = "jdsha@proton.me";
+    github = "john-shaffer";
+    githubId = 53870456;
+    name = "John Shaffer";
   };
   johanot = {
     email = "write@ownrisk.dk";
@@ -7315,6 +7345,12 @@
     githubId = 2037002;
     name = "Konstantinos";
   };
+  kouyk = {
+    email = "skykinetic@stevenkou.xyz";
+    github = "kouyk";
+    githubId = 1729497;
+    name = "Steven Kou";
+  };
   kovirobi = {
     email = "kovirobi@gmail.com";
     github = "KoviRobi";
@@ -7459,6 +7495,10 @@
     github = "L3afMe";
     githubId = 72546287;
     name = "L3af";
+  };
+  laalsaas = {
+    email = "laalsaas@systemli.org";
+    name = "laalsaas";
   };
   lach = {
     email = "iam@lach.pw";
@@ -11687,6 +11727,15 @@
     github = "rraval";
     githubId = 373566;
     name = "Ronuk Raval";
+  };
+  rrbutani = {
+    email = "rrbutani+nix@gmail.com";
+    github = "rrbutani";
+    githubId = 7833358;
+    keys = [{
+      fingerprint = "7DCA 5615 8AB2 621F 2F32  9FF4 1C7C E491 479F A273";
+    }];
+    name = "Rahul Butani";
   };
   rski = {
     name = "rski";

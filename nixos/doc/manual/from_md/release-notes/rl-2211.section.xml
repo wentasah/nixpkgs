@@ -13,6 +13,13 @@
     <itemizedlist>
       <listitem>
         <para>
+          GNOME has been upgraded to 43. Please take a look at their
+          <link xlink:href="https://release.gnome.org/43/">Release
+          Notes</link> for details.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           During cross-compilation, tests are now executed if the test
           suite can be executed by the build platform. This is the case
           when doing “native” cross-compilation where the build and host
@@ -490,6 +497,16 @@
       </listitem>
       <listitem>
         <para>
+          The <literal>p4</literal> package now only includes the
+          open-source Perforce Helix Core command-line client and APIs.
+          It no longer installs the unfree Helix Core Server binaries
+          <literal>p4d</literal>, <literal>p4broker</literal>, and
+          <literal>p4p</literal>. To install the Helix Core Server
+          binaries, use the <literal>p4d</literal> package instead.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           The <literal>coq</literal> package and versioned variants
           starting at <literal>coq_8_14</literal> no longer include
           CoqIDE, which is now available through
@@ -589,6 +606,47 @@
       </listitem>
       <listitem>
         <para>
+          <literal>systemd-networkd</literal> v250 deprecated, renamed,
+          and moved some sections and settings which leads to the
+          following breaking module changes:
+        </para>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <para>
+              <literal>systemd.network.networks.&lt;name&gt;.dhcpV6PrefixDelegationConfig</literal>
+              is renamed to
+              <literal>systemd.network.networks.&lt;name&gt;.dhcpPrefixDelegationConfig</literal>.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal>systemd.network.networks.&lt;name&gt;.dhcpV6Config</literal>
+              no longer accepts the
+              <literal>ForceDHCPv6PDOtherInformation=</literal> setting.
+              Please use the <literal>WithoutRA=</literal> and
+              <literal>UseDelegatedPrefix=</literal> settings in your
+              <literal>systemd.network.networks.&lt;name&gt;.dhcpV6Config</literal>
+              and the <literal>DHCPv6Client=</literal> setting in your
+              <literal>systemd.network.networks.&lt;name&gt;.ipv6AcceptRAConfig</literal>
+              to control when the DHCPv6 client is started and how the
+              delegated prefixes are handled by the DHCPv6 client.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal>systemd.network.networks.&lt;name&gt;.networkConfig</literal>
+              no longer accepts the <literal>IPv6Token=</literal>
+              setting. Use the <literal>Token=</literal> setting in your
+              <literal>systemd.network.networks.&lt;name&gt;.ipv6AcceptRAConfig</literal>
+              instead. The
+              <literal>systemd.network.networks.&lt;name&gt;.ipv6Prefixes.*.ipv6PrefixConfig</literal>
+              now also accepts the <literal>Token=</literal> setting.
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
           The <literal>meta.mainProgram</literal> attribute of packages
           in <literal>wineWowPackages</literal> now defaults to
           <literal>&quot;wine64&quot;</literal>.
@@ -613,6 +671,12 @@
         <para>
           Neovim can not be configured with plug anymore (still works
           for vim).
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The default <literal>kops</literal> version is now 1.25.1 and
+          support for 1.22 and older has been dropped.
         </para>
       </listitem>
       <listitem>
@@ -710,6 +774,14 @@
           0.8.36 to 2.0.15. See the
           <link xlink:href="https://github.com/bbuchfink/diamond/releases">upstream
           release notes</link> for more details.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The <literal>guake</literal> package has been updated from
+          3.6.3 to 3.9.0, see the
+          <link xlink:href="https://github.com/Guake/guake/releases">changelog</link>
+          for more details.
         </para>
       </listitem>
       <listitem>
