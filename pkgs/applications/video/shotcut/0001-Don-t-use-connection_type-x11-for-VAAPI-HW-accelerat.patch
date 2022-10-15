@@ -1,0 +1,57 @@
+From 36adc7859d8e9f8eeeca14c9620b0218d4306438 Mon Sep 17 00:00:00 2001
+From: Michal Sojka <michal.sojka@cvut.cz>
+Date: Sat, 4 Sep 2021 11:18:16 +0200
+Subject: [PATCH] Don't use connection_type=x11 for VAAPI HW acceleration
+
+Without this, HW acceleration doesn't work on my Intel system.
+---
+ src/docks/encodedock.cpp | 3 +--
+ src/proxymanager.cpp     | 4 ++--
+ 2 files changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/src/docks/encodedock.cpp b/src/docks/encodedock.cpp
+index 18d21a8f..0f0f4255 100644
+--- a/src/docks/encodedock.cpp
++++ b/src/docks/encodedock.cpp
+@@ -791,7 +791,6 @@ Mlt::Properties* EncodeDock::collectProperties(int realtime, bool includeProfile
+                     setIfNotSet(p, "pix_fmt", "nv12");
+                 } else if (vcodec.endsWith("_vaapi")) {
+                     setIfNotSet(p, "vprofile", "main");
+-                    setIfNotSet(p, "connection_type", "x11");
+                 }
+             }
+             if (includeProfile || ui->widthSpinner->value() != MLT.profile().width()) {
+@@ -2052,7 +2051,7 @@ bool EncodeDock::detectHardwareEncoders()
+         QStringList args;
+         args << "-hide_banner" << "-f" << "lavfi" << "-i" << "color=s=640x360" << "-frames" << "1" << "-an";
+         if (codec.endsWith("_vaapi"))
+-            args << "-init_hw_device" << "vaapi=vaapi0:,connection_type=x11" << "-filter_hw_device" << "vaapi0" << "-vf" << "format=nv12,hwupload";
++            args << "-init_hw_device" << "vaapi=vaapi0:" << "-filter_hw_device" << "vaapi0" << "-vf" << "format=nv12,hwupload";
+         else if (codec == "hevc_qsv")
+             args << "-load_plugin" << "hevc_hw";
+         args << "-c:v" << codec << "-f" << "rawvideo" << "pipe:";
+diff --git a/src/proxymanager.cpp b/src/proxymanager.cpp
+index 0fcc2fc1..bc4f1c44 100644
+--- a/src/proxymanager.cpp
++++ b/src/proxymanager.cpp
+@@ -175,7 +175,7 @@ void ProxyManager::generateVideoProxy(Mlt::Producer& producer, bool fullRange, S
+             args << "-rc" << "1";
+             args << "-qp_i" << "32" << "-qp_p" << "32";
+         } else if (hwCodecs.contains("hevc_vaapi")) {
+-            args << "-init_hw_device" << "vaapi=vaapi0:,connection_type=x11" << "-filter_hw_device" << "vaapi0";
++            args << "-init_hw_device" << "vaapi=vaapi0:" << "-filter_hw_device" << "vaapi0";
+             args << "-codec:v" << "hevc_vaapi";
+             args << "-qp" << "37";
+         } else if (hwCodecs.contains("h264_nvenc")) {
+@@ -183,7 +183,7 @@ void ProxyManager::generateVideoProxy(Mlt::Producer& producer, bool fullRange, S
+             args << "-rc" << "constqp";
+             args << "-vglobal_quality" << "37";
+         } else if (hwCodecs.contains("h264_vaapi")) {
+-            args << "-init_hw_device" << "vaapi=vaapi0:,connection_type=x11" << "-filter_hw_device" << "vaapi0";
++            args << "-init_hw_device" << "vaapi=vaapi0:" << "-filter_hw_device" << "vaapi0";
+             args << "-codec:v" << "h264_vaapi";
+             args << "-qp" << "30";
+         } else if (hwCodecs.contains("hevc_videotoolbox")) {
+-- 
+2.32.0
+
