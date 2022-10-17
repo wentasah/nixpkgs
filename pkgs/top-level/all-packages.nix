@@ -1918,9 +1918,7 @@ with pkgs;
   };
   termite-unwrapped = callPackage ../applications/terminal-emulators/termite { };
 
-  termonad-with-packages = callPackage ../applications/terminal-emulators/termonad { };
-
-  termonad = termonad-with-packages;
+  termonad = callPackage ../applications/terminal-emulators/termonad { };
 
   tilda = callPackage ../applications/terminal-emulators/tilda {
     gtk = gtk3;
@@ -2457,6 +2455,8 @@ with pkgs;
   cpuid = callPackage ../os-specific/linux/cpuid { };
 
   msr = callPackage ../os-specific/linux/msr { };
+
+  ctre = callPackage ../development/libraries/ctre { };
 
   ctrtool = callPackage ../tools/archivers/ctrtool { };
 
@@ -3263,7 +3263,8 @@ with pkgs;
 
   cue2pops = callPackage ../tools/cd-dvd/cue2pops { };
 
-  cabal2nix-unwrapped = haskell.lib.compose.justStaticExecutables (haskell.lib.compose.generateOptparseApplicativeCompletion "cabal2nix" haskellPackages.cabal2nix);
+  cabal2nix-unwrapped = haskell.lib.compose.justStaticExecutables
+    (haskellPackages.generateOptparseApplicativeCompletions [ "cabal2nix" ] haskellPackages.cabal2nix);
 
   cabal2nix = symlinkJoin {
     inherit (cabal2nix-unwrapped) name meta;
@@ -4547,7 +4548,7 @@ with pkgs;
 
   nixel = callPackage ../tools/nix/nixel { };
 
-  nix-output-monitor = callPackage ../tools/nix/nix-output-monitor { };
+  nix-output-monitor = callPackage ../tools/nix/nix-output-monitor { haskellPackages = haskell.packages.ghc92; };
 
   nix-template = callPackage ../tools/package-management/nix-template {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -4755,6 +4756,8 @@ with pkgs;
   shipyard = callPackage ../tools/virtualization/shipyard { };
 
   shisho = callPackage ../tools/security/shisho { };
+
+  sigslot = callPackage ../development/libraries/sigslot { };
 
   siglo = callPackage ../applications/misc/siglo { };
 
@@ -6358,6 +6361,8 @@ with pkgs;
   extundelete = callPackage ../tools/filesystems/extundelete { };
 
   expect = callPackage ../tools/misc/expect { };
+
+  expected-lite = callPackage ../development/libraries/expected-lite { };
 
   exportarr = callPackage ../servers/monitoring/prometheus/exportarr { };
 
@@ -9440,7 +9445,8 @@ with pkgs;
 
   ngrep = callPackage ../tools/networking/ngrep { };
 
-  neuron-notes = haskell.lib.compose.justStaticExecutables (haskell.lib.compose.generateOptparseApplicativeCompletion "neuron" haskellPackages.neuron);
+  neuron-notes = haskell.lib.compose.justStaticExecutables
+    (haskellPackages.generateOptparseApplicativeCompletions [ "neuron" ] haskellPackages.neuron);
 
   ngrok = callPackage ../tools/networking/ngrok { };
 
@@ -18439,7 +18445,6 @@ with pkgs;
 
   ffmpeg-full = callPackage ../development/libraries/ffmpeg-full {
     svt-av1 = if stdenv.isAarch64 then null else svt-av1;
-    rav1e = null; # We already have SVT-AV1 for faster encoding
     rtmpdump = null; # Prefer the built-in RTMP implementation
     # The following need to be fixed on Darwin
     libjack2 = if stdenv.isDarwin then null else libjack2;
@@ -18958,6 +18963,8 @@ with pkgs;
   gsl = callPackage ../development/libraries/gsl { };
 
   gsl_1 = callPackage ../development/libraries/gsl/gsl-1_16.nix { };
+
+  gsl-lite = callPackage ../development/libraries/gsl-lite { };
 
   gsm = callPackage ../development/libraries/gsm {};
 
@@ -29212,6 +29219,8 @@ with pkgs;
 
   imgp = python3Packages.callPackage ../applications/graphics/imgp { };
 
+  imhex = callPackage ../applications/editors/imhex { };
+
   inkcut = libsForQt5.callPackage ../applications/misc/inkcut { };
 
   inklingreader = callPackage ../tools/misc/inklingreader { };
@@ -29458,7 +29467,7 @@ with pkgs;
 
   kubeval-schema = callPackage ../applications/networking/cluster/kubeval/schema.nix { };
 
-  kubernetes = callPackage ../applications/networking/cluster/kubernetes { };
+  kubernetes = callPackage ../applications/networking/cluster/kubernetes { buildGoModule = buildGo119Module; };
   kubectl = callPackage ../applications/networking/cluster/kubernetes/kubectl.nix { };
   kubectl-convert = kubectl.convert;
 
@@ -34300,6 +34309,8 @@ with pkgs;
   solarus-quest-editor = libsForQt5.callPackage ../development/tools/solarus-quest-editor { };
 
   sollya = callPackage ../development/interpreters/sollya { };
+
+  solicurses = callPackage ../games/solicurses { };
 
   # You still can override by passing more arguments.
   space-orbit = callPackage ../games/space-orbit { };
