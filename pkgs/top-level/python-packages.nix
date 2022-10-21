@@ -6152,6 +6152,8 @@ in {
 
   nbxmpp = callPackage ../development/python-modules/nbxmpp { };
 
+  nc-dnsapi = callPackage ../development/python-modules/nc-dnsapi { };
+
   ncclient = callPackage ../development/python-modules/ncclient { };
 
   nclib = callPackage ../development/python-modules/nclib { };
@@ -7133,6 +7135,8 @@ in {
   python-ecobee-api = callPackage ../development/python-modules/python-ecobee-api { };
 
   python-flirt = callPackage ../development/python-modules/python-flirt { };
+
+  python-fullykiosk = callPackage ../development/python-modules/python-fullykiosk { };
 
   python-glanceclient = callPackage ../development/python-modules/python-glanceclient { };
 
