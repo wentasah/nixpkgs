@@ -197,6 +197,10 @@ with pkgs;
 
   appindicator-sharp = callPackage ../development/libraries/appindicator-sharp { };
 
+  bindle = callPackage ../servers/bindle {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
+
   canonicalize-jar = callPackage ../build-support/java/canonicalize-jar.nix { };
   canonicalize-jars-hook = makeSetupHook {
     name = "canonicalize-jars-hook";
@@ -397,6 +401,10 @@ with pkgs;
   };
 
   conftest = callPackage ../development/tools/conftest { };
+
+  coldsnap = callPackage ../tools/admin/coldsnap {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
 
   colemak-dh = callPackage ../data/misc/colemak-dh { };
 
@@ -7152,9 +7160,7 @@ with pkgs;
 
   git-latexdiff = callPackage ../tools/typesetting/git-latexdiff { };
 
-  gitea = callPackage ../applications/version-management/gitea {
-    buildGoPackage = buildGo118Package; # nixosTests.gitea fails with 1.19
-  };
+  gitea = callPackage ../applications/version-management/gitea { };
 
   gokart = callPackage ../development/tools/gokart { };
 
@@ -7564,6 +7570,8 @@ with pkgs;
   };
 
   pgf_graphics = callPackage ../tools/graphics/pgf { };
+
+  pgbackrest = callPackage ../tools/backup/pgbackrest { };
 
   pgformatter = callPackage ../development/tools/pgformatter { };
 
@@ -9481,7 +9489,7 @@ with pkgs;
   grocy = callPackage ../servers/grocy { };
 
   inherit (callPackage ../servers/nextcloud {})
-    nextcloud22 nextcloud23 nextcloud24;
+    nextcloud23 nextcloud24 nextcloud25;
 
   nextcloud-client = libsForQt5.callPackage ../applications/networking/nextcloud-client { };
 
@@ -10012,6 +10020,8 @@ with pkgs;
   oxidized = callPackage ../tools/admin/oxidized { };
 
   oxipng = callPackage ../tools/graphics/oxipng { };
+
+  payload_dumper = callPackage ../tools/archivers/payload_dumper { };
 
   p2pvc = callPackage ../applications/video/p2pvc {};
 
@@ -11028,7 +11038,6 @@ with pkgs;
   s3cmd = python3Packages.callPackage ../tools/networking/s3cmd { };
 
   s3rs = callPackage ../tools/networking/s3rs {
-    openssl = openssl_1_1;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
@@ -27935,6 +27944,7 @@ with pkgs;
   };
 
   # This alias should live in aliases.nix but that would cause Hydra not to evaluate/build the packages.
+  # If you turn this into "real" alias again, please add it to pkgs/top-level/packages-config.nix again too
   emacsPackages = emacs.pkgs;
 
   inherit (gnome) empathy;
@@ -32596,7 +32606,9 @@ with pkgs;
 
   yeahwm = callPackage ../applications/window-managers/yeahwm { };
 
-  vym = qt5.callPackage ../applications/misc/vym { };
+  vym = callPackage ../applications/misc/vym {
+    inherit (libsForQt5) qmake qtscript qtsvg qtbase wrapQtAppsHook;
+  };
 
   wad = callPackage ../tools/security/wad { };
 
