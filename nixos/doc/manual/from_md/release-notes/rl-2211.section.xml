@@ -775,6 +775,24 @@
       </listitem>
       <listitem>
         <para>
+          <literal>mysql57</literal> has been removed. Please update to
+          <literal>mysql80</literal> or <literal>mariadb</literal>. See
+          the
+          <link xlink:href="https://mariadb.com/kb/en/upgrading-from-mysql-to-mariadb/">upgrade
+          guide</link> for more information.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Consequently, <literal>cqrlog</literal> and
+          <literal>amorok</literal> now use <literal>mariadb</literal>
+          instead of <literal>mysql57</literal> for their embedded
+          databases. Running <literal>mysql_upgrade</literal> may be
+          neccesary.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <literal>k3s</literal> supports <literal>clusterInit</literal>
           option, and it is enabled by default, for servers.
         </para>
@@ -865,6 +883,15 @@
           config file’s path has also moved from
           <literal>~/.local/share/polymc/polymc.cfg</literal> to
           <literal>~/.local/share/PrismLauncher/prismlauncher.cfg</literal>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The <literal>bloat</literal> package has been updated from
+          unstable-2022-03-31 to unstable-2022-10-25, which brings a
+          breaking change. See
+          <link xlink:href="https://git.freesoftwareextremist.com/bloat/commit/?id=887ed241d64ba5db3fd3d87194fb5595e5ad7d73">this
+          upstream commit message</link> for details.
         </para>
       </listitem>
       <listitem>
