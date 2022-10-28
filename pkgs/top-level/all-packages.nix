@@ -450,9 +450,7 @@ with pkgs;
 
   databricks-sql-cli = python3Packages.callPackage ../applications/misc/databricks-sql-cli { };
 
-  datalad = callPackage ../applications/version-management/datalad {
-    python3 = python39;  # `boto` currently broken with Python3.10
-  };
+  datalad = callPackage ../applications/version-management/datalad { };
 
   dhallDirectoryToNix = callPackage ../build-support/dhall/directory-to-nix.nix { };
 
@@ -7494,6 +7492,8 @@ with pkgs;
     openssl = openssl_1_1;
   };
 
+  sonic-server = callPackage ../servers/search/sonic-server { };
+
   gsmartcontrol = callPackage ../tools/misc/gsmartcontrol { };
 
   gsmlib = callPackage ../development/libraries/gsmlib
@@ -8274,6 +8274,8 @@ with pkgs;
     # pinned due to build failure or vendoring problems. When unpinning double check with: nix-build -A $name.go-modules --rebuild
     buildGoModule = buildGo117Module;
   };
+
+  kluctl = callPackage ../applications/networking/cluster/kluctl { };
 
   kibana7 = callPackage ../development/tools/misc/kibana/7.x.nix { };
   kibana = kibana7;
@@ -12076,7 +12078,7 @@ with pkgs;
   tracebox = callPackage ../tools/networking/tracebox { stdenv = gcc10StdenvCompat; };
 
   tracee = callPackage ../tools/security/tracee {
-    buildGoModule = buildGo118Module; # tests fail with 1.19
+    libbpf = libbpf_1; # keep inline with their submodule
   };
 
   tracefilegen = callPackage ../development/tools/analysis/garcosim/tracefilegen { };
@@ -16085,11 +16087,14 @@ with pkgs;
   };
   antlr3 = antlr3_5;
 
-  antlr4_8 = callPackage ../development/tools/parsing/antlr/4.8.nix {
+  inherit (callPackages ../development/tools/parsing/antlr/4.nix {
     jre = jre8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
-  };
+  }) antlr4_8;
 
-  antlr4_9 = callPackage ../development/tools/parsing/antlr/4.9.nix { };
+  inherit (callPackages ../development/tools/parsing/antlr/4.nix { })
+    antlr4_9
+    antlr4_10
+    antlr4_11;
 
   antlr4 = antlr4_8;
 
@@ -17294,9 +17299,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  pahole = callPackage ../development/tools/misc/pahole {
-    libbpf = libbpf_1;
-  };
+  pahole = callPackage ../development/tools/misc/pahole {};
 
   panopticon = callPackage ../development/tools/analysis/panopticon {};
 
@@ -20032,6 +20035,7 @@ with pkgs;
   libgxps = callPackage ../development/libraries/libgxps { };
 
   libiio = callPackage ../development/libraries/libiio {
+    inherit (darwin.apple_sdk.frameworks) CFNetwork CoreServices;
     python = python3;
   };
 
@@ -22751,7 +22755,7 @@ with pkgs;
   wxGTK30 = callPackage ../development/libraries/wxwidgets/wxGTK30.nix {
     withGtk2 = true;
     inherit (darwin.stubs) setfile;
-    inherit (darwin.apple_sdk.frameworks) AGL AVFoundation Carbon Cocoa Kernel QTKit;
+    inherit (darwin.apple_sdk.frameworks) AGL Carbon Cocoa Kernel QTKit AVFoundation AVKit WebKit;
   };
   wxGTK30-gtk2 = wxGTK30.override { withGtk2 = true; };
   wxGTK30-gtk3 = wxGTK30.override { withGtk2 = false; };
@@ -28267,7 +28271,7 @@ with pkgs;
       python = python3;
     };
   };
-  gnuradio3_9Packages = lib.recurseIntoAttrs gnuradio.pkgs;
+  gnuradio3_9Packages = lib.recurseIntoAttrs gnuradio3_9.pkgs;
   # A build without gui components and other utilites not needed for end user
   # libraries
   gnuradio3_9Minimal = gnuradio.override {
@@ -34314,7 +34318,9 @@ with pkgs;
 
   planetary_annihilation = callPackage ../games/planetaryannihilation { };
 
-  prismlauncher = libsForQt5.callPackage ../games/prismlauncher { };
+  prismlauncher-qt5 = libsForQt5.callPackage ../games/prismlauncher { };
+
+  prismlauncher = qt6Packages.callPackage ../games/prismlauncher { };
 
   pong3d = callPackage ../games/pong3d { };
 
@@ -37728,6 +37734,8 @@ with pkgs;
   gortr = callPackage ../servers/gortr {};
 
   stayrtr = callPackage ../servers/stayrtr {};
+
+  sunshine = callPackage ../servers/sunshine {};
 
   sentencepiece = callPackage ../development/libraries/sentencepiece {};
 
