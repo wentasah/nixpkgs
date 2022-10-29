@@ -8463,6 +8463,8 @@ with pkgs;
 
   lottieconverter = callPackage ../tools/misc/lottieconverter { };
 
+  loudgain = callPackage ../tools/audio/loudgain/default.nix { };
+
   lpcnetfreedv = callPackage ../development/libraries/lpcnetfreedv { };
 
   lsd = callPackage ../tools/misc/lsd { };
@@ -10473,6 +10475,8 @@ with pkgs;
 
   proot = callPackage ../tools/system/proot { };
 
+  protoscope = callPackage ../development/tools/protoscope { };
+
   prototypejs = callPackage ../development/libraries/prototypejs { };
 
   inherit (callPackages ../tools/security/proxmark3 { gcc-arm-embedded = gcc-arm-embedded-8; })
@@ -12064,6 +12068,8 @@ with pkgs;
   trunk = callPackage ../development/tools/trunk {
     inherit (darwin.apple_sdk.frameworks) CoreServices Security;
   };
+
+  trunk-io = callPackage ../development/tools/trunk-io { };
 
   tthsum = callPackage ../applications/misc/tthsum { };
 
@@ -18364,7 +18370,7 @@ with pkgs;
 
   cxxopts = callPackage ../development/libraries/cxxopts { };
 
-  cxxtest = python2Packages.callPackage ../development/libraries/cxxtest { };
+  cxxtest = python3Packages.callPackage ../development/libraries/cxxtest { };
 
   cypress = callPackage ../development/web/cypress { };
 
@@ -18835,9 +18841,7 @@ with pkgs;
     stdenv = gcc10Stdenv;
   };
 
-  graphinder = callPackage ../tools/security/graphinder {
-    python3 = python310;
-  };
+  graphinder = callPackage ../tools/security/graphinder { };
 
   icon-lang = callPackage ../development/interpreters/icon-lang { };
 
@@ -21050,6 +21054,7 @@ with pkgs;
     boost = boost175;
   };
 
+  manticoresearch = callPackage ../servers/search/manticoresearch { };
 
   marisa = callPackage ../development/libraries/marisa {};
 
@@ -22741,7 +22746,9 @@ with pkgs;
     wt3
     wt4;
 
-  wxformbuilder = callPackage ../development/tools/wxformbuilder { };
+  wxformbuilder = callPackage ../development/tools/wxformbuilder {
+    inherit (darwin.apple_sdk.frameworks) Cocoa;
+  };
 
   wxGTK = wxGTK28;
 
@@ -24325,10 +24332,7 @@ with pkgs;
 
   spring-boot-cli = callPackage ../development/tools/spring-boot-cli { };
 
-  squid = callPackage ../servers/squid {
-    # https://bugs.squid-cache.org/show_bug.cgi?id=5133
-    openssl = openssl_1_1;
-  };
+  squid = callPackage ../servers/squid { };
 
   duckling-proxy = callPackage ../servers/duckling-proxy { };
 
@@ -25569,6 +25573,8 @@ with pkgs;
 
   shadow = callPackage ../os-specific/linux/shadow { };
 
+  shortcat = callPackage ../os-specific/darwin/shortcat { };
+
   sinit = callPackage ../os-specific/linux/sinit {
     rcinit = "/etc/rc.d/rc.init";
     rcshutdown = "/etc/rc.d/rc.shutdown";
@@ -25861,6 +25867,8 @@ with pkgs;
   alegreya = callPackage ../data/fonts/alegreya { };
 
   alegreya-sans = callPackage ../data/fonts/alegreya-sans { };
+
+  alkalami = callPackage ../data/fonts/alkalami { };
 
   amber-theme = callPackage ../data/themes/amber { };
 
@@ -26180,6 +26188,10 @@ with pkgs;
   gyre-fonts = callPackage ../data/fonts/gyre {};
 
   hack-font = callPackage ../data/fonts/hack { };
+
+  hackgen-font = callPackage ../data/fonts/hackgen { };
+
+  hackgen-nf-font = callPackage ../data/fonts/hackgen/nerdfont.nix { };
 
   helvetica-neue-lt-std = callPackage ../data/fonts/helvetica-neue-lt-std { };
 
@@ -26614,6 +26626,8 @@ with pkgs;
   rose-pine-gtk-theme = callPackage ../data/themes/rose-pine-gtk { };
 
   route159 = callPackage ../data/fonts/route159 { };
+
+  ruwudu = callPackage ../data/fonts/ruwudu { };
 
   sampradaya = callPackage ../data/fonts/sampradaya { };
 
