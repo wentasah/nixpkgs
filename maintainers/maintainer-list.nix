@@ -1481,6 +1481,12 @@
     githubId = 35324;
     name = "Badi' Abdul-Wahid";
   };
+  baduhai = {
+    email = "baduhai@pm.me";
+    github = "baduhai";
+    githubId = 31864305;
+    name = "William";
+  };
   baitinq = {
     email = "manuelpalenzuelamerino@gmail.com";
     name = "Baitinq";
@@ -2465,6 +2471,12 @@
       fingerprint = "4EBB 30F1 E89A 541A A7F2  52BE 830A 9728 6309 66F4";
     }];
   };
+  christophcharles = {
+    email = "23055925+christophcharles@users.noreply.github.com";
+    github = "christophcharles";
+    githubId = 23055925;
+    name = "Christoph Charles";
+  };
   christopherpoole = {
     email = "mail@christopherpoole.net";
     github = "christopherpoole";
@@ -2660,6 +2672,16 @@
     github = "codyopel";
     githubId = 5561189;
     name = "Cody Opel";
+  };
+  cofob = {
+    name = "Egor Ternovoy";
+    email = "cofob@riseup.net";
+    matrix = "@cofob:matrix.org";
+    github = "cofob";
+    githubId = 49928332;
+    keys = [{
+      fingerprint = "5F3D 9D3D ECE0 8651 DE14  D29F ACAD 4265 E193 794D";
+    }];
   };
   Cogitri = {
     email = "oss@cogitri.dev";
