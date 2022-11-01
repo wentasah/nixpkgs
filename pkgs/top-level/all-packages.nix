@@ -1583,7 +1583,7 @@ with pkgs;
 
   maiko = callPackage ../applications/emulators/maiko { };
 
-  mame = libsForQt514.callPackage ../applications/emulators/mame {
+  mame = libsForQt5.callPackage ../applications/emulators/mame {
     inherit (darwin.apple_sdk.frameworks) CoreAudioKit ForceFeedback;
   };
 
@@ -4018,6 +4018,8 @@ with pkgs;
 
   frawk = callPackage ../tools/text/frawk { };
 
+  frei = callPackage ../tools/misc/frei { };
+
   fselect = callPackage ../tools/misc/fselect { };
 
   fsmon = callPackage ../tools/misc/fsmon { };
@@ -4482,6 +4484,9 @@ with pkgs;
   mandown = callPackage ../tools/misc/mandown { };
 
   mapcidr = callPackage ../tools/misc/mapcidr { };
+
+  maple-mono = (callPackage ../data/fonts/maple-font { }).Mono-v5;
+  maple-mono-NF = (callPackage ../data/fonts/maple-font { }).Mono-NF-v5;
 
   marl = callPackage ../development/libraries/marl {};
 
@@ -5212,9 +5217,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Carbon IOKit;
   };
 
-  cemu = qt5.callPackage ../applications/science/math/cemu {
-    stdenv = gcc9Stdenv;
-  };
+  cemu-ti = qt5.callPackage ../applications/science/math/cemu-ti { };
 
   cider = callPackage ../applications/audio/cider { };
 
@@ -8109,6 +8112,8 @@ with pkgs;
 
   jc = with python3Packages; toPythonApplication jc;
 
+  jd-cli = callPackage ../tools/security/jd-cli { };
+
   jd-diff-patch = callPackage ../development/tools/jd-diff-patch { };
 
   jd-gui = callPackage ../tools/security/jd-gui { };
@@ -9306,6 +9311,8 @@ with pkgs;
   moneyplex = callPackage ../applications/office/moneyplex { };
 
   monit = callPackage ../tools/system/monit { };
+
+  monocraft = callPackage ../data/fonts/monocraft { };
 
   monolith = callPackage ../tools/backup/monolith {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -12577,6 +12584,8 @@ with pkgs;
 
   xplr = callPackage ../applications/misc/xplr {};
 
+  xray = callPackage ../tools/networking/xray { };
+
   testdisk = libsForQt5.callPackage ../tools/system/testdisk { };
 
   testdisk-qt = testdisk.override { enableQt = true; };
@@ -13628,6 +13637,11 @@ with pkgs;
   fasm-bin = callPackage ../development/compilers/fasm/bin.nix { };
 
   fasmg = callPackage ../development/compilers/fasmg { };
+
+  fbc = if stdenv.hostPlatform.isDarwin then
+    callPackage ../development/compilers/fbc/mac-bin.nix { }
+  else
+    callPackage ../development/compilers/fbc { };
 
   filecheck = with python3Packages; toPythonApplication filecheck;
 
@@ -14976,6 +14990,9 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
   cargo-insta = callPackage ../development/tools/rust/cargo-insta { };
+  cargo-lambda = callPackage ../development/tools/rust/cargo-lambda {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
   cargo-limit = callPackage ../development/tools/rust/cargo-limit { };
   cargo-make = callPackage ../development/tools/rust/cargo-make {
     inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
@@ -15227,6 +15244,8 @@ with pkgs;
   };
 
   tinyscheme = callPackage ../development/interpreters/tinyscheme { };
+
+  inherit (nodePackages) typescript;
 
   bupc = callPackage ../development/compilers/bupc { };
 
@@ -16420,6 +16439,8 @@ with pkgs;
   libbpf_0 = callPackage ../os-specific/linux/libbpf/0.x.nix { };
   # until more issues are fixed default to libbpf 0.x
   libbpf = libbpf_0;
+
+  bundlewrap = with python3.pkgs; toPythonApplication bundlewrap;
 
   bpftools = callPackage ../os-specific/linux/bpftools { };
 
@@ -21055,6 +21076,8 @@ with pkgs;
 
   luabind_luajit = luabind.override { lua = luajit; };
 
+  luabridge = callPackage ../development/libraries/luabridge { };
+
   luksmeta = callPackage ../development/libraries/luksmeta {
     asciidoc = asciidoc-full;
   };
@@ -21610,7 +21633,7 @@ with pkgs;
   pe-parse = callPackage ../development/libraries/pe-parse { };
 
   inherit (callPackage ../development/libraries/physfs {
-    inherit (darwin.apple_sdk.frameworks) Foundation Carbon;
+    inherit (darwin.apple_sdk.frameworks) Foundation;
   })
     physfs_2
     physfs;
@@ -23688,6 +23711,8 @@ with pkgs;
   mattermost-desktop = callPackage ../applications/networking/instant-messengers/mattermost-desktop { };
 
   memcached = callPackage ../servers/memcached {};
+
+  merecat = callPackage ../servers/http/merecat { };
 
   meteor = callPackage ../servers/meteor { };
 
@@ -32005,10 +32030,8 @@ with pkgs;
     # customConfig = builtins.readFile ./tabbed.config.h;
   };
 
-  # Use GHC 9.0 when this asserts starts to fire
-  taffybar = assert haskellPackages.taffybar.version == "3.3.0";
-  callPackage ../applications/window-managers/taffybar {
-    inherit (haskell.packages.ghc810) ghcWithPackages taffybar;
+  taffybar = callPackage ../applications/window-managers/taffybar {
+    inherit (haskellPackages) ghcWithPackages taffybar;
   };
 
   tagainijisho = libsForQt5.callPackage ../applications/office/tagainijisho {};
@@ -33518,7 +33541,8 @@ with pkgs;
   };
 
   zcash = callPackage ../applications/blockchains/zcash {
-    stdenv = if stdenv.isDarwin then stdenv else llvmPackages_13.stdenv;
+    inherit (darwin.apple_sdk.frameworks) Security;
+    stdenv = llvmPackages_14.stdenv;
   };
 
   zecwallet-lite = callPackage ../applications/blockchains/zecwallet-lite { };
@@ -34413,6 +34437,8 @@ with pkgs;
   racer = callPackage ../games/racer { };
 
   randtype = callPackage ../games/randtype { };
+
+  raylib-games = callPackage ../games/raylib-games { };
 
   redeclipse = callPackage ../games/redeclipse { };
 
@@ -35698,6 +35724,8 @@ with pkgs;
   minisat = callPackage ../applications/science/logic/minisat {};
 
   monosat = callPackage ../applications/science/logic/monosat {};
+
+  nusmv = callPackage ../applications/science/logic/nusmv { };
 
   nuXmv = callPackage ../applications/science/logic/nuXmv {};
 
