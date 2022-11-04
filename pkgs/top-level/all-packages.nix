@@ -1431,6 +1431,8 @@ with pkgs;
 
   ttchat = callPackage ../tools/misc/ttchat { };
 
+  unflac = callPackage ../tools/audio/unflac { };
+
   veikk-linux-driver-gui = libsForQt5.callPackage ../tools/misc/veikk-linux-driver-gui { };
 
   ventoy-bin = callPackage ../tools/cd-dvd/ventoy-bin {
@@ -13361,13 +13363,6 @@ with pkgs;
   adoptopenjdk-bin-17-packages-linux = import ../development/compilers/adoptopenjdk-bin/jdk17-linux.nix { inherit stdenv lib; };
   adoptopenjdk-bin-17-packages-darwin = import ../development/compilers/adoptopenjdk-bin/jdk17-darwin.nix { inherit lib; };
 
-  adoptopenjdk-hotspot-bin-17 = if stdenv.isLinux
-    then callPackage adoptopenjdk-bin-17-packages-linux.jdk-hotspot {}
-    else callPackage adoptopenjdk-bin-17-packages-darwin.jdk-hotspot {};
-  adoptopenjdk-jre-hotspot-bin-17 = if stdenv.isLinux
-    then callPackage adoptopenjdk-bin-17-packages-linux.jre-hotspot {}
-    else callPackage adoptopenjdk-bin-17-packages-darwin.jre-hotspot {};
-
   adoptopenjdk-hotspot-bin-16 = javaPackages.compiler.adoptopenjdk-16.jdk-hotspot;
   adoptopenjdk-jre-hotspot-bin-16 = javaPackages.compiler.adoptopenjdk-16.jre-hotspot;
   adoptopenjdk-openj9-bin-16 = javaPackages.compiler.adoptopenjdk-16.jdk-openj9;
@@ -23558,9 +23553,7 @@ with pkgs;
   grafana = callPackage ../servers/monitoring/grafana { };
   grafanaPlugins = callPackages ../servers/monitoring/grafana/plugins { };
 
-  grafana-agent = callPackage ../servers/monitoring/grafana-agent {
-    buildGoModule = buildGo118Module; # tests fail with 1.19
-  };
+  grafana-agent = callPackage ../servers/monitoring/grafana-agent {};
 
   grafana-loki = callPackage ../servers/monitoring/loki { };
   promtail = callPackage ../servers/monitoring/loki/promtail.nix { };
@@ -24857,6 +24850,8 @@ with pkgs;
   facetimehd-calibration = callPackage ../os-specific/linux/firmware/facetimehd-calibration { };
 
   facetimehd-firmware = callPackage ../os-specific/linux/firmware/facetimehd-firmware { };
+
+  fan2go = callPackage ../os-specific/linux/fan2go { };
 
   fatrace = callPackage ../os-specific/linux/fatrace { };
 
