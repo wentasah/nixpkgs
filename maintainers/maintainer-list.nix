@@ -281,6 +281,13 @@
     githubId = 124545;
     name = "Anthony Cowley";
   };
+  adamcstephens = {
+    email = "happy.plan4249@valkor.net";
+    matrix = "@adam:valkor.net";
+    github = "adamcstephens";
+    githubId = 2071575;
+    name = "Adam C. Stephens";
+  };
   adamlwgriffiths = {
     email = "adam.lw.griffiths@gmail.com";
     github = "adamlwgriffiths";
@@ -3477,6 +3484,12 @@
     github = "DIzFer";
     githubId = 8852888;
     name = "David Izquierdo";
+  };
+  djacu = {
+    email = "daniel.n.baker@gmail.com";
+    github = "djacu";
+    githubId = 7043297;
+    name = "Daniel Baker";
   };
   djanatyn = {
     email = "djanatyn@gmail.com";

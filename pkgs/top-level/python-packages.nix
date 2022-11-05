@@ -2287,6 +2287,8 @@ self: super: with self; {
 
   dependency-injector = callPackage ../development/python-modules/dependency-injector { };
 
+  deploykit = callPackage ../development/python-modules/deploykit { };
+
   deprecated = callPackage ../development/python-modules/deprecated { };
 
   deprecation = callPackage ../development/python-modules/deprecation { };
@@ -2908,6 +2910,8 @@ self: super: with self; {
   enaml = callPackage ../development/python-modules/enaml { };
 
   enamlx = callPackage ../development/python-modules/enamlx { };
+
+  energyflip-client = callPackage ../development/python-modules/energyflip-client { };
 
   energyflow = callPackage ../development/python-modules/energyflow { };
 
@@ -4367,6 +4371,8 @@ self: super: with self; {
 
   ibm-watson = callPackage ../development/python-modules/ibm-watson { };
 
+  ical = callPackage ../development/python-modules/ical { };
+
   icalendar = callPackage ../development/python-modules/icalendar { };
 
   icecream = callPackage ../development/python-modules/icecream { };
@@ -5052,6 +5058,8 @@ self: super: with self; {
   lazy-object-proxy = callPackage ../development/python-modules/lazy-object-proxy { };
 
   lc7001 = callPackage ../development/python-modules/lc7001 { };
+
+  lcov_cobertura = callPackage ../development/python-modules/lcov_cobertura { };
 
   ldap3 = callPackage ../development/python-modules/ldap3 { };
 
@@ -6965,6 +6973,8 @@ self: super: with self; {
 
   pykrakenapi = callPackage ../development/python-modules/pykrakenapi { };
 
+  pylddwrap = callPackage ../development/python-modules/pylddwrap { };
+
   pynndescent = callPackage ../development/python-modules/pynndescent { };
 
   pynobo = callPackage ../development/python-modules/pynobo { };
@@ -8570,6 +8580,8 @@ self: super: with self; {
 
   pysnooper = callPackage ../development/python-modules/pysnooper { };
 
+  pysnooz = callPackage ../development/python-modules/pysnooz { };
+
   pysnow = callPackage ../development/python-modules/pysnow { };
 
   pysocks = callPackage ../development/python-modules/pysocks { };
@@ -8742,6 +8754,8 @@ self: super: with self; {
   pytest-forked = callPackage ../development/python-modules/pytest-forked { };
 
   pytest-freezegun = callPackage ../development/python-modules/pytest-freezegun { };
+
+  pytest-golden = callPackage ../development/python-modules/pytest-golden { };
 
   pytest-helpers-namespace = callPackage ../development/python-modules/pytest-helpers-namespace { };
 
@@ -10954,6 +10968,8 @@ self: super: with self; {
 
   textual = callPackage ../development/python-modules/textual { };
 
+  testbook = callPackage ../development/python-modules/testbook { };
+
   testing-common-database = callPackage ../development/python-modules/testing-common-database { };
 
   testing-postgresql = callPackage ../development/python-modules/testing-postgresql { };
@@ -12147,6 +12163,8 @@ self: super: with self; {
   zadnegoale = callPackage ../development/python-modules/zadnegoale { };
 
   zake = callPackage ../development/python-modules/zake { };
+
+  zamg = callPackage ../development/python-modules/zamg { };
 
   zarr = callPackage ../development/python-modules/zarr { };
 
