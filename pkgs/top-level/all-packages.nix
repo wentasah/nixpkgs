@@ -4666,6 +4666,8 @@ with pkgs;
 
   nyx = callPackage ../tools/networking/nyx { };
 
+  oauth2ms = callPackage ../tools/networking/oauth2ms { };
+
   oci-cli = callPackage ../tools/admin/oci-cli { };
 
   ocrmypdf = with python3.pkgs; toPythonApplication ocrmypdf;
