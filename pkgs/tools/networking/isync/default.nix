@@ -12,6 +12,10 @@ stdenv.mkDerivation rec {
     sha256 = "1zq0wwvmqsl9y71546dr0aygzn9gjjfiw19hlcq87s929y4p6ckw";
   };
 
+  patches = [
+    ./0001-Increase-imap_vprintf-buffer-size.patch
+  ];
+
   nativeBuildInputs = [ pkg-config perl ];
   buildInputs = [ openssl db cyrus_sasl zlib ]
     ++ lib.optionals stdenv.isDarwin [ Security ];
