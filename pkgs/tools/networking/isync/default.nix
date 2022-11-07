@@ -13,6 +13,7 @@ stdenv.mkDerivation rec {
   };
 
   patches = [
+    # Fixes "Fatal: buffer too small" error
     ./0001-Increase-imap_vprintf-buffer-size.patch
   ];
 

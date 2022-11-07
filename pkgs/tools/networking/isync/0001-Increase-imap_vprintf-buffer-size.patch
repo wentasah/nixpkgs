@@ -3,7 +3,9 @@ From: Michal Sojka <michal.sojka@cvut.cz>
 Date: Mon, 7 Nov 2022 00:07:22 +0100
 Subject: [PATCH] Increase imap_vprintf buffer size
 
-This fixes "Fatal: buffer too small. Please report a bug." error.
+This fixes "Fatal: buffer too small. Please report a bug." error. See
+https://sourceforge.net/p/isync/mailman/isync-devel/thread/87fsevvebj.fsf%40steelpick.2x.cz/#msg37731590
+for related discussion.
 
 When using mbsync with XOAUTH2 authentication (needed for Office365
 mailboxes), the access token used for the LOGIN command may not fit
