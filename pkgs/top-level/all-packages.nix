@@ -4669,6 +4669,8 @@ with pkgs;
 
   nyx = callPackage ../tools/networking/nyx { };
 
+  oauth2ms = callPackage ../tools/networking/oauth2ms { };
+
   oci-cli = callPackage ../tools/admin/oci-cli { };
 
   ocrmypdf = with python3.pkgs; toPythonApplication ocrmypdf;
@@ -18515,6 +18517,8 @@ with pkgs;
     libkrb5 = if stdenv.isFreeBSD then libheimdal else libkrb5;
     openssl = openssl_1_1;
   };
+
+  cyrus-sasl-xoauth2 = callPackage ../development/libraries/cyrus-sasl-xoauth2 { };
 
   # Make bdb5 the default as it is the last release under the custom
   # bsd-like license
