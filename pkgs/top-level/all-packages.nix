@@ -5204,7 +5204,9 @@ with pkgs;
 
   cadaver = callPackage ../tools/networking/cadaver { };
 
-  davix = callPackage ../tools/networking/davix { };
+  davix = callPackage ../tools/networking/davix {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
 
   davix-copy = davix.override { enableThirdPartyCopy = true; };
 
@@ -12832,11 +12834,11 @@ with pkgs;
   valum = callPackage ../development/web/valum { };
 
   inherit (callPackages ../servers/varnish { })
-    varnish60 varnish71 varnish72;
+    varnish60 varnish72;
   inherit (callPackages ../servers/varnish/packages.nix { })
-    varnish60Packages varnish71Packages varnish72Packages;
+    varnish60Packages varnish72Packages;
 
-  varnishPackages = varnish71Packages;
+  varnishPackages = varnish72Packages;
   varnish = varnishPackages.varnish;
 
   hitch = callPackage ../servers/hitch { };
@@ -16625,6 +16627,8 @@ with pkgs;
 
   coan = callPackage ../development/tools/analysis/coan { };
 
+  coder = callPackage ../development/tools/coder { };
+
   compile-daemon = callPackage ../development/tools/compile-daemon { };
 
   complexity = callPackage ../development/tools/misc/complexity { };
@@ -16730,6 +16734,8 @@ with pkgs;
   dprint = callPackage ../development/tools/dprint {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
+
+  devbox = callPackage ../development/tools/devbox { };
 
   libcxx = llvmPackages.libcxx;
   libcxxabi = llvmPackages.libcxxabi;
@@ -21151,6 +21157,8 @@ with pkgs;
 
   liquidfun = callPackage ../development/libraries/liquidfun { };
 
+  litehtml = callPackage ../development/libraries/litehtml { };
+
   live555 = callPackage ../development/libraries/live555 { };
 
   log4cpp = callPackage ../development/libraries/log4cpp { };
@@ -22911,15 +22919,6 @@ with pkgs;
 
   wxformbuilder = callPackage ../development/tools/wxformbuilder {
     inherit (darwin.apple_sdk.frameworks) Cocoa;
-  };
-
-  wxGTK = wxGTK28;
-
-  wxGTK28 = callPackage ../development/libraries/wxwidgets/wxGTK28.nix { };
-
-  wxGTK29 = callPackage ../development/libraries/wxwidgets/wxGTK29.nix {
-    inherit (darwin.stubs) setfile;
-    inherit (darwin.apple_sdk.frameworks) AGL Carbon Cocoa Kernel QuickTime;
   };
 
   wxGTK30 = callPackage ../development/libraries/wxwidgets/wxGTK30.nix {
@@ -28009,6 +28008,8 @@ with pkgs;
 
   dwm-status = callPackage ../applications/window-managers/dwm/dwm-status.nix { };
 
+  emoji-picker = callPackage ../applications/misc/emoji-picker {};
+
   exploitdb = callPackage ../tools/security/exploitdb { };
 
   evilwm = callPackage ../applications/window-managers/evilwm {
@@ -29100,10 +29101,6 @@ with pkgs;
 
   hdhomerun-config-gui = callPackage ../applications/video/hdhomerun-config-gui { };
 
-  hdr-plus = callPackage ../applications/graphics/hdr-plus {
-    stdenv = clangStdenv;
-  };
-
   hedgedoc-cli = callPackage ../tools/admin/hedgedoc-cli { };
 
   heimer = libsForQt5.callPackage ../applications/misc/heimer { };
@@ -29551,6 +29548,8 @@ with pkgs;
   imgp = python3Packages.callPackage ../applications/graphics/imgp { };
 
   imhex = callPackage ../applications/editors/imhex { };
+
+  inframap = callPackage ../applications/networking/cluster/inframap {};
 
   inkcut = libsForQt5.callPackage ../applications/misc/inkcut { };
 
@@ -30017,6 +30016,8 @@ with pkgs;
   lightworks = callPackage ../applications/video/lightworks { };
 
   lingot = callPackage ../applications/audio/lingot { };
+
+  litebrowser = callPackage ../applications/networking/browsers/litebrowser { };
 
   littlegptracker = callPackage ../applications/audio/littlegptracker {
     inherit (darwin.apple_sdk.frameworks) Foundation;
@@ -30608,7 +30609,7 @@ with pkgs;
 
   ninjas2 = callPackage ../applications/audio/ninjas2 {};
 
-  nncp = callPackage ../tools/misc/nncp { };
+  nncp = darwin.apple_sdk_11_0.callPackage ../tools/misc/nncp { };
 
   notion = callPackage ../applications/window-managers/notion { };
 
@@ -32361,6 +32362,10 @@ with pkgs;
   topydo = callPackage ../applications/misc/topydo {};
 
   torrential = callPackage ../applications/networking/p2p/torrential { };
+
+  torrenttools = callPackage ../tools/misc/torrenttools {
+    fmt = fmt_8;
+  };
 
   tortoisehg = callPackage ../applications/version-management/tortoisehg { };
 
