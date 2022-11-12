@@ -983,6 +983,10 @@ with pkgs;
   octant-desktop = callPackage ../applications/networking/cluster/octant/desktop.nix { };
   starboard-octant-plugin = callPackage ../applications/networking/cluster/octant/plugins/starboard-octant-plugin.nix { };
 
+  inherit (
+    callPackages ../build-support/setup-hooks/patch-rc-path-hooks { }
+  ) patchRcPathBash patchRcPathCsh patchRcPathFish patchRcPathPosix;
+
   pathsFromGraph = ../build-support/kernel/paths-from-graph.pl;
 
   pruneLibtoolFiles = makeSetupHook { name = "prune-libtool-files"; }
@@ -1285,7 +1289,9 @@ with pkgs;
 
   asleap = callPackage ../tools/networking/asleap { };
 
-  butler = callPackage ../games/itch/butler.nix { };
+  butler = callPackage ../games/itch/butler.nix {
+    inherit (darwin.apple_sdk.frameworks) Cocoa;
+  };
 
   cf-vault = callPackage ../tools/admin/cf-vault { };
 
@@ -1596,6 +1602,8 @@ with pkgs;
   mame = libsForQt5.callPackage ../applications/emulators/mame {
     inherit (darwin.apple_sdk.frameworks) CoreAudioKit ForceFeedback;
   };
+
+  mame-tools = (lib.getOutput "tools" mame);
 
   mednafen = callPackage ../applications/emulators/mednafen {
     inherit (darwin) libiconv;
@@ -5391,10 +5399,6 @@ with pkgs;
 
   ethash = callPackage ../development/libraries/ethash { };
 
-  ethminer = callPackage ../tools/misc/ethminer { cudaSupport = config.cudaSupport or true; };
-  ethminer-cuda = ethminer.override { cudaSupport = true; };
-  ethminer-free = ethminer.override { cudaSupport = false; };
-
   cuetools = callPackage ../tools/cd-dvd/cuetools { };
 
   u3-tool = callPackage ../tools/filesystems/u3-tool { };
@@ -8793,6 +8797,14 @@ with pkgs;
   # Update this when adding the newest nodejs major version!
   nodejs_latest = nodejs-19_x;
   nodejs-slim_latest = nodejs-slim-19_x;
+
+  buildNpmPackage = callPackage ../build-support/node/build-npm-package { };
+
+  npmHooks = callPackage ../build-support/node/build-npm-package/hooks { };
+
+  inherit (callPackage ../build-support/node/fetch-npm-deps {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  }) fetchNpmDeps prefetch-npm-deps;
 
   nodePackages_latest = dontRecurseIntoAttrs nodejs_latest.pkgs;
 
@@ -12301,6 +12313,8 @@ with pkgs;
 
   udftools = callPackage ../tools/filesystems/udftools {};
 
+  udpreplay = callPackage ../tools/networking/udpreplay { };
+
   udpt = callPackage ../servers/udpt { };
 
   udptunnel = callPackage ../tools/networking/udptunnel { };
@@ -13630,7 +13644,9 @@ with pkgs;
 
   copper = callPackage ../development/compilers/copper {};
 
-  cotton = callPackage ../development/tools/cotton { };
+  cotton = callPackage ../development/tools/cotton {
+    inherit (darwin.apple_sdk.frameworks) CoreServices;
+  };
 
   inherit (callPackages ../development/compilers/crystal {
     llvmPackages = if stdenv.system == "aarch64-darwin" then llvmPackages_11 else llvmPackages_10;
@@ -15981,6 +15997,8 @@ with pkgs;
   spark = spark3;
 
   sparkleshare = callPackage ../applications/version-management/sparkleshare { };
+
+  spark2014 = callPackage ../development/libraries/ada/spark2014 { };
 
   spidermonkey_78 = callPackage ../development/interpreters/spidermonkey/78.nix {
     inherit (darwin) libobjc;
@@ -19550,8 +19568,11 @@ with pkgs;
   icu71 = callPackage ../development/libraries/icu/71.nix ({
     nativeBuildRoot = buildPackages.icu71.override { buildRootOnly = true; };
   });
+  icu72 = callPackage ../development/libraries/icu/72.nix ({
+    nativeBuildRoot = buildPackages.icu72.override { buildRootOnly = true; };
+  });
 
-  icu = icu71;
+  icu = icu72;
 
   id3lib = callPackage ../development/libraries/id3lib { };
 
@@ -20275,7 +20296,10 @@ with pkgs;
     inherit (darwin) libobjc;
   };
 
-  libftdi = callPackage ../development/libraries/libftdi { };
+  libftdi = callPackage ../development/libraries/libftdi {
+    inherit (darwin) libobjc;
+    inherit (darwin.apple_sdk.frameworks) IOKit Security;
+  };
 
   libftdi1 = callPackage ../development/libraries/libftdi/1.x.nix { };
 
@@ -20410,9 +20434,7 @@ with pkgs;
 
   libmysofa = callPackage ../development/libraries/audio/libmysofa { };
 
-  libmysqlconnectorcpp = callPackage ../development/libraries/libmysqlconnectorcpp {
-    openssl = openssl_1_1;
-  };
+  libmysqlconnectorcpp = callPackage ../development/libraries/libmysqlconnectorcpp {};
 
   libnatpmp = callPackage ../development/libraries/libnatpmp { };
 
@@ -25761,6 +25783,7 @@ with pkgs;
       enableMinimal = true;
       guiSupport = false;
     };
+    libbpf = libbpf_1;
   };
   systemdMinimal = systemd.override {
     pname = "systemd-minimal";
@@ -26938,7 +26961,9 @@ with pkgs;
 
   theano = callPackage ../data/fonts/theano { };
 
-  tela-circle-icon-theme = callPackage ../data/icons/tela-circle-icon-theme { };
+  tela-circle-icon-theme = callPackage ../data/icons/tela-circle-icon-theme {
+    inherit (gnome) adwaita-icon-theme;
+  };
 
   tela-icon-theme = callPackage ../data/icons/tela-icon-theme { };
 
@@ -27260,6 +27285,7 @@ with pkgs;
 
   aqemu = libsForQt5.callPackage ../applications/virtualization/aqemu { };
 
+  ardour_6 = callPackage ../applications/audio/ardour/6.nix { };
   ardour = callPackage ../applications/audio/ardour { };
 
   arelle = with python3Packages; toPythonApplication arelle;
@@ -33692,6 +33718,8 @@ with pkgs;
   confd = callPackage ../tools/system/confd { };
 
   conmon = callPackage ../applications/virtualization/conmon { };
+
+  conmon-rs = callPackage ../applications/virtualization/conmon-rs { };
 
   digikam = libsForQt5.callPackage ../applications/graphics/digikam {};
 
