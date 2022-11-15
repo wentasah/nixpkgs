@@ -560,6 +560,8 @@ with pkgs;
 
   riot-redis = callPackage ../development/tools/riot-redis { };
 
+  r3ctl = qt5.callPackage ../tools/misc/r3ctl { };
+
   ptouch-print = callPackage ../misc/ptouch-print { };
 
   demoit = callPackage ../servers/demoit { };
@@ -2128,7 +2130,7 @@ with pkgs;
 
   apio = python3Packages.callPackage ../development/embedded/fpga/apio { };
 
-  apitrace = libsForQt514.callPackage ../applications/graphics/apitrace {};
+  apitrace = libsForQt5.callPackage ../applications/graphics/apitrace {};
 
   argagg = callPackage ../development/libraries/argagg { };
 
@@ -12122,6 +12124,8 @@ with pkgs;
 
   trackma-qt = trackma.override { withQT = true; };
 
+  tran = callPackage ../tools/networking/tran { };
+
   tpmmanager = libsForQt5.callPackage ../applications/misc/tpmmanager { };
 
   tpm-quote-tools = callPackage ../tools/security/tpm-quote-tools { };
@@ -13249,6 +13253,8 @@ with pkgs;
   zstd = callPackage ../tools/compression/zstd {
     cmake = buildPackages.cmakeMinimal;
   };
+
+  zsv = callPackage ../development/tools/zsv { };
 
   zsync = callPackage ../tools/compression/zsync { };
 
@@ -14634,7 +14640,7 @@ with pkgs;
     # assumption is that or any later version is good.
     choose = platform:
       /**/ if platform.isDarwin then 11
-      else if platform.isFreeBSD then 7
+      else if platform.isFreeBSD then 12
       else if platform.isAndroid then 12
       else if platform.system == "armv6l-linux" then 7  # This fixes armv6 cross-compilation
       else if platform.isLinux then 11
@@ -18269,7 +18275,11 @@ with pkgs;
     else callPackage ../os-specific/linux/bionic-prebuilt { };
 
 
-  bobcat = callPackage ../development/libraries/bobcat { };
+  bobcat = callPackage ../development/libraries/bobcat
+    (lib.optionalAttrs (with stdenv.hostPlatform; isAarch64 && isLinux) {
+      # C++20 is required, aarch64-linux has gcc 9 by default
+      stdenv = gcc10Stdenv;
+    });
 
   boehmgc = callPackage ../development/libraries/boehm-gc { };
 
@@ -19125,6 +19135,7 @@ with pkgs;
       if stdenv.targetPlatform.useiOSPrebuilt
       then targetPackages.darwin.iosSdkPkgs.libraries or darwin.iosSdkPkgs.libraries
       else targetPackages.darwin.LibsystemCross or (throw "don't yet have a `targetPackages.darwin.LibsystemCross for ${stdenv.targetPlatform.config}`")
+    else if name == "fblibc" then targetPackages.freebsdCross.libc or freebsdCross.libc
     else if name == "nblibc" then targetPackages.netbsdCross.libc or netbsdCross.libc
     else if name == "wasilibc" then targetPackages.wasilibc or wasilibc
     else if name == "relibc" then targetPackages.relibc or relibc
@@ -28175,7 +28186,7 @@ with pkgs;
 
   endeavour = callPackage ../applications/office/endeavour { };
 
-  enhanced-ctorrent = callPackage ../applications/networking/enhanced-ctorrent { };
+  enhanced-ctorrent = callPackage ../applications/networking/p2p/enhanced-ctorrent { };
 
   entangle = callPackage ../applications/video/entangle {
     inherit (gst_all_1) gstreamer gst-plugins-base;
@@ -29289,6 +29300,8 @@ with pkgs;
 
   meerk40t = callPackage ../applications/misc/meerk40t { };
 
+  meerk40t-camera = callPackage ../applications/misc/meerk40t/camera.nix { };
+
   musikcube = callPackage ../applications/audio/musikcube {
     inherit (darwin.apple_sdk.frameworks) Cocoa SystemConfiguration;
   };
@@ -29497,8 +29510,6 @@ with pkgs;
   ii = callPackage ../applications/networking/irc/ii {
     stdenv = gccStdenv;
   };
-
-  ike = callPackage ../applications/networking/ike { };
 
   ikiwiki = callPackage ../applications/misc/ikiwiki {
     python = python3;
@@ -37859,6 +37870,11 @@ with pkgs;
   bsdSetupHook = makeSetupHook {
     name = "bsd-setup-hook";
   } ../os-specific/bsd/setup-hook.sh;
+
+  freebsd = callPackage ../os-specific/bsd/freebsd {};
+  freebsdCross = callPackage ../os-specific/bsd/freebsd {
+    stdenv = crossLibcStdenv;
+  };
 
   netbsd = callPackage ../os-specific/bsd/netbsd {};
   netbsdCross = callPackage ../os-specific/bsd/netbsd {
