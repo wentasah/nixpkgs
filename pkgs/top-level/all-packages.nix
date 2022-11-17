@@ -1008,6 +1008,8 @@ with pkgs;
 
   sirula = callPackage ../tools/wayland/sirula { };
 
+  sitelen-seli-kiwen = callPackage ../data/fonts/sitelen-seli-kiwen {};
+
   srcOnly = callPackage ../build-support/src-only { };
 
   subnetcalc = callPackage ../tools/networking/subnetcalc { };
@@ -1557,7 +1559,10 @@ with pkgs;
 
   emulationstation = callPackage ../applications/emulators/emulationstation { };
 
-  fceux = libsForQt5.callPackage ../applications/emulators/fceux { };
+  fceux = callPackage ../applications/emulators/fceux {
+    lua = lua5_1;
+    inherit (libsForQt5) wrapQtAppsHook;
+  };
 
   firebird-emu = libsForQt5.callPackage ../applications/emulators/firebird-emu { };
 
@@ -1601,7 +1606,9 @@ with pkgs;
 
   libmirage = callPackage ../applications/emulators/cdemu/libmirage.nix { };
 
-  ludusavi = callPackage ../applications/backup/ludusavi { };
+  ludusavi = callPackage ../applications/backup/ludusavi {
+    inherit (plasma5Packages) kdialog;
+  };
 
   maiko = callPackage ../applications/emulators/maiko { };
 
@@ -4578,6 +4585,8 @@ with pkgs;
   mlarchive2maildir = callPackage ../applications/networking/mailreaders/mlarchive2maildir { };
 
   mmctl = callPackage ../tools/misc/mmctl { };
+
+  moar = callPackage ../tools/misc/moar { };
 
   molly-brown = callPackage ../servers/gemini/molly-brown { };
 
@@ -9592,6 +9601,16 @@ with pkgs;
 
   inherit (callPackage ../servers/nextcloud {})
     nextcloud23 nextcloud24 nextcloud25;
+
+  nextcloud23Packages = ( callPackage ../servers/nextcloud/packages {
+    apps = lib.importJSON ../servers/nextcloud/packages/23.json;
+  });
+  nextcloud24Packages = ( callPackage ../servers/nextcloud/packages {
+    apps = lib.importJSON ../servers/nextcloud/packages/24.json;
+  });
+  nextcloud25Packages = ( callPackage ../servers/nextcloud/packages {
+    apps = lib.importJSON ../servers/nextcloud/packages/25.json;
+  });
 
   nextcloud-client = libsForQt5.callPackage ../applications/networking/nextcloud-client { };
 
@@ -15131,7 +15150,6 @@ with pkgs;
   cargo-profiler = callPackage ../development/tools/rust/cargo-profiler {};
   cargo-raze = callPackage ../development/tools/rust/cargo-raze {
     inherit (darwin.apple_sdk.frameworks) Security;
-    openssl = openssl_1_1;
   };
   cargo-readme = callPackage ../development/tools/rust/cargo-readme {};
   cargo-semver-checks = callPackage ../development/tools/rust/cargo-semver-checks {
@@ -16803,9 +16821,7 @@ with pkgs;
     python = python3;
   };
 
-  libsigrokdecode = callPackage ../development/tools/libsigrokdecode {
-    python3 = python38;
-  };
+  libsigrokdecode = callPackage ../development/tools/libsigrokdecode { };
 
   # special forks used for dsview
   libsigrok4dsl = callPackage ../applications/science/electronics/dsview/libsigrok4dsl.nix { };
@@ -18321,6 +18337,8 @@ with pkgs;
 
   boxfort = callPackage ../development/libraries/boxfort { };
 
+  brunsli = callPackage ../development/libraries/brunsli { };
+
   buddy = callPackage ../development/libraries/buddy { };
 
   buildkit-nix = callPackage ../applications/virtualization/buildkit-nix { };
@@ -19003,10 +19021,7 @@ with pkgs;
     libXpm = null;
   };
 
-  gdal = callPackage ../development/libraries/gdal {
-    pythonPackages = python3Packages;
-    autoreconfHook = buildPackages.autoreconfHook269;
-  };
+  gdal = callPackage ../development/libraries/gdal { };
 
   gdcm = callPackage ../development/libraries/gdcm {
     inherit (darwin.apple_sdk.frameworks) ApplicationServices Cocoa;
@@ -19727,11 +19742,7 @@ with pkgs;
 
   jbigkit = callPackage ../development/libraries/jbigkit { };
 
-  jemalloc = callPackage ../development/libraries/jemalloc {
-    # tests fail with LLVM 11+
-    # https://github.com/jemalloc/jemalloc/issues/2091
-    stdenv = if stdenv.cc.isClang then llvmPackages_10.stdenv else stdenv;
-  };
+  jemalloc = callPackage ../development/libraries/jemalloc { };
 
   jose = callPackage ../development/libraries/jose { };
 
@@ -19833,6 +19844,8 @@ with pkgs;
   levmar = callPackage ../development/libraries/levmar { };
 
   leptonica = callPackage ../development/libraries/leptonica { };
+
+  lerc = callPackage ../development/libraries/lerc { };
 
   lib2geom = callPackage ../development/libraries/lib2geom { };
 
@@ -21250,13 +21263,9 @@ with pkgs;
   opencl-clang = callPackage ../development/libraries/opencl-clang { };
 
   mapnik = callPackage ../development/libraries/mapnik {
-    gdal = gdal.override {
-      libgeotiff = libgeotiff.override { proj = proj_7; };
-      libspatialite = libspatialite.override { proj = proj_7; };
-      proj = proj_7;
+    harfbuzz = harfbuzz.override {
+      withIcu = true;
     };
-    proj = proj_7;
-    boost = boost175;
   };
 
   manticoresearch = callPackage ../servers/search/manticoresearch { };
@@ -26539,6 +26548,8 @@ with pkgs;
 
   line-awesome = callPackage ../data/fonts/line-awesome { };
 
+  linja-pi-pu-lukin = callPackage ../data/fonts/linja-pi-pu-lukin {};
+
   linux-manual = callPackage ../data/documentation/linux-manual { };
 
   lklug-sinhala = callPackage ../data/fonts/lklug-sinhala {};
@@ -27005,6 +27016,7 @@ with pkgs;
 
   tela-circle-icon-theme = callPackage ../data/icons/tela-circle-icon-theme {
     inherit (gnome) adwaita-icon-theme;
+    inherit (plasma5Packages) breeze-icons;
   };
 
   tela-icon-theme = callPackage ../data/icons/tela-icon-theme { };
@@ -31767,6 +31779,10 @@ with pkgs;
     inherit (gnome) zenity;
   };
 
+  rymdport = callPackage ../applications/networking/rymdport {
+    inherit (darwin.apple_sdk.frameworks) Carbon Cocoa;
+  };
+
   uade = callPackage ../applications/audio/uade {};
 
   udevil = callPackage ../applications/misc/udevil {};
@@ -36238,6 +36254,9 @@ with pkgs;
 
   gplates = libsForQt5.callPackage ../applications/science/misc/gplates {
     boost = boost175;
+    # build with Python 3.10 fails, because boost <= 1.78 can't find
+    # pythons with double digits in minor versions, like X.YZ
+    python3 = python39;
   };
 
   gravit = callPackage ../applications/science/astronomy/gravit { };
@@ -37020,10 +37039,8 @@ with pkgs;
 
   mysql-workbench = callPackage ../applications/misc/mysql-workbench (let mysql = mysql80; in {
     gdal = gdal.override {
-      libmysqlclient = mysql // {
-        lib = { dev = mysql; }
-      ;}
-    ;};
+      libmysqlclient = mysql;
+    };
     mysql = mysql;
     pcre = pcre-cpp;
     jre = jre8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
@@ -37031,7 +37048,7 @@ with pkgs;
 
   r128gain = callPackage ../applications/audio/r128gain { };
 
-  redis-desktop-manager = libsForQt5.callPackage ../applications/misc/redis-desktop-manager { };
+  resp-app = libsForQt5.callPackage ../applications/misc/resp-app { };
 
   robin-map = callPackage ../development/libraries/robin-map { };
 
