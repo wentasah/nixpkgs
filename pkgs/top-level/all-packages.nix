@@ -1553,7 +1553,7 @@ with pkgs;
 
   dosbox-staging = callPackage ../applications/emulators/dosbox-staging { };
 
-  duckstation = libsForQt5.callPackage ../applications/emulators/duckstation {};
+  duckstation = qt6Packages.callPackage ../applications/emulators/duckstation {};
 
   dynamips = callPackage ../applications/emulators/dynamips { };
 
@@ -11320,6 +11320,10 @@ with pkgs;
 
   sftpman = callPackage ../tools/filesystems/sftpman { };
 
+  sftpgo = callPackage ../servers/sftpgo {
+    buildGoModule = buildGo119Module;
+  };
+
   screenfetch = callPackage ../tools/misc/screenfetch { };
 
   sg3_utils = callPackage ../tools/system/sg3_utils { };
@@ -12721,6 +12725,8 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
     openssl = openssl_1_1;
   };
+
+  tremor-language-server = callPackage ../tools/misc/tremor-rs/ls.nix { };
 
   truecrack = callPackage ../tools/security/truecrack { };
   truecrack-cuda = truecrack.override { cudaSupport = true; };
@@ -15254,6 +15260,7 @@ with pkgs;
   };
   rustup-toolchain-install-master = callPackage ../development/tools/rust/rustup-toolchain-install-master {
     inherit (darwin.apple_sdk.frameworks) Security;
+    openssl = openssl_1_1;
   };
   rusty-man = callPackage ../development/tools/rust/rusty-man { };
 
@@ -16244,6 +16251,8 @@ with pkgs;
   ameba = callPackage ../development/tools/ameba { };
 
   anybadge = with python3Packages; toPythonApplication anybadge;
+
+  apgdiff = callPackage ../development/tools/database/apgdiff { };
 
   apkg = callPackage ../tools/package-management/apkg { };
 
@@ -17576,6 +17585,8 @@ with pkgs;
   premake = premake4;
 
   privacyidea = callPackage ../applications/misc/privacyidea { };
+
+  process-compose = callPackage ../applications/misc/process-compose { };
 
   process-viewer = callPackage ../applications/misc/process-viewer {
     inherit (darwin.apple_sdk.frameworks) DiskArbitration Foundation IOKit;
@@ -20401,6 +20412,10 @@ with pkgs;
   libhttpseverywhere = callPackage ../development/libraries/libhttpseverywhere { };
 
   libhugetlbfs = callPackage ../development/libraries/libhugetlbfs { };
+
+  libhv = callPackage ../development/libraries/libhv {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
 
   libhwy = callPackage ../development/libraries/libhwy { };
 
@@ -23704,9 +23719,8 @@ with pkgs;
 
   hasura-cli = callPackage ../servers/hasura/cli.nix { };
 
-  inherit (callPackage ../servers/hbase {}) hbase_1_7 hbase_2_4 hbase_3_0;
-  hbase1 = hbase_1_7;
-  hbase2 = hbase_2_4;
+  inherit (callPackage ../servers/hbase {}) hbase_2_4 hbase_2_5 hbase_3_0;
+  hbase2 = hbase_2_5;
   hbase3 = hbase_3_0;
   hbase = hbase2; # when updating, point to the latest stable release
 
@@ -30836,7 +30850,7 @@ with pkgs;
 
   smplayer = libsForQt5.callPackage ../applications/video/smplayer { };
 
-  smtube = libsForQt514.callPackage ../applications/video/smtube {};
+  smtube = libsForQt5.callPackage ../applications/video/smtube {};
 
   softmaker-office = callPackage ../applications/office/softmaker/softmaker_office.nix {};
 
@@ -34404,16 +34418,12 @@ with pkgs;
 
   methane = callPackage ../games/methane { };
 
-  mindustry = callPackage ../games/mindustry {
-    jdk = adoptopenjdk-hotspot-bin-15;
-  };
+  mindustry = callPackage ../games/mindustry { };
   mindustry-wayland = callPackage ../games/mindustry {
-    jdk = adoptopenjdk-hotspot-bin-15;
     glew = glew-egl;
   };
 
   mindustry-server = callPackage ../games/mindustry {
-    jdk = adoptopenjdk-hotspot-bin-15;
     enableClient = false;
     enableServer = true;
   };

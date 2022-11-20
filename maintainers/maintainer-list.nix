@@ -11330,6 +11330,13 @@
     githubId = 35086;
     name = "Jonathan Wright";
   };
+  quantenzitrone = {
+    email = "quantenzitrone@protonmail.com";
+    github = "Quantenzitrone";
+    githubId = 74491719;
+    matrix = "@quantenzitrone:matrix.org";
+    name = "quantenzitrone";
+  };
   queezle = {
     email = "git@queezle.net";
     github = "queezle42";
@@ -13679,6 +13686,12 @@
     github = "thelegy";
     githubId = 3105057;
     name = "Jan Beinke";
+  };
+  thenonameguy = {
+    email = "thenonameguy24@gmail.com";
+    name = "Krisztian Szabo";
+    github = "thenonameguy";
+    githubId = 2217181;
   };
   therealansh = {
     email = "tyagiansh23@gmail.com";
