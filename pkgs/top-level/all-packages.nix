@@ -5285,8 +5285,6 @@ with pkgs;
   libceph = ceph.lib;
   inherit (callPackages ../tools/filesystems/ceph {
     lua = lua5_4;
-    # needs to be the same openssl version as python/pyopenssl
-    curl = (curl.override { openssl = openssl_1_1; });
   })
     ceph
     ceph-client;
@@ -16265,14 +16263,20 @@ with pkgs;
 
   autoadb = callPackage ../misc/autoadb { };
 
-  ansible = ansible_2_12;
-  ansible_2_13 = python3Packages.toPythonApplication python3Packages.ansible-core;
-  ansible_2_12 = python3Packages.toPythonApplication (python3Packages.ansible-core.overridePythonAttrs (oldAttrs: rec {
-    version = "2.12.6";
+  ansible = ansible_2_14;
+  ansible_2_14 = python3Packages.toPythonApplication python3Packages.ansible-core;
+  ansible_2_13 = python3Packages.toPythonApplication (python3Packages.ansible-core.overridePythonAttrs (oldAttrs: rec {
+    version = "2.13.6";
     src = oldAttrs.src.override {
       inherit version;
-      hash = "sha256-XzZuhRFZ2Pcs5o0yuMDt2lbuU3wB6faOyjgr0VEK9l0=";
-      sha256 = "";
+      hash = "sha256-Mf4yK2MpBnSo9zhhEN9QHwBEqkSJC+OrMTpuIluaKc8=";
+    };
+  }));
+  ansible_2_12 = python3Packages.toPythonApplication (python3Packages.ansible-core.overridePythonAttrs (oldAttrs: rec {
+    version = "2.12.10";
+    src = oldAttrs.src.override {
+      inherit version;
+      hash = "sha256-/rHfYXOM/B9eiTtCouwafeMpd9Z+hnB7Retj0MXDwjY=";
     };
     meta.changelog = "https://github.com/ansible/ansible/blob/v${version}/changelogs/CHANGELOG-v${lib.versions.majorMinor version}.rst";
   }));
@@ -18597,7 +18601,6 @@ with pkgs;
 
   cyrus_sasl = callPackage ../development/libraries/cyrus-sasl {
     libkrb5 = if stdenv.isFreeBSD then heimdal else libkrb5;
-    openssl = openssl_1_1;
   };
 
   cyrus-sasl-xoauth2 = callPackage ../development/libraries/cyrus-sasl-xoauth2 { };
@@ -19262,8 +19265,7 @@ with pkgs;
   gns3-gui = gns3Packages.guiStable;
   gns3-server = gns3Packages.serverStable;
 
-  gobject-introspection = if (!stdenv.hostPlatform.canExecute stdenv.targetPlatform) && stdenv.targetPlatform.emulatorAvailable buildPackages
-    then callPackage ../development/libraries/gobject-introspection/wrapper.nix { } else gobject-introspection-unwrapped;
+  gobject-introspection = callPackage ../development/libraries/gobject-introspection/wrapper.nix { };
 
   gobject-introspection-unwrapped = callPackage ../development/libraries/gobject-introspection {
     nixStoreDir = config.nix.storeDir or builtins.storeDir;
@@ -21693,9 +21695,7 @@ with pkgs;
 
   openexrid-unstable = callPackage ../development/libraries/openexrid-unstable { };
 
-  openldap = callPackage ../development/libraries/openldap {
-    openssl = openssl_1_1;
-  };
+  openldap = callPackage ../development/libraries/openldap { };
 
   opencolorio = darwin.apple_sdk_11_0.callPackage ../development/libraries/opencolorio {
     inherit (darwin.apple_sdk_11_0.frameworks) Carbon GLUT Cocoa;
@@ -29443,6 +29443,8 @@ with pkgs;
 
   waybar = callPackage ../applications/misc/waybar {};
 
+  waylock = callPackage ../applications/misc/waylock {};
+
   wayshot = callPackage ../tools/misc/wayshot { };
 
   waylevel = callPackage ../tools/misc/waylevel { };
@@ -30227,6 +30229,7 @@ with pkgs;
   lv2-cpp-tools = callPackage ../applications/audio/lv2-cpp-tools { };
 
   lxi-tools = callPackage ../tools/networking/lxi-tools { };
+  lxi-tools-gui = callPackage ../tools/networking/lxi-tools { withGui = true; };
 
   lynx = callPackage ../applications/networking/browsers/lynx { };
 
