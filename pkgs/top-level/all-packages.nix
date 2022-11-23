@@ -480,6 +480,8 @@ with pkgs;
 
   efficient-compression-tool = callPackage ../tools/compression/efficient-compression-tool { };
 
+  enumer = callPackage ../tools/misc/enumer { };
+
   evans = callPackage ../development/tools/evans { };
 
   expressvpn = callPackage ../applications/networking/expressvpn { };
@@ -1394,6 +1396,8 @@ with pkgs;
 
   midi-trigger = callPackage ../applications/audio/midi-trigger { };
 
+  mnc = callPackage ../tools/misc/mnc { };
+
   mprocs = callPackage ../tools/misc/mprocs { };
 
   nominatim = callPackage ../servers/nominatim { };
@@ -1478,6 +1482,8 @@ with pkgs;
   writedisk = callPackage ../tools/misc/writedisk { };
 
   xcd = callPackage ../tools/misc/xcd { };
+
+  xpaste = callPackage ../tools/text/xpaste { };
 
   xrootd = callPackage ../tools/networking/xrootd { };
 
@@ -5780,7 +5786,9 @@ with pkgs;
 
   daq = callPackage ../applications/networking/ids/daq { };
 
-  dar = callPackage ../tools/backup/dar { };
+  dar = callPackage ../tools/backup/dar {
+    inherit (darwin.apple_sdk.frameworks) CoreFoundation;
+  };
 
   darkhttpd = callPackage ../servers/http/darkhttpd { };
 
@@ -6449,6 +6457,8 @@ with pkgs;
   ets = callPackage ../tools/misc/ets { };
 
   ettercap = callPackage ../applications/networking/sniffers/ettercap { };
+
+  evcc = callPackage ../servers/home-automation/evcc { };
 
   eventstat = callPackage ../os-specific/linux/eventstat { };
 
@@ -7809,6 +7819,8 @@ with pkgs;
   hexd = callPackage ../tools/misc/hexd { };
   pixd = callPackage ../tools/misc/pixd { };
 
+  hexgui = callPackage ../games/hexgui { };
+
   hey = callPackage ../tools/networking/hey { };
 
   hhpc = callPackage ../tools/misc/hhpc { };
@@ -8340,6 +8352,8 @@ with pkgs;
   kexec-tools = callPackage ../os-specific/linux/kexec-tools { };
 
   keepkey_agent = with python3Packages; toPythonApplication keepkey_agent;
+
+  keepmenu = callPackage ../applications/misc/keepmenu { };
 
   kent = callPackage ../applications/science/biology/kent { };
 
@@ -14521,31 +14535,8 @@ with pkgs;
 
   juniper = callPackage ../development/compilers/juniper { };
 
-  julia_10 = callPackage ../development/compilers/julia/1.0.nix {
-    gmp = gmp6;
-    inherit (darwin.apple_sdk.frameworks) ApplicationServices CoreServices;
-    libgit2 = libgit2.overrideAttrs (_: rec {
-      version = "0.27.10";
-      src = fetchFromGitHub {
-        owner = "libgit2";
-        repo = "libgit2";
-        rev = "v${version}";
-        sha256 = "09jz2fzv0zl5058s0g1cpnw87a2rgg8wnjwlygi18i2n9nn6m0ad";
-      };
-      patches = [];
-      meta.knownVulnerabilities = [
-        "CVE-2020-12278"
-        "CVE-2020-12279"
-      ];
-    });
-  };
-
-  julia_15 = callPackage ../development/compilers/julia/1.5.nix {
-    inherit (darwin.apple_sdk.frameworks) ApplicationServices CoreServices;
-  };
-
-  julia-lts = julia_10;
-  julia-stable = julia_15;
+  julia-lts = julia_16-bin;
+  julia-stable = julia_18;
   julia = julia-stable;
 
   julia_16-bin = callPackage ../development/compilers/julia/1.6-bin.nix { };
@@ -24410,7 +24401,7 @@ with pkgs;
 
   pure-ftpd = callPackage ../servers/ftp/pure-ftpd { };
 
-  pypolicyd-spf = python3.pkgs.callPackage ../servers/mail/pypolicyd-spf { };
+  spf-engine = python3.pkgs.callPackage ../servers/mail/spf-engine { };
 
   pypiserver = with python3Packages; toPythonApplication pypiserver;
 
@@ -27178,7 +27169,9 @@ with pkgs;
     inherit (plasma5Packages) breeze-icons;
   };
 
-  zeal = libsForQt5.callPackage ../data/documentation/zeal { };
+  zeal-qt5 = libsForQt5.callPackage ../data/documentation/zeal { };
+  zeal-qt6 = qt6Packages.callPackage ../data/documentation/zeal { };
+  zeal = zeal-qt5;
 
   zilla-slab = callPackage ../data/fonts/zilla-slab { };
 
@@ -27625,7 +27618,7 @@ with pkgs;
   bonzomatic = callPackage ../applications/editors/bonzomatic { };
 
   bottles = callPackage ../applications/misc/bottles {
-    wine = wineWowPackages.minimal;
+    wine = null;
   };
 
   brave = callPackage ../applications/networking/browsers/brave { };
@@ -29412,9 +29405,11 @@ with pkgs;
     electron = electron_17;
   };
 
-  wlroots = wlroots_0_15;
-  wlroots_0_14 = callPackage ../development/libraries/wlroots/0.14.nix { };
-  wlroots_0_15 = callPackage ../development/libraries/wlroots/0.15.nix { };
+  inherit (callPackages ../development/libraries/wlroots {})
+    wlroots_0_14
+    wlroots_0_15
+    wlroots_0_16
+    wlroots;
 
   sway-unwrapped = callPackage ../applications/window-managers/sway { };
   sway = callPackage ../applications/window-managers/sway/wrapper.nix { };
