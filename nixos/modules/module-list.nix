@@ -787,6 +787,7 @@
   ./services/networking/chisel-server.nix
   ./services/networking/cjdns.nix
   ./services/networking/cloudflare-dyndns.nix
+  ./services/networking/cloudflared.nix
   ./services/networking/cntlm.nix
   ./services/networking/connman.nix
   ./services/networking/consul.nix
@@ -997,6 +998,7 @@
   ./services/video/rtsp-simple-server.nix
   ./services/networking/uptermd.nix
   ./services/networking/v2ray.nix
+  ./services/networking/v2raya.nix
   ./services/networking/vdirsyncer.nix
   ./services/networking/vsftpd.nix
   ./services/networking/wasabibackend.nix
