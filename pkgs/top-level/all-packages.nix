@@ -468,6 +468,8 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
+  ea = callPackage ../tools/misc/ea { };
+
   each = callPackage ../tools/text/each { };
 
   eclipse-mat = callPackage ../development/tools/eclipse-mat { };
@@ -1942,6 +1944,8 @@ with pkgs;
 
   cen64 = callPackage ../applications/emulators/cen64 { };
 
+  citations = callPackage ../applications/misc/citations { };
+
   citra-canary = callPackage ../applications/emulators/citra {
     branch = "canary";
   };
@@ -1962,7 +1966,9 @@ with pkgs;
 
   dlx = callPackage ../applications/emulators/dlx { };
 
-  dosbox = callPackage ../applications/emulators/dosbox { };
+  dosbox = callPackage ../applications/emulators/dosbox {
+    SDL = if stdenv.isDarwin then SDL else SDL_compat;
+  };
 
   dosbox-staging = callPackage ../applications/emulators/dosbox-staging { };
 
@@ -3883,8 +3889,6 @@ with pkgs;
   clusterctl = callPackage ../applications/networking/cluster/clusterctl { };
 
   coloredlogs = with python3Packages; toPythonApplication coloredlogs;
-
-  colord-kde = libsForQt5.callPackage ../tools/misc/colord-kde {};
 
   colpack = callPackage ../applications/science/math/colpack { };
 
@@ -12201,6 +12205,8 @@ with pkgs;
 
   threema-desktop = callPackage ../applications/networking/instant-messengers/threema-desktop { };
 
+  thumbdrives = callPackage ../applications/system/thumbdrives { };
+
   tidy-viewer = callPackage ../tools/text/tidy-viewer { };
 
   tiled = libsForQt5.callPackage ../applications/editors/tiled { };
@@ -17977,7 +17983,7 @@ with pkgs;
     shards;
 
   shellcheck = callPackage ../development/tools/shellcheck {
-    inherit (haskellPackages) ShellCheck;
+    inherit (__splicedPackages.haskellPackages) ShellCheck;
   };
 
   shellharden = callPackage ../development/tools/shellharden {};
@@ -18782,6 +18788,8 @@ with pkgs;
 
   croaring = callPackage ../development/libraries/croaring { };
 
+  crocoddyl = callPackage ../development/libraries/crocoddyl { };
+
   crossguid = callPackage ../development/libraries/crossguid { };
 
   cryptopp = callPackage ../development/libraries/crypto++ { };
@@ -18954,6 +18962,8 @@ with pkgs;
   libesmtp = callPackage ../development/libraries/libesmtp { };
 
   liberasurecode = callPackage ../applications/misc/liberasurecode { };
+
+  example-robot-data = callPackage ../development/libraries/example-robot-data { };
 
   exiv2 = callPackage ../development/libraries/exiv2 { };
 
@@ -22049,6 +22059,8 @@ with pkgs;
 
   pico-sdk = callPackage ../development/libraries/pico-sdk { };
 
+  pinocchio = callPackage ../development/libraries/pinocchio { };
+
   pipelight = callPackage ../tools/misc/pipelight {
     stdenv = stdenv_32bit;
     wine-staging = pkgsi686Linux.wine-staging;
@@ -22931,6 +22943,8 @@ with pkgs;
   tomlc99 = callPackage ../development/libraries/tomlc99 { };
 
   tomlcpp = callPackage ../development/libraries/tomlcpp { };
+
+  toml11 = callPackage ../development/libraries/toml11 { };
 
   tomlplusplus = callPackage ../development/libraries/tomlplusplus { };
 
@@ -29296,6 +29310,8 @@ with pkgs;
 
   hdhomerun-config-gui = callPackage ../applications/video/hdhomerun-config-gui { };
 
+  headlines = callPackage ../applications/networking/headlines { };
+
   hedgedoc-cli = callPackage ../tools/admin/hedgedoc-cli { };
 
   heimer = libsForQt5.callPackage ../applications/misc/heimer { };
@@ -34510,6 +34526,8 @@ with pkgs;
 
   minecraft = callPackage ../games/minecraft { };
 
+  minecraft-server-hibernation = callPackage ../tools/games/minecraft/minecraft-server-hibernation { };
+
   minecraftServers = import ../games/minecraft-servers { inherit callPackage lib javaPackages; };
   minecraft-server = minecraftServers.vanilla; # backwards compatibility
 
@@ -37149,6 +37167,8 @@ with pkgs;
   sticky = callPackage ../applications/misc/sticky { };
 
   stork = callPackage ../applications/misc/stork { };
+
+  superd = callPackage ../misc/superd { };
 
   oclgrind = callPackage ../development/tools/analysis/oclgrind { };
 
