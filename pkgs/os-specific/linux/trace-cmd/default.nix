@@ -9,6 +9,10 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-R9ShYDH/tVnnKzypjHNASmbsWSriPV/ZeaclNXR2CUg=";
   };
 
+  # Prevent infinite recursion (build timeout)
+  # https://lore.kernel.org/linux-trace-devel/20221226164951.2632069-1-michal.sojka@cvut.cz/T/#u
+  patches = [ ./0001-trace-cmd-Allow-building-with-GNU-Make-4.4.patch ];
+
   # Don't build and install html documentation
   postPatch = ''
     sed -i -e '/^all:/ s/html//' -e '/^install:/ s/install-html//' \
