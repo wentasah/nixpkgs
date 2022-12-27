@@ -15,12 +15,12 @@
 
 stdenv.mkDerivation rec {
   pname = "libtracefs";
-  version = "1.5.0";
+  version = "1.6.3";
 
   src = fetchgit {
     url = "git://git.kernel.org/pub/scm/libs/libtrace/libtracefs.git";
     rev = "libtracefs-${version}";
-    sha256 = "sha256-5OUTOIla4adtSJwQkii6f/mB99R5QzodyQkq/g6oNSw=";
+    sha256 = "sha256-JiHkylUhcrjX1dvVRbnl8BbNHD3hJLTybupbhc+GJh8=";
   };
 
   postPatch = ''
