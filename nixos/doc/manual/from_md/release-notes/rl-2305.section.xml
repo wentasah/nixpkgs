@@ -25,9 +25,25 @@
     <itemizedlist>
       <listitem>
         <para>
+          <link xlink:href="https://akkoma.social">Akkoma</link>, an
+          ActivityPub microblogging server. Available as
+          <link xlink:href="options.html#opt-services.akkoma.enable">services.akkoma</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <link xlink:href="https://github.com/akinomyoga/ble.sh">blesh</link>,
           a line editor written in pure bash. Available as
           <link linkend="opt-programs.bash.blesh.enable">programs.bash.blesh</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link xlink:href="https://github.com/alexivkin/CUPS-PDF-to-PDF">cups-pdf-to-pdf</link>,
+          a pdf-generating cups backend based on
+          <link xlink:href="https://www.cups-pdf.de/">cups-pdf</link>.
+          Available as
+          <link linkend="opt-services.printing.cups-pdf.enable">services.printing.cups-pdf</link>.
         </para>
       </listitem>
       <listitem>

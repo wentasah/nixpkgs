@@ -609,7 +609,7 @@ in
 
                 By default, pseudo-features `nixos-test`, `benchmark`,
                 and `big-parallel` used in Nixpkgs are set, `kvm`
-                is also included in it is available.
+                is also included if it is available.
               '';
             };
 
@@ -819,7 +819,7 @@ in
           optionals (pkgs.hostPlatform ? gcc.arch) (
             # a builder can run code for `gcc.arch` and inferior architectures
             [ "gccarch-${pkgs.hostPlatform.gcc.arch}" ] ++
-            map (x: "gccarch-${x}") systems.architectures.inferiors.${pkgs.hostPlatform.gcc.arch}
+            map (x: "gccarch-${x}") (systems.architectures.inferiors.${pkgs.hostPlatform.gcc.arch} or [])
           )
         );
       }
