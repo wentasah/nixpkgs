@@ -1469,6 +1469,8 @@ with pkgs;
 
   steamtinkerlaunch = callPackage ../tools/games/steamtinkerlaunch {};
 
+  supermin = callPackage ../tools/virtualization/supermin { };
+
   sx-go = callPackage ../tools/security/sx-go { };
 
   systeroid = callPackage ../tools/system/systeroid { };
@@ -1689,6 +1691,8 @@ with pkgs;
   git-branchstack = python3.pkgs.callPackage ../applications/version-management/git-branchstack { };
 
   git-bug = callPackage ../applications/version-management/git-bug { };
+
+  git-bug-migration = callPackage ../applications/version-management/git-bug-migration { };
 
   git-chglog = callPackage ../applications/version-management/git-chglog { };
 
@@ -13498,6 +13502,8 @@ with pkgs;
 
   zim-tools = callPackage ../tools/text/zim-tools { };
 
+  zimfw = callPackage ../shells/zsh/zimfw { };
+
   zld = callPackage ../development/tools/zld { };
 
   par = callPackage ../tools/text/par { };
@@ -18793,6 +18799,8 @@ with pkgs;
       };
     };
   });
+
+  calcium = callPackage ../development/libraries/calcium {};
 
   cubeb = callPackage ../development/libraries/audio/cubeb {
     inherit (darwin.apple_sdk.frameworks) AudioUnit CoreAudio CoreServices;
@@ -38505,4 +38513,6 @@ with pkgs;
   alsa-scarlett-gui = callPackage ../applications/audio/alsa-scarlett-gui { };
 
   tuner = callPackage ../applications/audio/tuner { };
+
+  jfrog-cli = callPackage ../tools/misc/jfrog-cli { };
 }
