@@ -484,10 +484,6 @@ self: super: {
     dependencies = with self; [ plenary-nvim ];
   });
 
-  gruvbox-nvim = super.gruvbox-nvim.overrideAttrs (old: {
-    dependencies = with self; [ lush-nvim ];
-  });
-
   himalaya-vim = super.himalaya-vim.overrideAttrs (old: {
     postPatch = ''
       substituteInPlace plugin/himalaya.vim \
@@ -504,6 +500,10 @@ self: super: {
       description = "code-completion for python using python-jedi";
       license = lib.licenses.mit;
     };
+  });
+
+  jellybeans-nvim = super.jellybeans-nvim.overrideAttrs (old: {
+    dependencies = with self; [ lush-nvim ];
   });
 
   LanguageClient-neovim =
