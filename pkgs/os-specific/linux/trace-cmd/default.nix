@@ -1,17 +1,13 @@
 { lib, stdenv, fetchgit, pkg-config, asciidoc, xmlto, docbook_xsl, docbook_xml_dtd_45, libxslt, libtraceevent, libtracefs, zstd, sourceHighlight }:
 stdenv.mkDerivation rec {
   pname = "trace-cmd";
-  version = "3.1.5";
+  version = "3.1.6";
 
   src = fetchgit {
     url    = "git://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git/";
     rev    = "trace-cmd-v${version}";
-    sha256 = "sha256-R9ShYDH/tVnnKzypjHNASmbsWSriPV/ZeaclNXR2CUg=";
+    sha256 = "sha256-qjfeomeExjsx/6XrUaGm5szbL7XVlekGd4Hsuncv8NY=";
   };
-
-  # Prevent infinite recursion (build timeout)
-  # https://lore.kernel.org/linux-trace-devel/20221226164951.2632069-1-michal.sojka@cvut.cz/T/#u
-  patches = [ ./0001-trace-cmd-Allow-building-with-GNU-Make-4.4.patch ];
 
   # Don't build and install html documentation
   postPatch = ''
