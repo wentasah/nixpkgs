@@ -6779,8 +6779,6 @@ self: super: with self; {
 
   packvers = callPackage ../development/python-modules/packvers { };
 
-  pafy = callPackage ../development/python-modules/pafy { };
-
   pagelabels = callPackage ../development/python-modules/pagelabels { };
 
   paho-mqtt = callPackage ../development/python-modules/paho-mqtt { };
@@ -10185,6 +10183,8 @@ self: super: with self; {
   sacremoses = callPackage ../development/python-modules/sacremoses { };
 
   safe = callPackage ../development/python-modules/safe { };
+
+  safe-pysha3 = callPackage ../development/python-modules/safe-pysha3 { };
 
   safeio = callPackage ../development/python-modules/safeio { };
 
