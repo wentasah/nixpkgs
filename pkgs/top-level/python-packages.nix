@@ -853,6 +853,8 @@ self: super: with self; {
 
   awslambdaric = callPackage ../development/python-modules/awslambdaric { };
 
+  awswrangler = callPackage ../development/python-modules/awswrangler { };
+
   axis = callPackage ../development/python-modules/axis { };
 
   azure-appconfiguration = callPackage ../development/python-modules/azure-appconfiguration { };
@@ -4336,6 +4338,10 @@ self: super: with self; {
 
   hiro = callPackage ../development/python-modules/hiro { };
 
+  hist = callPackage ../development/python-modules/hist { };
+
+  histoprint = callPackage ../development/python-modules/histoprint { };
+
   hiyapyco = callPackage ../development/python-modules/hiyapyco { };
 
   hjson = callPackage ../development/python-modules/hjson { };
@@ -7267,6 +7273,8 @@ self: super: with self; {
 
   pyorthanc = callPackage ../development/python-modules/pyorthanc { };
 
+  pyoutbreaksnearme = callPackage ../development/python-modules/pyoutbreaksnearme { };
+
   pyoverkiz = callPackage ../development/python-modules/pyoverkiz { };
 
   pyownet = callPackage ../development/python-modules/pyownet { };
@@ -8058,8 +8066,6 @@ self: super: with self; {
   pyflic = callPackage ../development/python-modules/pyflic { };
 
   pyflume = callPackage ../development/python-modules/pyflume { };
-
-  pyflunearyou = callPackage ../development/python-modules/pyflunearyou { };
 
   pyfma = callPackage ../development/python-modules/pyfma { };
 
@@ -9853,6 +9859,8 @@ self: super: with self; {
 
   rapidfuzz-capi = callPackage ../development/python-modules/rapidfuzz-capi { };
 
+  rapt-ble = callPackage ../development/python-modules/rapt-ble { };
+
   rarfile = callPackage ../development/python-modules/rarfile {
     inherit (pkgs) libarchive;
   };
@@ -9942,6 +9950,8 @@ self: super: with self; {
   remi = callPackage ../development/python-modules/remi { };
 
   remote-pdb = callPackage ../development/python-modules/remote-pdb { };
+
+  remotezip = callPackage ../development/python-modules/remotezip { };
 
   renault-api = callPackage ../development/python-modules/renault-api { };
 
@@ -11896,6 +11906,8 @@ self: super: with self; {
   uharfbuzz = callPackage ../development/python-modules/uharfbuzz {
     inherit (pkgs.darwin.apple_sdk.frameworks) ApplicationServices;
   };
+
+  uhi = callPackage ../development/python-modules/uhi { };
 
   ujson = callPackage ../development/python-modules/ujson { };
 
