@@ -1300,6 +1300,8 @@ self: super: with self; {
 
   black = callPackage ../development/python-modules/black { };
 
+  blackjax = callPackage ../development/python-modules/blackjax { };
+
   black-macchiato = callPackage ../development/python-modules/black-macchiato { };
 
   bleach = callPackage ../development/python-modules/bleach { };
@@ -1418,6 +1420,8 @@ self: super: with self; {
   breezy = callPackage ../development/python-modules/breezy { };
 
   brelpy = callPackage ../development/python-modules/brelpy { };
+
+  brian2 = callPackage ../development/python-modules/brian2 { };
 
   broadlink = callPackage ../development/python-modules/broadlink { };
 
@@ -3297,6 +3301,8 @@ self: super: with self; {
 
   fasttext = callPackage ../development/python-modules/fasttext { };
 
+  fasttext-predict = callPackage ../development/python-modules/fasttext-predict { };
+
   favicon = callPackage ../development/python-modules/favicon { };
 
   fb-re2 = callPackage ../development/python-modules/fb-re2 { };
@@ -3721,8 +3727,6 @@ self: super: with self; {
   });
 
   gdown = callPackage ../development/python-modules/gdown { };
-
-  gdtoolkit = callPackage ../development/python-modules/gdtoolkit { };
 
   ge25519 = callPackage ../development/python-modules/ge25519 { };
 
@@ -4865,6 +4869,8 @@ self: super: with self; {
   jaxlibWithoutCuda = self.jaxlib-build.override {
     cudaSupport = false;
   };
+
+  jaxopt = callPackage ../development/python-modules/jaxopt { };
 
   JayDeBeApi = callPackage ../development/python-modules/JayDeBeApi { };
 
@@ -6297,6 +6303,8 @@ self: super: with self; {
   neo4j = callPackage ../development/python-modules/neo4j { };
 
   nessclient = callPackage ../development/python-modules/nessclient { };
+
+  nest = toPythonModule(pkgs.nest-mpi.override { withPython = true; python3 = python; });
 
   nest-asyncio = callPackage ../development/python-modules/nest-asyncio { };
 
@@ -10376,6 +10384,8 @@ self: super: with self; {
   scrapy-fake-useragent = callPackage ../development/python-modules/scrapy-fake-useragent { };
 
   scrapy-splash = callPackage ../development/python-modules/scrapy-splash { };
+
+  screed = callPackage ../development/python-modules/screed { };
 
   screeninfo = callPackage ../development/python-modules/screeninfo { };
 
