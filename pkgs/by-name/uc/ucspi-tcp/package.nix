@@ -15,10 +15,6 @@ stdenv.mkDerivation rec {
     sha256 = "171yl9kfm8w7l17dfxild99mbf877a9k5zg8yysgb1j8nz51a1ja";
   };
 
-  patches = [
-    ./remove-setuid.patch
-  ];
-
   debian = fetchzip {
     url = "http://ftp.de.debian.org/debian/pool/main/u/ucspi-tcp/ucspi-tcp_0.88-11.debian.tar.xz";
     sha256 = "0x8h46wkm62dvyj1acsffcl4s06k5zh6139qxib3zzhk716hv5xg";
@@ -31,6 +27,9 @@ stdenv.mkDerivation rec {
   # Plain upstream tarball doesn't build, apply patches from Debian
   postPatch = ''
     QUILT_PATCHES=$debian/patches quilt push -a
+
+    # Remove setuid
+    substituteInPlace hier.c --replace-fail ',02755);' ',0755);'
   '';
 
   # The build system is weird; 'make install' doesn't install anything, instead
