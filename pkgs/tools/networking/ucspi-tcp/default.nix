@@ -15,7 +15,6 @@ stdenv.mkDerivation rec {
       url = "http://ftp.de.debian.org/debian/pool/main/u/ucspi-tcp/ucspi-tcp_0.88-3.diff.gz";
       sha256 = "0mzmhz8hjkrs0khmkzs5i0s1kgmgaqz07h493bd5jj5fm5njxln6";
     })
-    ./remove-setuid.patch
   ];
 
   # Apply Debian patches
@@ -24,6 +23,9 @@ stdenv.mkDerivation rec {
         echo "Applying patch $fname"
         patch < "$fname"
     done
+
+    # Remove setuid
+    substituteInPlace hier.c --replace ',02755);' ',0755);'
   '';
 
   # The build system is weird; 'make install' doesn't install anything, instead
