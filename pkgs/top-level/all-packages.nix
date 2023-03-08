@@ -5369,6 +5369,8 @@ with pkgs;
 
   nyx = callPackage ../tools/networking/nyx { };
 
+  oauth2ms = callPackage ../tools/networking/oauth2ms { };
+
   oci-cli = callPackage ../tools/admin/oci-cli { };
 
   oci-seccomp-bpf-hook = callPackage ../os-specific/linux/oci-seccomp-bpf-hook { };
@@ -19596,6 +19598,8 @@ with pkgs;
   cyrus_sasl = callPackage ../development/libraries/cyrus-sasl {
     libkrb5 = if stdenv.isFreeBSD then heimdal else libkrb5;
   };
+
+  cyrus-sasl-xoauth2 = callPackage ../development/libraries/cyrus-sasl-xoauth2 { };
 
   # Make bdb5 the default as it is the last release under the custom
   # bsd-like license
