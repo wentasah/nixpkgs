@@ -4839,9 +4839,10 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  geekbench4 = callPackage ../tools/misc/geekbench/4.nix { };
-  geekbench5 = callPackage ../tools/misc/geekbench { };
-  geekbench = geekbench5;
+  geekbench_4 = callPackage ../tools/misc/geekbench/4.nix { };
+  geekbench_5 = callPackage ../tools/misc/geekbench/5.nix { };
+  geekbench_6 = callPackage ../tools/misc/geekbench/6.nix { };
+  geekbench = geekbench_6;
 
   gencfsm = callPackage ../tools/security/gencfsm { };
 
@@ -8425,6 +8426,8 @@ with pkgs;
   httptunnel = callPackage ../tools/networking/httptunnel { };
 
   httpx = callPackage ../tools/security/httpx { };
+
+  hue-plus = libsForQt5.callPackage ../applications/misc/hue-plus { };
 
   hurl = callPackage ../tools/networking/hurl { };
 
@@ -15950,6 +15953,9 @@ with pkgs;
   cargo-pgx = callPackage ../development/tools/rust/cargo-pgx {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
+  buildPgxExtension = callPackage ../development/tools/rust/cargo-pgx/buildPgxExtension.nix {
+    inherit (darwin.apple_sdk.frameworks) Security;
+  };
   cargo-release = callPackage ../development/tools/rust/cargo-release { };
   cargo-rr = callPackage ../development/tools/rust/cargo-rr { };
   cargo-tarpaulin = callPackage ../development/tools/analysis/cargo-tarpaulin {
@@ -19995,6 +20001,8 @@ with pkgs;
   gecode_3 = callPackage ../development/libraries/gecode/3.nix { };
   gecode_6 = qt5.callPackage ../development/libraries/gecode { };
   gecode = gecode_6;
+
+  geph = callPackages ../applications/networking/geph { };
 
   gephi = callPackage ../applications/science/misc/gephi { };
 
@@ -24400,6 +24408,19 @@ with pkgs;
     ];
     # Override this attribute to register additional libraries.
     packages = [];
+  };
+
+  radianWrapper = callPackage ../development/r-modules/wrapper-radian.nix {
+    recommendedPackages = with rPackages; [
+      boot class cluster codetools foreign KernSmooth lattice MASS
+      Matrix mgcv nlme nnet rpart spatial survival
+    ];
+    radian = python3Packages.radian;
+    # Override this attribute to register additional libraries.
+    packages = [];
+    # Override this attribute if you want to expose R with the same set of
+    # packages as specified in radian
+    wrapR = false;
   };
 
   rstudioWrapper = libsForQt5.callPackage ../development/r-modules/wrapper-rstudio.nix {
@@ -30883,7 +30904,8 @@ with pkgs;
   };
 
   jabref = callPackage ../applications/office/jabref {
-    jdk = javaPackages.compiler.openjdk18;
+    jdk = jdk19.override { enableJavaFX = true; };
+    gradle = gradle_7;
   };
 
   jack_capture = callPackage ../applications/audio/jack-capture { };
@@ -31221,6 +31243,8 @@ with pkgs;
   legitify = callPackage ../development/tools/legitify { };
 
   lens = callPackage ../applications/networking/cluster/lens { };
+
+  openlens = callPackage ../applications/networking/cluster/openlens { };
 
   leo-editor = libsForQt5.callPackage ../applications/editors/leo-editor { };
 
