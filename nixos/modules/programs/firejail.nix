@@ -27,7 +27,7 @@ let
       ''
         cat <<_EOF >$out/bin/${command}
         #! ${pkgs.runtimeShell} -e
-        exec /run/wrappers/bin/firejail ${args} -- ${toString opts.executable} "\$@"
+        exec /run/wrappers/bin/firejail ${args} ${toString opts.executable} "\$@"
         _EOF
         chmod 0755 $out/bin/${command}
 
