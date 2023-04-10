@@ -1180,6 +1180,12 @@
     githubId = 58516559;
     name = "Alexander Rezvov";
   };
+  arian-d = {
+    email = "arianxdehghani@gmail.com";
+    github = "arian-d";
+    githubId = 40076285;
+    name = "Arian Dehghani";
+  };
   arianvp = {
     email = "arian.vanputten@gmail.com";
     github = "arianvp";
@@ -3679,6 +3685,12 @@
     githubId = 706758;
     name = "Christian Gerbrandt";
   };
+  derdennisop = {
+    email = "dennish@wuitz.de";
+    github = "derdennisop";
+    githubId = 52411861;
+    name = "Dennis";
+  };
   derekcollison = {
     email = "derek@nats.io";
     github = "derekcollison";
@@ -4082,12 +4094,6 @@
     keys = [{
       fingerprint = "85F3 72DF 4AF3 EF13 ED34  72A3 0AAF 2901 E804 0715";
     }];
-  };
-  drzoidberg = {
-    email = "jakob@mast3rsoft.com";
-    github = "jakobneufeld";
-    githubId = 24791219;
-    name = "Jakob Neufeld";
   };
   dsalaza4 = {
     email = "podany270895@gmail.com";
