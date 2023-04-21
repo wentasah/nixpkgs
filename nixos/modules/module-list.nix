@@ -670,6 +670,7 @@
   ./services/misc/polaris.nix
   ./services/misc/portunus.nix
   ./services/misc/prowlarr.nix
+  ./services/misc/pufferpanel.nix
   ./services/misc/pykms.nix
   ./services/misc/radarr.nix
   ./services/misc/readarr.nix
@@ -884,6 +885,7 @@
   ./services/networking/iscsi/initiator.nix
   ./services/networking/iscsi/root-initiator.nix
   ./services/networking/iscsi/target.nix
+  ./services/networking/ivpn.nix
   ./services/networking/iwd.nix
   ./services/networking/jibri/default.nix
   ./services/networking/jicofo.nix
@@ -1042,6 +1044,7 @@
   ./services/networking/wg-netmanager.nix
   ./services/networking/webhook.nix
   ./services/networking/wg-quick.nix
+  ./services/networking/wgautomesh.nix
   ./services/networking/wireguard.nix
   ./services/networking/wpa_supplicant.nix
   ./services/networking/wstunnel.nix
@@ -1182,6 +1185,7 @@
   ./services/web-apps/mattermost.nix
   ./services/web-apps/mediawiki.nix
   ./services/web-apps/miniflux.nix
+  ./services/web-apps/monica.nix
   ./services/web-apps/moodle.nix
   ./services/web-apps/netbox.nix
   ./services/web-apps/nextcloud.nix
