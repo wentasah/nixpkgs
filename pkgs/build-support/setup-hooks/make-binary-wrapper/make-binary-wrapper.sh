@@ -24,6 +24,7 @@ assertExecutable() {
 #                          the environment
 # --unset        VAR     : remove VAR from the environment
 # --chdir        DIR     : change working directory (use instead of --run "cd DIR")
+# --run          COMMAND : run command before the executable (via system())
 # --add-flags    ARGS    : prepend ARGS to the invocation of the executable
 #                          (that is, *before* any arguments passed on the command line)
 # --append-flags ARGS    : append ARGS to the invocation of the executable
@@ -86,7 +87,7 @@ makeDocumentedCWrapper() {
 # ARGS: same as makeWrapper
 makeCWrapper() {
     local argv0 inherit_argv0 n params cmd main flagsBefore flagsAfter flags executable length
-    local uses_prefix uses_suffix uses_assert uses_assert_success uses_stdio uses_asprintf
+    local uses_prefix uses_suffix uses_assert uses_assert_success uses_stdio uses_asprintf uses_run
     executable=$(escapeStringLiteral "$1")
     params=("$@")
     length=${#params[*]}
@@ -145,6 +146,14 @@ makeCWrapper() {
                 n=$((n + 1))
                 [ $n -ge "$length" ] && main="$main#error makeCWrapper: $p takes 1 argument"$'\n'
             ;;
+            --run)
+                cmd=$(run "${params[n + 1]}")
+                main="$main$cmd"$'\n'
+                uses_stdio=1
+                uses_run=1
+                n=$((n + 1))
+                [ $n -ge "$length" ] && main="$main#error makeCWrapper: $p takes 1 argument"$'\n'
+            ;;
             --add-flags)
                 flags="${params[n + 1]}"
                 flagsBefore="$flagsBefore $flags"
@@ -186,6 +195,7 @@ makeCWrapper() {
     [ -z "$uses_assert_success" ] || printf '\n%s\n' "#define assert_success(e) do { if ((e) < 0) { perror(#e); abort(); } } while (0)"
     [ -z "$uses_prefix" ] || printf '\n%s\n' "$(setEnvPrefixFn)"
     [ -z "$uses_suffix" ] || printf '\n%s\n' "$(setEnvSuffixFn)"
+    [ -z "$uses_run" ] || printf '\n%s\n' "$(runFn)"
     printf '\n%s' "int main(int argc, char **argv) {"
     printf '\n%s' "$(indent4 "$main")"
     printf '\n%s\n' "}"
@@ -219,6 +229,13 @@ changeDir() {
     local dir
     dir=$(escapeStringLiteral "$1")
     printf '%s' "assert_success(chdir(\"$dir\"));"
+}
+
+# run CMD
+run() {
+    local cmd
+    cmd=$(escapeStringLiteral "$1")
+    printf '%s' "run(\"$cmd\");"
 }
 
 # prefix ENV SEP VAL
@@ -323,6 +340,27 @@ void set_env_suffix(char *env, char *sep, char *suffix) {
 "
 }
 
+runFn() {
+    printf '%s' "\
+void run(const char *cmd) {
+    int ret = system(cmd);
+    if (ret == -1) {
+        /* copied from assert_success */
+        perror(cmd);
+        abort();
+    } else if (ret != 0) {
+        if (WIFEXITED(ret)) {
+            fprintf(stderr, \"Command '%s' returned non-zero status %d\n\", cmd, WEXITSTATUS(ret));
+        } else if (WIFSIGNALED(ret)) {
+            fprintf(stderr, \"Command '%s' terminated by signal %d\n\", cmd, WTERMSIG(ret));
+        } else {
+            fprintf(stderr, \"Command '%s' failed: wstatus = %d\n\", cmd, ret);
+        }
+        abort();
+    }
+}"
+}
+
 # Embed a C string which shows up as readable text in the compiled binary wrapper,
 # giving instructions for recreating the wrapper.
 # Keep in sync with makeBinaryWrapper.extractCmd
@@ -371,6 +409,10 @@ formatArgs() {
                 shift 3
             ;;
             --chdir)
+                formatArgsLine 1 "$@"
+                shift 1
+            ;;
+            --run)
                 formatArgsLine 1 "$@"
                 shift 1
             ;;
