@@ -50,6 +50,8 @@ let
     "invalid-env"
     "overlength-strings"
     "prefix"
+    "run"
+    "run-export"
     "suffix"
   ] makeGoldenTest // lib.optionalAttrs (! stdenv.isDarwin) {
     cross = pkgsCross.${if stdenv.buildPlatform.isAarch64 then "gnu64" else "aarch64-multiplatform"}.callPackage ./cross.nix { };
