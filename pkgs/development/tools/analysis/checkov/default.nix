@@ -22,14 +22,14 @@ with py.pkgs;
 
 buildPythonApplication rec {
   pname = "checkov";
-  version = "2.3.199";
+  version = "2.3.209";
   format = "setuptools";
 
   src = fetchFromGitHub {
     owner = "bridgecrewio";
     repo = pname;
     rev = "refs/tags/${version}";
-    hash = "sha256-JwEI+i6xvO8wsCCAliljXxddL3T6MWzHvzMmewNlbsk=";
+    hash = "sha256-7Aj8uAO4/sy1GvG52KPdPXcV6eIjrX14bvTJvqDsWQQ=";
   };
 
   patches = [
@@ -116,7 +116,7 @@ buildPythonApplication rec {
     # Tests are comparing console output
     "cli"
     "console"
-    # Starting to fail after 2.3.199
+    # Starting to fail after 2.3.205
     "test_non_multiline_pair"
   ];
 
