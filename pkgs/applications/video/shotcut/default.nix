@@ -62,6 +62,8 @@ mkDerivation rec {
     sed "s_/usr/bin/nice_''${NICE}_" -i src/jobs/meltjob.cpp src/jobs/ffmpegjob.cpp
   '';
 
+  patches = [ ./0001-Don-t-use-connection_type-x11-for-VAAPI-HW-accelerat.patch ];
+
   qtWrapperArgs = [
     "--prefix FREI0R_PATH : ${frei0r}/lib/frei0r-1"
     "--prefix LADSPA_PATH : ${ladspaPlugins}/lib/ladspa"
