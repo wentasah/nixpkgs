@@ -53,15 +53,16 @@ in
 
   CXXFLAGS = lib.optionalString (stdenv.isDarwin && withQt) "-std=c++11";
 
-  postInstall = lib.optionalString (withQt && withX) ''
-    # Ensure that wrapProgram uses makeShellWrapper rather than makeBinaryWrapper
-    # brought in by wrapQtAppsHook. Only makeShellWrapper supports --run.
-    makeWrapper() { makeShellWrapper "$@"; }
-  '' + lib.optionalString withX ''
-    wrapProgram $out/bin/gnuplot \
-       --prefix PATH : '${gnused}/bin' \
-       --prefix PATH : '${coreutils}/bin' \
-       --prefix PATH : '${fontconfig.bin}/bin' \
+  # we'll wrap things ourselves
+  dontWrapGApps = true;
+  dontWrapQtApps = true;
+
+  # binary wrappers don't support --run
+  postInstall = lib.optionalString withX ''
+    wrapProgramShell $out/bin/gnuplot \
+       --prefix PATH : '${lib.makeBinPath [ gnused coreutils fontconfig.bin ]}' \
+       "''${gappsWrapperArgs[@]}" \
+       "''${qtWrapperArgs[@]}" \
        --run '. ${./set-gdfontpath-from-fontconfig.sh}'
   '';
 
