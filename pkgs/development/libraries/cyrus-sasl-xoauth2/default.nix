@@ -1,6 +1,5 @@
 { lib, stdenv, fetchFromGitHub, autoconf, libtool, automake, cyrus_sasl }:
 
-with lib;
 stdenv.mkDerivation rec {
   pname = "cyrus-sasl-xoauth2";
   version = "0.2";
@@ -22,7 +21,7 @@ stdenv.mkDerivation rec {
     "--with-cyrus-sasl=${placeholder "out"}"
   ];
 
-  meta = {
+  meta = with lib; {
     homepage = "https://github.com/moriyoshi/cyrus-sasl-xoauth2";
     description = "XOAUTH2 mechanism plugin for cyrus-sasl";
     platforms = platforms.unix;
