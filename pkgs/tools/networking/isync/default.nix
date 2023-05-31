@@ -1,7 +1,7 @@
 { lib, stdenv, fetchurl, pkg-config, perl
 , openssl, db, cyrus_sasl, zlib
 , Security
-, withCyrusSaslXoauth2 ? false, cyrus-sasl-xoauth2, makeWrapper
+, withCyrusSaslXoauth2 ? true, cyrus-sasl-xoauth2, makeWrapper
 }:
 
 stdenv.mkDerivation rec {
