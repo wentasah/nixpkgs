@@ -612,6 +612,12 @@ self: super: with self; {
 
   argon2-cffi-bindings = callPackage ../development/python-modules/argon2-cffi-bindings { };
 
+  argostranslate = callPackage ../development/python-modules/argostranslate {
+    ctranslate2-cpp = pkgs.ctranslate2;
+  };
+
+  argos-translate-files = callPackage ../development/python-modules/argos-translate-files { };
+
   argparse-addons = callPackage ../development/python-modules/argparse-addons { };
 
   argparse-dataclass = callPackage ../development/python-modules/argparse-dataclass { };
@@ -5429,6 +5435,8 @@ self: super: with self; {
 
   karton-yaramatcher = callPackage ../development/python-modules/karton-yaramatcher { };
 
+  kasa-crypt = callPackage ../development/python-modules/kasa-crypt { };
+
   kazoo = callPackage ../development/python-modules/kazoo { };
 
   kbcstorage = callPackage ../development/python-modules/kbcstorage { };
@@ -5728,6 +5736,8 @@ self: super: with self; {
     (p: p.py)
   ];
 
+  libretranslate = callPackage ../development/python-modules/libretranslate { };
+
   librosa = callPackage ../development/python-modules/librosa { };
 
   librouteros = callPackage ../development/python-modules/librouteros { };
@@ -5947,6 +5957,8 @@ self: super: with self; {
 
   lsprotocol = callPackage ../development/python-modules/lsprotocol { };
 
+  ltpycld2 = callPackage ../development/python-modules/ltpycld2 { };
+
   luddite = callPackage ../development/python-modules/luddite { };
 
   ludios_wpull = callPackage ../development/python-modules/ludios_wpull { };
@@ -6110,6 +6122,8 @@ self: super: with self; {
   };
 
   matplotlib-inline = callPackage ../development/python-modules/matplotlib-inline { };
+
+  matplotx = callPackage ../development/python-modules/matplotx { };
 
   matrix-api-async = callPackage ../development/python-modules/matrix-api-async { };
 
@@ -6433,6 +6447,8 @@ self: super: with self; {
   more-properties = callPackage ../development/python-modules/more-properties { };
 
   moretools = callPackage ../development/python-modules/moretools { };
+
+  morfessor = callPackage ../development/python-modules/morfessor { };
 
   morphys = callPackage ../development/python-modules/morphys { };
 
@@ -10797,6 +10813,8 @@ self: super: with self; {
 
   rouge-score = callPackage ../development/python-modules/rouge-score { };
 
+  routeros-api = callPackage ../development/python-modules/routeros-api { };
+
   routes = callPackage ../development/python-modules/routes { };
 
   rova = callPackage ../development/python-modules/rova { };
@@ -12437,6 +12455,8 @@ self: super: with self; {
   transforms3d = callPackage ../development/python-modules/transforms3d { };
 
   transitions = callPackage ../development/python-modules/transitions { };
+
+  translatehtml = callPackage ../development/python-modules/translatehtml { };
 
   translatepy = callPackage ../development/python-modules/translatepy { };
 
