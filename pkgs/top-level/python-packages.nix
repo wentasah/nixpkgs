@@ -1326,6 +1326,8 @@ self: super: with self; {
 
   binwalk-full = self.binwalk.override { visualizationSupport = true; };
 
+  biopandas = callPackage ../development/python-modules/biopandas { };
+
   biopython = callPackage ../development/python-modules/biopython { };
 
   biplist = callPackage ../development/python-modules/biplist { };
@@ -1860,6 +1862,10 @@ self: super: with self; {
   cjkwrap = callPackage ../development/python-modules/cjkwrap { };
 
   ckcc-protocol = callPackage ../development/python-modules/ckcc-protocol { };
+
+  clarifai = callPackage ../development/python-modules/clarifai { };
+
+  clarifai-grpc = callPackage ../development/python-modules/clarifai-grpc { };
 
   claripy = callPackage ../development/python-modules/claripy { };
 
@@ -3253,6 +3259,8 @@ self: super: with self; {
   enaml = callPackage ../development/python-modules/enaml { };
 
   enamlx = callPackage ../development/python-modules/enamlx { };
+
+  encodec = callPackage ../development/python-modules/encodec { };
 
   energyflip-client = callPackage ../development/python-modules/energyflip-client { };
 
@@ -5313,8 +5321,6 @@ self: super: with self; {
 
   jsonschema = callPackage ../development/python-modules/jsonschema { };
 
-  jsonschema_3 = callPackage ../development/python-modules/jsonschema/3_x.nix { };
-
   jsonschema-spec = callPackage ../development/python-modules/jsonschema-spec { };
 
   jsonstreams = callPackage ../development/python-modules/jsonstreams { };
@@ -5840,6 +5846,8 @@ self: super: with self; {
 
   lima = callPackage ../development/python-modules/lima { };
 
+  lime = callPackage ../development/python-modules/lime { };
+
   limiter= callPackage ../development/python-modules/limiter { };
 
   limitlessled = callPackage ../development/python-modules/limitlessled { };
@@ -6113,6 +6121,8 @@ self: super: with self; {
 
   marshmallow-sqlalchemy = callPackage ../development/python-modules/marshmallow-sqlalchemy { };
 
+  mashumaro = callPackage ../development/python-modules/mashumaro { };
+
   mask-rcnn = callPackage ../development/python-modules/mask-rcnn { };
 
   masky = callPackage ../development/python-modules/masky { };
@@ -6136,6 +6146,8 @@ self: super: with self; {
   };
 
   matplotlib-inline = callPackage ../development/python-modules/matplotlib-inline { };
+
+  matplotlib-sixel = callPackage ../development/python-modules/matplotlib-sixel { };
 
   matplotx = callPackage ../development/python-modules/matplotx { };
 
@@ -6393,6 +6405,8 @@ self: super: with self; {
 
   mmpython = callPackage ../development/python-modules/mmpython { };
 
+  mmtf-python = callPackage ../development/python-modules/mmtf-python { };
+
   mnemonic = callPackage ../development/python-modules/mnemonic { };
 
   mne-python = callPackage ../development/python-modules/mne-python { };
@@ -6493,6 +6507,10 @@ self: super: with self; {
   mpldatacursor = callPackage ../development/python-modules/mpldatacursor { };
 
   mplfinance = callPackage ../development/python-modules/mplfinance { };
+
+  mplhep = callPackage ../development/python-modules/mplhep { };
+
+  mplhep-data = callPackage ../development/python-modules/mplhep-data { };
 
   mplleaflet = callPackage ../development/python-modules/mplleaflet { };
 
@@ -8692,8 +8710,6 @@ self: super: with self; {
 
   pygatt = callPackage ../development/python-modules/pygatt { };
 
-  pygbm = callPackage ../development/python-modules/pygbm { };
-
   pygccxml = callPackage ../development/python-modules/pygccxml { };
 
   pygdbmi = callPackage ../development/python-modules/pygdbmi { };
@@ -9310,6 +9326,8 @@ self: super: with self; {
 
   pyrate-limiter = callPackage ../development/python-modules/pyrate-limiter { };
 
+  pyreaderwriterlock = callPackage ../development/python-modules/pyreaderwriterlock { };
+
   pyreadstat = callPackage ../development/python-modules/pyreadstat {
     inherit (pkgs.darwin) libiconv;
   };
@@ -9741,8 +9759,6 @@ self: super: with self; {
 
   pytest-order = callPackage ../development/python-modules/pytest-order { };
 
-  pytest-ordering = callPackage ../development/python-modules/pytest-ordering { };
-
   pytest-param-files = callPackage ../development/python-modules/pytest-param-files { };
 
   pytest-playwright = callPackage ../development/python-modules/pytest-playwright {};
@@ -9782,10 +9798,6 @@ self: super: with self; {
   pytest-resource-path = callPackage ../development/python-modules/pytest-resource-path { };
 
   pytest-runner = callPackage ../development/python-modules/pytest-runner { };
-
-  pytest-sanic = callPackage ../development/python-modules/pytest-sanic {
-    sanic = self.sanic.override { doCheck = false; };
-  };
 
   pytest-server-fixtures = callPackage ../development/python-modules/pytest-server-fixtures { };
 
@@ -12012,6 +12024,8 @@ self: super: with self; {
 
   tago = callPackage ../development/python-modules/tago { };
 
+  tagoio-sdk = callPackage ../development/python-modules/tagoio-sdk { };
+
   tahoma-api = callPackage ../development/python-modules/tahoma-api { };
 
   tailer = callPackage ../development/python-modules/tailer { };
@@ -13212,6 +13226,8 @@ self: super: with self; {
   wiffi = callPackage ../development/python-modules/wiffi { };
 
   wifi = callPackage ../development/python-modules/wifi { };
+
+  wikipedia = callPackage ../development/python-modules/wikipedia { };
 
   willow = callPackage ../development/python-modules/willow { };
 
