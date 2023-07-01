@@ -5761,6 +5761,8 @@ with pkgs;
 
   nyx = callPackage ../tools/networking/nyx { };
 
+  oauth2ms = callPackage ../tools/networking/oauth2ms { };
+
   oci-cli = callPackage ../tools/admin/oci-cli { };
 
   oci-seccomp-bpf-hook = callPackage ../os-specific/linux/oci-seccomp-bpf-hook { };
