@@ -961,6 +961,8 @@ self: super: with self; {
 
   azure-mgmt-appconfiguration = callPackage ../development/python-modules/azure-mgmt-appconfiguration { };
 
+  azure-mgmt-appcontainers = callPackage ../development/python-modules/azure-mgmt-appcontainers { };
+
   azure-mgmt-applicationinsights = callPackage ../development/python-modules/azure-mgmt-applicationinsights { };
 
   azure-mgmt-authorization = callPackage ../development/python-modules/azure-mgmt-authorization { };
@@ -5894,6 +5896,8 @@ self: super: with self; {
 
   lit = callPackage ../development/python-modules/lit { };
 
+  litemapy = callPackage ../development/python-modules/litemapy { };
+
   littleutils = callPackage ../development/python-modules/littleutils { };
 
   livelossplot = callPackage ../development/python-modules/livelossplot { };
@@ -6726,6 +6730,8 @@ self: super: with self; {
 
   nbsphinx = callPackage ../development/python-modules/nbsphinx { };
 
+  nbtlib = callPackage ../development/python-modules/nbtlib { };
+
   nbval = callPackage ../development/python-modules/nbval { };
 
   nbxmpp = callPackage ../development/python-modules/nbxmpp { };
@@ -7519,8 +7525,6 @@ self: super: with self; {
   pdfkit = callPackage ../development/python-modules/pdfkit { };
 
   pdfminer-six = callPackage ../development/python-modules/pdfminer-six { };
-
-  pdfposter = callPackage ../development/python-modules/pdfposter { };
 
   pdfrw = callPackage ../development/python-modules/pdfrw { };
 
