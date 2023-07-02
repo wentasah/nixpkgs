@@ -5617,6 +5617,12 @@
     githubId = 134872;
     name = "Sergei Lukianov";
   };
+  fsagbuya = {
+    email = "fa@m-labs.ph";
+    github = "fsagbuya";
+    githubId = 77672306;
+    name = "Florian Agbuya";
+  };
   fstamour = {
     email = "fr.st-amour@gmail.com";
     github = "fstamour";
@@ -8413,6 +8419,12 @@
     github = "kcalvinalvin";
     githubId = 37185887;
     name = "Calvin Kim";
+  };
+  keenanweaver = {
+    email = "keenanweaver@protonmail.com";
+    name = "Keenan Weaver";
+    github = "keenanweaver";
+    githubId = 37268985;
   };
   keksbg = {
     email = "keksbg@riseup.net";

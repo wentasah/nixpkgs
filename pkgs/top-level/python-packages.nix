@@ -412,6 +412,8 @@ self: super: with self; {
 
   alembic = callPackage ../development/python-modules/alembic { };
 
+  alexapy = callPackage ../development/python-modules/alexapy { };
+
   algebraic-data-types = callPackage ../development/python-modules/algebraic-data-types { };
 
   aliyun-python-sdk-cdn = callPackage ../development/python-modules/aliyun-python-sdk-cdn { };
@@ -731,6 +733,8 @@ self: super: with self; {
   asyncclick = callPackage ../development/python-modules/asyncclick { };
 
   asynccmd = callPackage ../development/python-modules/asynccmd { };
+
+  asyncinotify = callPackage ../development/python-modules/asyncinotify { };
 
   asyncio-dgram = callPackage ../development/python-modules/asyncio-dgram { };
 
@@ -4185,6 +4189,8 @@ self: super: with self; {
 
   goodwe = callPackage ../development/python-modules/goodwe { };
 
+  google-ai-generativelanguage = callPackage ../development/python-modules/google-ai-generativelanguage { };
+
   google-api-core = callPackage ../development/python-modules/google-api-core { };
 
   google-api-python-client = callPackage ../development/python-modules/google-api-python-client { };
@@ -4294,6 +4300,8 @@ self: super: with self; {
   google-crc32c = callPackage ../development/python-modules/google-crc32c {
     inherit (pkgs) crc32c;
   };
+
+  google-generativeai = callPackage ../development/python-modules/google-generativeai { };
 
   google-i18n-address = callPackage ../development/python-modules/google-i18n-address { };
 
@@ -12249,6 +12257,8 @@ self: super: with self; {
   thinc = callPackage ../development/python-modules/thinc {
     inherit (pkgs.darwin.apple_sdk.frameworks) Accelerate CoreFoundation CoreGraphics CoreVideo;
   };
+
+  thorlabspm100 = callPackage ../development/python-modules/thorlabspm100 { };
 
   threadloop = callPackage ../development/python-modules/threadloop { };
 
