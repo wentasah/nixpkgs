@@ -5630,6 +5630,12 @@
     githubId = 609279;
     name = "Isaac Shapira";
   };
+  freyacodes = {
+    email = "freya@arbjerg.dev";
+    github = "freyacodes";
+    githubId = 2582617;
+    name = "Freya Arbjerg";
+  };
   fricklerhandwerk = {
     email = "valentin@fricklerhandwerk.de";
     github = "fricklerhandwerk";
@@ -7361,6 +7367,11 @@
     github = "jali-clarke";
     githubId = 17733984;
   };
+  james-atkins = {
+    name = "James Atkins";
+    github = "james-atkins";
+    githubId = 9221409;
+  };
   jamiemagee = {
     email = "jamie.magee@gmail.com";
     github = "JamieMagee";
@@ -8101,6 +8112,12 @@
     name = "joscha Loos";
     email = "j.loos@posteo.net";
     githubId = 57965027;
+  };
+  josephst = {
+    name = "Joseph Stahl";
+    email = "hello@josephstahl.com";
+    github = "josephst";
+    githubId = 1269177;
   };
   joshniemela = {
     name = "Joshua Niemelä";
@@ -13004,6 +13021,12 @@
     github = "piperswe";
     githubId = 1830959;
     name = "Piper McCorkle";
+  };
+  piturnah = {
+    email = "peterhebden6@gmail.com";
+    github = "piturnah";
+    githubId = 20472367;
+    name = "Peter Hebden";
   };
   pjbarnoy = {
     email = "pjbarnoy@gmail.com";

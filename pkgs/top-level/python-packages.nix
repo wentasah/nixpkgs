@@ -1274,6 +1274,8 @@ self: super: with self; {
 
   beaker = callPackage ../development/python-modules/beaker { };
 
+  before-after = callPackage ../development/python-modules/before-after { };
+
   beancount = callPackage ../development/python-modules/beancount { };
 
   beancount-black = callPackage ../development/python-modules/beancount-black { };
@@ -1534,6 +1536,8 @@ self: super: with self; {
   brother-ql = callPackage ../development/python-modules/brother-ql { };
 
   brotli = callPackage ../development/python-modules/brotli { };
+
+  brotli-asgi = callPackage ../development/python-modules/brotli-asgi { };
 
   brotlicffi = callPackage ../development/python-modules/brotlicffi {
     inherit (pkgs) brotli;
@@ -11282,6 +11286,8 @@ self: super: with self; {
   selenium = callPackage ../development/python-modules/selenium { };
 
   semantic-version = callPackage ../development/python-modules/semantic-version { };
+
+  semaphore-bot = callPackage ../development/python-modules/semaphore-bot { };
 
   semver = callPackage ../development/python-modules/semver { };
 
