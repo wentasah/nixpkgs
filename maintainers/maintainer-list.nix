@@ -1231,6 +1231,12 @@
     githubId = 914687;
     name = "Alexis Praga";
   };
+  aprl = {
+    email = "aprl@acab.dev";
+    github = "cutestnekoaqua";
+    githubId = 30842467;
+    name = "April John";
+  };
   ar1a = {
     email = "aria@ar1as.space";
     github = "ar1a";
@@ -5189,6 +5195,12 @@
     keys = [{
       fingerprint = "FC1D 3E4F CBCA 80DF E870  6397 C811 6E3A 0C1C A76A";
     }];
+  };
+  exploitoverload = {
+    email = "nix@exploitoverload.com";
+    github = "exploitoverload";
+    githubId = 99678549;
+    name = "Asier Armenteros";
   };
   extends = {
     email = "sharosari@gmail.com";
@@ -10046,6 +10058,11 @@
     github = "malob";
     githubId = 2914269;
     name = "Malo Bourgon";
+  };
+  malt3 = {
+    github = "malt3";
+    githubId = 1780588;
+    name = "Malte Poll";
   };
   malte-v = {
     email = "nixpkgs@mal.tc";
@@ -15214,6 +15231,12 @@
     github = "SirSeruju";
     githubId = 74881555;
     name = "Fofanov Sergey";
+  };
+  sitaaax = {
+    email = "johannes@kle1n.com";
+    github = "SitAAAx";
+    githubId = 74413170;
+    name = "Johannes Klein";
   };
   sivteck = {
     email = "sivaram1992@gmail.com";

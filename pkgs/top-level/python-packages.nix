@@ -2571,6 +2571,8 @@ self: super: with self; {
 
   detect-secrets = callPackage ../development/python-modules/detect-secrets { };
 
+  detectron2 = callPackage ../development/python-modules/detectron2 { };
+
   devito = callPackage ../development/python-modules/devito { };
 
   devolo-home-control-api = callPackage ../development/python-modules/devolo-home-control-api { };
@@ -4869,6 +4871,8 @@ self: super: with self; {
 
   hyperopt = callPackage ../development/python-modules/hyperopt { };
 
+  hyperpyyaml = callPackage ../development/python-modules/hyperpyyaml { };
+
   hypothesis-auto = callPackage ../development/python-modules/hypothesis-auto { };
 
   hypothesis = callPackage ../development/python-modules/hypothesis { };
@@ -6377,6 +6381,10 @@ self: super: with self; {
 
   mf2py = callPackage ../development/python-modules/mf2py { };
 
+  mhcflurry = callPackage ../development/python-modules/mhcflurry { };
+
+  mhcgnomes = callPackage ../development/python-modules/mhcgnomes { };
+
   micawber = callPackage ../development/python-modules/micawber { };
 
   microdata = callPackage ../development/python-modules/microdata { };
@@ -7221,6 +7229,8 @@ self: super: with self; {
       pythonSupport = true;
     };
   };
+
+  onnxruntime-tools = callPackage ../development/python-modules/onnxruntime-tools { };
 
   onvif-zeep-async = callPackage ../development/python-modules/onvif-zeep-async { };
 
@@ -8441,6 +8451,8 @@ self: super: with self; {
 
   py3exiv2 = callPackage ../development/python-modules/py3exiv2 { };
 
+  py3nvml = callPackage ../development/python-modules/py3nvml { };
+
   py3rijndael = callPackage ../development/python-modules/py3rijndael { };
 
   py3status = callPackage ../development/python-modules/py3status { };
@@ -9331,6 +9343,8 @@ self: super: with self; {
   pyphen = callPackage ../development/python-modules/pyphen { };
 
   pyphotonfile = callPackage ../development/python-modules/pyphotonfile { };
+
+  pypika = callPackage ../development/python-modules/pypika { };
 
   pypillowfight = callPackage ../development/python-modules/pypillowfight { };
 
@@ -11327,6 +11341,8 @@ self: super: with self; {
 
   serialio = callPackage ../development/python-modules/serialio { };
 
+  serializable = callPackage ../development/python-modules/serializable { };
+
   serpent = callPackage ../development/python-modules/serpent { };
 
   serpy = callPackage ../development/python-modules/serpy { };
@@ -11710,6 +11726,8 @@ self: super: with self; {
   speaklater3 = callPackage ../development/python-modules/speaklater3 { };
 
   spectral-cube = callPackage ../development/python-modules/spectral-cube { };
+
+  speechbrain = callPackage ../development/python-modules/speechbrain { };
 
   speedtest-cli = callPackage ../development/python-modules/speedtest-cli { };
 
@@ -12788,6 +12806,8 @@ self: super: with self; {
   txtorcon = callPackage ../development/python-modules/txtorcon { };
 
   txzmq = callPackage ../development/python-modules/txzmq { };
+
+  typechecks = callPackage ../development/python-modules/typechecks { };
 
   typecode = callPackage ../development/python-modules/typecode { };
 
