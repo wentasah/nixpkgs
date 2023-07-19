@@ -4309,6 +4309,12 @@
     githubId = 10998835;
     name = "Doron Behar";
   };
+  dotemup = {
+    email = "dotemup.designs+nixpkgs@gmail.com";
+    github = "dotemup";
+    githubId = 11077277;
+    name = "Dote";
+  };
   dotlambda = {
     email = "rschuetz17@gmail.com";
     matrix = "@robert:funklause.de";
@@ -6010,6 +6016,12 @@
     github = "ghuntley";
     githubId = 127353;
     name = "Geoffrey Huntley";
+  };
+  gigglesquid = {
+    email = "jack.connors@protonmail.com";
+    github = "gigglesquid";
+    githubId = 3685154;
+    name = "Jack connors";
   };
   gila = {
     email = "jeffry.molanus@gmail.com";
@@ -14875,6 +14887,16 @@
     githubId = 4805746;
     name = "Sebastian Jordan";
   };
+  septem9er = {
+  name = "Septem9er";
+  email = "develop@septem9er.de";
+  matrix = "@septem9er:fairydust.space";
+  github = "septem9er";
+  githubId = 33379902;
+  keys = [{
+    fingerprint = "C408 07F9 8677 3D98 EFF3 0980 355A 9AFB FD8E AD33";
+  }];
+};
   seqizz = {
     email = "seqizz@gmail.com";
     github = "seqizz";
@@ -18391,6 +18413,13 @@
     github = "Zimmi48";
     githubId = 1108325;
     name = "Théo Zimmermann";
+  };
+  zmitchell = {
+    name = "Zach Mitchell";
+    email = "zmitchell@fastmail.com";
+    matrix = "@zmitchell:matrix.org";
+    github = "zmitchell";
+    githubId = 10246891;
   };
   zoedsoupe = {
     github = "zoedsoupe";
