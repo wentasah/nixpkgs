@@ -194,6 +194,8 @@ self: super: with self; {
 
   aiogithubapi = callPackage ../development/python-modules/aiogithubapi { };
 
+  aiogram = callPackage ../development/python-modules/aiogram { };
+
   aioharmony = callPackage ../development/python-modules/aioharmony { };
 
   aiohomekit = callPackage ../development/python-modules/aiohomekit { };
@@ -733,6 +735,8 @@ self: super: with self; {
   async_generator = callPackage ../development/python-modules/async_generator { };
 
   async-dns = callPackage ../development/python-modules/async-dns { };
+
+  async-interrupt = callPackage ../development/python-modules/async-interrupt { };
 
   async-lru = callPackage ../development/python-modules/async-lru { };
 
@@ -1317,6 +1321,8 @@ self: super: with self; {
   bencoder = callPackage ../development/python-modules/bencoder { };
 
   beniget = callPackage ../development/python-modules/beniget { };
+
+  bentoml = callPackage ../development/python-modules/bentoml { };
 
   bespon = callPackage ../development/python-modules/bespon { };
 
@@ -3922,6 +3928,8 @@ self: super: with self; {
 
   folium = callPackage ../development/python-modules/folium { };
 
+  fontawesomefree = callPackage ../development/python-modules/fontawesomefree { };
+
   fontforge = toPythonModule (pkgs.fontforge.override {
     withPython = true;
     inherit python;
@@ -6183,6 +6191,8 @@ self: super: with self; {
 
   magicgui = callPackage ../development/python-modules/magicgui { };
 
+  magic-filter = callPackage ../development/python-modules/magic-filter { };
+
   magic-wormhole = callPackage ../development/python-modules/magic-wormhole { };
 
   magic-wormhole-mailbox-server = callPackage ../development/python-modules/magic-wormhole-mailbox-server { };
@@ -6530,6 +6540,7 @@ self: super: with self; {
   mkdocs-exclude = callPackage ../development/python-modules/mkdocs-exclude { };
   mkdocs-jupyter = callPackage ../development/python-modules/mkdocs-jupyter { };
   mkdocs-gitlab = callPackage ../development/python-modules/mkdocs-gitlab-plugin { };
+  mkdocs-git-authors-plugin = callPackage ../development/python-modules/mkdocs-git-authors-plugin { };
   mkdocs-linkcheck = callPackage ../development/python-modules/mkdocs-linkcheck { };
   mkdocs-macros = callPackage ../development/python-modules/mkdocs-macros { };
   mkdocs-material = callPackage ../development/python-modules/mkdocs-material { };
@@ -7303,6 +7314,8 @@ self: super: with self; {
   onnx = callPackage ../development/python-modules/onnx { };
 
   onnxconverter-common = callPackage ../development/python-modules/onnxconverter-common { };
+
+  onnxmltools = callPackage ../development/python-modules/onnxmltools { };
 
   onnxruntime = callPackage ../development/python-modules/onnxruntime {
     onnxruntime = pkgs.onnxruntime.override {
@@ -13116,6 +13129,8 @@ self: super: with self; {
 
   unstructured = callPackage ../development/python-modules/unstructured { };
 
+  unstructured-api-tools = callPackage ../development/python-modules/unstructured-api-tools { };
+
   unstructured-inference = callPackage ../development/python-modules/unstructured-inference { };
 
   untangle = callPackage ../development/python-modules/untangle { };
@@ -13893,8 +13908,6 @@ self: super: with self; {
   zodb = callPackage ../development/python-modules/zodb { };
 
   zodbpickle = callPackage ../development/python-modules/zodbpickle { };
-
-  zope_broken = callPackage ../development/python-modules/zope_broken { };
 
   zope-cachedescriptors = callPackage ../development/python-modules/zope-cachedescriptors { };
 
