@@ -104,6 +104,7 @@ stdenv.mkDerivation (finalAttrs: rec {
     pkg-config
     makeWrapper
     wrapGAppsHook
+    gobject-introspection
   ];
 
   buildInputs = [
@@ -111,7 +112,6 @@ stdenv.mkDerivation (finalAttrs: rec {
     cairo.dev
     dblatex
     gnumake
-    gobject-introspection
     graphicsmagick
     gsettings-desktop-schemas
     gtk3
