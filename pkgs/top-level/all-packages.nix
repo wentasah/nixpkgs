@@ -509,11 +509,7 @@ with pkgs;
 
   colorpicker = callPackage ../tools/misc/colorpicker { };
 
-  colorstorm = callPackage ../applications/misc/colorstorm {
-    zigHook = zigHook.override {
-      zig = buildPackages.zig_0_9;
-    };
-  };
+  colorstorm = callPackage ../applications/misc/colorstorm { };
 
   comedilib = callPackage ../development/libraries/comedilib {  };
 
@@ -594,6 +590,8 @@ with pkgs;
   dnf5 = callPackage ../tools/package-management/dnf5 { };
 
   dsq = callPackage ../tools/misc/dsq { };
+
+  dt = callPackage ../tools/text/dt { };
 
   dtv-scan-tables = callPackage ../data/misc/dtv-scan-tables { };
 
@@ -1772,6 +1770,8 @@ with pkgs;
 
   gp-saml-gui = python3Packages.callPackage ../tools/networking/gp-saml-gui { };
 
+  grizzly = callPackage ../tools/misc/grizzly { };
+
   guestfs-tools = callPackage ../tools/virtualization/guestfs-tools { };
 
   fabs = callPackage ../tools/backup/fabs { };
@@ -1985,6 +1985,8 @@ with pkgs;
   vrc-get = callPackage ../tools/misc/vrc-get {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
+
+  vrrtest = callPackage ../tools/video/vrrtest { };
 
   winbox = callPackage ../tools/admin/winbox {
     wine = wineWowPackages.staging;
@@ -3010,11 +3012,7 @@ with pkgs;
 
   pikchr = callPackage ../tools/graphics/pikchr { };
 
-  poop = callPackage ../tools/misc/poop {
-    zigHook = zigHook.override {
-      zig = buildPackages.zig_0_11;
-    };
-  };
+  poop = callPackage ../tools/misc/poop { };
 
   popl = callPackage ../development/libraries/popl { };
 
@@ -4375,6 +4373,8 @@ with pkgs;
 
   bwbasic = callPackage ../development/interpreters/bwbasic { };
 
+  bws = callPackage ../tools/security/bws { };
+
   byobu = callPackage ../tools/misc/byobu {
     # Choices: [ tmux screen ];
     textual-window-manager = tmux;
@@ -5025,9 +5025,9 @@ with pkgs;
 
   duperemove = callPackage ../tools/filesystems/duperemove { };
 
-  dvc = callPackage ../applications/version-management/dvc { };
+  dvc = with python3.pkgs; toPythonApplication dvc;
 
-  dvc-with-remotes = callPackage ../applications/version-management/dvc {
+  dvc-with-remotes = dvc.override {
     enableGoogle = true;
     enableAWS = true;
     enableAzure = true;
@@ -5067,6 +5067,8 @@ with pkgs;
   eggdrop = callPackage ../tools/networking/eggdrop { };
 
   egglog = callPackage ../applications/science/logic/egglog { };
+
+  ego = callPackage ../tools/misc/ego { };
 
   ekam = callPackage ../development/tools/build-managers/ekam { };
 
@@ -5821,18 +5823,23 @@ with pkgs;
   # example of an error which this fixes
   # [Errno 8] Exec format error: './gdk3-scan'
   mesonEmulatorHook =
-    if (!stdenv.buildPlatform.canExecute stdenv.targetPlatform) then
-      makeSetupHook
-        {
-          name = "mesonEmulatorHook";
-          substitutions = {
-            crossFile = writeText "cross-file.conf" ''
+    makeSetupHook
+      {
+        name = "mesonEmulatorHook";
+        substitutions = {
+          crossFile = writeText "cross-file.conf" ''
               [binaries]
-              exe_wrapper = ${lib.escapeShellArg (stdenv.targetPlatform.emulator buildPackages)}
+              exe_wrapper = ${lib.escapeShellArg (stdenv.targetPlatform.emulator pkgs)}
             '';
-          };
-        } ../development/tools/build-managers/meson/emulator-hook.sh
-    else throw "mesonEmulatorHook has to be in a conditional to check if the target binaries can be executed i.e. (!stdenv.buildPlatform.canExecute stdenv.hostPlatform)";
+        };
+      }
+      # The throw is moved into the `makeSetupHook` derivation, so that its
+      # outer level, but not its outPath can still be evaluated if the condition
+      # doesn't hold. This ensures that splicing still can work correctly.
+      (if (!stdenv.hostPlatform.canExecute stdenv.targetPlatform) then
+        ../development/tools/build-managers/meson/emulator-hook.sh
+       else
+         throw "mesonEmulatorHook may only be added to nativeBuildInputs when the target binaries can't be executed; however you are attempting to use it in a situation where ${stdenv.hostPlatform.config} can execute ${stdenv.targetPlatform.config}. Consider only adding mesonEmulatorHook according to a conditional based canExecute in your package expression.");
 
   meson-tools = callPackage ../misc/meson-tools { };
 
@@ -6138,11 +6145,7 @@ with pkgs;
 
   river = callPackage ../applications/window-managers/river { };
 
-  rivercarro = callPackage ../applications/misc/rivercarro {
-    zigHook = zigHook.override {
-      zig = buildPackages.zig_0_9;
-    };
-  };
+  rivercarro = callPackage ../applications/misc/rivercarro { };
 
   river-luatile = callPackage ../applications/misc/river-luatile{ };
 
@@ -6781,6 +6784,8 @@ with pkgs;
 
   keyd = callPackage ../tools/inputmethods/keyd { };
 
+  keymapper = callPackage ../tools/inputmethods/keymapper { };
+
   twitch-tui = callPackage ../applications/networking/instant-messengers/twitch-tui {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -6901,6 +6906,8 @@ with pkgs;
 
   bbin = callPackage ../development/tools/bbin { };
 
+  blacken-docs = callPackage ../tools/misc/blacken-docs { };
+
   bore = callPackage ../tools/networking/bore {
     inherit (darwin) Libsystem;
     inherit (darwin.apple_sdk.frameworks) SystemConfiguration;
@@ -6932,6 +6939,8 @@ with pkgs;
   code-browser-qt = libsForQt5.callPackage ../applications/editors/code-browser { withQt = true; };
   code-browser-gtk2 = callPackage ../applications/editors/code-browser { withGtk2 = true; };
   code-browser-gtk = callPackage ../applications/editors/code-browser { withGtk3 = true; };
+
+  CertDump = callPackage ../tools/security/CertDump { };
 
   certstrap = callPackage ../tools/security/certstrap { };
 
@@ -10335,6 +10344,8 @@ with pkgs;
 
   linux-exploit-suggester = callPackage ../tools/security/linux-exploit-suggester { };
 
+  linux-gpib = callPackage ../applications/science/electronics/linux-gpib/user.nix { };
+
   linuxquota = callPackage ../tools/misc/linuxquota { };
 
   lipl = callPackage ../tools/misc/lipl { };
@@ -10970,6 +10981,8 @@ with pkgs;
 
   nb = callPackage ../tools/misc/nb { };
 
+  nbqa = callPackage ../tools/misc/nbqa { };
+
   kb = callPackage ../tools/misc/kb { };
 
   notable = callPackage ../applications/misc/notable { };
@@ -11008,6 +11021,13 @@ with pkgs;
   mpack = callPackage ../tools/networking/mpack { };
 
   mtm = callPackage ../tools/misc/mtm { };
+
+  op-geth = callPackage ../applications/blockchains/optimism/geth.nix {
+    inherit (darwin) libobjc;
+    inherit (darwin.apple_sdk.frameworks) IOKit;
+  };
+
+  optimism = callPackage ../applications/blockchains/optimism { };
 
   pa_applet = callPackage ../tools/audio/pa-applet { };
 
@@ -12395,6 +12415,8 @@ with pkgs;
 
   re-isearch = callPackage ../applications/search/re-isearch { };
 
+  reason-shell = callPackage ../applications/science/misc/reason-shell { };
+
   reaverwps = callPackage ../tools/networking/reaver-wps { };
 
   reaverwps-t6x = callPackage ../tools/networking/reaver-wps-t6x { };
@@ -13474,6 +13496,8 @@ with pkgs;
 
   tea = callPackage ../tools/misc/tea { };
 
+  teavpn2 = callPackage ../tools/networking/teavpn2 { };
+
   inherit (nodePackages) teck-programmer;
 
   ted = callPackage ../tools/typesetting/ted { };
@@ -14054,7 +14078,7 @@ with pkgs;
 
   v2ray-geoip = callPackage ../data/misc/v2ray-geoip { };
 
-  vacuum = callPackage ../applications/networking/instant-messengers/vacuum { };
+  vacuum = libsForQt5.callPackage ../applications/networking/instant-messengers/vacuum {};
 
   validator-nu = callPackage ../tools/text/validator-nu { };
 
@@ -14612,6 +14636,8 @@ with pkgs;
 
   webalizer = callPackage ../tools/networking/webalizer { };
 
+  webmesh = callPackage ../servers/webmesh { };
+
   wget = callPackage ../tools/networking/wget { };
 
   wget2 = callPackage ../tools/networking/wget2 {
@@ -15003,6 +15029,8 @@ with pkgs;
   zsh-powerlevel9k = callPackage ../shells/zsh/zsh-powerlevel9k { };
 
   zsh-command-time = callPackage ../shells/zsh/zsh-command-time { };
+
+  zsh-fzf-history-search = callPackage ../shells/zsh/zsh-fzf-history-search { };
 
   zsh-vi-mode = callPackage ../shells/zsh/zsh-vi-mode { };
 
@@ -15527,7 +15555,8 @@ with pkgs;
   gerbil = callPackage ../development/compilers/gerbil { };
   gerbil-unstable = callPackage ../development/compilers/gerbil/unstable.nix { };
   gerbil-support = callPackage ../development/compilers/gerbil/gerbil-support.nix { };
-  gerbilPackages-unstable = gerbil-support.gerbilPackages-unstable; # NB: don't recurseIntoAttrs for (unstable!) libraries
+  gerbilPackages-unstable = pkgs.gerbil-support.gerbilPackages-unstable; # NB: don't recurseIntoAttrs for (unstable!) libraries
+  glow-lang = pkgs.gerbilPackages-unstable.glow-lang;
 
   gbforth = callPackage ../development/compilers/gbforth { };
 
@@ -17100,6 +17129,8 @@ with pkgs;
 
   devspace = callPackage ../development/tools/misc/devspace { };
 
+  leptosfmt = callPackage ../development/tools/rust/leptosfmt { };
+
   maturin = callPackage ../development/tools/rust/maturin {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -18295,11 +18326,7 @@ with pkgs;
 
   vscode-langservers-extracted = callPackage ../development/tools/language-servers/vscode-langservers-extracted { };
 
-  zls = callPackage ../development/tools/language-servers/zls {
-    zigHook = zigHook.override {
-      zig = buildPackages.zig_0_10;
-    };
-  };
+  zls = callPackage ../development/tools/language-servers/zls { };
 
   ansible-later = callPackage ../tools/admin/ansible/later.nix { };
 
@@ -21832,6 +21859,8 @@ with pkgs;
 
   hunspellDicts = recurseIntoAttrs (callPackages ../development/libraries/hunspell/dictionaries.nix {});
 
+  hunspellDictsChromium = recurseIntoAttrs (callPackages ../development/libraries/hunspell/dictionaries-chromium.nix {});
+
   hunspellWithDicts = dicts: callPackage ../development/libraries/hunspell/wrapper.nix { inherit dicts; };
 
   hwloc = callPackage ../development/libraries/hwloc { };
@@ -24892,8 +24921,6 @@ with pkgs;
 
   speech-tools = callPackage ../development/libraries/speech-tools { };
 
-  speedtest-exporter = callPackage ../development/libraries/speedtest-exporter { };
-
   speex = callPackage ../development/libraries/speex {
     fftw = fftwFloat;
   };
@@ -24953,6 +24980,8 @@ with pkgs;
   stxxl = callPackage ../development/libraries/stxxl { };
 
   sv-lang = callPackage ../applications/science/electronics/sv-lang { };
+
+  sqld = callPackage ../servers/sql/sqld { };
 
   sqlite = lowPrio (callPackage ../development/libraries/sqlite { });
 
@@ -25406,6 +25435,8 @@ with pkgs;
 
   xdo = callPackage ../tools/misc/xdo { };
 
+  xdiskusage = callPackage ../tools/misc/xdiskusage { };
+
   xed = callPackage ../development/libraries/xed { };
 
   xedit = callPackage ../applications/editors/xedit { };
@@ -25514,9 +25545,7 @@ with pkgs;
   zig_0_11 = darwin.apple_sdk_11_0.callPackage ../development/compilers/zig/0.11.nix {
     llvmPackages = llvmPackages_16;
   };
-  zig = zig_0_10;
-
-  zigHook = callPackage ../development/compilers/zig/hook.nix { };
+  zig = zig_0_11;
 
   zimlib = callPackage ../development/libraries/zimlib { };
 
@@ -25525,6 +25554,8 @@ with pkgs;
   zita-alsa-pcmi = callPackage ../development/libraries/audio/zita-alsa-pcmi { };
 
   zita-resampler = callPackage ../development/libraries/audio/zita-resampler { };
+
+  zitadel-tools = callPackage ../tools/misc/zitadel-tools { };
 
   zix = callPackage ../development/libraries/audio/zix { };
 
@@ -26892,6 +26923,7 @@ with pkgs;
   prometheus-gitlab-ci-pipelines-exporter = callPackage ../servers/monitoring/prometheus/gitlab-ci-pipelines-exporter.nix { };
   prometheus-graphite-exporter = callPackage ../servers/monitoring/prometheus/graphite-exporter.nix { };
   prometheus-haproxy-exporter = callPackage ../servers/monitoring/prometheus/haproxy-exporter.nix { };
+  prometheus-idrac-exporter = callPackage ../servers/monitoring/prometheus/idrac-exporter.nix { };
   prometheus-influxdb-exporter = callPackage ../servers/monitoring/prometheus/influxdb-exporter.nix { };
   prometheus-ipmi-exporter = callPackage ../servers/monitoring/prometheus/ipmi-exporter.nix { };
   prometheus-jitsi-exporter = callPackage ../servers/monitoring/prometheus/jitsi-exporter.nix { };
@@ -26933,7 +26965,6 @@ with pkgs;
   prometheus-smartctl-exporter = callPackage ../servers/monitoring/prometheus/smartctl-exporter { };
   prometheus-smokeping-prober = callPackage ../servers/monitoring/prometheus/smokeping-prober.nix { };
   prometheus-snmp-exporter = callPackage ../servers/monitoring/prometheus/snmp-exporter.nix { };
-  prometheus-speedtest-exporter = callPackage ../servers/monitoring/prometheus/speedtest-exporter.nix { };
   prometheus-statsd-exporter = callPackage ../servers/monitoring/prometheus/statsd-exporter.nix { };
   prometheus-surfboard-exporter = callPackage ../servers/monitoring/prometheus/surfboard-exporter.nix { };
   prometheus-sql-exporter = callPackage ../servers/monitoring/prometheus/sql-exporter.nix { };
@@ -30142,6 +30173,8 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
+  anytone-emu = callPackage ../applications/radio/anytone-emu { };
+
   anytype = callPackage ../applications/misc/anytype { };
 
   ao = libfive;
@@ -32404,11 +32437,7 @@ with pkgs;
 
   waycorner = callPackage ../applications/misc/waycorner { };
 
-  waylock = callPackage ../applications/misc/waylock {
-    zigHook = zigHook.override {
-      zig = buildPackages.zig_0_10;
-    };
-  };
+  waylock = callPackage ../applications/misc/waylock { };
 
   wayshot = callPackage ../tools/misc/wayshot { };
 
@@ -33388,9 +33417,6 @@ with pkgs;
 
   mepo = callPackage ../applications/misc/mepo {
     inherit (gnome) zenity;
-    zigHook = zigHook.override {
-      zig = buildPackages.zig_0_9;
-    };
   };
 
   meshcentral = callPackage ../tools/admin/meshcentral { };
@@ -33730,6 +33756,8 @@ with pkgs;
 
   mutt-ics = callPackage ../tools/networking/mutt-ics { };
 
+  mw = callPackage ../tools/text/mw { };
+
   mwic = callPackage ../applications/misc/mwic {
     pythonPackages = python3Packages;
   };
@@ -33942,6 +33970,8 @@ with pkgs;
 
   songrec = callPackage ../applications/audio/songrec { };
 
+  storj-uplink = callPackage ../applications/networking/sync/storj-uplink {};
+
   storrent = callPackage ../applications/networking/p2p/storrent { };
 
   speedread = callPackage ../applications/misc/speedread { };
@@ -34055,11 +34085,7 @@ with pkgs;
 
   netcoredbg = callPackage ../development/tools/misc/netcoredbg { };
 
-  ncdu = callPackage ../tools/misc/ncdu {
-    zigHook = zigHook.override {
-      zig = buildPackages.zig_0_10;
-    };
-  };
+  ncdu = callPackage ../tools/misc/ncdu { };
 
   ncdu_1 = callPackage ../tools/misc/ncdu/1.nix { };
 
@@ -37221,11 +37247,7 @@ with pkgs;
     inherit (perlPackages) PathTiny;
   };
 
-  blackshades = callPackage ../games/blackshades {
-    zigHook = zigHook.override {
-      zig = buildPackages.zig_0_9;
-    };
-  };
+  blackshades = callPackage ../games/blackshades { };
 
   blobby = callPackage ../games/blobby { };
 
@@ -40897,6 +40919,8 @@ with pkgs;
   ums = callPackage ../servers/ums { };
 
   unityhub = callPackage ../development/tools/unityhub { };
+
+  upspin = callPackage ../tools/filesystems/upspin { };
 
   urbit = callPackage ../misc/urbit { };
 
