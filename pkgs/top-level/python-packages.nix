@@ -1211,6 +1211,8 @@ self: super: with self; {
 
   backports-shutil-which = callPackage ../development/python-modules/backports-shutil-which { };
 
+  backports-strenum = callPackage ../development/python-modules/backports-strenum { };
+
   backports-zoneinfo = callPackage ../development/python-modules/backports-zoneinfo { };
 
   bacpypes = callPackage ../development/python-modules/bacpypes { };
@@ -7508,6 +7510,8 @@ self: super: with self; {
 
   optax = callPackage ../development/python-modules/optax { };
 
+  optimum = callPackage ../development/python-modules/optimum { };
+
   optuna = callPackage ../development/python-modules/optuna { };
 
   opuslib = callPackage ../development/python-modules/opuslib { };
@@ -11267,6 +11271,8 @@ self: super: with self; {
   s3transfer = callPackage ../development/python-modules/s3transfer { };
 
   s3-credentials = callPackage ../development/python-modules/s3-credentials { };
+
+  sabctools = callPackage ../development/python-modules/sabctools { };
 
   sabyenc3 = callPackage ../development/python-modules/sabyenc3 { };
 
