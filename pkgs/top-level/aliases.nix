@@ -96,6 +96,7 @@ mapAliases ({
   arduino_core = throw "'arduino_core' has been renamed to/replaced by 'arduino-core'"; # Converted to throw 2022-02-22
   arora = throw "arora has been removed"; # Added 2020-09-09
   asciidocFull = throw "'asciidocFull' has been renamed to/replaced by 'asciidoc-full'"; # Converted to throw 2022-02-22
+  aseprite-unfree = aseprite; # Added 2023-08-26
   asls = throw "asls has been removed: abandoned by upstream"; # Added 2023-03-16
   asterisk_13 = throw "asterisk_13: Asterisk 13 is end of life and has been removed"; # Added 2022-04-06
   asterisk_15 = throw "asterisk_15: Asterisk 15 is end of life and has been removed"; # Added 2020-10-07
@@ -855,6 +856,7 @@ mapAliases ({
   kubei = kubeclarity; # Added 2023-05-20
   kubeless = throw "kubeless is deprecated and archived by upstream"; # Added 2022-04-05
   kubicorn = throw "kubicorn has been dropped due to the lack of maintenance from upstream since 2019"; # Added 2022-05-30
+  kuma-prometheus-sd = throw "kuma-prometheus-sd has been deprecated upstream"; # Added 2023-07-02
   kvm = throw "'kvm' has been renamed to/replaced by 'qemu_kvm'"; # Converted to throw 2022-02-22
 
   ### L ###
@@ -951,6 +953,7 @@ mapAliases ({
   lilyterm-git = throw "lilyterm-git has been removed from nixpkgs, because it was relying on a vte version that depended on python2"; # Added 2022-01-14
   links = throw "'links' has been renamed to/replaced by 'links2'"; # Converted to throw 2022-02-22
   linuxband = throw "linuxband has been removed from nixpkgs, as it's abandoned upstream"; # Added 2021-12-09
+  llama = walk; # Added 2023-01-23
 
   # Linux kernels
   linux-rt_5_10 = linuxKernel.kernels.linux_rt_5_10;
@@ -2019,26 +2022,29 @@ mapAliases ({
   https://github.com/NixOS/nixpkgs/pull/101369 */
 
   inherit (plasma5Packages)
-    akonadi akregator ark bluedevil bomber bovo breeze-grub breeze-gtk
+    akonadi akregator arianna ark bluedevil bomber bovo breeze-grub breeze-gtk
     breeze-icons breeze-plymouth breeze-qt5 colord-kde discover dolphin dragon elisa falkon
     ffmpegthumbs filelight granatier gwenview k3b kactivitymanagerd kaddressbook
-    kalendar kalzium kapman kapptemplate kate katomic kblackbox kblocks kbounce
+    kalzium kapman kapptemplate kate katomic kblackbox kblocks kbounce
     kcachegrind kcalc kcharselect kcolorchooser kde-cli-tools kde-gtk-config
     kdenlive kdeplasma-addons kdevelop-pg-qt kdevelop-unwrapped kdev-php
-    kdev-python kdevelop kdf kdialog kdiamond keditbookmarks kfind kfloppy
+    kdev-python kdevelop kdf kdialog kdiamond keditbookmarks kfind
     kgamma5 kget kgpg khelpcenter kig kigo killbots kinfocenter kitinerary
     kleopatra klettres klines kmag kmail kmenuedit kmines kmix kmplot
     knavalbattle knetwalk knights kollision kolourpaint kompare konsole kontact
     konversation korganizer kpkpass krdc kreversi krfb kscreen kscreenlocker
     kshisen ksquares ksshaskpass ksystemlog kteatime ktimer ktorrent ktouch
     kturtle kwallet-pam kwalletmanager kwave kwayland-integration kwin kwrited
-    marble milou minuet okular oxygen oxygen-icons5 picmi
+    marble merkuro milou minuet okular oxygen oxygen-icons5 picmi
     plasma-browser-integration plasma-desktop plasma-integration plasma-nano
     plasma-nm plasma-pa plasma-mobile plasma-systemmonitor plasma-thunderbolt
     plasma-vault plasma-workspace plasma-workspace-wallpapers polkit-kde-agent
     powerdevil qqc2-breeze-style sddm-kcm skanlite skanpage spectacle
     systemsettings xdg-desktop-portal-kde yakuake zanshin
   ;
+
+  kalendar = merkuro;  # Renamed in 23.08
+  kfloppy = throw "kfloppy has been removed upstream in KDE Gear 23.08";
 
   inherit (plasma5Packages.thirdParty)
     krohnkite
