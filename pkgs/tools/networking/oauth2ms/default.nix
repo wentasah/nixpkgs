@@ -1,12 +1,12 @@
 { lib, stdenv, fetchFromGitHub, python3 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "oauth2ms";
   version = "2021-07-09";
 
   src = fetchFromGitHub {
     owner = "harishkrupo";
-    repo = pname;
+    repo = "oauth2ms";
     rev = "a1ef0cabfdea57e9309095954b90134604e21c08"; # No tags or releases in the repo
     sha256 = "sha256-xPSWlHJAXhhj5I6UMjUtH1EZqCZWHJMFWTu3a4k1ETc";
   };
