@@ -9849,6 +9849,13 @@
     githubId = 725613;
     name = "Linus Arver";
   };
+  linuxissuper = {
+    email = "m+nix@linuxistcool.de";
+    matrix = "@m:linuxistcool.de";
+    github = "linuxissuper";
+    githubId = 74221543;
+    name = "Moritz Goltdammer";
+  };
   lionello = {
     email = "lio@lunesu.com";
     github = "lionello";
@@ -10490,6 +10497,12 @@
     github = "mangoiv";
     githubId = 40720523;
     name = "MangoIV";
+  };
+  manipuladordedados = {
+    email = "manipuladordedados@gmail.com";
+    github = "manipuladordedados";
+    githubId = 1189862;
+    name = "Valter Nazianzeno";
   };
   manojkarthick = {
     email = "smanojkarthick@gmail.com";
@@ -12877,6 +12890,12 @@
     github = "onthestairs";
     githubId = 915970;
     name = "Austin Platt";
+  };
+  onur-ozkan = {
+    name = "Onur Ozkan";
+    email = "contact@onurozkan.dev";
+    github = "onur-ozkan";
+    githubId = 39852038;
   };
   ony = {
     name = "Mykola Orliuk";
