@@ -68,6 +68,7 @@ mapAliases ({
   aircrackng = throw "'aircrackng' has been renamed to/replaced by 'aircrack-ng'"; # Converted to throw 2022-02-22
   airfield = throw "airfield has been removed due to being unmaintained"; # Added 2023-05-19
   airtame = throw "airtame has been removed due to being unmaintained"; # Added 2022-01-19
+  alertmanager-bot = throw "alertmanager-bot is broken and has been archived by upstream" ; # Added 2023-07-28
   aleth = throw "aleth (previously packaged as cpp_ethereum) has been removed; abandoned upstream"; # Added 2020-11-30
   aliza = throw "aliza has been removed, because it depended on qt4 and was unmaintained in nixpkgs"; # Added 2022-05-12
   alsaLib = alsa-lib; # Added 2021-06-09
@@ -366,6 +367,7 @@ mapAliases ({
 
   ### D ###
 
+  oroborus = throw "oroborus was removed, because it was abandoned years ago."; #Added 2023-09-10
   d1x_rebirth = throw "'d1x_rebirth' has been renamed to/replaced by 'dxx-rebirth'"; # Converted to throw 2022-02-22
   d2x_rebirth = throw "'d2x_rebirth' has been renamed to/replaced by 'dxx-rebirth'"; # Converted to throw 2022-02-22
   dart_dev = throw "Non-stable versions of Dart have been removed"; # Added 2020-01-15
@@ -492,6 +494,7 @@ mapAliases ({
   erlangR22 = erlang_22;
   esniper = throw "esniper has been removed because upstream no longer maintains it (and it no longer works)"; # Added 2021-04-12
   etcdctl = throw "'etcdctl' has been renamed to/replaced by 'etcd'"; # Converted to throw 2022-02-22
+  eterm = throw "eterm was removed because it is still insecure: https://github.com/mej/Eterm/issues/7"; # Added 2023-09-10
   eteroj.lv2 = throw "'eteroj.lv2' has been renamed to/replaced by 'open-music-kontrollers.eteroj'"; # Added 2022-03-09
   euca2tools = throw "euca2ools has been removed because it is unmaintained upstream and still uses python2"; # Added 2022-01-01
   evilvte = throw "evilvte has been removed from nixpkgs for being unmaintained with security issues and dependant on an old version of vte which was removed"; # Added 2022-01-14
@@ -1304,6 +1307,8 @@ mapAliases ({
   percona-server = percona-server56; # Added 2022-11-01
   percona-server56 = throw "'percona-server56' has been dropped due to lack of maintenance, no upstream support and security issues"; # Added 2022-11-01
   percona-xtrabackup_2_4 = throw "'percona-xtrabackup_2_4' has been renamed to/replaced by 'percona-xtrabackup'"; # Added 2022-12-23
+  perldevel = throw "'perldevel' has been dropped due to lack of updates in nixpkgs and lack of consistent support for devel versions by 'perl-cross' releases, use 'perl' instead";
+  perldevelPackages = perldevel;
   perlXMLParser = throw "'perlXMLParser' has been renamed to/replaced by 'perlPackages.XMLParser'"; # Converted to throw 2022-02-22
   perlArchiveCpio = throw "'perlArchiveCpio' has been renamed to/replaced by 'perlPackages.ArchiveCpio'"; # Converted to throw 2022-02-22
   pgadmin = pgadmin4;

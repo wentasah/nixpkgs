@@ -2,7 +2,7 @@
 # Do not edit!
 
 {
-  version = "2023.9.0";
+  version = "2023.9.1";
   components = {
     "3_day_blinds" = ps: with ps; [
     ];
@@ -157,7 +157,8 @@
       androidtvremote2
     ];
     "anel_pwrctrl" = ps: with ps; [
-    ]; # missing inputs: anel-pwrctrl-homeassistant
+      anel-pwrctrl-homeassistant
+    ];
     "anova" = ps: with ps; [
     ]; # missing inputs: anova-wifi
     "anthemav" = ps: with ps; [
@@ -826,7 +827,8 @@
       nextcord
     ];
     "discovergy" = ps: with ps; [
-    ]; # missing inputs: pydiscovergy
+      pydiscovergy
+    ];
     "dlib_face_detect" = ps: with ps; [
       face-recognition
     ];
@@ -5011,6 +5013,7 @@
     "dialogflow"
     "directv"
     "discord"
+    "discovergy"
     "dlna_dmr"
     "dlna_dms"
     "dnsip"

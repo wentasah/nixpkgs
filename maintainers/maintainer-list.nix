@@ -605,6 +605,12 @@
     githubId = 65275785;
     name = "Alexander Kenji Berthold";
   };
+  akgrant43 = {
+    name = "Alistair Grant";
+    email = "akg1012@fastmail.com.au";
+    github = "akgrant43";
+    githubId = 2062166;
+  };
   akho = {
     name = "Alexander Khodyrev";
     email = "a@akho.name";
@@ -3337,6 +3343,12 @@
     githubId = 5561189;
     name = "Cody Opel";
   };
+  coffeeispower = {
+    email = "tiagodinis33@proton.me";
+    github = "coffee-is-power";
+    name = "Tiago Dinis";
+    githubId = 92828847;
+  };
   cofob = {
     name = "Egor Ternovoy";
     email = "cofob@riseup.net";
@@ -4637,6 +4649,16 @@
     name = "Mikhail Klementev";
     keys = [{
       fingerprint = "5DD7 C6F6 0630 F08E DAE7  4711 1525 585D 1B43 C62A";
+    }];
+  };
+  dunxen = {
+    email = "git@dunxen.dev";
+    matrix = "@dunxen:x0f.org";
+    github = "dunxen";
+    githubId = 3072149;
+    name = "Duncan Dean";
+    keys = [{
+      fingerprint = "9484 44FC E03B 05BA 5AB0  591E C37B 1C1D 44C7 86EE";
     }];
   };
   dwarfmaster = {
@@ -8275,6 +8297,12 @@
     githubId = 297653;
     name = "Joe Salisbury";
   };
+  johannwagner = {
+    email = "nix@wagner.digital";
+    github = "johannwagner";
+    githubId = 12380026;
+    name = "Johann Wagner";
+  };
   johanot = {
     email = "write@ownrisk.dk";
     github = "johanot";
@@ -8547,6 +8575,12 @@
     github = "jsoo1";
     name = "John Soo";
     githubId = 10039785;
+  };
+  jsusk = {
+    email = "joshua@suskalo.org";
+    github = "IGJoshua";
+    name = "Joshua Suskalo";
+    githubId = 27734541;
   };
   jtbx = {
     email = "jtbx@duck.com";
@@ -9379,6 +9413,12 @@
     githubId = 6817216;
     name = "Tomas Krupka";
     matrix = "@krupkat:matrix.org";
+  };
+  krzaczek = {
+    name = "Pawel Krzaczkowski";
+    email = "pawel@printu.pl";
+    github = "krzaczek";
+    githubId = 5773701;
   };
   ktf = {
     email = "giulio.eulisse@cern.ch";
@@ -10808,7 +10848,7 @@
     }];
   };
   max-amb = {
-    email = "maxpeterambaum@gmail.com";
+    email = "max_a@e.email";
     github = "max-amb";
     githubId = 137820334;
     name = "Max Ambaum";
@@ -16827,7 +16867,7 @@
     name = "Andy Tockman";
   };
   techknowlogick = {
-    email = "techknowlogick@gitea.io";
+    email = "techknowlogick@gitea.com";
     github = "techknowlogick";
     githubId = 164197;
     name = "techknowlogick";

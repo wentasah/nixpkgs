@@ -55,6 +55,7 @@
   ./hardware/cpu/amd-sev.nix
   ./hardware/cpu/intel-microcode.nix
   ./hardware/cpu/intel-sgx.nix
+  ./hardware/decklink.nix
   ./hardware/device-tree.nix
   ./hardware/digitalbitbox.nix
   ./hardware/flipperzero.nix
@@ -395,7 +396,6 @@
   ./services/continuous-integration/gitlab-runner.nix
   ./services/continuous-integration/gocd-agent/default.nix
   ./services/continuous-integration/gocd-server/default.nix
-  ./services/continuous-integration/hail.nix
   ./services/continuous-integration/hercules-ci-agent/default.nix
   ./services/continuous-integration/hydra/default.nix
   ./services/continuous-integration/jenkins/default.nix

@@ -512,6 +512,8 @@ self: super: with self; {
 
   androguard = callPackage ../development/python-modules/androguard { };
 
+  anel-pwrctrl-homeassistant = callPackage ../development/python-modules/anel-pwrctrl-homeassistant { };
+
   angr = callPackage ../development/python-modules/angr { };
 
   angrcli = callPackage ../development/python-modules/angrcli {
@@ -531,6 +533,8 @@ self: super: with self; {
   anonip = callPackage ../development/python-modules/anonip { };
 
   ansi2html = callPackage ../development/python-modules/ansi2html { };
+
+  ansi2image = callPackage ../development/python-modules/ansi2image { };
 
   ansible = callPackage ../development/python-modules/ansible { };
 
@@ -1346,9 +1350,7 @@ self: super: with self; {
 
   beautiful-date = callPackage ../development/python-modules/beautiful-date { };
 
-  beautifulsoup4 = callPackage ../development/python-modules/beautifulsoup4 {
-    inherit (python.pythonForBuild.pkgs) sphinxHook; # hook splicing broken since #194205
-  };
+  beautifulsoup4 = callPackage ../development/python-modules/beautifulsoup4 { };
 
   beautifultable = callPackage ../development/python-modules/beautifultable { };
 
@@ -1898,6 +1900,8 @@ self: super: with self; {
   chat-downloader = callPackage ../development/python-modules/chat-downloader { };
 
   check-manifest = callPackage ../development/python-modules/check-manifest { };
+
+  checkdmarc = callPackage ../development/python-modules/checkdmarc { };
 
   cheetah3 = callPackage ../development/python-modules/cheetah3 { };
 
@@ -2715,6 +2719,8 @@ self: super: with self; {
 
   diffimg = callPackage ../development/python-modules/diffimg { };
 
+  diffsync = callPackage ../development/python-modules/diffsync { };
+
   digital-ocean = callPackage ../development/python-modules/digitalocean { };
 
   digi-xbee = callPackage ../development/python-modules/digi-xbee { };
@@ -3218,6 +3224,8 @@ self: super: with self; {
 
   drms = callPackage ../development/python-modules/drms { };
 
+  dronecan = callPackage ../development/python-modules/dronecan { };
+
   dropbox = callPackage ../development/python-modules/dropbox { };
 
   ds-store = callPackage ../development/python-modules/ds-store { };
@@ -3696,6 +3704,8 @@ self: super: with self; {
   fastdtw = callPackage ../development/python-modules/fastdtw { };
 
   fastecdsa = callPackage ../development/python-modules/fastecdsa { };
+
+  fastembed = callPackage ../development/python-modules/fastembed { };
 
   fasteners = callPackage ../development/python-modules/fasteners { };
 
@@ -4580,6 +4590,8 @@ self: super: with self; {
   gradient_statsd = callPackage ../development/python-modules/gradient_statsd { };
 
   gradio = callPackage ../development/python-modules/gradio { };
+
+  gradio-client = callPackage ../development/python-modules/gradio/client.nix { };
 
   grammalecte = callPackage ../development/python-modules/grammalecte { };
 
@@ -6116,6 +6128,8 @@ self: super: with self; {
     inherit (self) python libxml2;
   })).py;
 
+  liccheck = callPackage ../development/python-modules/liccheck { };
+
   license-expression = callPackage ../development/python-modules/license-expression { };
 
   lief = (toPythonModule (pkgs.lief.override {
@@ -7364,6 +7378,8 @@ self: super: with self; {
 
   python-nvd3 = callPackage ../development/python-modules/python-nvd3 { };
 
+  python-yate = callPackage ../development/python-modules/python-yate { };
+
   python-youtube = callPackage ../development/python-modules/python-youtube { };
 
   py-deprecate = callPackage ../development/python-modules/py-deprecate { };
@@ -8186,6 +8202,8 @@ self: super: with self; {
 
   proxy_tools = callPackage ../development/python-modules/proxy_tools { };
 
+  proxy-db = callPackage ../development/python-modules/proxy-db { };
+
   py-nextbusnext = callPackage ../development/python-modules/py-nextbusnext { };
 
   py65 = callPackage ../development/python-modules/py65 { };
@@ -8211,6 +8229,8 @@ self: super: with self; {
   pyflexit = callPackage ../development/python-modules/pyflexit { };
 
   pyflick = callPackage ../development/python-modules/pyflick { };
+
+  pyfluidsynth = callPackage ../development/python-modules/pyfluidsynth { };
 
   pyfreedompro = callPackage ../development/python-modules/pyfreedompro { };
 
@@ -8676,6 +8696,8 @@ self: super: with self; {
 
   pulp = callPackage ../development/python-modules/pulp { };
 
+  pulsectl-asyncio = callPackage ../development/python-modules/pulsectl-asyncio { };
+
   pulsectl = callPackage ../development/python-modules/pulsectl { };
 
   pure-cdb = callPackage ../development/python-modules/pure-cdb { };
@@ -9012,6 +9034,8 @@ self: super: with self; {
 
   pydiscourse = callPackage ../development/python-modules/pydiscourse { };
 
+  pydiscovergy = callPackage ../development/python-modules/pydiscovergy { };
+
   pydispatcher = callPackage ../development/python-modules/pydispatcher { };
 
   pydmd = callPackage ../development/python-modules/pydmd { };
@@ -9341,6 +9365,8 @@ self: super: with self; {
   pylaunches = callPackage ../development/python-modules/pylaunches { };
 
   pyld = callPackage ../development/python-modules/pyld { };
+
+  pyleri = callPackage ../development/python-modules/pyleri { };
 
   pylev = callPackage ../development/python-modules/pylev { };
 
@@ -10568,7 +10594,7 @@ self: super: with self; {
   python-roborock = callPackage ../development/python-modules/python-roborock { };
 
   python-rtmidi = callPackage ../development/python-modules/python-rtmidi {
-    inherit (pkgs.darwin.apple_sdk.frameworks) CoreAudio CoreMIDI CoreServices;
+    inherit (pkgs.darwin.apple_sdk.frameworks) CoreAudio CoreMIDI CoreServices Foundation;
   };
 
   python-sat = callPackage ../development/python-modules/python-sat { };
@@ -11153,6 +11179,8 @@ self: super: with self; {
   reproject = callPackage ../development/python-modules/reproject { };
 
   reprshed = callPackage ../development/python-modules/reprshed { };
+
+  reptor = callPackage ../development/python-modules/reptor { };
 
   reqif = callPackage ../development/python-modules/reqif { };
 
