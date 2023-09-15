@@ -5219,7 +5219,7 @@ with pkgs;
 
   element-desktop = callPackage ../applications/networking/instant-messengers/element/element-desktop.nix {
     inherit (darwin.apple_sdk.frameworks) Security AppKit CoreServices;
-    electron = electron_25;
+    electron = electron_26;
   };
   element-desktop-wayland = writeScriptBin "element-desktop" ''
     #!/bin/sh
@@ -5390,6 +5390,8 @@ with pkgs;
   auctex = callPackage ../tools/typesetting/tex/auctex { };
 
   blahtexml = callPackage ../tools/typesetting/tex/blahtexml { };
+
+  catdvi = callPackage ../tools/typesetting/tex/catdvi { };
 
   dblatex = callPackage ../tools/typesetting/tex/dblatex { };
 
@@ -5684,8 +5686,8 @@ with pkgs;
   hyprdim = callPackage ../applications/misc/hyprdim { };
 
   hyprland = callPackage ../applications/window-managers/hyprwm/hyprland {
-    wlroots = pkgs.callPackage ../applications/window-managers/hyprwm/hyprland/wlroots.nix { };
-    udis86 = pkgs.callPackage ../applications/window-managers/hyprwm/hyprland/udis86.nix { };
+    wlroots = callPackage ../applications/window-managers/hyprwm/hyprland/wlroots.nix { };
+    udis86 = callPackage ../applications/window-managers/hyprwm/hyprland/udis86.nix { };
   };
 
   hyprland-autoname-workspaces = callPackage ../applications/misc/hyprland-autoname-workspaces { };
@@ -5693,8 +5695,6 @@ with pkgs;
   hyprland-per-window-layout = callPackage ../tools/wayland/hyprland-per-window-layout { };
 
   hyprland-protocols = callPackage ../applications/window-managers/hyprwm/hyprland-protocols { };
-
-  hyprland-share-picker = libsForQt5.callPackage ../applications/window-managers/hyprwm/xdg-desktop-portal-hyprland/hyprland-share-picker.nix { };
 
   hyprnome = callPackage ../applications/misc/hyprnome { };
 
@@ -13658,7 +13658,9 @@ with pkgs;
 
   systrayhelper = callPackage ../tools/misc/systrayhelper { };
 
-  syft = callPackage ../tools/admin/syft { };
+  syft = callPackage ../tools/admin/syft {
+    buildGoModule = buildGo121Module;
+  };
 
   Sylk = callPackage ../applications/networking/Sylk { };
 
@@ -15446,8 +15448,6 @@ with pkgs;
   powerline = with python3Packages; toPythonApplication powerline;
 
   ### DEVELOPMENT / COMPILERS
-
-  _4th = callPackage ../development/compilers/4th { };
 
   temurin-bin-20 = javaPackages.compiler.temurin-bin.jdk-20;
   temurin-jre-bin-20 = javaPackages.compiler.temurin-bin.jre-20;
@@ -20399,7 +20399,7 @@ with pkgs;
 
   symfony-cli = callPackage ../development/tools/symfony-cli { };
 
-  swiftshader = callPackage ../development/libraries/swiftshader { stdenv = gcc10StdenvCompat; };
+  swiftshader = callPackage ../development/libraries/swiftshader { };
 
   systemfd = callPackage ../development/tools/systemfd { };
 
@@ -36886,7 +36886,10 @@ with pkgs;
 
   xdg-desktop-portal-gtk = callPackage ../development/libraries/xdg-desktop-portal-gtk { };
 
-  xdg-desktop-portal-hyprland = callPackage ../applications/window-managers/hyprwm/xdg-desktop-portal-hyprland { };
+  xdg-desktop-portal-hyprland = callPackage ../applications/window-managers/hyprwm/xdg-desktop-portal-hyprland {
+    stdenv = gcc13Stdenv;
+    inherit (qt6) qtbase qttools qtwayland wrapQtAppsHook;
+  };
 
   xdg-desktop-portal-wlr = callPackage ../development/libraries/xdg-desktop-portal-wlr { };
 
@@ -38502,8 +38505,6 @@ with pkgs;
   rogue = callPackage ../games/rogue {
     ncurses = ncurses5;
   };
-
-  robotfindskitten = callPackage ../games/robotfindskitten { };
 
   rocksndiamonds = callPackage ../games/rocksndiamonds { };
 
