@@ -1291,6 +1291,8 @@ with pkgs;
 
   mokutil = callPackage ../tools/security/mokutil { };
 
+  mpsolve = libsForQt5.callPackage ../applications/science/math/mpsolve { };
+
   nixBufferBuilders = import ../build-support/emacs/buffer.nix { inherit lib writeText; inherit (emacs.pkgs) inherit-local; };
 
   nix-gitignore = callPackage ../build-support/nix-gitignore { };
@@ -2621,8 +2623,6 @@ with pkgs;
   flycast = callPackage ../applications/emulators/flycast { };
 
   flix = callPackage ../development/compilers/flix { };
-
-  fleng = callPackage ../development/compilers/fleng { };
 
   fsrx = callPackage ../tools/misc/fsrx { };
 
@@ -4507,7 +4507,7 @@ with pkgs;
 
   bsh = fetchurl {
     url = "http://www.beanshell.org/bsh-2.0b5.jar";
-    sha256 = "0p2sxrpzd0vsk11zf3kb5h12yl1nq4yypb5mpjrm8ww0cfaijck2";
+    hash = "sha256-YjIZlWOAc1SzvLWs6z3BNlAvAixrDvdDmHqD9m/uWlw=";
   };
 
   btfs = callPackage ../os-specific/linux/btfs { };
@@ -7360,8 +7360,6 @@ with pkgs;
 
   dcfldd = callPackage ../tools/system/dcfldd { };
 
-  debianutils = callPackage ../tools/misc/debianutils { };
-
   debian-devscripts = callPackage ../tools/misc/debian-devscripts { };
 
   debian-goodies = callPackage ../applications/misc/debian-goodies { };
@@ -7408,6 +7406,8 @@ with pkgs;
     deluge;
 
   deluge-2_x = deluge;
+
+  der-ascii = callPackage ../tools/security/der-ascii { };
 
   desktop-file-utils = callPackage ../tools/misc/desktop-file-utils { };
 
@@ -7644,8 +7644,6 @@ with pkgs;
   dvtm-unstable = callPackage ../tools/misc/dvtm/unstable.nix { };
 
   a4term = callPackage ../tools/misc/a4term { };
-
-  ecmtools = callPackage ../tools/cd-dvd/ecm-tools { };
 
   erofs-utils = callPackage ../tools/filesystems/erofs-utils { };
 
@@ -10920,9 +10918,7 @@ with pkgs;
     electron = electron_22;
   };
 
-  mosh = callPackage ../tools/networking/mosh {
-    protobuf = protobuf3_21;
-  };
+  mosh = callPackage ../tools/networking/mosh { };
 
   motrix = callPackage ../tools/networking/motrix { };
 
@@ -11029,8 +11025,6 @@ with pkgs;
   navi = callPackage ../applications/misc/navi { };
 
   navilu-font = callPackage ../data/fonts/navilu { stdenv = stdenvNoCC; };
-
-  nawk = callPackage ../tools/text/nawk { };
 
   nbd = callPackage ../tools/networking/nbd { };
   xnbd = callPackage ../tools/networking/xnbd { };
@@ -12678,7 +12672,7 @@ with pkgs;
 
   recoll = libsForQt5.callPackage ../applications/search/recoll { };
 
-  redoc-cli = nodePackages.redoc-cli;
+  redoc-cli = callPackage ../development/tools/redoc-cli { };
 
   reflex = callPackage ../development/tools/reflex { };
 
@@ -14922,7 +14916,7 @@ with pkgs;
       src = fetchgit {
         url = "https://git.savannah.gnu.org/r/gnulib.git";
         rev = "0b38e1d69f03d3977d7ae7926c1efeb461a8a971";
-        sha256 = "06bj9y8wcfh35h653yk8j044k7h5g82d2j3z3ib69rg0gy1xagzp";
+        hash = "sha256-9z/Vg3/g5WRWHH9I0QR6BZ5JCJBo+lEMLAM6xpFPchk=";
       };
     };
   };
@@ -15424,8 +15418,6 @@ with pkgs;
 
   loksh = callPackage ../shells/loksh { };
 
-  pash = callPackage ../shells/pash { };
-
   scponly = callPackage ../shells/scponly { };
 
   rush = callPackage ../shells/rush { };
@@ -15517,8 +15509,6 @@ with pkgs;
   alan_2 = callPackage ../development/compilers/alan/2.nix { };
 
   alarm-clock-applet = callPackage ../tools/misc/alarm-clock-applet { };
-
-  algol68g = callPackage ../development/compilers/algol68g { };
 
   ante = callPackage ../development/compilers/ante { };
 
@@ -21712,7 +21702,7 @@ with pkgs;
       owner = "libgit2";
       repo = "libgit2";
       rev = "v${version}";
-      sha256 = "sha256-7atNkOBzX+nU1gtFQEaE+EF1L+eex+Ajhq2ocoJY920=";
+      hash = "sha256-7atNkOBzX+nU1gtFQEaE+EF1L+eex+Ajhq2ocoJY920=";
     };
     patches = [];
   };
@@ -24998,7 +24988,7 @@ with pkgs;
       owner = "facebook";
       repo = pname;
       rev = "v${version}";
-     sha256 = "sha256-U2ReSrJwjAXUdRmwixC0DQXht/h/6rV8SOf5e2NozIs=";
+     hash = "sha256-U2ReSrJwjAXUdRmwixC0DQXht/h/6rV8SOf5e2NozIs=";
    };
   };
 
@@ -25009,7 +24999,7 @@ with pkgs;
       owner = "facebook";
       repo = pname;
       rev = "v${version}";
-     sha256 = "sha256-SsDqhjdCdtIGNlsMj5kfiuS3zSGwcxi4KV71d95h7yk=";
+     hash = "sha256-SsDqhjdCdtIGNlsMj5kfiuS3zSGwcxi4KV71d95h7yk=";
    };
   };
 
@@ -25719,6 +25709,8 @@ with pkgs;
   vulkan-caps-viewer = libsForQt5.callPackage ../tools/graphics/vulkan-caps-viewer { };
 
   vulkan-cts = callPackage ../tools/graphics/vulkan-cts { };
+
+  vulkan-helper = callPackage ../tools/graphics/vulkan-helper { };
 
   vulkan-extension-layer = callPackage ../tools/graphics/vulkan-extension-layer { };
   vulkan-headers = callPackage ../development/libraries/vulkan-headers { };
@@ -27306,12 +27298,14 @@ with pkgs;
     postgresql_13
     postgresql_14
     postgresql_15
+    postgresql_16
 
     postgresql_11_jit
     postgresql_12_jit
     postgresql_13_jit
     postgresql_14_jit
     postgresql_15_jit
+    postgresql_16_jit
   ;
   postgresql = postgresql_14.override { this = postgresql; };
   postgresql_jit = postgresql_14_jit.override { this = postgresql_jit; };
@@ -27321,11 +27315,13 @@ with pkgs;
   postgresql12Packages = recurseIntoAttrs postgresql_12.pkgs;
   postgresql13Packages = recurseIntoAttrs postgresql_13.pkgs;
   postgresql15Packages = recurseIntoAttrs postgresql_15.pkgs;
+  postgresql16Packages = recurseIntoAttrs postgresql_16.pkgs;
   postgresql11JitPackages = recurseIntoAttrs postgresql_11_jit.pkgs;
   postgresql12JitPackages = recurseIntoAttrs postgresql_12_jit.pkgs;
   postgresql13JitPackages = recurseIntoAttrs postgresql_13_jit.pkgs;
   postgresql14JitPackages = recurseIntoAttrs postgresql_14_jit.pkgs;
   postgresql15JitPackages = recurseIntoAttrs postgresql_15_jit.pkgs;
+  postgresql16JitPackages = recurseIntoAttrs postgresql_16_jit.pkgs;
   postgresql14Packages = postgresqlPackages;
 
   postgresql_jdbc = callPackage ../development/java-modules/postgresql_jdbc { };
@@ -28312,7 +28308,7 @@ with pkgs;
     version = "5.19.16";
     src = fetchurl {
       url = "mirror://kernel/linux/kernel/v5.x/linux-${version}.tar.xz";
-      sha256 = "13g0c6ljxk3sd0ja39ndih5vrzp2ssj78qxaf8nswn8hgrkazsx1";
+      hash = "sha256-oeuvZn4QWa4tcqpjdKTW4v68C4zNpqEkaHrMLqlh4I0=";
     };
   };
 
@@ -37322,7 +37318,7 @@ with pkgs;
       owner = "ElementsProject";
       repo = "elements";
       rev = "ea318a45094ab3d31dd017d7781a6f28f1ffaa33"; # simplicity branch latest
-      sha256 = "ooe+If3HWaJWpr2ux7DpiCTqB9Hv+aXjquEjplDjvhM=";
+      hash = "sha256-ooe+If3HWaJWpr2ux7DpiCTqB9Hv+aXjquEjplDjvhM=";
     };
   };
 
@@ -39699,8 +39695,6 @@ with pkgs;
 
   beluga = callPackage ../applications/science/logic/beluga { };
 
-  boogie = dotnetPackages.Boogie;
-
   cbmc = callPackage ../applications/science/logic/cbmc { };
 
   cadical = callPackage ../applications/science/logic/cadical { };
@@ -39801,7 +39795,7 @@ with pkgs;
         owner = "polyml";
         repo = "polyml";
         rev = "bafe319bc3a65bf63bd98a4721a6f4dd9e0eabd6";
-        sha256 = "1ygs09zzq8icq1gc8qf4sb24lxx7sbcyd5hw3vw67a3ryaki0qw2";
+        hash = "sha256-gmMQp/J5qGP4HhyW5tnSp3dKxNLEYcRewCwi/H8C+vk=";
       };
     };
 
@@ -40670,6 +40664,8 @@ with pkgs;
   image_optim = callPackage ../applications/graphics/image_optim { inherit (nodePackages) svgo; };
 
   infnoise = callPackage ../misc/drivers/infnoise { };
+
+  itamae = callPackage ../tools/admin/itamae { };
 
   # using the new configuration style proposal which is unstable
   jack1 = callPackage ../misc/jackaudio/jack1.nix { };
@@ -41979,7 +41975,7 @@ with pkgs;
       version = "1.7.9";
       src = fetchurl {
         url = "http://www.openfst.org/twiki/pub/FST/FstDownload/openfst-${version}.tar.gz";
-        sha256 = "1pmx1yhn2gknj0an0zwqmzgwjaycapi896244np50a8y3nrsw6ck";
+        hash = "sha256-kxmusx0eKVCuJUSYhOJVzCvJ36+Yf2AVkHY+YaEPvd4=";
       };
     };
   };

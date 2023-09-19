@@ -312,6 +312,8 @@ self: super: with self; {
 
   aiooss2 = callPackage ../development/python-modules/aiooss2 { };
 
+  aiopegelonline = callPackage ../development/python-modules/aiopegelonline { };
+
   aiopg = callPackage ../development/python-modules/aiopg { };
 
   aioprocessing = callPackage ../development/python-modules/aioprocessing { };
@@ -4188,6 +4190,8 @@ self: super: with self; {
   garminconnect-aio = callPackage ../development/python-modules/garminconnect-aio { };
 
   garminconnect = callPackage ../development/python-modules/garminconnect { };
+
+  garth = callPackage ../development/python-modules/garth { };
 
   gassist-text = callPackage ../development/python-modules/gassist-text { };
 
@@ -8309,6 +8313,8 @@ self: super: with self; {
   pyrdfa3 = callPackage ../development/python-modules/pyrdfa3 { };
 
   pyre-extensions = callPackage ../development/python-modules/pyre-extensions { };
+
+  pyrender = callPackage ../development/python-modules/pyrender { };
 
   pyrevolve = callPackage ../development/python-modules/pyrevolve { };
 
