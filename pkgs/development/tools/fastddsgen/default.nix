@@ -1,14 +1,14 @@
 { lib, stdenv, runtimeShell, writeText, fetchFromGitHub, gradle_7, openjdk17, git, perl, cmake }:
 let
   pname = "fastddsgen";
-  version = "2.5.1";
+  version = "3.0.0";
 
   src = fetchFromGitHub {
     owner = "eProsima";
     repo = "Fast-DDS-Gen";
     rev = "v${version}";
     fetchSubmodules = true;
-    hash = "sha256-3x99FfdxSfqa2+BNZ3lZQzRgjwGhbm5PKezoS6fs5Ts=";
+    hash = "sha256-plaIPCmZ325ibhKmLOATahEcioGb9+9Y8n73i1mJJjo=";
   };
 
   gradle = gradle_7;
@@ -35,7 +35,7 @@ let
 
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
-    outputHash = "sha256-ZGWTK665wIX/Biz4JDrbaU4EZNqT7Q8o6DSpziUd/SM=";
+    outputHash = "sha256-YkVRp6TXI7/5O+u0DDYiCq7DITfGJ4lT/L4hT90JOL8=";
   };
 in
 stdenv.mkDerivation {
