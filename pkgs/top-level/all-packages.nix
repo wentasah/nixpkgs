@@ -1699,6 +1699,8 @@ with pkgs;
 
   cf-vault = callPackage ../tools/admin/cf-vault { };
 
+  cfspeedtest = callPackage ../tools/networking/cfspeedtest { };
+
   cfonts = callPackage ../tools/misc/cfonts { };
 
   bikeshed = python3Packages.callPackage ../applications/misc/bikeshed { };
@@ -1948,6 +1950,8 @@ with pkgs;
   pocket-updater-utility = callPackage ../tools/games/pocket-updater-utility { };
 
   polygon-cli = callPackage ../tools/networking/polygon-cli { };
+
+  pricehist = python3Packages.callPackage ../tools/misc/pricehist { };
 
   proycon-wayout = callPackage ../tools/wayland/proycon-wayout { };
 
@@ -3000,7 +3004,7 @@ with pkgs;
   kermit-terminal = callPackage ../applications/terminal-emulators/kermit-terminal { };
 
   kitty = darwin.apple_sdk_11_0.callPackage ../applications/terminal-emulators/kitty {
-    go = go_1_20;
+    go = go_1_21;
     harfbuzz = harfbuzz.override { withCoreText = stdenv.isDarwin; };
     inherit (darwin.apple_sdk_11_0) Libsystem;
     inherit (darwin.apple_sdk_11_0.frameworks)
@@ -3326,6 +3330,8 @@ with pkgs;
   avfs = callPackage ../tools/filesystems/avfs { };
 
   aliyun-cli = callPackage ../tools/admin/aliyun-cli { };
+
+  aws-encryption-sdk-cli = callPackage ../tools/admin/aws-encryption-sdk-cli { };
 
   aws-iam-authenticator = callPackage ../tools/security/aws-iam-authenticator { };
 
@@ -4401,8 +4407,6 @@ with pkgs;
   bluez-tools = callPackage ../tools/bluetooth/bluez-tools { };
 
   bmon = callPackage ../tools/misc/bmon { };
-
-  bmake = callPackage ../development/tools/build-managers/bmake { };
 
   boca = callPackage ../development/libraries/boca { };
 
@@ -6091,6 +6095,8 @@ with pkgs;
 
   nltk-data = callPackage ../tools/text/nltk_data { };
 
+  seaborn-data = callPackage ../tools/misc/seaborn-data { };
+
   nodepy-runtime = with python3.pkgs; toPythonApplication nodepy-runtime;
 
   nixpkgs-pytools = with python3.pkgs; toPythonApplication nixpkgs-pytools;
@@ -6175,6 +6181,8 @@ with pkgs;
   oil-buku = callPackage ../applications/misc/oil-buku { };
 
   ondir = callPackage ../tools/misc/ondir { };
+
+  opam-publish = callPackage ../development/tools/ocaml/opam-publish { };
 
   opencomposite = callPackage ../development/libraries/opencomposite { };
 
@@ -9415,8 +9423,6 @@ with pkgs;
 
   ior = callPackage ../tools/system/ior { };
 
-  iouyap = callPackage ../tools/networking/iouyap { };
-
   ioztat = callPackage ../tools/filesystems/ioztat { };
 
   ip2location = callPackage ../tools/networking/ip2location { };
@@ -10236,31 +10242,30 @@ with pkgs;
   nodenv = callPackage ../development/tools/nodenv { };
 
   nodejs = hiPrio nodejs_18;
-
   nodejs-slim = nodejs-slim_18;
+  corepack = hiPrio corepack_18;
 
-  nodejs_14 = callPackage ../development/web/nodejs/v14.nix {
-    openssl = openssl_1_1;
-  };
+  nodejs_14 = callPackage ../development/web/nodejs/v14.nix { openssl = openssl_1_1; };
   nodejs-slim_14 = callPackage ../development/web/nodejs/v14.nix {
     openssl = openssl_1_1;
     enableNpm = false;
   };
+
   nodejs_16 = callPackage ../development/web/nodejs/v16.nix { };
-  nodejs-slim_16 = callPackage ../development/web/nodejs/v16.nix {
-    enableNpm = false;
-  };
+  nodejs-slim_16 = callPackage ../development/web/nodejs/v16.nix { enableNpm = false; };
+
   nodejs_18 = callPackage ../development/web/nodejs/v18.nix { };
-  nodejs-slim_18 = callPackage ../development/web/nodejs/v18.nix {
-    enableNpm = false;
-  };
+  nodejs-slim_18 = callPackage ../development/web/nodejs/v18.nix { enableNpm = false; };
+  corepack_18 = hiPrio (callPackage ../development/web/nodejs/corepack.nix { nodejs = nodejs_18; });
+
   nodejs_20 = callPackage ../development/web/nodejs/v20.nix { };
-  nodejs-slim_20 = callPackage ../development/web/nodejs/v20.nix {
-    enableNpm = false;
-  };
+  nodejs-slim_20 = callPackage ../development/web/nodejs/v20.nix { enableNpm = false; };
+  corepack_20 = hiPrio (callPackage ../development/web/nodejs/corepack.nix { nodejs = nodejs_20; });
+
   # Update this when adding the newest nodejs major version!
   nodejs_latest = nodejs_20;
   nodejs-slim_latest = nodejs-slim_20;
+  corepack_latest = hiPrio corepack_20;
 
   buildNpmPackage = callPackage ../build-support/node/build-npm-package { };
 
@@ -13408,8 +13413,6 @@ with pkgs;
 
   sunwait = callPackage ../applications/misc/sunwait { };
 
-  sunpaper = callPackage ../tools/X11/sunpaper { };
-
   surface-control = callPackage ../applications/misc/surface-control { };
 
   syntex = callPackage ../tools/graphics/syntex { };
@@ -15046,8 +15049,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  xorriso = callPackage ../tools/cd-dvd/xorriso { };
-
   xprite-editor = callPackage ../tools/misc/xprite-editor {
     inherit (darwin.apple_sdk.frameworks) AppKit;
   };
@@ -15698,7 +15699,7 @@ with pkgs;
 
   comby = callPackage ../development/tools/comby { };
 
-  inherit (coqPackages) compcert;
+  inherit (coqPackages_8_17) compcert;
 
   computecpp-unwrapped = callPackage ../development/compilers/computecpp { };
   computecpp = wrapCCWith rec {
@@ -17986,14 +17987,10 @@ with pkgs;
 
   obb = callPackage ../development/interpreters/clojure/obb.nix { };
 
-  octave = callPackage ../development/interpreters/octave {
-    python = python3;
-    mkDerivation = stdenv.mkDerivation;
-  };
-  octaveFull = libsForQt5.callPackage ../development/interpreters/octave {
-    python = python3;
+  octave = callPackage ../development/interpreters/octave { };
+
+  octaveFull = octave.override {
     enableQt = true;
-    overridePlatforms = ["x86_64-linux" "x86_64-darwin"];
   };
 
   octave-kernel = callPackage ../applications/editors/jupyter-kernels/octave { };
@@ -22666,8 +22663,6 @@ with pkgs;
 
   libbson = callPackage ../development/libraries/libbson { };
 
-  libburn = callPackage ../development/libraries/libburn { };
-
   libbytesize = callPackage ../development/libraries/libbytesize { };
 
   libcaca = callPackage ../development/libraries/libcaca { };
@@ -23358,10 +23353,6 @@ with pkgs;
   libinput-gestures = callPackage ../tools/inputmethods/libinput-gestures { };
 
   libinstpatch = callPackage ../development/libraries/audio/libinstpatch { };
-
-  libisofs = callPackage ../development/libraries/libisofs { };
-
-  libisoburn = callPackage ../development/libraries/libisoburn { };
 
   libipt = callPackage ../development/libraries/libipt { };
 
@@ -31677,7 +31668,10 @@ with pkgs;
   gpg-mdp = callPackage ../applications/misc/gpg-mdp { };
 
   greenfoot = callPackage ../applications/editors/greenfoot {
-    jdk = jetbrains.jdk;
+    openjdk = openjdk17.override {
+      enableJavaFX = true;
+      openjfx = openjfx17.override { withWebKit = true; };
+    };
   };
 
   gspeech = callPackage ../applications/audio/gspeech { };
@@ -34634,6 +34628,8 @@ with pkgs;
   nimdow = callPackage ../applications/window-managers/nimdow { };
 
   nomacs = libsForQt5.callPackage ../applications/graphics/nomacs { };
+
+  normcap = callPackage ../applications/graphics/normcap { };
 
   notepad-next = libsForQt5.callPackage ../applications/editors/notepad-next { };
 
@@ -41676,7 +41672,7 @@ with pkgs;
   wmutils-opt = callPackage ../tools/X11/wmutils-opt { };
 
   inherit (callPackage ../servers/web-apps/wordpress {})
-    wordpress wordpress6_1 wordpress6_2;
+    wordpress wordpress6_1 wordpress6_2 wordpress6_3;
 
   wordpressPackages = ( callPackage ../servers/web-apps/wordpress/packages {
     plugins = lib.importJSON ../servers/web-apps/wordpress/packages/plugins.json;
