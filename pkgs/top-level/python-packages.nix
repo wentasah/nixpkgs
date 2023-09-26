@@ -910,6 +910,8 @@ self: super: with self; {
 
   automate-home = callPackage ../development/python-modules/automate-home { };
 
+  automx2 = callPackage ../development/python-modules/automx2 { };
+
   autopage = callPackage ../development/python-modules/autopage { };
 
   autopep8 = callPackage ../development/python-modules/autopep8 { };
@@ -1914,6 +1916,8 @@ self: super: with self; {
   check-manifest = callPackage ../development/python-modules/check-manifest { };
 
   checkdmarc = callPackage ../development/python-modules/checkdmarc { };
+
+  checksumdir = callPackage ../development/python-modules/checksumdir { };
 
   cheetah3 = callPackage ../development/python-modules/cheetah3 { };
 
@@ -3263,6 +3267,8 @@ self: super: with self; {
   dtlssocket = callPackage ../development/python-modules/dtlssocket { };
 
   dtschema = callPackage ../development/python-modules/dtschema { };
+
+  dtw-python = callPackage ../development/python-modules/dtw-python { };
 
   ducc0 = callPackage ../development/python-modules/ducc0 { };
 
@@ -8539,6 +8545,8 @@ self: super: with self; {
 
   podcats = callPackage ../development/python-modules/podcats { };
 
+  podman = callPackage ../development/python-modules/podman { };
+
   poetry-core = callPackage ../development/python-modules/poetry-core { };
 
   poetry-dynamic-versioning = callPackage ../development/python-modules/poetry-dynamic-versioning { };
@@ -10344,6 +10352,8 @@ self: super: with self; {
   pytest-raisin = callPackage ../development/python-modules/pytest-raisin { };
 
   pytest-randomly = callPackage ../development/python-modules/pytest-randomly { };
+
+  pytest-reverse = callPackage ../development/python-modules/pytest-reverse { };
 
   pytest-random-order = callPackage ../development/python-modules/pytest-random-order { };
 

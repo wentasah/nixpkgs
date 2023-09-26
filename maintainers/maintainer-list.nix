@@ -9486,6 +9486,11 @@
     githubId = 894884;
     name = "Jakub Kozłowski";
   };
+  kupac = {
+    github = "Kupac";
+    githubId = 8224569;
+    name = "László Kupcsik";
+  };
   kurnevsky = {
     email = "kurnevsky@gmail.com";
     github = "kurnevsky";
@@ -10764,6 +10769,12 @@
     github = "mateodd25";
     githubId = 7878181;
     name = "Mateo Diaz";
+  };
+  materus = {
+    email = "materus@podkos.pl";
+    github = "materusPL";
+    githubId = 28183516;
+    name = "Mateusz Słodkowicz";
   };
   math-42 = {
     email = "matheus.4200@gmail.com";
@@ -12382,6 +12393,12 @@
       fingerprint = "7BC1 77D9 C222 B1DC FB2F  0484 C061 089E FEBF 7A35";
     }];
   };
+  nicegamer7 = {
+    name = "Kermina Awad";
+    email = "kerminaawad@gmail.com";
+    github = "nicegamer7";
+    githubId = 8083772;
+  };
   nickcao = {
     name = "Nick Cao";
     email = "nickcao@nichi.co";
@@ -13596,6 +13613,12 @@
     github = "pimeys";
     githubId = 34967;
     name = "Julius de Bruijn";
+  };
+  pineapplehunter = {
+    email = "peshogo+nixpkgs@gmail.com";
+    github = "pineapplehunter";
+    githubId = 8869894;
+    name = "Shogo Takata";
   };
   pingiun = {
     email = "nixos@pingiun.com";
@@ -15000,6 +15023,12 @@
     email = "perhaps-you-know@what-is.ml";
     github = "rubyowo";
     githubId = 105302757;
+  };
+  rudolfvesely = {
+    name = "Rudolf Vesely";
+    email = "i@rudolfvesely.com";
+    github = "rudolfvesely";
+    githubId = 13966949;
   };
   Ruixi-rebirth = {
     name = "Ruixi-rebirth";

@@ -14674,6 +14674,7 @@ with self; {
     meta = {
       description = "Parse and evaluate mathematical expressions";
       homepage = "https://github.com/Grinnz/Math-Calc-Parser";
+      broken = true;
       license = with lib.licenses; [ artistic2 ];
       maintainers = with maintainers; [ sgo ];
     };
@@ -19830,10 +19831,10 @@ with self; {
 
   PerlLanguageServer = buildPerlPackage {
     pname = "Perl-LanguageServer";
-    version = "2.5.0";
+    version = "2.6.1";
     src = fetchurl {
-      url = "mirror://cpan/authors/id/G/GR/GRICHTER/Perl-LanguageServer-2.5.0.tar.gz";
-      hash = "sha256-LQYcIkepqAT1JMkSuIN6mxivz6AZkpShcRsVD1oTmQQ=";
+      url = "mirror://cpan/authors/id/G/GR/GRICHTER/Perl-LanguageServer-2.6.1.tar.gz";
+      hash = "sha256-IDM0uwsEXMeHAu9DA0CdCB87aN3XRoNEdGOIJ8NMsZg=";
     };
     propagatedBuildInputs = [ AnyEvent AnyEventAIO ClassRefresh CompilerLexer Coro DataDump HashSafeKeys IOAIO JSON Moose PadWalker ];
     meta = {
