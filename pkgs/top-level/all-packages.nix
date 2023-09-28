@@ -3583,6 +3583,8 @@ with pkgs;
 
   callaudiod = callPackage ../applications/audio/callaudiod { };
 
+  castopod = callPackage ../applications/audio/castopod { };
+
   calls = callPackage ../applications/networking/calls { };
 
   castnow = callPackage ../tools/networking/castnow { };
@@ -6301,6 +6303,10 @@ with pkgs;
   r53-ddns = callPackage ../applications/networking/r53-ddns { };
 
   rare = python3Packages.callPackage ../games/rare { };
+
+  rblake2sum = callPackage ../tools/security/rblake2sum {
+      inherit (darwin.apple_sdk.frameworks) Security;
+  };
 
   reg = callPackage ../tools/virtualization/reg { };
 
@@ -9173,6 +9179,8 @@ with pkgs;
 
   hey = callPackage ../tools/networking/hey { };
 
+  heygpt = callPackage ../tools/llm/heygpt { };
+
   hhpc = callPackage ../tools/misc/hhpc { };
 
   hiera-eyaml = callPackage ../tools/system/hiera-eyaml { };
@@ -10481,7 +10489,7 @@ with pkgs;
 
   libmbim = callPackage ../development/libraries/libmbim { };
 
-  libmongocrypt = callPackage ../development/libraries/libmongocrypt { };
+  libmongocrypt = darwin.apple_sdk_11_0.callPackage ../development/libraries/libmongocrypt { };
 
   libmesode = callPackage ../development/libraries/libmesode { };
 
@@ -18095,7 +18103,7 @@ with pkgs;
   };
 
   pythonInterpreters = callPackage ./../development/interpreters/python { };
-  inherit (pythonInterpreters) python27 python38 python39 python310 python311 python312 python3Minimal pypy27 pypy39 pypy38 pypy37 rustpython;
+  inherit (pythonInterpreters) python27 python38 python39 python310 python311 python312 python3Minimal pypy27 pypy310 pypy39 rustpython;
 
   # List of extensions with overrides to apply to all Python package sets.
   pythonPackagesExtensions = [ ];
@@ -18110,9 +18118,8 @@ with pkgs;
   pypy2Packages = pypy2.pkgs;
   pypy27Packages = pypy27.pkgs;
   pypy3Packages = pypy3.pkgs;
-  pypy37Packages = pypy37.pkgs;
-  pypy38Packages = pypy38.pkgs;
   pypy39Packages = pypy39.pkgs;
+  pypy310Packages = pypy310.pkgs;
 
   py3c = callPackage ../development/libraries/py3c { };
 
@@ -18256,8 +18263,6 @@ with pkgs;
   scheme48 = callPackage ../development/interpreters/scheme48 { };
 
   scheme-bytestructures = callPackage ../development/scheme-modules/scheme-bytestructures { };
-
-  self = pkgsi686Linux.callPackage ../development/interpreters/self { };
 
   smiley-sans = callPackage ../data/fonts/smiley-sans { };
 
@@ -25195,7 +25200,7 @@ with pkgs;
 
   snappy = callPackage ../development/libraries/snappy { };
 
-  snac2 = callPackage ../servers/snac2 { };
+  snac2 = darwin.apple_sdk_11_0.callPackage ../servers/snac2 { };
 
   snappymail = callPackage ../servers/snappymail { };
 
@@ -25733,12 +25738,7 @@ with pkgs;
 
   wfa2-lib = callPackage ../development/libraries/wfa2-lib { };
 
-  webrtc-audio-processing_1 = callPackage ../development/libraries/webrtc-audio-processing {
-    stdenv = gcc10StdenvCompat;
-    abseil-cpp = abseil-cpp.override {
-      cxxStandard = "14";
-    };
-  };
+  webrtc-audio-processing_1 = callPackage ../development/libraries/webrtc-audio-processing { };
   webrtc-audio-processing_0_3 = callPackage ../development/libraries/webrtc-audio-processing/0.3.nix { };
   # bump when majoring of packages have updated
   webrtc-audio-processing = webrtc-audio-processing_0_3;
@@ -26166,18 +26166,7 @@ with pkgs;
 
   # CLISP
   clisp = wrapLisp {
-    pkg = callPackage ../development/interpreters/clisp {
-    # On newer readline8 fails as:
-    #  #<FOREIGN-VARIABLE "rl_readline_state" #x...>
-    #   does not have the required size or alignment
-    readline = readline63;
-    };
-    faslExt = "fas";
-    flags = ["-E" "UTF-8"];
-  };
-
-  clisp-tip = wrapLisp {
-    pkg = callPackage ../development/interpreters/clisp/hg.nix { };
+    pkg = callPackage ../development/interpreters/clisp { };
     faslExt = "fas";
     flags = ["-E" "UTF-8"];
   };
@@ -26434,11 +26423,7 @@ with pkgs;
 
   bind = callPackage ../servers/dns/bind { };
   dnsutils = bind.dnsutils;
-  dig = bind.dnsutils // {
-    meta = bind.dnsutils.meta // {
-      mainProgram = "dig";
-    };
-  };
+  dig = lib.addMetaAttrs { mainProgram = "dig"; } bind.dnsutils;
 
   bird = callPackage ../servers/bird { };
 
@@ -28954,6 +28939,7 @@ with pkgs;
     withCompression = false;
     withCoredump = false;
     withCryptsetup = false;
+    withRepart = false;
     withDocumentation = false;
     withEfi = false;
     withFido2 = false;
@@ -28976,11 +28962,13 @@ with pkgs;
     withRemote = false;
     withResolved = false;
     withShellCompletions = false;
+    withSysupdate = false;
     withTimedated = false;
     withTimesyncd = false;
     withTpm2Tss = false;
     withUserDb = false;
     withUkify = false;
+    withBootloader = false;
   };
   systemdStage1 = systemdMinimal.override {
     pname = "systemd-stage-1";
@@ -28989,6 +28977,7 @@ with pkgs;
     withFido2 = true;
     withKmod = true;
     withTpm2Tss = true;
+    withRepart = true;
   };
   systemdStage1Network = systemdStage1.override {
     pname = "systemd-stage-1-network";
@@ -30550,11 +30539,6 @@ with pkgs;
 
   aewan = callPackage ../applications/editors/aewan { };
 
-  afterstep = callPackage ../applications/window-managers/afterstep {
-    fltk = fltk13;
-    gtk = gtk2;
-  };
-
   agedu = callPackage ../tools/misc/agedu { };
 
   agenda = callPackage ../applications/office/agenda { };
@@ -30616,6 +30600,8 @@ with pkgs;
 
   apngasm = callPackage ../applications/graphics/apngasm { };
   apngasm_2 = callPackage ../applications/graphics/apngasm/2.nix { };
+
+  appcleaner = callPackage ../applications/misc/appcleaner { };
 
   appeditor = callPackage ../applications/misc/appeditor { };
 
@@ -30827,8 +30813,6 @@ with pkgs;
   bb =  callPackage ../applications/misc/bb { };
 
   bchoppr = callPackage ../applications/audio/bchoppr { };
-
-  berry = callPackage ../applications/window-managers/berry { };
 
   bespokesynth = darwin.apple_sdk_11_0.callPackage ../applications/audio/bespokesynth {
     inherit (darwin.apple_sdk_11_0.frameworks) Accelerate Cocoa WebKit CoreServices CoreAudioKit IOBluetooth MetalKit;
@@ -32123,20 +32107,18 @@ with pkgs;
   firefox-beta-bin = res.wrapFirefox firefox-beta-bin-unwrapped {
     pname = "firefox-beta-bin";
     desktopName = "Firefox Beta";
-    wmClass = "firefox-beta";
   };
 
   firefox-devedition-bin-unwrapped = callPackage ../applications/networking/browsers/firefox-bin {
     inherit (gnome) adwaita-icon-theme;
-    channel = "devedition";
+    channel = "developer-edition";
     generated = import ../applications/networking/browsers/firefox-bin/devedition_sources.nix;
   };
 
   firefox-devedition-bin = res.wrapFirefox firefox-devedition-bin-unwrapped {
-    nameSuffix = "-devedition";
     pname = "firefox-devedition-bin";
     desktopName = "Firefox DevEdition";
-    wmClass = "firefox-devedition";
+    wmClass = "firefox-aurora";
   };
 
   librewolf-unwrapped = callPackage ../applications/networking/browsers/librewolf { };
@@ -32820,8 +32802,6 @@ with pkgs;
 
   spectmorph = callPackage ../applications/audio/spectmorph { };
 
-  smallwm = callPackage ../applications/window-managers/smallwm { };
-
   smooth = callPackage ../development/libraries/smooth { };
 
   spectrwm = callPackage ../applications/window-managers/spectrwm { };
@@ -32964,7 +32944,7 @@ with pkgs;
 
   kitti3 = python3.pkgs.callPackage ../applications/window-managers/i3/kitti3.nix { };
 
-  waybox = callPackage ../applications/window-managers/waybox {
+  waybox = callPackage ../by-name/wa/waybox/package.nix {
     wlroots = wlroots_0_15;
   };
 
@@ -34277,8 +34257,6 @@ with pkgs;
 
   nncp = darwin.apple_sdk_11_0.callPackage ../tools/misc/nncp { };
 
-  notion = callPackage ../applications/window-managers/notion { };
-
   nootka = qt5.callPackage ../applications/audio/nootka { };
 
   novnc = callPackage ../applications/networking/novnc { };
@@ -34873,7 +34851,7 @@ with pkgs;
 
   pdfslicer = callPackage ../applications/misc/pdfslicer { };
 
-  pekwm = callPackage ../applications/window-managers/pekwm {
+  pekwm = callPackage ../by-name/pe/pekwm/package.nix {
     awk = gawk;
     grep = gnugrep;
     sed = gnused;
@@ -35284,8 +35262,6 @@ with pkgs;
   ratmen = callPackage ../tools/X11/ratmen { };
 
   ratox = callPackage ../applications/networking/instant-messengers/ratox { };
-
-  ratpoison = callPackage ../applications/window-managers/ratpoison { };
 
   rawtherapee = callPackage ../applications/graphics/rawtherapee {
     fftw = fftwSinglePrec;
@@ -35885,6 +35861,8 @@ with pkgs;
 
   tailor = callPackage ../applications/version-management/tailor { };
 
+  tailor-gui = callPackage ../os-specific/linux/tailor-gui { };
+
   taizen = callPackage ../applications/misc/taizen { };
 
   talosctl = callPackage ../applications/networking/cluster/talosctl { };
@@ -36176,8 +36154,6 @@ with pkgs;
 
   tinywl = callPackage ../applications/window-managers/tinywl { };
 
-  tinywm = callPackage ../applications/window-managers/tinywm { };
-
   tree-from-tags = callPackage ../applications/audio/tree-from-tags { };
 
   tdrop = callPackage ../applications/misc/tdrop { };
@@ -36216,6 +36192,8 @@ with pkgs;
   };
 
   tut = callPackage ../applications/misc/tut { };
+
+  tuxedo-rs = callPackage ../os-specific/linux/tuxedo-rs { };
 
   tuxguitar = callPackage ../applications/editors/music/tuxguitar {
     jre = jre8;
@@ -36556,8 +36534,6 @@ with pkgs;
   };
 
   vwm = callPackage ../applications/window-managers/vwm { };
-
-  yeahwm = callPackage ../applications/window-managers/yeahwm { };
 
   vym = callPackage ../applications/misc/vym {
     inherit (libsForQt5) qmake qtscript qtsvg qtbase wrapQtAppsHook;
