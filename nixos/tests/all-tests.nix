@@ -119,6 +119,7 @@ in {
   atd = handleTest ./atd.nix {};
   atop = handleTest ./atop.nix {};
   atuin = handleTest ./atuin.nix {};
+  audiobookshelf = handleTest ./audiobookshelf.nix {};
   auth-mysql = handleTest ./auth-mysql.nix {};
   authelia = handleTest ./authelia.nix {};
   avahi = handleTest ./avahi.nix {};
@@ -531,8 +532,8 @@ in {
   netdata = handleTest ./netdata.nix {};
   networking.networkd = handleTest ./networking.nix { networkd = true; };
   networking.scripted = handleTest ./networking.nix { networkd = false; };
-  netbox = handleTest ./web-apps/netbox.nix { inherit (pkgs) netbox; };
-  netbox_3_3 = handleTest ./web-apps/netbox.nix { netbox = pkgs.netbox_3_3; };
+  netbox_3_5 = handleTest ./web-apps/netbox.nix { netbox = pkgs.netbox_3_5; };
+  netbox_3_6 = handleTest ./web-apps/netbox.nix { netbox = pkgs.netbox_3_6; };
   netbox-upgrade = handleTest ./web-apps/netbox-upgrade.nix {};
   # TODO: put in networking.nix after the test becomes more complete
   networkingProxy = handleTest ./networking-proxy.nix {};
@@ -838,7 +839,7 @@ in {
   typesense = handleTest ./typesense.nix {};
   ucarp = handleTest ./ucarp.nix {};
   udisks2 = handleTest ./udisks2.nix {};
-  ulogd = handleTest ./ulogd.nix {};
+  ulogd = handleTest ./ulogd/ulogd.nix {};
   unbound = handleTest ./unbound.nix {};
   unifi = handleTest ./unifi.nix {};
   unit-php = handleTest ./web-servers/unit-php.nix {};
