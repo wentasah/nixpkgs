@@ -216,6 +216,7 @@ in {
   darling = handleTest ./darling.nix {};
   dae = handleTest ./dae.nix {};
   dconf = handleTest ./dconf.nix {};
+  deconz = handleTest ./deconz.nix {};
   deepin = handleTest ./deepin.nix {};
   deluge = handleTest ./deluge.nix {};
   dendrite = handleTest ./matrix/dendrite.nix {};
@@ -738,8 +739,8 @@ in {
   spark = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./spark {};
   sqlite3-to-mysql = handleTest ./sqlite3-to-mysql.nix {};
   sslh = handleTest ./sslh.nix {};
-  sssd = handleTestOn ["x86_64-linux"] ./sssd.nix {};
-  sssd-ldap = handleTestOn ["x86_64-linux"] ./sssd-ldap.nix {};
+  sssd = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./sssd.nix {};
+  sssd-ldap = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./sssd-ldap.nix {};
   stalwart-mail = handleTest ./stalwart-mail.nix {};
   stargazer = runTest ./web-servers/stargazer.nix;
   starship = handleTest ./starship.nix {};

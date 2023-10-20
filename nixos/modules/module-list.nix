@@ -231,6 +231,7 @@
   ./programs/pantheon-tweaks.nix
   ./programs/partition-manager.nix
   ./programs/plotinus.nix
+  ./programs/projecteur.nix
   ./programs/proxychains.nix
   ./programs/qdmr.nix
   ./programs/qt5ct.nix
@@ -882,6 +883,7 @@
   ./services/networking/croc.nix
   ./services/networking/dae.nix
   ./services/networking/dante.nix
+  ./services/networking/deconz.nix
   ./services/networking/dhcpcd.nix
   ./services/networking/dnscache.nix
   ./services/networking/dnscrypt-proxy2.nix

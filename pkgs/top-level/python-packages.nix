@@ -1697,6 +1697,8 @@ self: super: with self; {
 
   bundlewrap = callPackage ../development/python-modules/bundlewrap { };
 
+  busypie = callPackage ../development/python-modules/busypie { };
+
   bx-py-utils = callPackage ../development/python-modules/bx-py-utils { };
 
   bx-python = callPackage ../development/python-modules/bx-python { };
@@ -5019,6 +5021,10 @@ self: super: with self; {
   });
 
   hopcroftkarp = callPackage ../development/python-modules/hopcroftkarp { };
+
+  horizon-eda = callPackage ../development/python-modules/horizon-eda {
+    inherit (pkgs) horizon-eda mesa;
+  };
 
   howdoi = callPackage ../development/python-modules/howdoi { };
 
@@ -10352,8 +10358,6 @@ self: super: with self; {
 
   pymavlink = callPackage ../development/python-modules/pymavlink { };
 
-  pymazda = callPackage ../development/python-modules/pymazda { };
-
   pymbolic = callPackage ../development/python-modules/pymbolic { };
 
   pymc = callPackage ../development/python-modules/pymc { };
@@ -12478,6 +12482,8 @@ self: super: with self; {
 
   schema = callPackage ../development/python-modules/schema { };
 
+  schemainspect = callPackage ../development/python-modules/schemainspect { };
+
   schema-salad = callPackage ../development/python-modules/schema-salad { };
 
   schemdraw = callPackage ../development/python-modules/schemdraw { };
@@ -13112,6 +13118,8 @@ self: super: with self; {
 
   sphinx-prompt = callPackage ../development/python-modules/sphinx-prompt { };
 
+  sphinx-sitemap = callPackage ../development/python-modules/sphinx-sitemap { };
+
   sphinx-thebe = callPackage ../development/python-modules/sphinx-thebe { };
 
   sphinx-tabs = callPackage ../development/python-modules/sphinx-tabs { };
@@ -13261,6 +13269,8 @@ self: super: with self; {
   sqlalchemy-utils = callPackage ../development/python-modules/sqlalchemy-utils { };
 
   sqlalchemy-views = callPackage ../development/python-modules/sqlalchemy-views { };
+
+  sqlbag = callPackage ../development/python-modules/sqlbag { };
 
   sqlglot = callPackage ../development/python-modules/sqlglot { };
 
@@ -15522,6 +15532,8 @@ self: super: with self; {
   whodap = callPackage ../development/python-modules/whodap { };
 
   whois = callPackage ../development/python-modules/whois { };
+
+  whois-api = callPackage ../development/python-modules/whois-api { };
 
   whoosh = callPackage ../development/python-modules/whoosh { };
 
