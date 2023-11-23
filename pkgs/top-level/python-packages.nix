@@ -28,6 +28,8 @@ self: super: with self; {
 
   aardwolf = callPackage ../development/python-modules/aardwolf { };
 
+  abjad = callPackage ../development/python-modules/abjad { };
+
   about-time = callPackage ../development/python-modules/about-time { };
 
   absl-py = callPackage ../development/python-modules/absl-py { };
@@ -53,8 +55,6 @@ self: super: with self; {
   acunetix = callPackage ../development/python-modules/acunetix { };
 
   adafruit-io = callPackage ../development/python-modules/adafruit-io { };
-
-  adafruit-nrfutil = callPackage ../development/python-modules/adafruit-nrfutil { };
 
   adafruit-platformdetect = callPackage ../development/python-modules/adafruit-platformdetect { };
 
@@ -633,6 +633,8 @@ self: super: with self; {
   apptools = callPackage ../development/python-modules/apptools { };
 
   appthreat-vulnerability-db = callPackage ../development/python-modules/appthreat-vulnerability-db { };
+
+  apricot-select = callPackage ../development/python-modules/apricot-select { };
 
   aprslib = callPackage ../development/python-modules/aprslib { };
 
@@ -2631,6 +2633,8 @@ self: super: with self; {
   dbt-postgres = callPackage ../development/python-modules/dbt-postgres { };
 
   dbt-redshift = callPackage ../development/python-modules/dbt-redshift { };
+
+  dbt-semantic-interfaces = callPackage ../development/python-modules/dbt-semantic-interfaces { };
 
   dbt-snowflake = callPackage ../development/python-modules/dbt-snowflake { };
 
@@ -5156,6 +5160,8 @@ self: super: with self; {
 
   httpx = callPackage ../development/python-modules/httpx { };
 
+  httpx-auth = callPackage ../development/python-modules/httpx-auth { };
+
   httpx-ntlm = callPackage ../development/python-modules/httpx-ntlm { };
 
   httpx-socks = callPackage ../development/python-modules/httpx-socks { };
@@ -6722,6 +6728,8 @@ self: super: with self; {
   mdformat-toc = callPackage ../development/python-modules/mdformat-toc { };
 
   mdit-py-plugins = callPackage ../development/python-modules/mdit-py-plugins { };
+
+  mdtraj = callPackage ../development/python-modules/mdtraj { };
 
   mdurl = callPackage ../development/python-modules/mdurl { };
 
@@ -11449,7 +11457,7 @@ self: super: with self; {
 
   python-ev3dev2 = callPackage ../development/python-modules/python-ev3dev2 { };
 
-  python_fedora = callPackage ../development/python-modules/python_fedora { };
+  python-fedora = callPackage ../development/python-modules/python-fedora { };
 
   python-fontconfig = callPackage ../development/python-modules/python-fontconfig { };
 
@@ -15344,6 +15352,8 @@ self: super: with self; {
   uptime-kuma-api = callPackage ../development/python-modules/uptime-kuma-api { };
 
   uptime-kuma-monitor = callPackage ../development/python-modules/uptime-kuma-monitor { };
+
+  uqbar = callPackage ../development/python-modules/uqbar { };
 
   uranium = callPackage ../development/python-modules/uranium { };
 
