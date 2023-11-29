@@ -723,6 +723,7 @@
   ./services/misc/podgrab.nix
   ./services/misc/polaris.nix
   ./services/misc/portunus.nix
+  ./services/misc/preload.nix
   ./services/misc/prowlarr.nix
   ./services/misc/pufferpanel.nix
   ./services/misc/pykms.nix
@@ -1153,6 +1154,7 @@
   ./services/search/meilisearch.nix
   ./services/search/opensearch.nix
   ./services/search/qdrant.nix
+  ./services/search/sonic-server.nix
   ./services/search/typesense.nix
   ./services/security/aesmd.nix
   ./services/security/authelia.nix
@@ -1216,6 +1218,7 @@
   ./services/torrent/peerflix.nix
   ./services/torrent/rtorrent.nix
   ./services/torrent/transmission.nix
+  ./services/torrent/torrentstream.nix
   ./services/tracing/tempo.nix
   ./services/ttys/getty.nix
   ./services/ttys/gpm.nix
@@ -1406,6 +1409,7 @@
   ./services/x11/xautolock.nix
   ./services/x11/xbanish.nix
   ./services/x11/xfs.nix
+  ./services/x11/xscreensaver.nix
   ./services/x11/xserver.nix
   ./system/activation/activatable-system.nix
   ./system/activation/activation-script.nix
