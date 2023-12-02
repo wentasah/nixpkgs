@@ -29,7 +29,7 @@ in
     sha256 = "sha256-l12MHMLEHHztxOMjr/A12Xf+ual/ApbdKopm0Zelsnw=";
   };
 
-  outputs = [ "out" "info" ];
+  outputs = [ "out" ] ++ lib.optional enableInfo "info";
 
   nativeBuildInputs =
     [ makeWrapper pkg-config texinfo ]
