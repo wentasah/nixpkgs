@@ -1074,6 +1074,8 @@ let
 
     minisat = callPackage ../development/ocaml-modules/minisat { };
 
+    minttea = callPackage ../development/ocaml-modules/minttea { };
+
     mirage = callPackage ../development/ocaml-modules/mirage { };
 
     mirage-block = callPackage ../development/ocaml-modules/mirage-block { };
@@ -1782,6 +1784,8 @@ let
     tsdl-ttf = callPackage ../development/ocaml-modules/tsdl-ttf { };
 
     tsort = callPackage ../development/ocaml-modules/tsort { };
+
+    tty = callPackage ../development/ocaml-modules/tty { };
 
     tuntap = callPackage ../development/ocaml-modules/tuntap { };
 
