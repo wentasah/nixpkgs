@@ -1456,6 +1456,8 @@ self: super: with self; {
 
   binary = callPackage ../development/python-modules/binary { };
 
+  binary2strings = callPackage ../development/python-modules/binary2strings { };
+
   binaryornot = callPackage ../development/python-modules/binaryornot { };
 
   bincopy = callPackage ../development/python-modules/bincopy { };
@@ -1604,6 +1606,8 @@ self: super: with self; {
     inherit (self) python numpy;
     enablePython = true;
   });
+
+  borb = callPackage ../development/python-modules/borb { };
 
   bork = callPackage ../development/python-modules/bork { };
 
@@ -3471,6 +3475,8 @@ self: super: with self; {
 
   dynalite-devices = callPackage ../development/python-modules/dynalite-devices { };
 
+  dynalite-panel = callPackage ../development/python-modules/dynalite-panel { };
+
   dynd = callPackage ../development/python-modules/dynd { };
 
   e3-core = callPackage ../development/python-modules/e3-core { };
@@ -3833,6 +3839,8 @@ self: super: with self; {
 
   face-recognition = callPackage ../development/python-modules/face-recognition { };
 
+  facenet-pytorch = callPackage ../development/python-modules/facenet-pytorch { };
+
   face-recognition-models = callPackage ../development/python-modules/face-recognition/models.nix { };
 
   factory-boy = callPackage ../development/python-modules/factory-boy { };
@@ -3953,6 +3961,8 @@ self: super: with self; {
   ffmpeg-progress-yield = callPackage ../development/python-modules/ffmpeg-progress-yield { };
 
   ffmpy = callPackage ../development/python-modules/ffmpy { };
+
+  fhir-py = callPackage ../development/python-modules/fhir-py { };
 
   fiblary3-fork = callPackage ../development/python-modules/fiblary3-fork { };
 
@@ -7166,6 +7176,8 @@ self: super: with self; {
 
   mongoquery = callPackage ../development/python-modules/mongoquery { };
 
+  monitorcontrol = callPackage ../development/python-modules/monitorcontrol { };
+
   monkeyhex = callPackage ../development/python-modules/monkeyhex { };
 
   monosat = pkgs.monosat.python {
@@ -9479,6 +9491,8 @@ self: super: with self; {
 
   python-csxcad = callPackage ../development/python-modules/python-csxcad { };
 
+  python-djvulibre = callPackage ../development/python-modules/python-djvulibre { };
+
   python-ecobee-api = callPackage ../development/python-modules/python-ecobee-api { };
 
   python-flirt = callPackage ../development/python-modules/python-flirt { };
@@ -10593,6 +10607,8 @@ self: super: with self; {
   pylibftdi = callPackage ../development/python-modules/pylibftdi {
     inherit (pkgs) libusb1;
   };
+
+  pylibjpeg = callPackage ../development/python-modules/pylibjpeg { };
 
   pylibjpeg-libjpeg = callPackage ../development/python-modules/pylibjpeg-libjpeg { };
 
@@ -13113,6 +13129,8 @@ self: super: with self; {
   simanneal = callPackage ../development/python-modules/simanneal { };
 
   simber = callPackage ../development/python-modules/simber { };
+
+  simple-term-menu = callPackage ../development/python-modules/simple-term-menu { };
 
   simpleaudio = callPackage ../development/python-modules/simpleaudio { };
 

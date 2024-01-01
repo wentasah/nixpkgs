@@ -164,7 +164,7 @@ in {
   btrbk-no-timer = handleTest ./btrbk-no-timer.nix {};
   btrbk-section-order = handleTest ./btrbk-section-order.nix {};
   budgie = handleTest ./budgie.nix {};
-  buildbot = handleTestOn [ "x86_64-linux" ] ./buildbot.nix {};
+  buildbot = handleTest ./buildbot.nix {};
   buildkite-agents = handleTest ./buildkite-agents.nix {};
   c2fmzq = handleTest ./c2fmzq.nix {};
   caddy = handleTest ./caddy.nix {};
@@ -742,6 +742,7 @@ in {
   rosenpass = handleTest ./rosenpass.nix {};
   rshim = handleTest ./rshim.nix {};
   rspamd = handleTest ./rspamd.nix {};
+  rspamd-trainer = handleTest ./rspamd-trainer.nix {};
   rss2email = handleTest ./rss2email.nix {};
   rstudio-server = handleTest ./rstudio-server.nix {};
   rsyncd = handleTest ./rsyncd.nix {};
