@@ -13,6 +13,7 @@
 , gnused ? null
 , coreutils ? null
 , withQt ? false, mkDerivation, qttools, qtbase, qtsvg
+, enableInfo ? true, emacs
 }:
 
 assert libX11 != null -> (fontconfig != null && gnused != null && coreutils != null);
@@ -21,14 +22,19 @@ let
 in
 (if withQt then mkDerivation else stdenv.mkDerivation) rec {
   pname = "gnuplot";
-  version = "5.4.10";
+  version = "6.0.0";
 
   src = fetchurl {
     url = "mirror://sourceforge/gnuplot/${pname}-${version}.tar.gz";
-    sha256 = "sha256-l12MHMLEHHztxOMjr/A12Xf+ual/ApbdKopm0Zelsnw=";
+    sha256 = "sha256-Y1oo8Jk/arDRF54HKtObgTnQf1Ejf4Qdk8bC/0sXWOw=";
   };
 
-  nativeBuildInputs = [ makeWrapper pkg-config texinfo ] ++ lib.optional withQt qttools;
+  outputs = [ "out" ] ++ lib.optional enableInfo "info";
+
+  nativeBuildInputs =
+    [ makeWrapper pkg-config texinfo ]
+    ++ lib.optional withQt qttools
+    ++ lib.optional enableInfo emacs;
 
   buildInputs =
     [ cairo gd libcerf pango readline zlib ]
@@ -73,6 +79,10 @@ in
   ];
 
   enableParallelBuilding = true;
+
+  installTargets =
+    [ "install" ]
+    ++ lib.optional enableInfo "install-info";
 
   meta = with lib; {
     homepage = "http://www.gnuplot.info/";
