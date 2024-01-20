@@ -1721,8 +1721,6 @@ with pkgs;
 
   audible-cli = callPackage ../tools/misc/audible-cli { };
 
-  audiobookshelf = callPackage ../servers/audiobookshelf { };
-
   auditwheel = with python3Packages; toPythonApplication auditwheel;
 
   amidst = callPackage ../tools/games/minecraft/amidst { };
@@ -5707,7 +5705,9 @@ with pkgs;
 
   hyprnome = callPackage ../applications/misc/hyprnome { };
 
-  hyprpaper = callPackage ../applications/window-managers/hyprwm/hyprpaper { };
+  hyprpaper = callPackage ../applications/window-managers/hyprwm/hyprpaper {
+    stdenv = gcc13Stdenv;
+  };
 
   hyprpicker = callPackage ../applications/window-managers/hyprwm/hyprpicker {
     wlroots = wlroots_0_16;
@@ -6878,7 +6878,7 @@ with pkgs;
 
   cirrusgo = callPackage ../tools/security/cirrusgo { };
 
-  inherit (callPackages ../applications/networking/remote/citrix-workspace { })
+  inherit (callPackage ../applications/networking/remote/citrix-workspace { })
     citrix_workspace_23_02_0
     citrix_workspace_23_07_0
     citrix_workspace_23_09_0
@@ -7320,15 +7320,13 @@ with pkgs;
   cudaPackages_12_1 = callPackage ./cuda-packages.nix { cudaVersion = "12.1"; };
   cudaPackages_12_2 = callPackage ./cuda-packages.nix { cudaVersion = "12.2"; };
   cudaPackages_12_3 = callPackage ./cuda-packages.nix { cudaVersion = "12.3"; };
-  cudaPackages_12 = recurseIntoAttrs cudaPackages_12_0;
+  cudaPackages_12 = cudaPackages_12_2; # Latest supported by cudnn
 
   # Use the older cudaPackages for tensorflow and jax, as determined by cudnn
   # compatibility: https://www.tensorflow.org/install/source#gpu
   cudaPackagesGoogle = cudaPackages_11;
 
-  # TODO: try upgrading once there is a cuDNN release supporting CUDA 12. No
-  # such cuDNN release as of 2023-01-10.
-  cudaPackages = cudaPackages_11;
+  cudaPackages = recurseIntoAttrs cudaPackages_12;
 
   # TODO: move to alias
   cudatoolkit = cudaPackages.cudatoolkit;
@@ -11136,12 +11134,16 @@ with pkgs;
 
   netbootxyz-efi = callPackage ../tools/misc/netbootxyz-efi { };
 
-  inherit (callPackages ../servers/web-apps/netbox { })
+  inherit (callPackage ../servers/web-apps/netbox { })
     netbox netbox_3_5 netbox_3_6;
 
   netbox2netshot = callPackage ../tools/admin/netbox2netshot { };
 
-  netcat = libressl.nc;
+  netcat = libressl.nc.overrideAttrs (old: {
+    meta = old.meta // {
+      mainProgram = "nc";
+    };
+  });
 
   netcat-gnu = callPackage ../tools/networking/netcat { };
 
@@ -11587,7 +11589,7 @@ with pkgs;
 
   open-ecard = callPackage ../tools/security/open-ecard { };
 
-  open-interpreter = callPackage ../tools/llm/open-interpreter { };
+  open-interpreter = with python3Packages; toPythonApplication open-interpreter;
 
   openjade = callPackage ../tools/text/sgml/openjade { };
 
@@ -12142,7 +12144,7 @@ with pkgs;
 
   plujain-ramp = callPackage ../applications/audio/plujain-ramp { };
 
-  inherit (callPackages ../servers/plik { })
+  inherit (callPackage ../servers/plik { })
     plik plikd;
 
   plex = callPackage ../servers/plex { };
@@ -12504,10 +12506,6 @@ with pkgs;
   qastools = libsForQt5.callPackage ../tools/audio/qastools { };
 
   qdigidoc = libsForQt5.callPackage ../tools/security/qdigidoc { } ;
-
-  qgrep = pin-to-gcc12-if-gcc13 (callPackage ../tools/text/qgrep {
-    inherit (darwin.apple_sdk.frameworks) CoreServices CoreFoundation;
-  });
 
   qhull = callPackage ../development/libraries/qhull { };
 
@@ -14079,8 +14077,6 @@ with pkgs;
 
   tracefilesim = callPackage ../development/tools/analysis/garcosim/tracefilesim { };
 
-  transifex-client = python39.pkgs.callPackage ../tools/text/transifex-client { };
-
   transifex-cli = callPackage ../applications/misc/transifex-cli { };
 
   translatelocally = callPackage ../applications/misc/translatelocally { };
@@ -15521,7 +15517,7 @@ with pkgs;
   asciigraph = callPackage ../tools/text/asciigraph { };
 
   autocorrect = callPackage ../tools/text/autocorrect {
-    inherit (darwin.apple_sdk.frameworks) Security;
+    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
 
   as31 = callPackage ../development/compilers/as31 { };
@@ -16317,12 +16313,12 @@ with pkgs;
   inherit (callPackage ../development/compilers/haxe {
     inherit (darwin.apple_sdk.frameworks) Security;
   })
-    haxe_4_2
+    haxe_4_3
     haxe_4_1
     haxe_4_0
     ;
 
-  haxe = haxe_4_2;
+  haxe = haxe_4_3;
   haxePackages = recurseIntoAttrs (callPackage ./haxe-packages.nix { });
   inherit (haxePackages) hxcpp;
 
@@ -16734,7 +16730,7 @@ with pkgs;
 
   minimacy = callPackage ../development/compilers/minimacy { };
 
-  mint = callPackage ../development/compilers/mint { crystal = crystal_1_2; };
+  mint = callPackage ../development/compilers/mint { crystal = crystal_1_9; };
 
   mitama-cpp-result = callPackage ../development/libraries/mitama-cpp-result { };
 
@@ -22437,9 +22433,7 @@ with pkgs;
 
   libavif = callPackage ../development/libraries/libavif { };
 
-  libayatana-common = callPackage ../development/libraries/libayatana-common {
-    inherit (lomiri) cmake-extras;
-  };
+  libayatana-common = callPackage ../development/libraries/libayatana-common { };
 
   libb2 = callPackage ../development/libraries/libb2 { };
 
@@ -23865,8 +23859,6 @@ with pkgs;
     };
   };
 
-  manticoresearch = callPackage ../servers/search/manticoresearch { };
-
   marisa = callPackage ../development/libraries/marisa { };
 
   mathgl = callPackage ../development/libraries/mathgl { };
@@ -24892,15 +24884,22 @@ with pkgs;
   SDL2_image = callPackage ../development/libraries/SDL2_image {
     inherit (darwin.apple_sdk.frameworks) Foundation;
   };
-  SDL2_image_2_0_5 = SDL2_image.override({ # Pinned for pygame, toppler
+  # Pinned for pygame, toppler
+  SDL2_image_2_0 = SDL2_image.overrideAttrs (oldAttrs: {
     version = "2.0.5";
-    hash = "sha256-vdX24CZoL31+G+C2BRsgnaL0AqLdi9HEvZwlrSYxCNA";
+    src = fetchurl {
+      inherit (oldAttrs.src) url;
+      hash = "sha256-vdX24CZoL31+G+C2BRsgnaL0AqLdi9HEvZwlrSYxCNA";
+    };
   });
-  SDL2_image_2_6 = SDL2_image.override({
-    # Pinned for hedgewars:
-    #   https://github.com/NixOS/nixpkgs/pull/274185#issuecomment-1856764786
+  # Pinned for hedgewars:
+  #   https://github.com/NixOS/nixpkgs/pull/274185#issuecomment-1856764786
+  SDL2_image_2_6 = SDL2_image.overrideAttrs (oldAttrs: {
     version = "2.6.3";
-    hash = "sha256-kxyb5b8dfI+um33BV4KLfu6HTiPH8ktEun7/a0g2MSw=";
+    src = fetchurl {
+      inherit (oldAttrs.src) url;
+      hash = "sha256-kxyb5b8dfI+um33BV4KLfu6HTiPH8ktEun7/a0g2MSw=";
+    };
   });
 
   SDL2_mixer = callPackage ../development/libraries/SDL2_mixer {
@@ -25700,7 +25699,6 @@ with pkgs;
 
   yubihsm-connector = callPackage ../tools/security/yubihsm-connector { };
 
-  yubikey-manager4 = callPackage ../tools/misc/yubikey-manager/4.nix { };
   yubikey-manager = callPackage ../tools/misc/yubikey-manager { };
 
   yubikey-manager-qt = libsForQt5.callPackage ../tools/misc/yubikey-manager-qt { };
@@ -31358,6 +31356,10 @@ with pkgs;
 
   espeakup = callPackage ../applications/accessibility/espeakup { };
 
+  espflash = callPackage ../development/embedded/espflash {
+    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
+  };
+
   etebase-server = with python3Packages; toPythonApplication etebase-server;
 
   etesync-dav = callPackage ../applications/misc/etesync-dav { };
@@ -36366,8 +36368,6 @@ with pkgs;
     stdenv = if stdenv.cc.isClang then gccStdenv else stdenv;
   };
 
-  websploit = python3Packages.callPackage ../tools/security/websploit { };
-
   webssh = with python3Packages; toPythonApplication webssh;
 
   webtorrent_desktop = callPackage ../applications/video/webtorrent_desktop {
@@ -37229,8 +37229,6 @@ with pkgs;
   among-sus = callPackage ../games/among-sus { };
 
   antsimulator = callPackage ../games/antsimulator { };
-
-  atlauncher = callPackage ../games/atlauncher { };
 
   augustus = callPackage ../games/augustus { };
 
@@ -38389,7 +38387,7 @@ with pkgs;
   tome4 = callPackage ../games/tome4 { };
 
   toppler = callPackage ../games/toppler {
-    SDL2_image = SDL2_image_2_0_5;
+    SDL2_image = SDL2_image_2_0;
   };
 
   torus-trooper = callPackage ../games/torus-trooper { };
@@ -39672,6 +39670,11 @@ with pkgs;
 
   appcsxcad = libsForQt5.callPackage ../applications/science/electronics/appcsxcad { };
 
+  inherit (libsForQt5.callPackage ../applications/science/electronics/simulide { })
+    simulide_0_4_15 simulide_1_0_0 simulide_1_1_0;
+
+  simulide = simulide_1_0_0;
+
   eagle = libsForQt5.callPackage ../applications/science/electronics/eagle/eagle.nix { };
 
   caneda = libsForQt5.callPackage ../applications/science/electronics/caneda { };
@@ -40073,7 +40076,7 @@ with pkgs;
 
   beep = callPackage ../misc/beep { };
 
-  bees = pin-to-gcc12-if-gcc13 (callPackage ../tools/filesystems/bees { });
+  bees = callPackage ../tools/filesystems/bees { };
 
   blahaj = callPackage ../tools/misc/blahaj { };
 
@@ -41139,6 +41142,8 @@ with pkgs;
   tf-summarize = callPackage ../applications/networking/cluster/tf-summarize { };
 
   tfswitch = callPackage ../applications/networking/cluster/tfswitch { };
+
+  tftui = python3Packages.callPackage ../applications/networking/cluster/tftui { };
 
   tfupdate = callPackage ../applications/networking/cluster/tfupdate { };
 

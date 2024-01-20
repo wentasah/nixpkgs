@@ -349,8 +349,6 @@ self: super: with self; {
 
   aioquic = callPackage ../development/python-modules/aioquic { };
 
-  aioquic-mitmproxy = callPackage ../development/python-modules/aioquic-mitmproxy { };
-
   aiorecollect = callPackage ../development/python-modules/aiorecollect { };
 
   aioredis = callPackage ../development/python-modules/aioredis { };
@@ -2806,6 +2804,8 @@ self: super: with self; {
 
   denonavr = callPackage ../development/python-modules/denonavr { };
 
+  dep-logic = callPackage ../development/python-modules/dep-logic { };
+
   dependency-injector = callPackage ../development/python-modules/dependency-injector { };
 
   deploykit = callPackage ../development/python-modules/deploykit { };
@@ -3474,7 +3474,11 @@ self: super: with self; {
 
   dvc-data = callPackage ../development/python-modules/dvc-data {  };
 
+  dvc-gdrive = callPackage ../development/python-modules/dvc-gdrive {  };
+
   dvc-gs = callPackage ../development/python-modules/dvc-gs { };
+
+  dvc-hdfs = callPackage ../development/python-modules/dvc-hdfs {  };
 
   dvc-http = callPackage ../development/python-modules/dvc-http {  };
 
@@ -8655,6 +8659,8 @@ self: super: with self; {
 
   open-garage = callPackage ../development/python-modules/open-garage { };
 
+  open-interpreter = callPackage ../development/python-modules/open-interpreter { };
+
   open-meteo = callPackage ../development/python-modules/open-meteo { };
 
   openai-triton = callPackage ../development/python-modules/openai-triton {
@@ -10458,7 +10464,7 @@ self: super: with self; {
 
   pygame = callPackage ../development/python-modules/pygame {
     inherit (pkgs.darwin.apple_sdk.frameworks) AppKit;
-    SDL2_image = pkgs.SDL2_image_2_0_5;
+    SDL2_image = pkgs.SDL2_image_2_0;
   };
 
   pygame-sdl2 = callPackage ../development/python-modules/pygame-sdl2 { };
@@ -10926,6 +10932,8 @@ self: super: with self; {
     inherit (pkgs) lz4;
   };
 
+  pyosohotwaterapi = callPackage ../development/python-modules/pyosohotwaterapi { };
+
   pyotgw = callPackage ../development/python-modules/pyotgw { };
 
   pyotp = callPackage ../development/python-modules/pyotp { };
@@ -11027,7 +11035,7 @@ self: super: with self; {
 
   pyqt5-sip = callPackage ../development/python-modules/pyqt/sip.nix { };
 
-  pyqt5_with_qtmultimedia = self.pyqt5.override {
+  pyqt5-multimedia = self.pyqt5.override {
     withMultimedia = true;
   };
 
@@ -15651,6 +15659,8 @@ self: super: with self; {
   unify = callPackage ../development/python-modules/unify { };
 
   unifiled = callPackage ../development/python-modules/unifiled { };
+
+  unique-log-filter = callPackage ../development/python-modules/unique-log-filter { };
 
   units = callPackage ../development/python-modules/units { };
 
