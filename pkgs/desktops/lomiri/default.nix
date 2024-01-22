@@ -12,6 +12,8 @@ let
 
     #### Data
     lomiri-schemas = callPackage ./data/lomiri-schemas { };
+    lomiri-sounds = callPackage ./data/lomiri-sounds { };
+    lomiri-wallpapers = callPackage ./data/lomiri-wallpapers { };
     suru-icon-theme = callPackage ./data/suru-icon-theme { };
 
     #### Development tools / libraries
@@ -38,6 +40,7 @@ let
     hfd-service = callPackage ./services/hfd-service { };
     history-service = callPackage ./services/history-service { };
     lomiri-download-manager = callPackage ./services/lomiri-download-manager { };
+    lomiri-indicator-network = callPackage ./services/lomiri-indicator-network { };
     lomiri-url-dispatcher = callPackage ./services/lomiri-url-dispatcher { };
     mediascanner2 = callPackage ./services/mediascanner2 { };
   };
