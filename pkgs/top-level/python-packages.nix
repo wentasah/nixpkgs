@@ -2440,6 +2440,8 @@ self: super: with self; {
 
   cronsim = callPackage ../development/python-modules/cronsim { };
 
+  crontab = callPackage ../development/python-modules/crontab { };
+
   crossplane = callPackage ../development/python-modules/crossplane { };
 
   crownstone-cloud = callPackage ../development/python-modules/crownstone-cloud { };
@@ -2902,6 +2904,8 @@ self: super: with self; {
 
   dissect = callPackage ../development/python-modules/dissect { };
 
+  dissect-btrfs = callPackage ../development/python-modules/dissect-btrfs { };
+
   dissect-cim = callPackage ../development/python-modules/dissect-cim { };
 
   dissect-clfs = callPackage ../development/python-modules/dissect-clfs { };
@@ -2927,6 +2931,8 @@ self: super: with self; {
   dissect-extfs = callPackage ../development/python-modules/dissect-extfs { };
 
   dissect-hypervisor = callPackage ../development/python-modules/dissect-hypervisor { };
+
+  dissect-jffs = callPackage ../development/python-modules/dissect-jffs { };
 
   dissect-ntfs = callPackage ../development/python-modules/dissect-ntfs { };
 
@@ -5295,6 +5301,8 @@ self: super: with self; {
   http-message-signatures = callPackage ../development/python-modules/http-message-signatures { };
 
   http-parser = callPackage ../development/python-modules/http-parser { };
+
+  http-sf = callPackage ../development/python-modules/http-sf { };
 
   http-sfv = callPackage ../development/python-modules/http-sfv { };
 
@@ -9994,6 +10002,8 @@ self: super: with self; {
 
   pweave = callPackage ../development/python-modules/pweave { };
 
+  pwlf = callPackage ../development/python-modules/pwlf { };
+
   pwntools = callPackage ../development/python-modules/pwntools {
     debugger = pkgs.gdb;
   };
@@ -10347,6 +10357,8 @@ self: super: with self; {
   pydocumentdb = callPackage ../development/python-modules/pydocumentdb { };
 
   pydoods = callPackage ../development/python-modules/pydoods { };
+
+  pydoe = callPackage ../development/python-modules/pydoe { };
 
   pydot = callPackage ../development/python-modules/pydot {
     inherit (pkgs) graphviz;
@@ -15955,6 +15967,8 @@ self: super: with self; {
   vsure = callPackage ../development/python-modules/vsure { };
 
   vt-py = callPackage ../development/python-modules/vt-py { };
+
+  vtjp = callPackage ../development/python-modules/vtjp { };
 
   vtk = toPythonModule (pkgs.vtk_9.override {
     inherit python;
