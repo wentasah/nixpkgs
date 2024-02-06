@@ -258,8 +258,6 @@ with pkgs;
 
   ariang = callPackage ../servers/ariang { };
 
-  mov-cli = callPackage ../applications/video/mov-cli { };
-
   ani-cli = callPackage ../applications/video/ani-cli { };
 
   dra-cla = callPackage ../applications/video/dra-cla { };
@@ -744,9 +742,7 @@ with pkgs;
     inherit (darwin) DarwinTools;
   };
 
-  mix2nix = callPackage ../development/tools/mix2nix {
-    elixir = elixir_1_14;
-  };
+  mix2nix = callPackage ../development/tools/mix2nix { };
 
   n98-magerun = callPackage ../development/tools/misc/n98-magerun { };
 
@@ -2770,8 +2766,6 @@ with pkgs;
 
   mupen64plus = callPackage ../applications/emulators/mupen64plus { };
 
-  nestopia = callPackage ../applications/emulators/nestopia { };
-
   np2kai = callPackage ../applications/emulators/np2kai { };
 
   nuked-md = callPackage ../applications/emulators/nuked-md { };
@@ -4700,10 +4694,7 @@ with pkgs;
 
   cloudbrute = callPackage ../tools/security/cloudbrute { };
 
-  cloudflared = callPackage ../applications/networking/cloudflared {
-    # https://github.com/cloudflare/cloudflared/issues/1054
-    buildGoModule = buildGo120Module;
-  };
+  cloudflared = callPackage ../applications/networking/cloudflared { };
 
   cloudflare-dyndns = callPackage ../applications/networking/cloudflare-dyndns { };
 
@@ -4944,8 +4935,6 @@ with pkgs;
   csvdiff = callPackage ../tools/text/csvdiff { };
 
   csview = callPackage ../tools/text/csview { };
-
-  csvkit = callPackage ../tools/text/csvkit { };
 
   csvquote = callPackage ../tools/text/csvquote { };
 
@@ -5608,9 +5597,7 @@ with pkgs;
 
   gscan2pdf = callPackage ../applications/graphics/gscan2pdf { };
 
-  gsctl = callPackage ../applications/misc/gsctl {
-    buildGoModule = buildGo119Module; # go 1.20 build failure
-  };
+  gsctl = callPackage ../applications/misc/gsctl { };
 
   gsocket = callPackage ../tools/networking/gsocket { };
 
@@ -8252,8 +8239,6 @@ with pkgs;
 
   faraday-cli = callPackage ../tools/security/faraday-cli { };
 
-  farge = callPackage ../tools/misc/farge { };
-
   fastlane = callPackage ../tools/admin/fastlane { };
 
   fatresize = callPackage ../tools/filesystems/fatresize { };
@@ -10817,7 +10802,7 @@ with pkgs;
 
   memtest86plus = callPackage ../tools/misc/memtest86+ { };
 
-  mbutil = python3Packages.callPackage ../applications/misc/mbutil { };
+  mbutil = python310Packages.callPackage ../applications/misc/mbutil { };
 
   mcabber = callPackage ../applications/networking/instant-messengers/mcabber { };
 
@@ -11605,6 +11590,8 @@ with pkgs;
   openobex = callPackage ../tools/bluetooth/openobex { };
 
   openresolv = callPackage ../tools/networking/openresolv { };
+
+  openrefine = callPackage ../applications/science/misc/openrefine { jdk = jdk17; };
 
   openrgb = libsForQt5.callPackage ../applications/misc/openrgb { };
 
@@ -13324,8 +13311,6 @@ with pkgs;
   sng = callPackage ../tools/graphics/sng { };
 
   snmpcheck = callPackage ../tools/networking/snmpcheck { };
-
-  sniffglue = callPackage ../tools/networking/sniffglue { };
 
   snobol4 = callPackage ../development/interpreters/snobol4 { };
 
@@ -15400,9 +15385,6 @@ with pkgs;
   scponly = callPackage ../shells/scponly { };
 
   rush = callPackage ../shells/rush { };
-
-  xonsh = callPackage ../shells/xonsh/wrapper.nix { };
-  xonsh-unwrapped = callPackage ../shells/xonsh { };
 
   zsh = callPackage ../shells/zsh { };
 
@@ -24347,8 +24329,6 @@ with pkgs;
     buildPythonPackage buildPythonApplication setuptools pycsdr pydigiham;
   };
 
-  optparse-bash = callPackage ../development/libraries/optparse-bash { };
-
   oras = callPackage ../development/tools/oras { };
 
   orcania = callPackage ../development/libraries/orcania { };
@@ -25229,8 +25209,6 @@ with pkgs;
   tdb = callPackage ../development/libraries/tdb { };
 
   tdlib = callPackage ../development/libraries/tdlib { };
-
-  tecla = callPackage ../development/libraries/tecla { };
 
   tectonic = callPackage ../tools/typesetting/tectonic/wrapper.nix { };
 
@@ -28764,6 +28742,7 @@ with pkgs;
     ubootOdroidC2
     ubootOdroidXU3
     ubootOlimexA64Olinuxino
+    ubootOlimexA64Teres1
     ubootOrangePi3
     ubootOrangePiPc
     ubootOrangePiZeroPlus2H5
@@ -28995,8 +28974,6 @@ with pkgs;
   baekmuk-ttf = callPackage ../data/fonts/baekmuk-ttf { };
 
   bakoma_ttf = callPackage ../data/fonts/bakoma-ttf { };
-
-  banana-cursor = callPackage ../data/icons/banana-cursor { };
 
   barlow = callPackage ../data/fonts/barlow { };
 
@@ -41991,9 +41968,7 @@ with pkgs;
 
   yazi = callPackage ../applications/file-managers/yazi { inherit (darwin.apple_sdk.frameworks) Foundation; };
 
-  ssl-proxy = callPackage ../tools/networking/ssl-proxy {
-    buildGoModule = buildGo119Module; # build fails with 1.20
-  };
+  ssl-proxy = callPackage ../tools/networking/ssl-proxy { };
 
   code-maat = callPackage ../development/tools/code-maat {};
 

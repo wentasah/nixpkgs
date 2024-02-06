@@ -12,6 +12,8 @@ self: super: {
 
     jsonb_deep_sum = super.callPackage ./ext/jsonb_deep_sum.nix { };
 
+    lantern = super.callPackage ./ext/lantern.nix { };
+
     periods = super.callPackage ./ext/periods.nix { };
 
     postgis = super.callPackage ./ext/postgis.nix { };
@@ -37,6 +39,8 @@ self: super: {
     pgaudit = super.callPackage ./ext/pgaudit.nix { };
 
     pgroonga = super.callPackage ./ext/pgroonga.nix { };
+
+    pgsodium = super.callPackage ./ext/pgsodium.nix { };
 
     pgsql-http = super.callPackage ./ext/pgsql-http.nix { };
 
