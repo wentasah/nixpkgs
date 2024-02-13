@@ -174,7 +174,7 @@ in
       '')
       (optionalString cfg.genCfsslAPIToken ''
         if [ ! -f "${cfsslAPITokenPath}" ]; then
-          install -u cfssl -m 400 <(head -c ${toString (cfsslAPITokenLength / 2)} /dev/urandom | od -An -t x | tr -d ' ') "${cfsslAPITokenPath}"
+          install -o cfssl -m 400 <(head -c ${toString (cfsslAPITokenLength / 2)} /dev/urandom | od -An -t x | tr -d ' ') "${cfsslAPITokenPath}"
         fi
       '')]);
 
@@ -219,7 +219,6 @@ in
             inherit (cert) action;
             authority = {
               inherit remote;
-              file.path = cert.caCert;
               root_ca = cert.caCert;
               profile = "default";
               auth_key_file = certmgrAPITokenPath;
