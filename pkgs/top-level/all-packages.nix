@@ -8642,6 +8642,7 @@ with pkgs;
   };
 
   gnucap = callPackage ../applications/science/electronics/gnucap { };
+  gnucap-full = gnucap.withPlugins(p: [ p.verilog ]);
 
   gnu-cim = callPackage ../development/compilers/gnu-cim { };
 
@@ -11467,6 +11468,10 @@ with pkgs;
 
   openfortivpn = callPackage ../tools/networking/openfortivpn { };
 
+  openobserve = darwin.apple_sdk_11_0.callPackage ../servers/monitoring/openobserve {
+    apple_sdk = darwin.apple_sdk_11_0;
+  };
+
   obexfs = callPackage ../tools/bluetooth/obexfs { };
 
   obexftp = callPackage ../tools/bluetooth/obexftp { };
@@ -11648,6 +11653,8 @@ with pkgs;
   openvpn-auth-ldap = callPackage ../tools/networking/openvpn/openvpn-auth-ldap.nix {
     stdenv = clangStdenv;
   };
+
+  namespaced-openvpn = python3Packages.callPackage ../tools/networking/namespaced-openvpn { };
 
   oq = callPackage ../development/tools/oq { };
 
@@ -16288,6 +16295,8 @@ with pkgs;
   gnostic = callPackage ../development/compilers/gnostic { };
 
   go-junit-report = callPackage ../development/tools/go-junit-report { };
+
+  gocover-cobertura = callPackage ../development/tools/gocover-cobertura { };
 
   gobang = callPackage ../development/tools/database/gobang {
     inherit (darwin.apple_sdk.frameworks) CoreFoundation Security SystemConfiguration;
@@ -31025,8 +31034,6 @@ with pkgs;
 
   dsf2flac = callPackage ../applications/audio/dsf2flac { };
 
-  dunst = callPackage ../applications/misc/dunst { };
-
   dust = callPackage ../by-name/du/dust/package.nix {
     inherit (darwin.apple_sdk_11_0.frameworks) AppKit;
   };
@@ -31753,7 +31760,7 @@ with pkgs;
   firefox-devedition-bin-unwrapped = callPackage ../applications/networking/browsers/firefox-bin {
     inherit (gnome) adwaita-icon-theme;
     channel = "developer-edition";
-    generated = import ../applications/networking/browsers/firefox-bin/devedition_sources.nix;
+    generated = import ../applications/networking/browsers/firefox-bin/developer-edition_sources.nix;
   };
 
   firefox-devedition-bin = res.wrapFirefox firefox-devedition-bin-unwrapped {
@@ -34642,6 +34649,8 @@ with pkgs;
   qcad = libsForQt5.callPackage ../applications/misc/qcad { };
 
   qcomicbook = libsForQt5.callPackage ../applications/graphics/qcomicbook { };
+
+  qctools = libsForQt5.callPackage ../applications/video/qctools { };
 
   qelectrotech = libsForQt5.callPackage ../applications/misc/qelectrotech { };
 
@@ -41887,7 +41896,7 @@ with pkgs;
 
   weggli = callPackage ../tools/security/weggli { };
 
-  yazi = callPackage ../applications/file-managers/yazi { inherit (darwin.apple_sdk.frameworks) Foundation; };
+  yazi-unwrapped = callPackage ../by-name/ya/yazi-unwrapped/package.nix { inherit (darwin.apple_sdk.frameworks) Foundation; };
 
   ssl-proxy = callPackage ../tools/networking/ssl-proxy { };
 

@@ -385,6 +385,13 @@
     githubId = 2526296;
     name = "Adrien Bustany";
   };
+  abysssol = {
+    name = "abysssol";
+    email = "abysssol@pm.me";
+    matrix = "@abysssol:tchncs.de";
+    github = "abysssol";
+    githubId = 76763323;
+  };
   acairncross = {
     email = "acairncross@gmail.com";
     github = "acairncross";
@@ -2543,6 +2550,12 @@
     github = "binarin";
     githubId = 185443;
     name = "Alexey Lebedeff";
+  };
+  binarycat = {
+      email = "binarycat@envs.net";
+      github = "lolbinarycat";
+      githubId = 19915050;
+      name = "binarycat";
   };
   binsky = {
     email = "timo@binsky.org";
@@ -16508,6 +16521,12 @@
     github = "RossComputerGuy";
     githubId = 19699320;
   };
+  rostan-t = {
+    name = "Rostan Tabet";
+    email = "rostan.tabet@gmail.com";
+    github = "rostan-t";
+    githubId = 30502549;
+  };
   rotaerk = {
     name = "Matthew Stewart";
     email = "m.scott.stewart@gmail.com";
@@ -16612,6 +16631,12 @@
     email = "perhaps-you-know@what-is.ml";
     github = "rubyowo";
     githubId = 105302757;
+  };
+  rucadi = {
+    email = "ruben.canodiaz@gmail.com";
+    github = "rucadi";
+    githubId = 6445619;
+    name = "Ruben Cano Diaz";
   };
   rudolfvesely = {
     name = "Rudolf Vesely";
@@ -20825,6 +20850,13 @@
     github = "xgroleau";
     githubId = 31734358;
     name = "Xavier Groleau";
+  };
+  xgwq = {
+    name = "XGWQ";
+    email = "nixos@xnee.de";
+    matrix = "@xgwq:nerdberg.de";
+    github = "peterablehmann";
+    githubId = 36541313;
   };
   xiorcale = {
     email = "quentin.vaucher@pm.me";
