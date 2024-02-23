@@ -546,6 +546,7 @@
   ./services/hardware/kanata.nix
   ./services/hardware/lcd.nix
   ./services/hardware/lirc.nix
+  ./services/hardware/nvidia-container-toolkit-cdi-generator
   ./services/hardware/nvidia-optimus.nix
   ./services/hardware/openrgb.nix
   ./services/hardware/pcscd.nix
@@ -840,6 +841,7 @@
   ./services/monitoring/riemann.nix
   ./services/monitoring/rustdesk-server.nix
   ./services/monitoring/scollector.nix
+  ./services/monitoring/scrutiny.nix
   ./services/monitoring/smartd.nix
   ./services/monitoring/snmpd.nix
   ./services/monitoring/statsd.nix
@@ -1402,7 +1404,6 @@
   ./services/web-servers/unit/default.nix
   ./services/web-servers/uwsgi.nix
   ./services/web-servers/varnish/default.nix
-  ./services/web-servers/zope2.nix
   ./services/x11/clight.nix
   ./services/x11/colord.nix
   ./services/x11/desktop-managers/default.nix
