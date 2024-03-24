@@ -464,7 +464,7 @@ in {
   keymap = handleTest ./keymap.nix {};
   knot = handleTest ./knot.nix {};
   komga = handleTest ./komga.nix {};
-  krb5 = discoverTests (import ./krb5 {});
+  krb5 = discoverTests (import ./krb5);
   ksm = handleTest ./ksm.nix {};
   kthxbye = handleTest ./kthxbye.nix {};
   kubernetes = handleTestOn ["x86_64-linux"] ./kubernetes {};
@@ -529,6 +529,7 @@ in {
   memcached = handleTest ./memcached.nix {};
   merecat = handleTest ./merecat.nix {};
   metabase = handleTest ./metabase.nix {};
+  mihomo = handleTest ./mihomo.nix {};
   mindustry = handleTest ./mindustry.nix {};
   minecraft = handleTest ./minecraft.nix {};
   minecraft-server = handleTest ./minecraft-server.nix {};
@@ -561,6 +562,7 @@ in {
   munin = handleTest ./munin.nix {};
   mutableUsers = handleTest ./mutable-users.nix {};
   mxisd = handleTest ./mxisd.nix {};
+  mycelium = handleTest ./mycelium {};
   mympd = handleTest ./mympd.nix {};
   mysql = handleTest ./mysql/mysql.nix {};
   mysql-autobackup = handleTest ./mysql/mysql-autobackup.nix {};
@@ -580,6 +582,7 @@ in {
   ndppd = handleTest ./ndppd.nix {};
   nebula = handleTest ./nebula.nix {};
   netbird = handleTest ./netbird.nix {};
+  nimdow = handleTest ./nimdow.nix {};
   neo4j = handleTest ./neo4j.nix {};
   netdata = handleTest ./netdata.nix {};
   networking.networkd = handleTest ./networking.nix { networkd = true; };
