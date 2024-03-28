@@ -2834,8 +2834,6 @@ with pkgs;
 
   xcpc = callPackage ../applications/emulators/xcpc { };
 
-  xemu = callPackage ../applications/emulators/xemu { };
-
   yapesdl = callPackage ../applications/emulators/yapesdl { };
 
   zsnes = pkgsi686Linux.callPackage ../applications/emulators/zsnes { };
@@ -3337,8 +3335,6 @@ with pkgs;
 
   autospotting = callPackage ../applications/misc/autospotting { };
 
-  autosuspend = callPackage ../os-specific/linux/autosuspend { };
-
   avfs = callPackage ../tools/filesystems/avfs { };
 
   aliyun-cli = callPackage ../tools/admin/aliyun-cli { };
@@ -3382,8 +3378,6 @@ with pkgs;
   aws-sso-creds = callPackage ../tools/admin/aws-sso-creds { };
 
   aws-vault = callPackage ../tools/admin/aws-vault { };
-
-  aws-workspaces = callPackage ../applications/networking/remote/aws-workspaces { };
 
   iamy = callPackage ../tools/admin/iamy { };
 
@@ -5006,8 +5000,6 @@ with pkgs;
 
   ioport = callPackage ../os-specific/linux/ioport { };
 
-  dgoss = callPackage ../tools/misc/dgoss { };
-
   diagrams-builder = callPackage ../tools/graphics/diagrams-builder {
     inherit (haskellPackages) ghcWithPackages diagrams-builder;
   };
@@ -5538,8 +5530,6 @@ with pkgs;
   gorilla-cli = callPackage ../tools/llm/gorilla-cli { };
 
   godu = callPackage ../tools/misc/godu { };
-
-  goss = callPackage ../tools/misc/goss { };
 
   gosu = callPackage ../tools/misc/gosu { };
 
@@ -6336,8 +6326,6 @@ with pkgs;
   starboard = callPackage ../applications/networking/cluster/starboard { };
 
   statserial = callPackage ../tools/misc/statserial { };
-
-  steampipe = callPackage ../tools/misc/steampipe { };
 
   step-ca = callPackage ../tools/security/step-ca {
     inherit (darwin.apple_sdk.frameworks) PCSC;
@@ -7877,8 +7865,6 @@ with pkgs;
   elasticsearchPlugins = recurseIntoAttrs (
     callPackage ../servers/search/elasticsearch/plugins.nix {}
   );
-
-  elasticsearch-curator = callPackage ../tools/admin/elasticsearch-curator { };
 
   embree = callPackage ../development/libraries/embree { };
   embree2 = callPackage ../development/libraries/embree/2.x.nix { };
@@ -14956,6 +14942,8 @@ with pkgs;
     boost = boost179;
   };
 
+  xorriso = libisoburn;
+
   xurls = callPackage ../tools/text/xurls { };
 
   xxv = callPackage ../tools/misc/xxv { };
@@ -16253,7 +16241,7 @@ with pkgs;
 
   hugs = callPackage ../development/interpreters/hugs { };
 
-  inherit (javaPackages) openjfx11 openjfx15 openjfx17 openjfx19 openjfx20 openjfx21;
+  inherit (javaPackages) openjfx11 openjfx15 openjfx17 openjfx19 openjfx20 openjfx21 openjfx22;
   openjfx = openjfx17;
 
   openjdk8-bootstrap = javaPackages.compiler.openjdk8-bootstrap;
@@ -16292,6 +16280,11 @@ with pkgs;
   openjdk21_headless = javaPackages.compiler.openjdk21.headless;
   jdk21 = openjdk21;
   jdk21_headless = openjdk21_headless;
+
+  openjdk22 = javaPackages.compiler.openjdk22;
+  openjdk22_headless = javaPackages.compiler.openjdk22.headless;
+  jdk22 = openjdk22;
+  jdk22_headless = openjdk22_headless;
 
   /* default JDK */
   jdk = jdk21;
@@ -24872,6 +24865,10 @@ with pkgs;
 
   tet = callPackage ../development/tools/misc/tet { };
 
+  texpresso = callPackage ../tools/typesetting/tex/texpresso {
+    texpresso-tectonic = callPackage ../tools/typesetting/tex/texpresso/tectonic.nix { };
+  };
+
   text-engine = callPackage ../development/libraries/text-engine { };
 
   the-foundation = callPackage ../development/libraries/the-foundation { };
@@ -25377,8 +25374,6 @@ with pkgs;
 
   fastjar = callPackage ../development/tools/java/fastjar { };
 
-  jextract = callPackage ../development/tools/java/jextract { };
-
   httpunit = callPackage ../development/libraries/java/httpunit { };
 
   javaCup = callPackage ../development/libraries/java/cup {
@@ -25881,7 +25876,7 @@ with pkgs;
 
   etcd = etcd_3_5;
   etcd_3_4 = callPackage ../servers/etcd/3.4.nix { };
-  etcd_3_5 = callPackage ../servers/etcd/3.5.nix { };
+  etcd_3_5 = callPackage ../servers/etcd/3.5 { };
 
   ejabberd = callPackage ../servers/xmpp/ejabberd { erlang = erlang_24; };
 
@@ -28576,7 +28571,6 @@ with pkgs;
 
   bgnet = callPackage ../data/documentation/bgnet { };
 
-  bibata-cursors = callPackage ../data/icons/bibata-cursors { attrs = python3Packages.attrs; };
   bibata-extra-cursors = callPackage ../data/icons/bibata-cursors/extra.nix { };
   bibata-cursors-translucent = callPackage ../data/icons/bibata-cursors/translucent.nix { };
 
@@ -30611,8 +30605,6 @@ with pkgs;
   docker = docker_24;
   docker-client = docker.override { clientOnly = true; };
 
-  docker-proxy = callPackage ../applications/virtualization/docker/proxy.nix { };
-
   docker-gc = callPackage ../applications/virtualization/docker/gc.nix { };
   docker-machine-hyperkit = callPackage ../applications/networking/cluster/docker-machine/hyperkit.nix { };
   docker-machine-kvm2 = callPackage ../applications/networking/cluster/docker-machine/kvm2.nix { };
@@ -30632,8 +30624,6 @@ with pkgs;
   amazon-ecr-credential-helper = callPackage ../tools/admin/amazon-ecr-credential-helper { };
 
   dk = callPackage ../applications/window-managers/dk { };
-
-  docker-credential-gcr = callPackage ../tools/admin/docker-credential-gcr { };
 
   docker-credential-helpers = callPackage ../tools/admin/docker-credential-helpers { };
 
@@ -31666,10 +31656,8 @@ with pkgs;
         pythonPackages = python3Packages;
   };
 
-  graphicsmagick = callPackage ../applications/graphics/graphicsmagick { };
   graphicsmagick_q16 = graphicsmagick.override { quantumdepth = 16; };
-
-  graphicsmagick-imagemagick-compat = callPackage ../applications/graphics/graphicsmagick/compat.nix { };
+  graphicsmagick-imagemagick-compat = graphicsmagick.imagemagick-compat;
 
   grisbi = callPackage ../applications/office/grisbi { gtk = gtk3; };
 
@@ -33424,8 +33412,6 @@ with pkgs;
 
   nixos-shell = callPackage ../tools/virtualization/nixos-shell { };
 
-  nix-ld = callPackage ../os-specific/linux/nix-ld { };
-
   noaa-apt = callPackage ../applications/radio/noaa-apt { };
 
   node-problem-detector = callPackage ../applications/networking/cluster/node-problem-detector { };
@@ -34741,8 +34727,6 @@ with pkgs;
   maestro = callPackage ../development/mobile/maestro { };
 
   myfitnesspal = with python3Packages; toPythonApplication myfitnesspal;
-
-  insync = callPackage ../applications/networking/insync { };
 
   lemurs = callPackage ../applications/display-managers/lemurs { };
 
@@ -37412,8 +37396,6 @@ with pkgs;
 
   portmod = callPackage ../games/portmod { };
 
-  tetrio-desktop = callPackage ../games/tetrio-desktop { };
-
   tr-patcher = callPackage ../games/tr-patcher { };
 
   tes3cmd = callPackage ../games/tes3cmd { };
@@ -38494,8 +38476,6 @@ with pkgs;
   coin-utils = callPackage ../development/libraries/science/math/coin-utils { };
 
   ecos = callPackage ../development/libraries/science/math/ecos { };
-
-  flintqs = callPackage ../development/libraries/science/math/flintqs { };
 
   getdp = callPackage ../applications/science/math/getdp { };
 
@@ -40812,8 +40792,6 @@ with pkgs;
 
   xboxdrv = callPackage ../misc/drivers/xboxdrv { };
 
-  xivlauncher = callPackage ../games/xivlauncher { };
-
   xortool = python3Packages.callPackage ../tools/security/xortool { };
 
   xorex = callPackage ../tools/security/xorex { };
@@ -41059,9 +41037,7 @@ with pkgs;
 
   openrisk = callPackage ../tools/security/openrisk { };
 
-  openvino = callPackage ../development/libraries/openvino {
-    python = python3;
-  };
+  openvino = callPackage ../development/libraries/openvino { };
 
   phonetisaurus = callPackage ../development/libraries/phonetisaurus {
     # https://github.com/AdolfVonKleist/Phonetisaurus/issues/70
@@ -41298,6 +41274,8 @@ with pkgs;
   };
 
   treefmt = callPackage ../development/tools/treefmt { };
+
+  nufmt = callPackage ../development/tools/nufmt { };
 
   bottom = darwin.apple_sdk_11_0.callPackage ../tools/system/bottom { };
 
