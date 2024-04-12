@@ -299,8 +299,6 @@ with pkgs;
 
   melange = callPackage ../development/tools/melange { };
 
-  appthreat-depscan = callPackage ../development/tools/appthreat-depscan { };
-
   activate-linux = callPackage ../applications/misc/activate-linux { };
 
   ansi = callPackage ../development/tools/ansi { };
@@ -3395,6 +3393,8 @@ with pkgs;
 
   azure-cli = callPackage ../tools/admin/azure-cli { };
 
+  azure-cli-extensions = recurseIntoAttrs azure-cli.extensions;
+
   azure-functions-core-tools = callPackage ../development/tools/azure-functions-core-tools { };
 
   azure-static-sites-client = callPackage ../development/tools/azure-static-sites-client { };
@@ -3850,8 +3850,6 @@ with pkgs;
   glaxnimate = libsForQt5.callPackage ../applications/video/glaxnimate { };
 
   gluesql = callPackage ../servers/sql/gluesql { };
-
-  gmid = callPackage ../servers/gemini/gmid { };
 
   gmni = callPackage ../applications/networking/browsers/gmni { };
 
@@ -6869,7 +6867,9 @@ with pkgs;
 
   unionfs-fuse = callPackage ../tools/filesystems/unionfs-fuse { };
 
-  unparam = callPackage ../tools/misc/unparam { };
+  unparam = callPackage ../tools/misc/unparam {
+    buildGoModule = buildGo121Module;
+  };
 
   inherit (nodePackages) uppy-companion;
 
@@ -8348,7 +8348,7 @@ with pkgs;
   })
     garage
       garage_0_8 garage_0_9
-      garage_0_8_7 garage_0_9_3;
+      garage_0_8_7 garage_0_9_4;
 
   garmintools = callPackage ../development/libraries/garmintools { };
 
@@ -8485,8 +8485,6 @@ with pkgs;
   gitea-actions-runner = callPackage ../development/tools/continuous-integration/gitea-actions-runner { };
 
   forgejo = callPackage ../applications/version-management/forgejo { };
-
-  forgejo-actions-runner = callPackage ../development/tools/continuous-integration/forgejo-actions-runner { };
 
   gokart = callPackage ../development/tools/gokart { };
 
@@ -9279,6 +9277,8 @@ with pkgs;
   in-formant = qt6Packages.callPackage ../applications/audio/in-formant { };
 
   inadyn = callPackage ../tools/networking/inadyn { };
+
+  incus-lts = callPackage ../by-name/in/incus/lts.nix { };
 
   incron = callPackage ../tools/system/incron { };
 
@@ -15440,7 +15440,6 @@ with pkgs;
   };
 
   clang = llvmPackages.clang;
-  clang_9  = llvmPackages_9.clang;
   clang_12 = llvmPackages_12.clang;
   clang_13 = llvmPackages_13.clang;
   clang_14 = llvmPackages_14.clang;
@@ -15449,10 +15448,6 @@ with pkgs;
   clang_17 = llvmPackages_17.clang;
 
   clang-tools = callPackage ../development/tools/clang-tools { };
-
-  clang-tools_9 = callPackage ../development/tools/clang-tools {
-    llvmPackages = llvmPackages_9;
-  };
 
   clang-tools_12 = callPackage ../development/tools/clang-tools {
     llvmPackages = llvmPackages_12;
@@ -16397,7 +16392,6 @@ with pkgs;
   };
 
   lld = llvmPackages.lld;
-  lld_9 = llvmPackages_9.lld;
   lld_12 = llvmPackages_12.lld;
   lld_13 = llvmPackages_13.lld;
   lld_14 = llvmPackages_14.lld;
@@ -16406,7 +16400,6 @@ with pkgs;
   lld_17 = llvmPackages_17.lld;
 
   lldb = llvmPackages.lldb;
-  lldb_9 = llvmPackages_9.lldb;
   lldb_12 = llvmPackages_12.lldb;
   lldb_13 = llvmPackages_13.lldb;
   lldb_14 = llvmPackages_14.lldb;
@@ -16415,7 +16408,6 @@ with pkgs;
   lldb_17 = llvmPackages_17.lldb;
 
   llvm = llvmPackages.llvm;
-  llvm_9  = llvmPackages_9.llvm;
   llvm_12 = llvmPackages_12.llvm;
   llvm_13 = llvmPackages_13.llvm;
   llvm_14 = llvmPackages_14.llvm;
@@ -16446,14 +16438,6 @@ with pkgs;
     minSupported = toString (lib.trivial.max (choose stdenv.hostPlatform) (choose
       stdenv.targetPlatform));
   in pkgs.${"llvmPackages_${minSupported}"};
-
-  llvmPackages_9 = recurseIntoAttrs (callPackage ../development/compilers/llvm/9 {
-    inherit (stdenvAdapters) overrideCC;
-    buildLlvmTools = buildPackages.llvmPackages_9.tools;
-    targetLlvm = targetPackages.llvmPackages_9.llvm or llvmPackages_9.llvm;
-    targetLlvmLibraries = targetPackages.llvmPackages_9.libraries or llvmPackages_9.libraries;
-    stdenv = if stdenv.cc.cc.isGNU or false then gcc12Stdenv else stdenv; # does not build with gcc13
-  });
 
   llvmPackages_12 = recurseIntoAttrs (callPackage ../development/compilers/llvm/12 ({
     inherit (stdenvAdapters) overrideCC;
@@ -16781,7 +16765,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
   cargo-deb = callPackage ../development/tools/rust/cargo-deb { };
-  cargo-deps = callPackage ../development/tools/rust/cargo-deps { };
   cargo-docset = callPackage ../development/tools/rust/cargo-docset { };
   cargo-duplicates = callPackage ../development/tools/rust/cargo-duplicates { };
   cargo-edit = callPackage ../development/tools/rust/cargo-edit {
@@ -19267,10 +19250,7 @@ with pkgs;
 
   lttv = callPackage ../development/tools/misc/lttv { };
 
-  luaformatter = callPackage ../development/tools/luaformatter
-    (lib.optionalAttrs (stdenv.cc.isClang && lib.versionOlder stdenv.cc.version "9") {
-      stdenv = overrideCC stdenv llvmPackages_9.clang;
-    });
+  luaformatter = callPackage ../development/tools/luaformatter { };
 
   lurk = callPackage ../development/tools/lurk { };
 
@@ -20397,7 +20377,9 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreServices Security;
   };
 
-  box2d = callPackage ../development/libraries/box2d { };
+  box2d = callPackage ../development/libraries/box2d {
+    inherit (darwin.apple_sdk.frameworks) Carbon Cocoa Kernel OpenGL;
+  };
 
   boxfort = callPackage ../development/libraries/boxfort { };
 
@@ -20888,6 +20870,9 @@ with pkgs;
     ffmpeg_6
     ffmpeg_6-headless
     ffmpeg_6-full
+    ffmpeg_7
+    ffmpeg_7-headless
+    ffmpeg_7-full
     ffmpeg
     ffmpeg-headless
     ffmpeg-full;
@@ -25133,8 +25118,6 @@ with pkgs;
   webrtc-audio-processing = webrtc-audio-processing_0_3;
 
   whereami = callPackage ../development/libraries/whereami { };
-
-  where-is-my-sddm-theme = libsForQt5.callPackage ../data/themes/where-is-my-sddm-theme { };
 
   wildmidi = callPackage ../development/libraries/wildmidi {
     inherit (darwin.apple_sdk.frameworks) OpenAL;
@@ -31746,8 +31729,6 @@ with pkgs;
 
   gv = callPackage ../applications/misc/gv { };
 
-  gvisor = callPackage ../applications/virtualization/gvisor { };
-
   guvcview = libsForQt5.callPackage ../os-specific/linux/guvcview { };
 
   gwc = callPackage ../applications/audio/gwc { };
@@ -32433,7 +32414,10 @@ with pkgs;
 
   khard = callPackage ../applications/misc/khard { };
 
-  kid3 = libsForQt5.callPackage ../applications/audio/kid3 { };
+  kid3-cli = qt6Packages.callPackage ../applications/audio/kid3 { withCLI = true; withKDE = false; withQt = false; };
+  kid3-kde = qt6Packages.callPackage ../applications/audio/kid3 { withCLI = true; withKDE = true; withQt = false; };
+  kid3-qt = qt6Packages.callPackage ../applications/audio/kid3 { withCLI = true; withKDE = false; withQt = true; };
+  kid3 = kid3-kde;
 
   kile = libsForQt5.callPackage ../applications/editors/kile { };
 
@@ -32447,7 +32431,7 @@ with pkgs;
 
   klayout = libsForQt5.callPackage ../applications/misc/klayout { };
 
-  klee = callPackage ../applications/science/logic/klee (with llvmPackages_12; {
+  klee = callPackage ../applications/science/logic/klee (with llvmPackages_13; {
     clang = clang;
     llvm = llvm;
     stdenv = stdenv;
@@ -37014,7 +36998,7 @@ with pkgs;
   fairymax = callPackage ../games/fairymax { };
 
   ferium = callPackage ../games/ferium {
-    inherit (darwin.apple_sdk.frameworks) Security;
+    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
   };
 
   fheroes2 = callPackage ../games/fheroes2 { };
@@ -39780,6 +39764,8 @@ with pkgs;
 
   kmon = callPackage ../tools/system/kmon { };
 
+  kmonad = haskellPackages.kmonad.bin;
+
   kompose = callPackage ../applications/networking/cluster/kompose { };
 
   kompute = callPackage ../development/libraries/kompute {
@@ -40060,6 +40046,8 @@ with pkgs;
   nix-serve-ng = haskell.lib.compose.justStaticExecutables haskellPackages.nix-serve-ng;
 
   nix-simple-deploy = callPackage ../tools/package-management/nix-simple-deploy { };
+
+  nix-visualize = python3.pkgs.callPackage ../tools/package-management/nix-visualize { };
 
   alejandra = callPackage ../tools/nix/alejandra { };
 

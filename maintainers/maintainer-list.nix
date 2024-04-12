@@ -1342,12 +1342,6 @@
     githubId = 81317317;
     name = "Anna Aurora";
   };
-  a-n-n-a-l-e-e = {
-    github = "a-n-n-a-l-e-e";
-    githubId = 150648636;
-    matrix = "@a-n-n-a-l-e-e:matrix.org";
-    name = "annalee";
-  };
   anoa = {
     matrix = "@andrewm:amorgan.xyz";
     email = "andrew@amorgan.xyz";
@@ -14796,6 +14790,12 @@
     githubId = 7249506;
     name = "oida";
   };
+  ok-nick = {
+    email = "nick.libraries@gmail.com";
+    github = "ok-nick";
+    githubId = 25470747;
+    name = "Nick";
+  };
   olcai = {
     email = "dev@timan.info";
     github = "olcai";
@@ -15347,6 +15347,12 @@
     github = "PedroHLC";
     githubId = 1368952;
     name = "Pedro Lara Campos";
+  };
+  peefy = {
+    email = "xpf6677@gmail.com";
+    github = "Peefy";
+    githubId = 22744597;
+    name = "Peefy";
   };
   peelz = {
     email = "peelz.dev+nixpkgs@gmail.com";
