@@ -427,9 +427,12 @@ if [[ -z $_NIXOS_REBUILD_REEXEC && -n $canRun && -z $fast ]]; then
             SHOULD_REEXEC=1
         fi
     else
-        runCmd nix "${flakeFlags[@]}" build --out-link "${tmpDir}/nixos-rebuild" "$flake#$flakeAttr.config.system.build.nixos-rebuild" "${extraBuildFlags[@]}" "${lockFlags[@]}"
-        if p=$(readlink -e "${tmpDir}/nixos-rebuild"); then
-            SHOULD_REEXEC=1
+        targetSystem=$(runCmd nix eval --raw "$flake#$flakeAttr.pkgs.system")
+        if [[ $(nix show-config --json | jq -r '.system.value') == $targetSystem ]]; then
+            runCmd nix "${flakeFlags[@]}" build --out-link "${tmpDir}/nixos-rebuild" "$flake#$flakeAttr.config.system.build.nixos-rebuild" "${extraBuildFlags[@]}" "${lockFlags[@]}"
+            if p=$(readlink -e "${tmpDir}/nixos-rebuild"); then
+                SHOULD_REEXEC=1
+            fi
         fi
     fi
 
@@ -793,7 +796,13 @@ if [[ "$action" = switch || "$action" = boot || "$action" = test || "$action" = 
     else
         cmd+=("$pathToConfig/specialisation/$specialisation/bin/switch-to-configuration")
 
-        if [[ ! -f "${cmd[-1]}" ]]; then
+        if [ -z "$targetHost" ]; then
+            specialisationExists=$(test -f "${cmd[-1]}")
+        else
+            specialisationExists=$(targetHostCmd test -f "${cmd[-1]}")
+        fi
+
+        if ! $specialisationExists; then
             log "error: specialisation not found: $specialisation"
             exit 1
         fi

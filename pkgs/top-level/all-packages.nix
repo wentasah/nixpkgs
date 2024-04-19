@@ -1612,10 +1612,6 @@ with pkgs;
 
   afio = callPackage ../tools/archivers/afio { };
 
-  afl = callPackage ../tools/security/afl {
-    stdenv = clangStdenv;
-  };
-
   honggfuzz = callPackage ../tools/security/honggfuzz {
     clang = clang_16;
     llvm = llvm_16;
@@ -1630,7 +1626,7 @@ with pkgs;
 
   ledfx = callPackage ../applications/audio/ledfx { };
 
-  libdislocator = callPackage ../tools/security/afl/libdislocator.nix { };
+  libdislocator = callPackage ../tools/security/aflplusplus/libdislocator.nix { };
 
   afpfs-ng = callPackage ../tools/filesystems/afpfs-ng { };
 
@@ -2749,12 +2745,6 @@ with pkgs;
   mame-tools = lib.addMetaAttrs {
     description = mame.meta.description + " (tools only)";
   } (lib.getOutput "tools" mame);
-
-  mednafen = callPackage ../applications/emulators/mednafen { };
-
-  mednafen-server = callPackage ../applications/emulators/mednafen/server.nix { };
-
-  mednaffe = callPackage ../applications/emulators/mednaffe { };
 
   melonDS = libsForQt5.callPackage ../applications/emulators/melonDS { };
 
@@ -5130,8 +5120,6 @@ with pkgs;
 
   earlybird = callPackage ../tools/security/earlybird { };
 
-  earlyoom = callPackage ../os-specific/linux/earlyoom { };
-
   easyabc = callPackage ../applications/audio/easyabc { };
 
   easycrypt = callPackage ../applications/science/logic/easycrypt {
@@ -5543,7 +5531,11 @@ with pkgs;
 
   grobi = callPackage ../tools/X11/grobi { };
 
-  gscan2pdf = callPackage ../applications/graphics/gscan2pdf { };
+  gscan2pdf = callPackage ../applications/graphics/gscan2pdf {
+    # needs this fork of libtiff, because original libtiff
+    # stopped packaging required tools with version 4.6
+    libtiff = libtiff_t;
+  };
 
   gsctl = callPackage ../applications/misc/gsctl { };
 
@@ -6091,7 +6083,7 @@ with pkgs;
 
 
   ockam = callPackage ../tools/networking/ockam {
-    inherit (darwin.apple_sdk.frameworks) Security;
+    inherit (darwin.apple_sdk.frameworks) AppKit Security;
   };
 
   odoo = callPackage ../applications/finance/odoo { };
@@ -6675,7 +6667,7 @@ with pkgs;
   cdrkit = callPackage ../tools/cd-dvd/cdrkit { };
 
   cdrtools = callPackage ../tools/cd-dvd/cdrtools {
-    stdenv = if stdenv.isDarwin then overrideLibcxx llvmPackages_14.stdenv else stdenv;
+    stdenv = if stdenv.isDarwin then llvmPackages_14.stdenv else stdenv;
     inherit (darwin.apple_sdk.frameworks) Carbon IOKit;
   };
 
@@ -9167,8 +9159,9 @@ with pkgs;
   hybridreverb2 = callPackage ../applications/audio/hybridreverb2 { };
 
   hylafaxplus = callPackage ../servers/hylafaxplus {
-    # libtiff >= 4.6 dropped many executables needed by hylafaxplus
-    libtiff = libtiff_4_5;
+    # needs this fork of libtiff, because original libtiff
+    # stopped packaging required tools with version 4.6
+    libtiff = libtiff_t;
   };
 
   hyphen = callPackage ../development/libraries/hyphen { };
@@ -14407,8 +14400,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  wireproxy = callPackage ../tools/networking/wireproxy { };
-
   wiringpi = callPackage ../os-specific/linux/wiringpi { };
 
   wg-friendly-peer-names = callPackage ../tools/networking/wg-friendly-peer-names { };
@@ -19047,6 +19038,9 @@ with pkgs;
 
   inotify-tools = callPackage ../development/tools/misc/inotify-tools { };
 
+  inherit (callPackage ../applications/misc/inochi2d { })
+    inochi-creator inochi-session;
+
   intel-gpu-tools = callPackage ../development/tools/misc/intel-gpu-tools { };
 
   insomnia = callPackage ../development/web/insomnia { };
@@ -21126,9 +21120,6 @@ with pkgs;
   };
 
   glfw = glfw3;
-  glfw-wayland = glfw.override {
-    waylandSupport = true;
-  };
   glfw-wayland-minecraft = callPackage ../development/libraries/glfw/3.x-wayland-minecraft.nix {};
   glfw2 = callPackage ../development/libraries/glfw/2.x.nix { };
   glfw3 = callPackage ../development/libraries/glfw/3.x.nix {
@@ -21889,7 +21880,7 @@ with pkgs;
   lerc = callPackage ../development/libraries/lerc { };
 
   lib2geom = callPackage ../development/libraries/lib2geom {
-    stdenv = if stdenv.cc.isClang then overrideLibcxx llvmPackages_13.stdenv else stdenv;
+    stdenv = if stdenv.cc.isClang then llvmPackages_13.stdenv else stdenv;
   };
 
   lib3ds = callPackage ../development/libraries/lib3ds { };
@@ -23031,8 +23022,14 @@ with pkgs;
 
   libtifiles2 = callPackage ../development/libraries/libtifiles2 { };
 
-  libtiff = callPackage ../development/libraries/libtiff { };
-  libtiff_4_5 = callPackage ../development/libraries/libtiff/4.5.nix { };
+  inherit
+    ({
+      libtiff = callPackage ../development/libraries/libtiff { };
+      libtiff_t = callPackage ../development/libraries/libtiff/libtiff_t.nix { };
+    })
+    libtiff
+    libtiff_t
+    ;
 
   libtiger = callPackage ../development/libraries/libtiger { };
 
@@ -24705,6 +24702,8 @@ with pkgs;
   streamlink = callPackage ../applications/video/streamlink { };
   streamlink-twitch-gui-bin = callPackage ../applications/video/streamlink-twitch-gui/bin.nix { };
 
+  structuresynth = libsForQt5.callPackage ../development/libraries/structuresynth { };
+
   sub-batch = callPackage ../applications/video/sub-batch { };
 
   subdl = callPackage ../applications/video/subdl { };
@@ -24910,16 +24909,9 @@ with pkgs;
 
   ucommon = callPackage ../development/libraries/ucommon { };
 
-  v8 = callPackage ../development/libraries/v8 (
-    let
-      stdenv' = if stdenv.cc.isClang && lib.versionAtLeast (lib.getVersion stdenv.cc.cc) "16"
-        then overrideLibcxx llvmPackages_15.stdenv
-        else stdenv;
-    in
-    {
-      stdenv = if stdenv'.isDarwin then overrideSDK stdenv' "11.0" else stdenv';
-    }
-  );
+  v8 = callPackage ../development/libraries/v8 {
+    stdenv = if stdenv.isDarwin then overrideSDK stdenv "11.0" else stdenv;
+  };
 
   intel-vaapi-driver = callPackage ../development/libraries/intel-vaapi-driver { };
 
@@ -24928,6 +24920,8 @@ with pkgs;
   vaapiVdpau = callPackage ../development/libraries/vaapi-vdpau { };
 
   vale = callPackage ../tools/text/vale { };
+
+  valeStyles = recurseIntoAttrs (callPackages ../tools/text/vale/styles.nix { });
 
   valhalla = callPackage ../development/libraries/valhalla {
     boost = boost.override { enablePython = true; python = python3; };
@@ -24965,8 +24959,6 @@ with pkgs;
   vkdisplayinfo = callPackage ../tools/graphics/vkdisplayinfo { };
 
   vkdt = callPackage ../applications/graphics/vkdt { };
-
-  vkdt-wayland = callPackage ../applications/graphics/vkdt { glfw = glfw-wayland; };
 
   vlock = callPackage ../misc/screensavers/vlock { };
 
@@ -25235,6 +25227,10 @@ with pkgs;
   # requires a newer Apple SDK
   zig_0_11 = darwin.apple_sdk_11_0.callPackage ../development/compilers/zig/0.11.nix {
     llvmPackages = llvmPackages_16;
+  };
+  # requires a newer Apple SDK
+  zig_0_12 = darwin.apple_sdk_11_0.callPackage ../development/compilers/zig/0.12.nix {
+    llvmPackages = llvmPackages_17;
   };
   zig = zig_0_11;
 
@@ -27710,7 +27706,8 @@ with pkgs;
   nu_scripts = callPackage ../shells/nushell/nu_scripts { };
 
   nushellPlugins = recurseIntoAttrs (callPackage ../shells/nushell/plugins {
-    inherit (darwin.apple_sdk_11_0.frameworks) IOKit CoreFoundation Foundation Security;
+    inherit (darwin.apple_sdk.frameworks) Security;
+    inherit (darwin.apple_sdk_11_0.frameworks) IOKit CoreFoundation Foundation;
   });
 
   nettools = if stdenv.isLinux
@@ -28777,6 +28774,23 @@ with pkgs;
   oceanic-theme = callPackage ../data/themes/gtk-theme-framework { theme = "oceanic"; };
 
   spacx-gtk-theme = callPackage ../data/themes/gtk-theme-framework { theme = "spacx"; };
+
+  inherit
+    ({
+      gruppled-black-cursors = callPackage ../data/icons/gruppled-cursors { theme = "gruppled_black"; };
+      gruppled-black-lite-cursors = callPackage ../data/icons/gruppled-lite-cursors {
+        theme = "gruppled_black_lite";
+      };
+      gruppled-white-cursors = callPackage ../data/icons/gruppled-cursors { theme = "gruppled_white"; };
+      gruppled-white-lite-cursors = callPackage ../data/icons/gruppled-lite-cursors {
+        theme = "gruppled_white_lite";
+      };
+    })
+    gruppled-black-cursors
+    gruppled-black-lite-cursors
+    gruppled-white-cursors
+    gruppled-white-lite-cursors
+    ;
 
   gruvbox-dark-icons-gtk = callPackage ../data/icons/gruvbox-dark-icons-gtk {
     inherit (plasma5Packages) breeze-icons;
@@ -34615,7 +34629,7 @@ with pkgs;
 
   maestral = with python3Packages; toPythonApplication maestral;
 
-  maestral-gui = qt6.callPackage ../applications/networking/maestral-qt { };
+  maestral-gui = qt6Packages.callPackage ../applications/networking/maestral-qt { };
 
   maestro = callPackage ../development/mobile/maestro { };
 
@@ -37925,7 +37939,7 @@ with pkgs;
   lxqt = recurseIntoAttrs (import ../desktops/lxqt {
     inherit pkgs;
     inherit (lib) makeScope;
-    inherit qt5 libsForQt5;
+    inherit kdePackages;
   });
 
   mate = recurseIntoAttrs (callPackage ../desktops/mate { });
@@ -39981,7 +39995,7 @@ with pkgs;
   alejandra = callPackage ../tools/nix/alejandra { };
 
   nixci = callPackage ../tools/nix/nixci {
-    inherit (darwin.apple_sdk.frameworks) Security;
+    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration IOKit;
   };
 
   nixfmt-classic = haskellPackages.nixfmt.bin;

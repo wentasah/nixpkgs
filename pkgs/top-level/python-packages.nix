@@ -815,7 +815,7 @@ self: super: with self; {
 
   aspy-refactor-imports = callPackage ../development/python-modules/aspy-refactor-imports { };
 
-  aspy-yaml = callPackage ../development/python-modules/aspy.yaml { };
+  aspy-yaml = callPackage ../development/python-modules/aspy-yaml { };
 
   assay = callPackage ../development/python-modules/assay { };
 
@@ -1352,7 +1352,7 @@ self: super: with self; {
 
   backports-entry-points-selectable = callPackage ../development/python-modules/backports-entry-points-selectable { };
 
-  backports_shutil_get_terminal_size = callPackage ../development/python-modules/backports_shutil_get_terminal_size { };
+  backports-shutil-get-terminal-size = callPackage ../development/python-modules/backports-shutil-get-terminal-size { };
 
   backports-shutil-which = callPackage ../development/python-modules/backports-shutil-which { };
 
@@ -1781,6 +1781,8 @@ self: super: with self; {
   btsmarthub-devicelist = callPackage ../development/python-modules/btsmarthub-devicelist { };
 
   btsocket = callPackage ../development/python-modules/btsocket { };
+
+  bubop = callPackage ../development/python-modules/bubop { };
 
   bucketstore = callPackage ../development/python-modules/bucketstore { };
 
@@ -5905,6 +5907,8 @@ self: super: with self; {
 
   itanium-demangler = callPackage ../development/python-modules/itanium-demangler { };
 
+  item-synchronizer = callPackage ../development/python-modules/item-synchronizer { };
+
   itemadapter = callPackage ../development/python-modules/itemadapter { };
 
   itemdb = callPackage ../development/python-modules/itemdb { };
@@ -9673,6 +9677,8 @@ self: super: with self; {
 
   pypemicro = callPackage ../development/python-modules/pypemicro { };
 
+  pymeshlab = toPythonModule (pkgs.libsForQt5.callPackage ../applications/graphics/pymeshlab { });
+
   pyprecice = callPackage ../development/python-modules/pyprecice { };
 
   pyprobables = callPackage ../development/python-modules/pyprobables { };
@@ -11542,6 +11548,8 @@ self: super: with self; {
     inherit (self) buildPythonPackage pyqt5 pyqt-builder python pythonOlder
       setuptools sip;
   };
+
+  pyqtdarktheme = callPackage ../development/python-modules/pyqtdarktheme { };
 
   pyqtdatavisualization = pkgs.libsForQt5.callPackage ../development/python-modules/pyqtdatavisualization {
     inherit (self) buildPythonPackage pyqt5 pyqt-builder python pythonOlder
@@ -13950,7 +13958,7 @@ self: super: with self; {
 
   smpplib = callPackage ../development/python-modules/smpplib { };
 
-  smpp-pdu = callPackage ../development/python-modules/smpp.pdu { };
+  smpp-pdu = callPackage ../development/python-modules/smpp-pdu { };
 
   smtpdfix = callPackage ../development/python-modules/smtpdfix { };
 
@@ -14086,7 +14094,7 @@ self: super: with self; {
 
   spacy-lookups-data = callPackage ../development/python-modules/spacy/lookups-data.nix { };
 
-  spacy_models = callPackage ../development/python-modules/spacy/models.nix {
+  spacy-models = callPackage ../development/python-modules/spacy/models.nix {
       inherit (pkgs) jq;
   };
 
@@ -14675,6 +14683,8 @@ self: super: with self; {
 
   taskw = callPackage ../development/python-modules/taskw { };
 
+  taskw-ng = callPackage ../development/python-modules/taskw-ng { };
+
   tatsu = callPackage ../development/python-modules/tatsu { };
 
   taxi = callPackage ../development/python-modules/taxi { };
@@ -14913,7 +14923,7 @@ self: super: with self; {
   textacy = callPackage ../development/python-modules/textacy { };
 
   textnets = callPackage ../development/python-modules/textnets {
-    en_core_web_sm = spacy_models.en_core_web_sm;
+    en_core_web_sm = spacy-models.en_core_web_sm;
   };
 
   texttable = callPackage ../development/python-modules/texttable { };
