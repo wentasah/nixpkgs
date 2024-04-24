@@ -467,6 +467,8 @@ self: super: with self; {
 
   airtouch4pyapi = callPackage ../development/python-modules/airtouch4pyapi { };
 
+  airtouch5py = callPackage ../development/python-modules/airtouch5py { };
+
   ajpy = callPackage ../development/python-modules/ajpy { };
 
   ajsonrpc = callPackage ../development/python-modules/ajsonrpc { };
@@ -4788,6 +4790,8 @@ self: super: with self; {
 
   gitpython = callPackage ../development/python-modules/gitpython { };
 
+  git-versioner = callPackage ../development/python-modules/git-versioner { };
+
   glad =  callPackage ../development/python-modules/glad { };
 
   glad2 =  callPackage ../development/python-modules/glad2 { };
@@ -7087,6 +7091,8 @@ self: super: with self; {
   mando = callPackage ../development/python-modules/mando { };
 
   mandown = callPackage ../development/python-modules/mandown { };
+
+  manga-ocr = callPackage ../development/python-modules/manga-ocr { };
 
   manhole = callPackage ../development/python-modules/manhole { };
 
@@ -9775,6 +9781,8 @@ self: super: with self; {
 
   pip-requirements-parser = callPackage ../development/python-modules/pip-requirements-parser { };
 
+  pip-system-certs = callPackage ../development/python-modules/pip-system-certs { };
+
   pipx = callPackage ../development/python-modules/pipx { };
 
   pivy = callPackage ../development/python-modules/pivy {
@@ -12284,6 +12292,8 @@ self: super: with self; {
   python-gvm = callPackage ../development/python-modules/python-gvm { };
 
   python-hglib = callPackage ../development/python-modules/python-hglib { };
+
+  python-homeassistant-analytics = callPackage ../development/python-modules/python-homeassistant-analytics { };
 
   python-homewizard-energy = callPackage ../development/python-modules/python-homewizard-energy { };
 
