@@ -3,7 +3,7 @@
 , fetchurl
 , perlPackages
 , makeWrapper
-, wrapGAppsHook
+, wrapGAppsHook3
 , cairo
 , dblatex
 , gnumake
@@ -104,7 +104,7 @@ stdenv.mkDerivation (finalAttrs: rec {
   nativeBuildInputs = [
     pkg-config
     makeWrapper
-    wrapGAppsHook
+    wrapGAppsHook3
     gobject-introspection
   ];
 
