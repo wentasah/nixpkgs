@@ -68,6 +68,11 @@ stdenv.mkDerivation (finalAttrs: rec {
     "GCC_PP=${stdenv.cc.targetPrefix}c++"
   ];
 
+  patches = [
+    ./0001-AMC-TXT-New-global-option-ShowGroupText.patch
+    ./0002-Test-8-page-alignment.patch
+  ];
+
   preFixup = ''
     makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
   '';
