@@ -1,0 +1,57 @@
+From 20c120c57a65eb0ab9203cb347bb78b664b80974 Mon Sep 17 00:00:00 2001
+From: Michal Sojka <michal.sojka@cvut.cz>
+Date: Sun, 21 Jan 2018 23:13:00 +0100
+Subject: [PATCH 1/2] AMC-TXT: New global option ShowGroupText
+
+When this option is enabled (default), the text after group start/end
+marks i.e., after "*(" or "*)", is shown in the printed tests. This is
+the same behavior as before this commit.
+
+By setting this option to 0, no group marks are generated. This is
+useful if groups are used merely as containers for similar questions
+and have numquestions=1 option. In this case, it makes little sense to
+add group text before and after every question.
+---
+ AMC-perl/AMC/Filter/plain.pm | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/AMC-perl/AMC/Filter/plain.pm b/AMC-perl/AMC/Filter/plain.pm
+index 5970266d..e0f7d4be 100644
+--- a/AMC-perl/AMC/Filter/plain.pm
++++ b/AMC-perl/AMC/Filter/plain.pm
+@@ -63,6 +63,7 @@ sub new {
+           TitleWidth
+           Pages
+           RandomSeed
++          ShowGroupText
+           PreAssociation PreAssociationKey PreAssociationName
+           /
+     ];
+@@ -75,6 +76,7 @@ sub new {
+           CompleteMulti SeparateAnswerSheet AutoMarks
+           Arabic
+           ManualDuplex SingleSided
++          ShowGroupText
+           /
+     ];
+ 
+@@ -119,6 +121,7 @@ sub new {
+         namefieldlinespace    => '.5em',
+         titlewidth            => ".47\\linewidth",
+         randomseed            => "1527384",
++        showgrouptext         => 1,
+         lang                  => '',
+         code                  => 0,
+         'latex-preambule'     => '',
+@@ -487,7 +490,7 @@ sub read_file {
+         if (/^\s*\*([\(\)])(?:\[([^]]*)\])?\s*(.*)/) {
+             my $action  = $1;
+             my $options = $2;
+-            my $text    = $3;
++            my $text=$self->{'options'}->{'showgrouptext'} ? $3 : "";
+             debug "Group A=" . printable($action) . " O=" . printable($options);
+             my %oo = $self->read_options($options);
+             if ( $action eq '(' ) {
+-- 
+2.34.1
+
