@@ -1787,6 +1787,12 @@
     githubId = 816777;
     name = "Ashley Gillman";
   };
+  ashgoldofficial = {
+    email = "ashley.goldwater@gmail.com";
+    github = "ASHGOLDOFFICIAL";
+    githubId = 104313094;
+    name = "Andrey Shaat";
+  };
   ashkitten = {
     email = "ashlea@protonmail.com";
     github = "ashkitten";
@@ -1875,6 +1881,12 @@
     keys = [{
       fingerprint = "BF47 81E1 F304 1ADF 18CE  C401 DE16 C7D1 536D A72F";
     }];
+  };
+  astronaut0212 = {
+    email = "goatastronaut0212@proton.me";
+    github = "goatastronaut0212";
+    githubId = 119769817;
+    name = "goatastronaut0212";
   };
   astsmtl = {
     email = "astsmtl@yandex.ru";
@@ -4574,9 +4586,14 @@
     github = "DataHearth";
     githubId = 28595242;
     name = "DataHearth";
-    keys = [{
-      fingerprint = "A129 2547 0298 BFEE 7EE0  92B3 946E 2D0C 410C 7B3D";
-    }];
+    keys = [
+      {
+        fingerprint = "A129 2547 0298 BFEE 7EE0 92B3 946E 2D0C 410C 7B3D";
+      }
+      {
+        fingerprint = "FFC4 92C1 5320 B05D 0F8D 7D58 ABF6 737C 6339 6D35";
+      }
+    ];
   };
   davegallant = {
     name = "Dave Gallant";
@@ -12443,6 +12460,11 @@
     githubId = 18661391;
     name = "Malte Janz";
   };
+  malteneuss = {
+    github = "malteneuss";
+    githubId = 5301202;
+    name = "Malte Neuss";
+  };
   malte-v = {
     email = "nixpkgs@mal.tc";
     github = "malte-v";
@@ -19754,12 +19776,6 @@
     github = "0Supa";
     githubId = 36031171;
     name = "Supa";
-  };
-  superbo = {
-    email = "supernbo@gmail.com";
-    github = "SuperBo";
-    githubId = 2666479;
-    name = "Y Nguyen";
   };
   superherointj = {
     email = "sergiomarcelo@yandex.com";
