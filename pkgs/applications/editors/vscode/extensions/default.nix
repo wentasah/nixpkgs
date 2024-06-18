@@ -1291,7 +1291,7 @@ let
           downloadPage = "https://marketplace.visualstudio.com/items?itemName=discloud.discloud";
           homepage = "https://github.com/discloud/vscode-discloud";
           license = lib.licenses.asl20;
-          maintainers = [ lib.maintainers.astindev ];
+          maintainers = [ lib.maintainers.diogomdp ];
         };
       };
 
@@ -1492,8 +1492,8 @@ let
         mktplcRef = {
           name = "elixir-ls";
           publisher = "JakeBecker";
-          version = "0.21.3";
-          hash = "sha256-C6QFlqMIcefQhzBuVd3CnQHHaDdM1de7j+a/06wZ9FQ=";
+          version = "0.22.0";
+          hash = "sha256-pus5rOyVgheiblvWrkM3H/GZifBzUGR++JiHN4aU/3I=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/JakeBecker.elixir-ls/changelog";

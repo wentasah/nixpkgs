@@ -2206,6 +2206,8 @@ self: super: with self; {
 
   clf = callPackage ../development/python-modules/clf { };
 
+  cli-ui = callPackage ../development/python-modules/cli-ui { };
+
   clip = callPackage ../development/python-modules/clip { };
 
   clip-anytorch = callPackage ../development/python-modules/clip-anytorch { };
@@ -3481,8 +3483,6 @@ self: super: with self; {
   dockerpty = callPackage ../development/python-modules/dockerpty { };
 
   docker-pycreds = callPackage ../development/python-modules/docker-pycreds { };
-
-  docker-py = callPackage ../development/python-modules/docker-py { };
 
   dockerspawner = callPackage ../development/python-modules/dockerspawner { };
 
@@ -5819,6 +5819,8 @@ self: super: with self; {
 
   inkex = callPackage ../development/python-modules/inkex { };
 
+  inline-snapshot = callPackage ../development/python-modules/inline-snapshot { };
+
   inlinestyler = callPackage ../development/python-modules/inlinestyler { };
 
   inotify = callPackage ../development/python-modules/inotify { };
@@ -7050,6 +7052,8 @@ self: super: with self; {
   logster = callPackage ../development/python-modules/logster { };
 
   loguru = callPackage ../development/python-modules/loguru { };
+
+  loguru-logging-intercept = callPackage ../development/python-modules/loguru-logging-intercept { };
 
   logutils = callPackage ../development/python-modules/logutils {
     redis-server = pkgs.redis;
@@ -8659,6 +8663,8 @@ self: super: with self; {
   navec = callPackage ../development/python-modules/navec { };
 
   natasha = callPackage ../development/python-modules/natasha { };
+
+  natural = callPackage ../development/python-modules/natural { };
 
   nomadnet = callPackage ../development/python-modules/nomadnet { };
 
@@ -11562,6 +11568,8 @@ self: super: with self; {
 
   pyopenuv = callPackage ../development/python-modules/pyopenuv { };
 
+  pyopenweathermap = callPackage ../development/python-modules/pyopenweathermap { };
+
   pyopnsense = callPackage ../development/python-modules/pyopnsense { };
 
   pyoppleio = callPackage ../development/python-modules/pyoppleio { };
@@ -14118,6 +14126,8 @@ self: super: with self; {
 
   slugid = callPackage ../development/python-modules/slugid { };
 
+  py-slvs = callPackage ../development/python-modules/py-slvs { };
+
   sly = callPackage ../development/python-modules/sly { };
 
   smart-meter-texas = callPackage ../development/python-modules/smart-meter-texas { };
@@ -16473,6 +16483,8 @@ self: super: with self; {
   };
 
   uhi = callPackage ../development/python-modules/uhi { };
+
+  uiprotect = callPackage ../development/python-modules/uiprotect { };
 
   ujson = callPackage ../development/python-modules/ujson { };
 
