@@ -240,6 +240,7 @@ in {
   custom-ca = handleTest ./custom-ca.nix {};
   croc = handleTest ./croc.nix {};
   darling = handleTest ./darling.nix {};
+  darling-dmg = runTest ./darling-dmg.nix;
   dae = handleTest ./dae.nix {};
   davis = handleTest ./davis.nix {};
   db-rest = handleTest ./db-rest.nix {};
@@ -516,6 +517,7 @@ in {
   listmonk = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./listmonk.nix {};
   litestream = handleTest ./litestream.nix {};
   lldap = handleTest ./lldap.nix {};
+  localsend = handleTest ./localsend.nix {};
   locate = handleTest ./locate.nix {};
   login = handleTest ./login.nix {};
   logrotate = handleTest ./logrotate.nix {};
@@ -975,6 +977,7 @@ in {
   teeworlds = handleTest ./teeworlds.nix {};
   telegraf = handleTest ./telegraf.nix {};
   teleport = handleTest ./teleport.nix {};
+  teleports = runTest ./teleports.nix;
   thelounge = handleTest ./thelounge.nix {};
   terminal-emulators = handleTest ./terminal-emulators.nix {};
   thanos = handleTest ./thanos.nix {};
