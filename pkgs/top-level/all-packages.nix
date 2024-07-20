@@ -1051,14 +1051,19 @@ with pkgs;
 
   mya = callPackage ../applications/misc/mya { };
 
-  mysql-shell = callPackage ../development/tools/mysql-shell {
-    inherit (darwin) cctools DarwinTools;
-    inherit (darwin.apple_sdk.frameworks) CoreServices;
-    antlr = antlr4_10;
-    boost = boost177; # Configure checks for specific version.
-    icu =  icu73;
-    protobuf = protobuf_24;
-  };
+  mysql-shell = mysql-shell_8;
+
+  inherit ({
+    mysql-shell_8 = callPackage ../development/tools/mysql-shell/8.nix {
+      inherit (darwin) cctools DarwinTools;
+      inherit (darwin.apple_sdk.frameworks) CoreServices;
+      antlr = antlr4_10;
+      icu =  icu73;
+      protobuf = protobuf_24;
+    };
+  })
+  mysql-shell_8
+  ;
 
   mysql-shell-innovation = callPackage ../development/tools/mysql-shell/innovation.nix {
     inherit (darwin) cctools DarwinTools;
@@ -2261,10 +2266,6 @@ with pkgs;
 
   git-backdate = callPackage ../applications/version-management/git-backdate { };
 
-  git-backup = callPackage ../applications/version-management/git-backup {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
-
   git-big-picture = callPackage ../applications/version-management/git-big-picture { };
 
   git-bars = callPackage ../applications/version-management/git-bars { };
@@ -3252,7 +3253,7 @@ with pkgs;
 
   authenticator = callPackage ../applications/misc/authenticator { };
 
-  authelia = callPackage ../servers/authelia { };
+  authelia = callPackage ../servers/authelia { pnpm = pnpm_9; };
 
   authentik-outposts = recurseIntoAttrs (callPackages ../by-name/au/authentik/outposts.nix { });
 
@@ -6180,8 +6181,6 @@ with pkgs;
 
   razergenie = libsForQt5.callPackage ../applications/misc/razergenie { };
 
-  replay-sorcery = callPackage ../tools/video/replay-sorcery { };
-
   recyclarr = callPackage ../tools/video/recyclarr { };
 
   tsduck = callPackage ../tools/video/tsduck { };
@@ -8473,8 +8472,6 @@ with pkgs;
 
   gpp = callPackage ../development/tools/gpp { };
 
-  gnuastro = callPackage ../applications/science/astronomy/gnuastro { };
-
   gpredict = callPackage ../applications/science/astronomy/gpredict {
     hamlib = hamlib_4;
   };
@@ -9700,10 +9697,6 @@ with pkgs;
   m2r = with python3Packages; toPythonApplication m2r;
 
   md2gemini = with python3.pkgs; toPythonApplication md2gemini;
-
-  mdbook = callPackage ../tools/text/mdbook {
-    inherit (darwin.apple_sdk.frameworks) CoreServices;
-  };
 
   mdbook-emojicodes = callPackage ../tools/text/mdbook-emojicodes { };
 
@@ -11284,6 +11277,7 @@ with pkgs;
   opentelemetry-collector-contrib = callPackage ../tools/misc/opentelemetry-collector/contrib.nix { };
 
   openvswitch-lts = callPackage ../by-name/op/openvswitch/lts.nix { };
+  openvswitch-dpdk = callPackage ../by-name/op/openvswitch/package.nix { withDPDK = true; };
 
   ovn-lts = callPackage ../by-name/ov/ovn/lts.nix { };
 
@@ -13894,8 +13888,6 @@ with pkgs;
 
   verilator = callPackage ../applications/science/electronics/verilator { };
 
-  verilog = callPackage ../applications/science/electronics/verilog { };
-
   versus = callPackage ../applications/networking/versus { };
 
   vexctl = callPackage ../tools/security/vexctl { };
@@ -14434,11 +14426,7 @@ with pkgs;
 
   wireguard-go = callPackage ../tools/networking/wireguard-go { };
 
-  wkhtmltopdf = libsForQt5.callPackage ../tools/graphics/wkhtmltopdf { };
-
-  wkhtmltopdf-bin = callPackage ../tools/graphics/wkhtmltopdf-bin {
-    openssl = openssl_1_1;
-  };
+  wkhtmltopdf = callPackage ../tools/graphics/wkhtmltopdf { };
 
   wml = callPackage ../development/web/wml { };
 
@@ -16660,9 +16648,7 @@ with pkgs;
   svdtools = callPackage ../development/embedded/svdtools { };
 
   swiftPackages = recurseIntoAttrs (callPackage ../development/compilers/swift { });
-  inherit (swiftPackages) swift swiftpm sourcekit-lsp swift-format;
-
-  swiftpm2nix = callPackage ../development/tools/swiftpm2nix { };
+  inherit (swiftPackages) swift swiftpm sourcekit-lsp swift-format swiftpm2nix;
 
   swiProlog = callPackage ../development/compilers/swi-prolog {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -19586,6 +19572,8 @@ with pkgs;
 
   qcachegrind = libsForQt5.callPackage ../development/tools/analysis/qcachegrind { };
 
+  vcpkg-tool-unwrapped = callPackage ../by-name/vc/vcpkg-tool/package.nix { doWrap = false; };
+
   visualvm = callPackage ../development/tools/java/visualvm { };
 
   volta = callPackage ../development/tools/volta { };
@@ -20080,8 +20068,6 @@ with pkgs;
   clipp  = callPackage ../development/libraries/clipp { };
 
   clipper = callPackage ../development/libraries/clipper { };
-
-  clipper2 = callPackage ../development/libraries/clipper2 { };
 
   cln = callPackage ../development/libraries/cln { };
 
@@ -25576,7 +25562,11 @@ with pkgs;
 
   mackerel-agent = callPackage ../servers/monitoring/mackerel-agent { };
 
-  mailmanPackages = callPackage ../servers/mail/mailman { };
+  mailmanPackages = callPackage ../servers/mail/mailman {
+    # Hyperkitty test fails with 3.12:
+    # https://gitlab.com/mailman/hyperkitty/-/issues/514
+    python3 = python311;
+  };
   inherit (mailmanPackages) mailman mailman-hyperkitty;
   mailman-web = mailmanPackages.web;
 
@@ -26447,6 +26437,7 @@ with pkgs;
   };
 
   zabbix60 = recurseIntoAttrs (zabbixFor "v60");
+  zabbix64 = recurseIntoAttrs (zabbixFor "v64");
   zabbix50 = recurseIntoAttrs (zabbixFor "v50");
 
   zabbix = zabbix60;
@@ -28985,8 +28976,6 @@ with pkgs;
 
   ubuntu-themes = callPackage ../data/themes/ubuntu-themes { };
 
-  ubuntu_font_family = callPackage ../data/fonts/ubuntu-font-family { };
-
   ucs-fonts = callPackage ../data/fonts/ucs-fonts { };
 
   bront_fonts = callPackage ../data/fonts/bront { };
@@ -30187,7 +30176,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) CoreServices Security SystemConfiguration;
   };
 
-  etebase-server = with python3Packages; toPythonApplication etebase-server;
+  etebase-server = callPackage ../servers/etebase {};
 
   etesync-dav = callPackage ../applications/misc/etesync-dav { };
 
@@ -31422,8 +31411,6 @@ with pkgs;
 
   i3nator = callPackage ../tools/misc/i3nator { };
 
-  i3pystatus = callPackage ../applications/window-managers/i3/pystatus.nix { };
-
   i3status = callPackage ../applications/window-managers/i3/status.nix { };
 
   i3status-rust = callPackage ../applications/window-managers/i3/status-rust.nix { };
@@ -32118,8 +32105,6 @@ with pkgs;
   llpp = callPackage ../applications/misc/llpp { };
 
   lls = callPackage ../applications/networking/lls { };
-
-  localsend = callPackage ../applications/networking/localsend { };
 
   lmms = libsForQt5.callPackage ../applications/audio/lmms {
     lame = null;
@@ -36157,8 +36142,6 @@ with pkgs;
 
   eidolon = callPackage ../games/eidolon { };
 
-  EmptyEpsilon = callPackage ../games/empty-epsilon { };
-
   endgame-singularity = callPackage ../games/endgame-singularity { };
 
   endless-sky = callPackage ../games/endless-sky { };
@@ -38122,7 +38105,8 @@ with pkgs;
   inherit (callPackages ../applications/science/logic/z3 { python = python3; })
     z3_4_12
     z3_4_11
-    z3_4_8
+    z3_4_8;
+  inherit (callPackages ../applications/science/logic/z3 { python = python311; })
     z3_4_8_5;
   z3 = z3_4_8;
   z3-tptp = callPackage ../applications/science/logic/z3/tptp.nix { };
@@ -39193,9 +39177,7 @@ with pkgs;
 
   nix-query-tree-viewer = callPackage ../tools/nix/nix-query-tree-viewer { };
 
-  nix-update = callPackage ../tools/package-management/nix-update {
-    python3 = python311;
-  };
+  nix-update = callPackage ../tools/package-management/nix-update { };
 
   nix-update-source = callPackage ../tools/package-management/nix-update-source { };
 
