@@ -139,7 +139,7 @@ with pkgs;
 
   unstableGitUpdater = callPackage ../common-updater/unstable-updater.nix { };
 
-  nix-update-script = callPackage ../common-updater/nix-update.nix { };
+  inherit (nix-update) nix-update-script;
 
   ### Push NixOS tests inside the fixed point
 
@@ -8831,8 +8831,6 @@ with pkgs;
   angryipscanner = ipscan;
 
   ipv6calc = callPackage ../tools/networking/ipv6calc { };
-
-  ipxe = callPackage ../tools/misc/ipxe { };
 
   irker = callPackage ../servers/irker { };
 
@@ -17870,8 +17868,6 @@ with pkgs;
 
   gnome-inform7 = callPackage ../applications/editors/gnome-inform7 { };
 
-  gnome-latex = callPackage ../applications/editors/gnome-latex { };
-
   gnome-network-displays = callPackage ../applications/networking/gnome-network-displays { };
 
   gnome-multi-writer = callPackage ../applications/misc/gnome-multi-writer { };
@@ -18296,8 +18292,6 @@ with pkgs;
   };
 
   nrf5-sdk = callPackage ../development/libraries/nrf5-sdk { };
-
-  nrfutil = callPackage ../development/tools/misc/nrfutil { };
 
   obelisk = callPackage ../development/tools/ocaml/obelisk { menhir = ocamlPackages.menhir; };
 
@@ -35681,6 +35675,8 @@ with pkgs;
   steam-small = steamPackages.steam-fhsenv-small;
 
   steam-run = steam.run;
+
+  steam-run-free = steamPackages.steam-fhsenv-without-steam.run;
 
   steam-tui = callPackage ../games/steam-tui { };
 
