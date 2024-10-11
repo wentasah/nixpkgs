@@ -1,5 +1,6 @@
-{ lib, stdenv, fetchurl }:
-
+{ lib, stdenv, fetchurl
+, ipv6Support ? true
+}:
 stdenv.mkDerivation rec {
   pname = "ucspi-tcp";
   version = "0.88";
@@ -15,7 +16,11 @@ stdenv.mkDerivation rec {
       url = "http://ftp.de.debian.org/debian/pool/main/u/ucspi-tcp/ucspi-tcp_0.88-3.diff.gz";
       sha256 = "0mzmhz8hjkrs0khmkzs5i0s1kgmgaqz07h493bd5jj5fm5njxln6";
     })
-    ./remove-setuid.patch
+  ] ++ lib.optional ipv6Support [
+    (fetchurl {
+      url = "https://salsa.debian.org/debian/ucspi-tcp/-/raw/debian/1%250.88-7/debian/ipv6-support.patch";
+      sha256 = "sha256-sFOVWJBsnLNZhsOH+TFmYt7NyMwJfbtSg/qCKEAyaQI=";
+    })
   ];
 
   # Apply Debian patches
@@ -24,6 +29,9 @@ stdenv.mkDerivation rec {
         echo "Applying patch $fname"
         patch < "$fname"
     done
+
+    # Remove setuid
+    substituteInPlace hier.c --replace ',02755);' ',0755);'
   '';
 
   # The build system is weird; 'make install' doesn't install anything, instead
@@ -46,6 +54,14 @@ stdenv.mkDerivation rec {
     # run the newly built installer
     ./install
 
+  '' + lib.optionalString ipv6Support ''
+    # Replicate Debian's man install logic (some man pages from
+    # ipv6-support.patch will be overwritten below by
+    # debian/ucspi-tcp-man/*.1).
+    rm -rf "$out/usr/man/man5"  # don't include tcp-environ(5)
+    mv -v "$out"/man/man1/*.1 "$out/share/man/man1/"
+
+  '' + ''
     # Install Debian man pages (upstream has none)
     cp debian/ucspi-tcp-man/*.1 "$out/share/man/man1"
   '';
