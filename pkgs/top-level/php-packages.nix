@@ -555,8 +555,7 @@ in {
           name = "pdo_dblib";
           internalDeps = [ php.extensions.pdo ];
           configureFlags = [ "--with-pdo-dblib=${freetds}" ];
-          # Doesn't seem to work on darwin.
-          meta.broken = (!stdenv.hostPlatform.isDarwin);
+          meta.broken = stdenv.hostPlatform.isDarwin;
           doCheck = false;
         }
         {
@@ -650,8 +649,6 @@ in {
           name = "snmp";
           buildInputs = [ net-snmp openssl ];
           configureFlags = [ "--with-snmp" ];
-          # net-snmp doesn't build on darwin.
-          meta.broken = (!stdenv.hostPlatform.isDarwin);
           doCheck = false;
         }
         {
@@ -663,7 +660,7 @@ in {
           # Some tests are causing issues in the Darwin sandbox with issues
           # such as
           #   Unknown: php_network_getaddresses: getaddrinfo for localhost failed: nodename nor servname provided
-          doCheck = !stdenv.hostPlatform.isDarwin;
+          doCheck = !stdenv.hostPlatform.isDarwin && lib.versionOlder php.version "8.4";
           internalDeps = [ php.extensions.session ];
           patches = lib.optionals (lib.versions.majorMinor php.version == "8.1") [
             # Fix tests with libxml2 2.12
