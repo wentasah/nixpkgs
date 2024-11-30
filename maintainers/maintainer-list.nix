@@ -3818,6 +3818,12 @@
     name = "ChaosAttractor";
     keys = [ { fingerprint = "A137 4415 DB7C 6439 10EA  5BF1 0FEE 4E47 5940 E125"; } ];
   };
+  charB66 = {
+    email = "nix.disparate221@passinbox.com";
+    github = "charB66";
+    githubId = 59340663;
+    name = "Bryan F.";
+  };
   charlesbaynham = {
     email = "charlesbaynham@gmail.com";
     github = "charlesbaynham";
@@ -6926,6 +6932,12 @@
     github = "evils";
     githubId = 30512529;
     name = "Evils";
+  };
+  evris99 = {
+    name = "Evrymachos Koukoumakas";
+    github = "evris99";
+    githubId = 32963606;
+    email = "cptevris@gmail.com";
   };
   ewok = {
     email = "ewok@ewok.ru";
@@ -11697,6 +11709,12 @@
     name = "Kat Inskip";
     keys = [ { fingerprint = "9CC6 44B5 69CD A59B C874  C4C9 E8DD E3ED 1C90 F3A0"; } ];
   };
+  kivikakk = {
+    email = "ashe@kivikakk.ee";
+    github = "kivikakk";
+    githubId = 1915;
+    name = "Asherah Connor";
+  };
   kjeremy = {
     email = "kjeremy@gmail.com";
     name = "Jeremy Kolb";
@@ -16258,6 +16276,13 @@
     github = "octodi";
     githubId = 127038896;
   };
+  octvs = {
+    name = "octvs";
+    email = "octvs@posteo.de";
+    matrix = "@octvs:matrix.org";
+    github = "octvs";
+    githubId = 42993892;
+  };
   oddlama = {
     email = "oddlama@oddlama.org";
     github = "oddlama";
@@ -18132,6 +18157,13 @@
     githubId = 1542224;
     matrix = "@qyriad:katesiria.org";
     name = "Qyriad";
+  };
+  r17x = {
+    email = "hi@rin.rocks";
+    github = "r17x";
+    githubId = 16365952;
+    name = "Rin";
+    keys = [ { fingerprint = "476A F55D 6378 F878 0709  848A 18F9 F516 1CC0 576C"; } ];
   };
   r3dl3g = {
     email = "redleg@rothfuss-web.de";
