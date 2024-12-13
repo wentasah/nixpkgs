@@ -1,6 +1,10 @@
-{ lib, stdenv, fetchurl
-, ipv6Support ? true
+{
+  lib,
+  stdenv,
+  fetchurl,
+  ipv6Support ? true,
 }:
+
 stdenv.mkDerivation rec {
   pname = "ucspi-tcp";
   version = "0.88";
