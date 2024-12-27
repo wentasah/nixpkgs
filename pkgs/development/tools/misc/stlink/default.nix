@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchpatch,
   cmake,
   libusb1,
   gtk3,
@@ -29,6 +30,14 @@ stdenv.mkDerivation rec {
     rev = "v${version}";
     sha256 = "sha256-hlFI2xpZ4ldMcxZbg/T5/4JuFFdO9THLcU0DQKSFqrw=";
   };
+
+  patches = [
+    (fetchpatch {
+      name = "calloc-argument-order.patch";
+      url = "https://github.com/jpteb/stlink/commit/7781732b0e09104d19c1f8476f1851760f4fa5fa.patch";
+      sha256 = "sha256-sAfcrDdoKy5Gl1o/PHEUr8uL9OBq0g1nfRe7Y0ijWAM=";
+    })
+  ];
 
   buildInputs =
     [
