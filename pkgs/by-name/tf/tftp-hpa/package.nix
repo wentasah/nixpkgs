@@ -1,16 +1,20 @@
 {
   lib,
   stdenv,
-  fetchurl,
+  fetchgit,
+  autoreconfHook,
 }:
 
 stdenv.mkDerivation rec {
   pname = "tftp-hpa";
-  version = "5.2";
-  src = fetchurl {
-    url = "mirror://kernel/software/network/tftp/tftp-hpa/${pname}-${version}.tar.xz";
-    sha256 = "12vidchglhyc20znq5wdsbhi9mqg90jnl7qr9qs8hbvaz4fkdvmg";
+  version = "5.2+2024-06-10";
+  src = fetchgit {
+    url = "https://git.kernel.org/pub/scm/network/tftp/tftp-hpa.git";
+    rev = "2c86ff58dcc003107b47f2d35aa0fdc4a3fd95e1";
+    sha256 = "1mnylx58mz8kjswyzl26c3c1zxhxq7rkh8s5ix5rfwdzhdsjacwm";
   };
+  nativeBuildInputs = [ autoreconfHook ];
+  autoreconfPhase = "/autogen.sh";
 
   # Workaround build failure on -fno-common toolchains like upstream
   # gcc-10. Otherwise build fails as:
