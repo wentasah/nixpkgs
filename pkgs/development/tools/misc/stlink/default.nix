@@ -34,7 +34,8 @@ stdenv.mkDerivation rec {
   patches = [
     (fetchpatch {
       name = "calloc-argument-order.patch";
-      url = "https://github.com/jpteb/stlink/commit/7781732b0e09104d19c1f8476f1851760f4fa5fa.patch";
+      url = "https://github.com/stlink-org/stlink/commit/6a6718b3342b6c5e282a4e33325b9f97908a0692.patch";
+      includes = [ "src/stlink-lib/chipid.c" ];
       sha256 = "sha256-sAfcrDdoKy5Gl1o/PHEUr8uL9OBq0g1nfRe7Y0ijWAM=";
     })
   ];

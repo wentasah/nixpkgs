@@ -2,25 +2,33 @@
   lib,
   stdenv,
   fetchgit,
-  autoreconfHook,
+  autoconf,
+  automake,
 }:
 
 stdenv.mkDerivation rec {
   pname = "tftp-hpa";
-  version = "5.2+2024-06-10";
+  version = "5.2-untagged-2024-06-10";
   src = fetchgit {
-    url = "https://git.kernel.org/pub/scm/network/tftp/tftp-hpa.git";
+    url = "git://git.kernel.org/pub/scm/network/tftp/tftp-hpa.git";
+    hash = "sha256-lTMldYO/cZdLj0UjOPPBHfYf2GBG0O+5lhP9ikqn3tY=";
     rev = "2c86ff58dcc003107b47f2d35aa0fdc4a3fd95e1";
-    sha256 = "1mnylx58mz8kjswyzl26c3c1zxhxq7rkh8s5ix5rfwdzhdsjacwm";
   };
-  nativeBuildInputs = [ autoreconfHook ];
-  autoreconfPhase = "/autogen.sh";
 
   # Workaround build failure on -fno-common toolchains like upstream
   # gcc-10. Otherwise build fails as:
   #   ld: main.o:/build/tftp-hpa-5.2/tftp/main.c:98: multiple definition of
   #     `toplevel'; tftp.o:/build/tftp-hpa-5.2/tftp/tftp.c:51: first defined here
   env.NIX_CFLAGS_COMPILE = "-fcommon";
+
+  preConfigure = ''
+    ./autogen.sh
+  '';
+
+  nativeBuildInputs = [
+    autoconf
+    automake
+  ];
 
   meta = with lib; {
     description = "TFTP tools - a lot of fixes on top of BSD TFTP";
