@@ -5019,9 +5019,8 @@ with self; {
       hash = "sha256-LbHrtYN7TLIAUcDuW3M7RFPjE33wqSMGA0yGdiHt1+c=";
     };
     patches = [
-      # Fix build error with gcc14. See https://rt.cpan.org/Public/Bug/Display.html?id=133363.
-      # Source: https://rt.cpan.org/Public/Ticket/Attachment/1912753/1024508/0001-_des.h-expose-perl_des_expand_key-and-perl_des_crypt.patch
-      ../development/perl-modules/CryptDES-expose-perl_des_expand_key-and-perl_des_crypt.patch
+      # add extra definitions in header to please -Werror=implicit-function-declaration
+      ../development/perl-modules/CryptDES-gcc14.patch
     ];
     meta = {
       description = "Perl DES encryption module";

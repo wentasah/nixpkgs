@@ -2,6 +2,8 @@
   lib,
   stdenv,
   fetchurl,
+  fetchzip,
+  quilt,
   ipv6Support ? true,
 }:
 
@@ -14,28 +16,30 @@ stdenv.mkDerivation rec {
     sha256 = "171yl9kfm8w7l17dfxild99mbf877a9k5zg8yysgb1j8nz51a1ja";
   };
 
-  # Plain upstream tarball doesn't build, get patches from Debian
-  patches = [
+  debian = fetchzip {
+    url = "http://ftp.de.debian.org/debian/pool/main/u/ucspi-tcp/ucspi-tcp_0.88-11.debian.tar.xz";
+    sha256 = "0x8h46wkm62dvyj1acsffcl4s06k5zh6139qxib3zzhk716hv5xg";
+  };
+
+  patches = lib.optional ipv6Support [
     (fetchurl {
-      url = "http://ftp.de.debian.org/debian/pool/main/u/ucspi-tcp/ucspi-tcp_0.88-3.diff.gz";
-      sha256 = "0mzmhz8hjkrs0khmkzs5i0s1kgmgaqz07h493bd5jj5fm5njxln6";
-    })
-  ] ++ lib.optional ipv6Support [
-    (fetchurl {
-      url = "https://salsa.debian.org/debian/ucspi-tcp/-/raw/debian/1%250.88-7/debian/ipv6-support.patch";
-      sha256 = "sha256-sFOVWJBsnLNZhsOH+TFmYt7NyMwJfbtSg/qCKEAyaQI=";
+      url = "https://salsa.debian.org/debian/ucspi-tcp/-/raw/debian/1%250.88-11/debian/ipv6-support.patch";
+      sha256 = "1hp9svfb2pn7ij37z3axhw4lhx5ckvz3rgxgjz8a5bi2y0v0w3mb";
     })
   ];
 
-  # Apply Debian patches
-  postPatch = ''
-    for fname in debian/diff/*.diff; do
-        echo "Applying patch $fname"
-        patch < "$fname"
-    done
+  nativeBuildInputs = [
+    quilt
+  ];
 
+  # Plain upstream tarball doesn't build, apply patches from Debian
+  prePatch = ''
+    QUILT_PATCHES=$debian/patches quilt push -a
+  '';
+
+  postPatch = ''
     # Remove setuid
-    substituteInPlace hier.c --replace ',02755);' ',0755);'
+    substituteInPlace hier.c --replace-fail ',02755);' ',0755);'
   '';
 
   # The build system is weird; 'make install' doesn't install anything, instead
@@ -48,7 +52,7 @@ stdenv.mkDerivation rec {
   preBuild = ''
     echo "$out" > conf-home
 
-    echo "main() { return 0; }" > chkshsgr.c
+    echo "int main() { return 0; }" > chkshsgr.c
   '';
 
   installPhase = ''
@@ -67,7 +71,7 @@ stdenv.mkDerivation rec {
 
   '' + ''
     # Install Debian man pages (upstream has none)
-    cp debian/ucspi-tcp-man/*.1 "$out/share/man/man1"
+    cp $debian/ucspi-tcp-man/*.1 "$out/share/man/man1"
   '';
 
   meta = with lib; {
