@@ -26,6 +26,24 @@ import ./make-test-python.nix (
                 address localhost
               '';
             };
+            nginx = {
+              enable = true;
+              virtualHosts.munin = {
+                locations = {
+                  "/".root = "/var/www/munin";
+                  "/static/".root = "${pkgs.munin}/etc/opt/munin";
+                  "^~ /munin-cgi/munin-cgi-graph/" = {
+                    extraConfig = ''
+                      access_log off;
+                      fastcgi_split_path_info ^(/munin-cgi/munin-cgi-graph)(.*);
+                      fastcgi_param PATH_INFO $fastcgi_path_info;
+                      fastcgi_pass unix:/run/munin/fastcgi-graph.sock;
+                      include ${pkgs.nginx}/conf/fastcgi_params;
+                    '';
+                  };
+                };
+              };
+            };
           };
 
           # increase the systemd timer interval so it fires more often
@@ -44,6 +62,11 @@ import ./make-test-python.nix (
           one.wait_for_file("/var/lib/munin/one/one-uptime-uptime-g.rrd")
           one.wait_for_file("/var/www/munin/one/index.html")
           one.wait_for_file("/var/www/munin/one/one/diskstat_iops_vda-day.png", timeout=60)
+
+      with subtest("ensure graphs can be generated dynamically via FastCGI"):
+          one.wait_for_unit("munin-cgi-graph.service")
+          one.wait_for_unit("nginx.service")
+          one.succeed("curl -f http://localhost/munin-cgi/munin-cgi-graph/one/one/load-day.png")
     '';
   }
 )
