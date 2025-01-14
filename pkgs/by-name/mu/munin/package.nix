@@ -15,6 +15,29 @@
   nixosTests,
 }:
 
+let
+  perlDeps = with perlPackages; [
+    LogLog4perl
+    IOSocketINET6
+    Socket6
+    URI
+    DBFile
+    TimeDate
+    HTMLTemplate
+    FileCopyRecursive
+    FCGI
+    NetCIDR
+    NetSNMP
+    NetServer
+    ListMoreUtils
+    DBDPg
+    LWP
+    rrdtool
+  ];
+  cgiUseLib = "use lib qw(${
+    lib.concatMapStringsSep " " (p: "${p}/${perlPackages.perl.libPrefix}")
+      ([(placeholder "out")] ++ perlDeps ++ (with perlPackages; [ CGIFast CGI FCGI ]))});";
+in
 stdenv.mkDerivation rec {
   version = "2.0.76";
   pname = "munin";
@@ -96,6 +119,11 @@ stdenv.mkDerivation rec {
       --replace "/bin/pwd" "pwd" \
       --replace "HTMLOld.3pm" "HTMLOld.3"
 
+    # CGI scripts run in Taint mode (https://perldoc.perl.org/perlsec#Taint-mode)
+    # and ignore PERL5LIB variable set by wrappers. We have to add search path
+    # explicitly via "use lib" as suggested in https://perldoc.perl.org/perlrun#PERL5LIB.
+    sed -i -e '2a${cgiUseLib}' master/_bin/munin-cgi-{graph,html}.in \
+
     # munin checks at build time if user/group exists, unpure
     sed -i '/CHECKUSER/d' Makefile
     sed -i '/CHOWN/d' Makefile
@@ -132,33 +160,13 @@ stdenv.mkDerivation rec {
         ln -s $out/nix-support/propagated-build-inputs $out/nix-support/propagated-user-env-packages
     fi
 
-    for file in "$out"/bin/munindoc "$out"/sbin/munin-* "$out"/lib/munin-* "$out"/www/cgi/*; do
+    for file in "$out"/bin/munindoc "$out"/sbin/munin-* "$out"/lib/munin-*; do
         # don't wrap .jar files
         case "$file" in
             *.jar) continue;;
         esac
         wrapProgram "$file" \
-          --set PERL5LIB "$out/${perlPackages.perl.libPrefix}:${
-            with perlPackages;
-            makePerlPath [
-              LogLog4perl
-              IOSocketINET6
-              Socket6
-              URI
-              DBFile
-              TimeDate
-              HTMLTemplate
-              FileCopyRecursive
-              FCGI
-              NetCIDR
-              NetSNMP
-              NetServer
-              ListMoreUtils
-              DBDPg
-              LWP
-              rrdtool
-            ]
-          }"
+          --set PERL5LIB "$out/${perlPackages.perl.libPrefix}:${perlPackages.makePerlPath perlDeps}"
     done
   '';
 
