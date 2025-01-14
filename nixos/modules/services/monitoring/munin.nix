@@ -8,13 +8,6 @@
 # TODO: support munin-async
 # TODO: LWP/Pg perl libs aren't recognized
 
-# TODO: support fastcgi
-# https://guide.munin-monitoring.org/en/latest/example/webserver/apache-cgi.html
-# spawn-fcgi -s /run/munin/fastcgi-graph.sock -U www-data   -u munin -g munin /usr/lib/munin/cgi/munin-cgi-graph
-# spawn-fcgi -s /run/munin/fastcgi-html.sock  -U www-data   -u munin -g munin /usr/lib/munin/cgi/munin-cgi-html
-# https://paste.sh/vofcctHP#-KbDSXVeWoifYncZmLfZzgum
-# nginx https://munin.readthedocs.org/en/latest/example/webserver/nginx.html
-
 with lib;
 
 let
@@ -26,6 +19,7 @@ let
     htmldir   /var/www/munin
     logdir    /var/log/munin
     rundir    /run/munin
+    cgitmpdir /var/lib/munin/cgi-tmp
 
     ${lib.optionalString (cronCfg.extraCSS != "") "staticdir ${customStaticDir}"}
 
@@ -417,6 +411,25 @@ in
           ExecStart = "${pkgs.munin}/bin/munin-cron --config ${muninConf}";
         };
       };
+
+      # munin-cgi-graph is needed in the default configuration for
+      # dynamic zooming of graphs. Run it unconditionally.
+      systemd.services.munin-cgi-graph = {
+        description = "Munin FastCGI graph generator";
+        before = [ "nginx.service" ];
+        wantedBy = [ "multi-user.target" ];
+        environment.MUNIN_CONFIG = muninConf;
+        serviceConfig = {
+          ExecStart = "${pkgs.spawn_fcgi}/bin/spawn-fcgi -s /run/munin/fastcgi-graph.sock -U nginx -u munin -g munin ${pkgs.munin}/www/cgi/munin-cgi-graph";
+          Type = "forking";
+          # Can fail before first execution of munin-cron.service due to missing files.
+          Restart = "on-failure";
+          RestartSec = 10;
+        };
+      };
+
+      # TODO: Run similar munin-cgi-html similarly to munin-cgi-graph
+      # and add options for enabling it via NixOS config.
 
       systemd.tmpfiles.settings."20-munin" =
         let
