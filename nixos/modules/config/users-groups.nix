@@ -8,6 +8,7 @@ let
     concatMap
     concatMapStringsSep
     concatStrings
+    count
     elem
     filter
     filterAttrs
@@ -37,7 +38,6 @@ let
     stringLength
     trace
     types
-    xor
     ;
 
   ids = config.ids;
@@ -163,8 +163,9 @@ let
           the user's UID is allocated in the range for system users
           (below 1000) or in the range for normal users (starting at
           1000).
-          Exactly one of `isNormalUser` and
-          `isSystemUser` must be true.
+
+          Exactly one of `isNormalUser`, `isSystemUser` and
+          `isRemoteUser` must be true.
         '';
       };
 
@@ -178,7 +179,21 @@ let
           {option}`home` to {file}`/home/«username»`,
           {option}`useDefaultShell` to `true`,
           and {option}`isSystemUser` to `false`.
-          Exactly one of `isNormalUser` and `isSystemUser` must be true.
+          Exactly one of `isNormalUser`, `isSystemUser` and
+          `isRemoteUser` must be true.
+        '';
+      };
+
+      isRemoteUser = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          Indicates whether this account is defined outside of
+          `/etc/passwd`, e.g. by remote LDAP server accessed via NSS.
+          Defining users this way allows to assign them `subUidRanges`
+          and `subGidRanges`.
+          Exactly one of `isNormalUser`, `isSystemUser` and
+          `isRemoteUser` must be true.
         '';
       };
 
@@ -554,7 +569,7 @@ let
       { inherit (u)
           name uid group description home homeMode createHome isSystemUser
           password hashedPasswordFile hashedPassword
-          autoSubUidGidRange subUidRanges subGidRanges
+          autoSubUidGidRange subUidRanges subGidRanges isRemoteUser
           initialPassword initialHashedPassword expires;
         shell = utils.toShellPath u.shell;
       }) cfg.users;
@@ -943,13 +958,14 @@ in {
           {
             assertion = let
               isEffectivelySystemUser = user.isSystemUser || (user.uid != null && user.uid < 1000);
-            in xor isEffectivelySystemUser user.isNormalUser;
+            in (count id [ isEffectivelySystemUser user.isNormalUser user.isRemoteUser ]) == 1;
             message = ''
-              Exactly one of users.users.${user.name}.isSystemUser and users.users.${user.name}.isNormalUser must be set.
+              Exactly one of users.users.${user.name}.isSystemUser, users.users.${user.name}.isNormalUser
+              and users.users.${user.name}.isRemoteUser must be set.
             '';
           }
           {
-            assertion = user.group != "";
+            assertion = user.group != "" || user.isRemoteUser;
             message = ''
               users.users.${user.name}.group is unset. This used to default to
               nogroup, but this is unsafe. For example you can create a group

@@ -198,9 +198,15 @@ updateFile($gidMapFile, to_json($gidMap, {canonical => 1}));
 updateFile("/etc/group", \@lines);
 nscdInvalidate("group");
 
-# Generate a new /etc/passwd containing the declared users.
+# Generate a new /etc/passwd containing the declared non-remote users.
 my %usersOut;
+my @remoteUsersOut;
 foreach my $u (@{$spec->{users}}) {
+    if ($u->{isRemoteUser}) {
+        push(@remoteUsersOut, $u);
+        next;
+    }
+
     my $name = $u->{name};
 
     # Resolve the gid of the user.
@@ -352,7 +358,7 @@ sub allocSubUid {
 
 my @subGids;
 my @subUids;
-foreach my $u (values %usersOut) {
+foreach my $u (values %usersOut, @remoteUsersOut) {
     my $name = $u->{name};
 
     foreach my $range (@{$u->{subUidRanges}}) {
