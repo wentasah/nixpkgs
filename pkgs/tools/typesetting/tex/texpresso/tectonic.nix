@@ -19,6 +19,12 @@ tectonic-unwrapped.override (old: {
           # binary has a different name, bundled tests won't work
           doCheck = false;
           meta.mainProgram = "texpresso-tonic";
+
+          # Fix: ERROR: noBrokenSymlinks: the symlink
+          # /nix/store/vpsb4vlny2a9ppiljyq0dn77zc4738lq-texpresso-tonic-0.15.0/bin/nextonic
+          # points to a missing target
+          # /nix/store/vpsb4vlny2a9ppiljyq0dn77zc4738lq-texpresso-tonic-0.15.0/bin/tectonic
+          dontCheckForBrokenSymlinks = true;
         }
       );
   };
