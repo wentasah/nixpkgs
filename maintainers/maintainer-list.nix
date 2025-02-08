@@ -505,6 +505,18 @@
     githubId = 1517066;
     name = "Aiken Cairncross";
   };
+  acaloiaro = {
+    email = "code@adriano.fyi";
+    githubId = 3331648;
+    github = "acaloiaro";
+    matrix = "@adriano@beeper.com";
+    name = "Adriano Caloiaro";
+    keys = [
+      {
+        fingerprint = "DCBD 2175 8A30 9C1F 41D7  A0FC 890F FDB1 1860 FE1C";
+      }
+    ];
+  };
   a-camarillo = {
     name = "Anthony Camarillo";
     email = "anthony.camarillo.96@gmail.com";
@@ -4625,6 +4637,11 @@
     githubId = 87764;
     name = "Ben Ford";
   };
+  commiterate = {
+    github = "commiterate";
+    githubId = 111539270;
+    name = "commiterate";
+  };
   CompEng0001 = {
     email = "sb1501@canterbury.ac.uk";
     github = "CompEng0001";
@@ -6875,6 +6892,12 @@
     email = "emily+nix@downunderctf.com";
     github = "emilytrau";
     githubId = 13267947;
+  };
+  Emin017 = {
+    email = "cchuqiming@gmail.com";
+    github = "Emin017";
+    githubId = 99674037;
+    name = "Qiming Chu";
   };
   emmabastas = {
     email = "emma.bastas@protonmail.com";
@@ -10843,6 +10866,12 @@
     githubId = 6445082;
     name = "Joseph Lukasik";
   };
+  jhahn = {
+    email = "mail.jhahn@gmail.com";
+    github = "jrhahn";
+    githubId = 56772267;
+    name = "Jürgen Hahn";
+  };
   jhh = {
     email = "jeff@j3ff.io";
     github = "jhh";
@@ -10932,6 +10961,11 @@
     github = "JJJollyjim";
     githubId = 691552;
     name = "Jamie McClymont";
+  };
+  jjtt = {
+    github = "jjtt";
+    githubId = 3908945;
+    name = "Juho Törmä";
   };
   jk = {
     email = "hello+nixpkgs@j-k.io";
@@ -13072,6 +13106,12 @@
     github = "levigross";
     githubId = 80920;
     name = "Levi Gross";
+  };
+  Levizor = {
+    email = "levizorri@protonmail.com";
+    github = "Levizor";
+    githubId = 132144514;
+    name = "Lev Sauliak";
   };
   lewo = {
     email = "lewo@abesis.fr";
@@ -16559,6 +16599,12 @@
     githubId = 1224006;
     name = "Roberto Abdelkader Martínez Pérez";
   };
+  nilscc = {
+    email = "mail@nils.cc";
+    github = "nilscc";
+    githubId = 92021;
+    name = "Nils";
+  };
   nils-degroot = {
     email = "nils@peeko.nl";
     github = "nils-degroot";
@@ -18722,6 +18768,12 @@
     github = "protoben";
     githubId = 4633847;
     name = "Ben Hamlin";
+  };
+  proux01 = {
+    email = "pierre.roux@onera.fr";
+    github = "proux01";
+    githubId = 15833376;
+    name = "Pierre ROux";
   };
   prrlvr = {
     email = "po@prrlvr.fr";
@@ -23701,6 +23753,12 @@
     github = "hmuehlhans";
     githubId = 9870613;
     name = "Hubert Mühlhans";
+  };
+  tris203 = {
+    email = "admin@snappeh.com";
+    github = "tris203";
+    githubId = 18444302;
+    name = " Tristan Knight";
   };
   trishtzy = {
     github = "trishtzy";
