@@ -3942,15 +3942,7 @@ with pkgs;
 
   maskromtool = qt6Packages.callPackage ../tools/graphics/maskromtool { };
 
-  matrix-synapse = callPackage ../servers/matrix-synapse/wrapper.nix { };
-  matrix-synapse-unwrapped = callPackage ../servers/matrix-synapse/default.nix { };
   matrix-synapse-plugins = recurseIntoAttrs matrix-synapse-unwrapped.plugins;
-  matrix-synapse-tools = recurseIntoAttrs matrix-synapse-unwrapped.tools;
-
-  matrix-appservice-slack = callPackage ../servers/matrix-synapse/matrix-appservice-slack {
-    matrix-sdk-crypto-nodejs = matrix-sdk-crypto-nodejs-0_1_0-beta_3;
-    nodejs = nodejs_18;
-  };
 
   matrix-appservice-discord = callPackage ../servers/matrix-appservice-discord { };
 
@@ -4167,7 +4159,6 @@ with pkgs;
   };
 
   matrix-sdk-crypto-nodejs = callPackage ../development/libraries/matrix-sdk-crypto-nodejs { };
-  matrix-sdk-crypto-nodejs-0_1_0-beta_3 = callPackage ../development/libraries/matrix-sdk-crypto-nodejs/beta3.nix { };
 
   makemkv = libsForQt5.callPackage ../applications/video/makemkv { };
 
@@ -5595,6 +5586,9 @@ with pkgs;
   semeru-bin = semeru-bin-21;
   semeru-jre-bin = semeru-jre-bin-21;
 
+  adaptivecppWithCuda = adaptivecpp.override { cudaSupport = true; };
+  adaptivecppWithRocm = adaptivecpp.override { rocmSupport = true; };
+
   adoptopenjdk-icedtea-web = callPackage ../development/compilers/adoptopenjdk-icedtea-web {
     jdk = jdk8;
   };
@@ -6648,9 +6642,6 @@ with pkgs;
   cargo-zigbuild = callPackage ../development/tools/rust/cargo-zigbuild { };
 
   opensmalltalk-vm = callPackage ../development/compilers/opensmalltalk-vm { };
-
-  opensycl = darwin.apple_sdk_11_0.callPackage ../development/compilers/opensycl { };
-  opensyclWithRocm = opensycl.override { rocmSupport = true; };
 
   rustfmt = rustPackages.rustfmt;
   rust-bindgen-unwrapped = callPackage ../development/tools/rust/bindgen/unwrapped.nix { };
@@ -8560,10 +8551,8 @@ with pkgs;
   celt_0_7 = callPackage ../development/libraries/celt/0.7.nix { };
   celt_0_5_1 = callPackage ../development/libraries/celt/0.5.1.nix { };
 
-  certbot = python3.pkgs.toPythonApplication python3.pkgs.certbot;
-
   certbot-full = certbot.withPlugins (cp: with cp; [
-    certbot-dns-cloudflare
+    # FIXME unbreak certbot-dns-cloudflare
     certbot-dns-google
     certbot-dns-ovh
     certbot-dns-rfc2136
@@ -9509,8 +9498,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) IOKit Security;
   };
 
-  libftdi1 = callPackage ../development/libraries/libftdi/1.x.nix { };
-
   libgcrypt = callPackage ../development/libraries/libgcrypt { };
 
   libgdiplus = callPackage ../development/libraries/libgdiplus {
@@ -10227,11 +10214,6 @@ with pkgs;
   proj = callPackage ../development/libraries/proj { };
 
   proj_7 = callPackage ../development/libraries/proj/7.nix { };
-
-  proselint = callPackage ../tools/text/proselint {
-    inherit (python3Packages)
-    buildPythonApplication click;
-  };
 
   prospector = callPackage ../development/tools/prospector { };
 
@@ -13317,7 +13299,6 @@ with pkgs;
   gnuradio = callPackage ../applications/radio/gnuradio/wrapper.nix {
     unwrapped = callPackage ../applications/radio/gnuradio {
       python = python311;
-      boost = boost186;  # fails with 187
     };
   };
   gnuradioPackages = lib.recurseIntoAttrs gnuradio.pkgs;
@@ -15591,7 +15572,7 @@ with pkgs;
 
   webcamoid = qt6Packages.callPackage ../applications/video/webcamoid { };
 
-  webcord = callPackage ../by-name/we/webcord/package.nix { electron = electron_33; };
+  webcord = callPackage ../by-name/we/webcord/package.nix { electron = electron_34; };
 
   webcord-vencord = callPackage ../by-name/we/webcord-vencord/package.nix { electron = electron_33; };
 
@@ -15940,6 +15921,8 @@ with pkgs;
 
   beancount = with python3.pkgs; toPythonApplication beancount;
 
+  beancount_2 = with python3.pkgs; toPythonApplication beancount_2;
+
   beancount-black = with python3.pkgs; toPythonApplication beancount-black;
 
   beanhub-cli = with python3.pkgs; toPythonApplication beanhub-cli;
@@ -15979,7 +15962,7 @@ with pkgs;
 
   heroic-unwrapped = callPackage ../games/heroic {
     # Upstream uses EOL Electron 31.  Use next oldest version.
-    electron = electron_32;
+    electron = electron_33;
   };
 
   heroic = callPackage ../games/heroic/fhsenv.nix { };
