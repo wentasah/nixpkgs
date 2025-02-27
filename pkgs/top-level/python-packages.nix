@@ -998,6 +998,8 @@ self: super: with self; {
 
   atomman = callPackage ../development/python-modules/atomman { };
 
+  atproto = callPackage ../development/python-modules/atproto { };
+
   atpublic = callPackage ../development/python-modules/atpublic { };
 
   atsim-potentials = callPackage ../development/python-modules/atsim-potentials { };
@@ -5354,6 +5356,8 @@ self: super: with self; {
 
   github3-py = callPackage ../development/python-modules/github3-py { };
 
+  gitingest = callPackage ../development/python-modules/gitingest { };
+
   gitignore-parser = callPackage ../development/python-modules/gitignore-parser { };
 
   gitlike-commands = callPackage ../development/python-modules/gitlike-commands { };
@@ -6394,6 +6398,8 @@ self: super: with self; {
 
   infinity = callPackage ../development/python-modules/infinity { };
 
+  inflate64 = callPackage ../development/python-modules/inflate64 { };
+
   inflect = callPackage ../development/python-modules/inflect { };
 
   inflection = callPackage ../development/python-modules/inflection { };
@@ -7402,6 +7408,8 @@ self: super: with self; {
     pythonSupport = true;
     inherit python;
   })).python;
+
+  libipld = callPackage ../development/python-modules/libipld { };
 
   libkeepass = callPackage ../development/python-modules/libkeepass { };
 
@@ -8699,6 +8707,8 @@ self: super: with self; {
   multiset = callPackage ../development/python-modules/multiset { };
 
   multitasking = callPackage ../development/python-modules/multitasking { };
+
+  multivolumefile = callPackage ../development/python-modules/multivolumefile { };
 
   munch = callPackage ../development/python-modules/munch { };
 
@@ -10712,6 +10722,8 @@ self: super: with self; {
 
   py65 = callPackage ../development/python-modules/py65 { };
 
+  py7zr = callPackage ../development/python-modules/py7zr { };
+
   pyabpoa = toPythonModule (pkgs.abpoa.override {
     enablePython = true;
     python3Packages = self;
@@ -10726,6 +10738,8 @@ self: super: with self; {
   pyatem = callPackage ../development/python-modules/pyatem { };
 
   pyatome = callPackage ../development/python-modules/pyatome { };
+
+  pybcj = callPackage ../development/python-modules/pybcj { };
 
   pycketcasts = callPackage ../development/python-modules/pycketcasts { };
 
@@ -10855,6 +10869,8 @@ self: super: with self; {
   pypoint = callPackage ../development/python-modules/pypoint { };
 
   pypoolstation = callPackage ../development/python-modules/pypoolstation { };
+
+  pyppmd = callPackage ../development/python-modules/pyppmd { };
 
   pyrail = callPackage ../development/python-modules/pyrail { };
 
