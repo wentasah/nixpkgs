@@ -1165,6 +1165,8 @@ self: super: with self; {
 
   ayla-iot-unofficial = callPackage ../development/python-modules/ayla-iot-unofficial { };
 
+  azure-ai-documentintelligence = callPackage ../development/python-modules/azure-ai-documentintelligence { };
+
   azure-appconfiguration = callPackage ../development/python-modules/azure-appconfiguration { };
 
   azure-applicationinsights = callPackage ../development/python-modules/azure-applicationinsights { };
@@ -4238,8 +4240,6 @@ self: super: with self; {
   enturclient = callPackage ../development/python-modules/enturclient { };
 
   enum34 = callPackage ../development/python-modules/enum34 { };
-
-  enum-compat = callPackage ../development/python-modules/enum-compat { };
 
   env-canada = callPackage ../development/python-modules/env-canada { };
 
@@ -16058,6 +16058,8 @@ self: super: with self; {
   systemd = callPackage ../development/python-modules/systemd {
     inherit (pkgs) systemd;
   };
+
+  systemdunitparser = callPackage ../development/python-modules/systemdunitparser { };
 
   sysv-ipc = callPackage ../development/python-modules/sysv-ipc { };
 

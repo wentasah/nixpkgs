@@ -2209,7 +2209,6 @@ with pkgs;
   easycrypt = callPackage ../applications/science/logic/easycrypt {
     why3 = pkgs.why3.override {
       ideSupport = false;
-      version = "1.7.2";
       coqPackages = { coq = null; flocq = null; };
     };
   };
@@ -5941,14 +5940,14 @@ with pkgs;
     gnat-bootstrap =
       if stdenv.hostPlatform == stdenv.targetPlatform
          && stdenv.buildPlatform == stdenv.hostPlatform
-      then buildPackages.gnat-bootstrap12
+      then buildPackages.gnat-bootstrap13
       else buildPackages.gnat13;
     stdenv =
       if stdenv.hostPlatform == stdenv.targetPlatform
          && stdenv.buildPlatform == stdenv.hostPlatform
          && stdenv.buildPlatform.isDarwin
          && stdenv.buildPlatform.isx86_64
-      then overrideCC stdenv gnat-bootstrap12
+      then overrideCC stdenv gnat-bootstrap13
       else stdenv;
   });
 
@@ -5964,14 +5963,14 @@ with pkgs;
     gnat-bootstrap =
       if stdenv.hostPlatform == stdenv.targetPlatform
          && stdenv.buildPlatform == stdenv.hostPlatform
-      then buildPackages.gnat-bootstrap12
+      then buildPackages.gnat-bootstrap14
       else buildPackages.gnat13;
     stdenv =
       if stdenv.hostPlatform == stdenv.targetPlatform
          && stdenv.buildPlatform == stdenv.hostPlatform
          && stdenv.buildPlatform.isDarwin
          && stdenv.buildPlatform.isx86_64
-      then overrideCC stdenv gnat-bootstrap12
+      then overrideCC stdenv gnat-bootstrap14
       else stdenv;
   });
 
@@ -5979,6 +5978,16 @@ with pkgs;
   gnat-bootstrap11 = wrapCC (callPackage ../development/compilers/gnat-bootstrap { majorVersion = "11"; });
   gnat-bootstrap12 = wrapCCWith ({
     cc = callPackage ../development/compilers/gnat-bootstrap { majorVersion = "12"; };
+  } // lib.optionalAttrs (stdenv.hostPlatform.isDarwin) {
+    bintools = bintoolsDualAs;
+  });
+  gnat-bootstrap13 = wrapCCWith ({
+    cc = callPackage ../development/compilers/gnat-bootstrap { majorVersion = "13"; };
+  } // lib.optionalAttrs (stdenv.hostPlatform.isDarwin) {
+    bintools = bintoolsDualAs;
+  });
+  gnat-bootstrap14 = wrapCCWith ({
+    cc = callPackage ../development/compilers/gnat-bootstrap { majorVersion = "14"; };
   } // lib.optionalAttrs (stdenv.hostPlatform.isDarwin) {
     bintools = bintoolsDualAs;
   });
@@ -9015,7 +9024,7 @@ with pkgs;
     inherit (darwin.apple_sdk_12_3.libs) xpc;
   });
 
-  qxmpp = libsForQt5.callPackage ../development/libraries/qxmpp { };
+  qxmpp = qt6Packages.callPackage ../development/libraries/qxmpp { };
 
   gnu-efi = if stdenv.hostPlatform.isEfi
               then callPackage ../development/libraries/gnu-efi { }
@@ -10198,7 +10207,7 @@ with pkgs;
     suffix = "min";
   };
 
-  poppler_utils = poppler.override {
+  poppler-utils = poppler.override {
     suffix = "utils";
     utils = true;
   };
@@ -11054,7 +11063,7 @@ with pkgs;
     wrapR = false;
   };
 
-  rstudioWrapper = libsForQt5.callPackage ../development/r-modules/wrapper-rstudio.nix {
+  rstudioWrapper = callPackage ../development/r-modules/wrapper-rstudio.nix {
     recommendedPackages = with rPackages; [
       boot class cluster codetools foreign KernSmooth lattice MASS
       Matrix mgcv nlme nnet rpart spatial survival
@@ -13936,7 +13945,7 @@ with pkgs;
 
   kbibtex = libsForQt5.callPackage ../applications/office/kbibtex { };
 
-  kaidan = libsForQt5.callPackage ../applications/networking/instant-messengers/kaidan { };
+  kaidan = kdePackages.callPackage ../applications/networking/instant-messengers/kaidan { };
 
   kdeltachat = libsForQt5.callPackage ../applications/networking/instant-messengers/kdeltachat { };
 
@@ -14035,8 +14044,6 @@ with pkgs;
   };
 
   ladspa-sdk = callPackage ../applications/audio/ladspa-sdk { };
-
-  ladybird = callPackage ../applications/networking/browsers/ladybird { };
 
   lemonbar = callPackage ../applications/window-managers/lemonbar { };
 
