@@ -956,6 +956,7 @@ in {
   readarr = handleTest ./readarr.nix {};
   realm = handleTest ./realm.nix {};
   readeck = runTest ./readeck.nix;
+  rebuilderd = runTest ./rebuilderd.nix;
   redis = handleTest ./redis.nix {};
   redlib = handleTest ./redlib.nix {};
   redmine = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./redmine.nix {};
@@ -1201,6 +1202,7 @@ in {
   userborn-mutable-etc = runTest ./userborn-mutable-etc.nix;
   userborn-immutable-etc = runTest ./userborn-immutable-etc.nix;
   user-activation-scripts = handleTest ./user-activation-scripts.nix {};
+  user-enable-option = runTest ./user-enable-option.nix;
   user-expiry = runTest ./user-expiry.nix;
   user-home-mode = handleTest ./user-home-mode.nix {};
   ustreamer = handleTest ./ustreamer.nix {};
@@ -1215,6 +1217,7 @@ in {
   vault-postgresql = handleTest ./vault-postgresql.nix {};
   vaultwarden = discoverTests (import ./vaultwarden.nix);
   vector = handleTest ./vector {};
+  velocity = runTest ./velocity.nix;
   vengi-tools = handleTest ./vengi-tools.nix {};
   victoriametrics = handleTest ./victoriametrics {};
   vikunja = handleTest ./vikunja.nix {};

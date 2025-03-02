@@ -1008,6 +1008,12 @@
     githubId = 217050;
     name = "Albert Chae";
   };
+  albertilagan = {
+    email = "me@albertilagan.dev";
+    github = "albertilagan";
+    githubId = 22500561;
+    name = "Albert Ilagan";
+  };
   albertodvp = {
     email = "alberto.fanton@protonmail.com";
     github = "albertodvp";
@@ -2546,6 +2552,12 @@
     name = "Baitinq";
     github = "Baitinq";
     githubId = 30861839;
+  };
+  bakito = {
+    email = "github@bakito.ch";
+    name = "Marc Brugger";
+    github = "bakito";
+    githubId = 2733215;
   };
   baksa = {
     email = "baksa@pm.me";
@@ -7772,6 +7784,12 @@
     github = "fkautz";
     githubId = 135706;
   };
+  FKouhai = {
+    name = "Fran Cirka";
+    email = "frandres00@gmail.com";
+    github = "FKouhai";
+    githubId = 24593008;
+  };
   flacks = {
     name = "Jean Lucas";
     email = "jean@4ray.co";
@@ -8013,8 +8031,8 @@
     githubId = 53809656;
   };
   fredeb = {
-    email = "im@fredeb.dev";
-    github = "FredeEB";
+    email = "frederikbraendstrup@gmail.com";
+    github = "FredeHoey";
     githubId = 7551358;
     name = "Frede Emil";
   };
@@ -11960,6 +11978,12 @@
     githubId = 44864956;
     keys = [ { fingerprint = "3F87 0A7C A7B4 3731 2F13  6083 749F D4DF A2E9 4236"; } ];
   };
+  kaeeraa = {
+    name = "kaeeraa";
+    email = "kaeeraa@nebula-nook.ru";
+    github = "kaeeraa";
+    githubId = 99148867;
+  };
   kaiha = {
     email = "kai.harries@gmail.com";
     github = "KaiHa";
@@ -12614,6 +12638,12 @@
     github = "KoviRobi";
     githubId = 1903418;
     name = "Kovacsics Robert";
+  };
+  kpbaks = {
+    email = "kristoffer.pbs@gmail.com";
+    github = "kpbaks";
+    githubId = 57013304;
+    name = "Kristoffer Plagborg Bak Sørensen";
   };
   kpcyrd = {
     email = "git@rxv.cc";
@@ -21739,6 +21769,12 @@
     githubId = 8219659;
     name = "Siraphob Phipathananunth";
   };
+  SirBerg = {
+    email = "benno@boerg.co";
+    github = "SirBerg";
+    githubId = 87900036;
+    name = "Benno Rodehack";
+  };
   siriobalmelli = {
     email = "sirio@b-ad.ch";
     github = "siriobalmelli";
@@ -23442,6 +23478,12 @@
     email = "thilo.billerbeck@officerent.de";
     github = "thilobillerbeck";
     githubId = 7442383;
+  };
+  thiloho = {
+    name = "Thilo Hohlt";
+    email = "thilo.hohlt@tutanota.com";
+    github = "thiloho";
+    githubId = 123883702;
   };
   thled = {
     name = "Thomas Le Duc";
