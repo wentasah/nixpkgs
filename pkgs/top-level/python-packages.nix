@@ -2686,6 +2686,8 @@ self: super: with self; {
 
   cookies = callPackage ../development/python-modules/cookies { };
 
+  coolname = callPackage ../development/python-modules/coolname { };
+
   coordinates = callPackage ../development/python-modules/coordinates { };
 
   copykitten = callPackage ../development/python-modules/copykitten { };
@@ -3925,6 +3927,8 @@ self: super: with self; {
   draftjs-exporter = callPackage ../development/python-modules/draftjs-exporter { };
 
   dragonfly = callPackage ../development/python-modules/dragonfly { };
+
+  dragonmapper = callPackage ../development/python-modules/dragonmapper { };
 
   dramatiq = callPackage ../development/python-modules/dramatiq { };
 
@@ -5722,6 +5726,8 @@ self: super: with self; {
 
   groestlcoin-hash = callPackage ../development/python-modules/groestlcoin-hash { };
 
+  groovy = callPackage ../development/python-modules/groovy { };
+
   grpc-google-iam-v1 = callPackage ../development/python-modules/grpc-google-iam-v1 { };
 
   grpc-interceptor = callPackage ../development/python-modules/grpc-interceptor { };
@@ -5871,6 +5877,8 @@ self: super: with self; {
   hankel = callPackage ../development/python-modules/hankel { };
 
   handy-archives = callPackage ../development/python-modules/handy-archives { };
+
+  hanzidentifier = callPackage ../development/python-modules/hanzidentifier { };
 
   hap-python = callPackage ../development/python-modules/hap-python { };
 
@@ -6734,6 +6742,8 @@ self: super: with self; {
   jinja2-ansible-filters = callPackage ../development/python-modules/jinja2-ansible-filters { };
 
   jinja2-git = callPackage ../development/python-modules/jinja2-git { };
+
+  jinja2-humanize-extension = callPackage ../development/python-modules/jinja2-humanize-extension { };
 
   jinja2-pluralize = callPackage ../development/python-modules/jinja2-pluralize { };
 
@@ -15630,6 +15640,8 @@ self: super: with self; {
 
   sphinx-jinja = callPackage ../development/python-modules/sphinx-jinja { };
 
+  sphinx-markdown-builder = callPackage ../development/python-modules/sphinx-markdown-builder { };
+
   sphinx-markdown-parser = callPackage ../development/python-modules/sphinx-markdown-parser { };
 
   sphinx-markdown-tables = callPackage ../development/python-modules/sphinx-markdown-tables { };
@@ -17970,6 +17982,8 @@ self: super: with self; {
 
   urlman = callPackage ../development/python-modules/urlman { };
 
+  urlmatch = callPackage ../development/python-modules/urlmatch { };
+
   urlpy = callPackage ../development/python-modules/urlpy { };
 
   urwid = callPackage ../development/python-modules/urwid { };
@@ -18829,6 +18843,8 @@ self: super: with self; {
   zha = callPackage ../development/python-modules/zha { };
 
   zha-quirks = callPackage ../development/python-modules/zha-quirks { };
+
+  zhon = callPackage ../development/python-modules/zhon { };
 
   ziafont = callPackage ../development/python-modules/ziafont { };
 
