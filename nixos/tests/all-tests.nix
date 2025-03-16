@@ -914,11 +914,26 @@ in {
   phosh = handleTest ./phosh.nix {};
   photonvision = handleTest ./photonvision.nix {};
   photoprism = handleTest ./photoprism.nix {};
-  php = handleTest ./php {};
-  php81 = handleTest ./php { php = pkgs.php81; };
-  php82 = handleTest ./php { php = pkgs.php82; };
-  php83 = handleTest ./php { php = pkgs.php83; };
-  php84 = handleTest ./php { php = pkgs.php84; };
+  php = import ./php/default.nix {
+    inherit runTest;
+    php = pkgs.php;
+  };
+  php81 = import ./php/default.nix {
+    inherit runTest;
+    php = pkgs.php81;
+  };
+  php82 = import ./php/default.nix {
+    inherit runTest;
+    php = pkgs.php82;
+  };
+  php83 = import ./php/default.nix {
+    inherit runTest;
+    php = pkgs.php83;
+  };
+  php84 = import ./php/default.nix {
+    inherit runTest;
+    php = pkgs.php84;
+  };
   phylactery = handleTest ./web-apps/phylactery.nix {};
   pict-rs = handleTest ./pict-rs.nix {};
   pingvin-share = handleTest ./pingvin-share.nix {} ;
@@ -1285,26 +1300,26 @@ in {
   wrappers = handleTest ./wrappers.nix {};
   writefreely = handleTest ./web-apps/writefreely.nix {};
   wstunnel = runTest ./wstunnel.nix;
-  xandikos = handleTest ./xandikos.nix {};
-  xautolock = handleTest ./xautolock.nix {};
-  xfce = handleTest ./xfce.nix {};
-  xfce-wayland = handleTest ./xfce-wayland.nix {};
-  xmonad = handleTest ./xmonad.nix {};
-  xmonad-xdg-autostart = handleTest ./xmonad-xdg-autostart.nix {};
-  xpadneo = handleTest ./xpadneo.nix {};
-  xrdp = handleTest ./xrdp.nix {};
-  xrdp-with-audio-pulseaudio = handleTest ./xrdp-with-audio-pulseaudio.nix {};
+  xandikos = runTest ./xandikos.nix;
+  xautolock = runTest ./xautolock.nix;
+  xfce = runTest ./xfce.nix;
+  xfce-wayland = runTest ./xfce-wayland.nix;
+  xmonad = runTest ./xmonad.nix;
+  xmonad-xdg-autostart = runTest ./xmonad-xdg-autostart.nix;
+  xpadneo = runTest ./xpadneo.nix;
+  xrdp = runTest ./xrdp.nix;
+  xrdp-with-audio-pulseaudio = runTest ./xrdp-with-audio-pulseaudio.nix;
   xscreensaver = handleTest ./xscreensaver.nix {};
-  xss-lock = handleTest ./xss-lock.nix {};
-  xterm = handleTest ./xterm.nix {};
-  xxh = handleTest ./xxh.nix {};
-  yabar = handleTest ./yabar.nix {};
+  xss-lock = runTest ./xss-lock.nix;
+  xterm = runTest ./xterm.nix;
+  xxh = runTest ./xxh.nix;
+  yabar = runTest ./yabar.nix;
   ydotool = handleTest ./ydotool.nix {};
-  yggdrasil = handleTest ./yggdrasil.nix {};
-  your_spotify = handleTest ./your_spotify.nix {};
-  zammad = handleTest ./zammad.nix {};
-  zenohd = handleTest ./zenohd.nix {};
-  zeronet-conservancy = handleTest ./zeronet-conservancy.nix {};
+  yggdrasil = runTest ./yggdrasil.nix;
+  your_spotify = runTest ./your_spotify.nix;
+  zammad = runTest ./zammad.nix;
+  zenohd = runTest ./zenohd.nix;
+  zeronet-conservancy = runTest ./zeronet-conservancy.nix;
   zfs = handleTest ./zfs.nix {};
   zigbee2mqtt_1 = runTest {
     imports = [ ./zigbee2mqtt.nix ];
@@ -1314,12 +1329,12 @@ in {
     imports = [ ./zigbee2mqtt.nix ];
     _module.args.package = pkgs.zigbee2mqtt_2;
   };
-  zipline = handleTest ./zipline.nix {};
-  zoneminder = handleTest ./zoneminder.nix {};
-  zookeeper = handleTest ./zookeeper.nix {};
-  zram-generator = handleTest ./zram-generator.nix {};
-  zrepl = handleTest ./zrepl.nix {};
-  zsh-history = handleTest ./zsh-history.nix {};
-  zwave-js = handleTest ./zwave-js.nix {};
-  zwave-js-ui = handleTest ./zwave-js-ui.nix {};
+  zipline = runTest ./zipline.nix;
+  zoneminder = runTest ./zoneminder.nix;
+  zookeeper = runTest ./zookeeper.nix;
+  zram-generator = runTest ./zram-generator.nix;
+  zrepl = runTest ./zrepl.nix;
+  zsh-history = runTest ./zsh-history.nix;
+  zwave-js = runTest ./zwave-js.nix;
+  zwave-js-ui = runTest ./zwave-js-ui.nix;
 }
