@@ -17,18 +17,18 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "heroic-unwrapped";
-  version = "2.16.0";
+  version = "2.16.1";
 
   src = fetchFromGitHub {
     owner = "Heroic-Games-Launcher";
     repo = "HeroicGamesLauncher";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-cuaYgoVyfJHop9MQjHMCVvDMHc9iEDK60r3raTk4QyY=";
+    hash = "sha256-BnBzbbyi9cdO6W59cnY13hnhH+tjrTryTp9XIcERwh4=";
   };
 
   pnpmDeps = pnpm_9.fetchDeps {
     inherit (finalAttrs) pname version src;
-    hash = "sha256-OeCO3ozt8TS+A6b8tz667d5UavaFWiw9HpAjuyzLti8=";
+    hash = "sha256-2IQyXULgFoz0rFQ8SwERgMDzzo7pZ3DbqhwrWNYSwRo=";
   };
 
   nativeBuildInputs = [
@@ -89,8 +89,7 @@ stdenv.mkDerivation (finalAttrs: {
       --inherit-argv0 \
       --set ELECTRON_FORCE_IS_PACKAGED 1 \
       --add-flags --disable-gpu-compositing \
-      --add-flags $out/opt/heroic/resources/app.asar \
-      --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
+      --add-flags $out/opt/heroic/resources/app.asar
 
     install -D "flatpak/com.heroicgameslauncher.hgl.desktop" "$out/share/applications/com.heroicgameslauncher.hgl.desktop"
     install -D "src/frontend/assets/heroic-icon.svg" "$out/share/icons/hicolor/scalable/apps/com.heroicgameslauncher.hgl.svg"

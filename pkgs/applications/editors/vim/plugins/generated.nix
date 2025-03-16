@@ -11358,6 +11358,19 @@ final: prev:
     meta.hydraPlatforms = [ ];
   };
 
+  org-roam-nvim = buildVimPlugin {
+    pname = "org-roam.nvim";
+    version = "2025-03-12";
+    src = fetchFromGitHub {
+      owner = "chipsenkbeil";
+      repo = "org-roam.nvim";
+      rev = "f92b54eff931982031d5e164482d5e781bb2cd31";
+      sha256 = "sha256-KEmbFGXjOlSPY8wpr5WUzD5+eCUP1hXN2Ty37smLU9M=";
+    };
+    meta.homepage = "https://github.com/chipsenkbeil/org-roam.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
   other-nvim = buildVimPlugin {
     pname = "other.nvim";
     version = "2024-11-30";
@@ -14305,6 +14318,19 @@ final: prev:
       sha256 = "0yha205ajwqz4y1a5l5qh35mivaz2ql1vqfky2cxy90zndq8g08r";
     };
     meta.homepage = "https://github.com/Wansmer/treesj/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  treewalker-nvim = buildVimPlugin {
+    pname = "treewalker.nvim";
+    version = "2025-03-08";
+    src = fetchFromGitHub {
+      owner = "aaronik";
+      repo = "treewalker.nvim";
+      rev = "0bad88a449642fca1080930260482628b692841a";
+      sha256 = "088ksm6rvj4vabrisbpg2xngc11bbqihms57rz0dw22mbr7chy6q";
+    };
+    meta.homepage = "https://github.com/aaronik/treewalker.nvim/";
     meta.hydraPlatforms = [ ];
   };
 

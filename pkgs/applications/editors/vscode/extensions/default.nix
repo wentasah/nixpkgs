@@ -3902,6 +3902,8 @@ let
         };
       };
 
+      oops418.nix-env-picker = callPackage ./oops418.nix-env-picker { };
+
       phind.phind = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "phind";
@@ -4946,6 +4948,8 @@ let
           license = lib.licenses.mit;
         };
       };
+
+      tboby.cwtools-vscode = callPackage ./tboby.cwtools-vscode { };
 
       tomoki1207.pdf = buildVscodeMarketplaceExtension {
         mktplcRef = {
