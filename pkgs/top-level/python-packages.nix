@@ -1006,6 +1006,8 @@ self: super: with self; {
 
   atomicwrites-homeassistant = callPackage ../development/python-modules/atomicwrites-homeassistant { };
 
+  atopile = callPackage ../development/python-modules/atopile { };
+
   atomman = callPackage ../development/python-modules/atomman { };
 
   atproto = callPackage ../development/python-modules/atproto { };
@@ -2127,6 +2129,8 @@ self: super: with self; {
   casadi = toPythonModule (pkgs.casadi.override { pythonSupport = true; python3Packages = self; });
 
   casbin = callPackage ../development/python-modules/casbin { };
+
+  case-converter = callPackage ../development/python-modules/case-converter { };
 
   cashaddress = callPackage ../development/python-modules/cashaddress { };
 
@@ -3884,6 +3888,8 @@ self: super: with self; {
 
   docopt-ng = callPackage ../development/python-modules/docopt-ng { };
 
+  docopt-subcommands = callPackage ../development/python-modules/docopt-subcommands { };
+
   docplex = callPackage ../development/python-modules/docplex { };
 
   docrep = callPackage ../development/python-modules/docrep { };
@@ -4106,6 +4112,8 @@ self: super: with self; {
 
   easydict = callPackage ../development/python-modules/easydict { };
 
+  easyeda2ato = callPackage ../development/python-modules/easyeda2ato { };
+
   easyenergy = callPackage ../development/python-modules/easyenergy { };
 
   easygui = callPackage ../development/python-modules/easygui { };
@@ -4320,6 +4328,8 @@ self: super: with self; {
   eris = callPackage ../development/python-modules/eris { };
 
   es-client = callPackage ../development/python-modules/es-client { };
+
+  eseries = callPackage ../development/python-modules/eseries { };
 
   esig = callPackage ../development/python-modules/esig { };
 
@@ -6312,6 +6322,8 @@ self: super: with self; {
 
   icalendar = callPackage ../development/python-modules/icalendar { };
 
+  icalendar-compatibility = callPackage ../development/python-modules/icalendar-compatibility { };
+
   icalevents = callPackage ../development/python-modules/icalevents { };
 
   icecream = callPackage ../development/python-modules/icecream { };
@@ -8297,6 +8309,8 @@ self: super: with self; {
 
   merge3 = callPackage ../development/python-modules/merge3 { };
 
+  mergecal = callPackage ../development/python-modules/mergecal { };
+
   mergedb = callPackage ../development/python-modules/mergedb { };
 
   mergedeep = callPackage ../development/python-modules/mergedeep { };
@@ -9273,6 +9287,8 @@ self: super: with self; {
   natural = callPackage ../development/python-modules/natural { };
 
   ndcurves = toPythonModule (pkgs.ndcurves.override { python3Packages = self; pythonSupport = true; });
+
+  nglview = callPackage ../development/python-modules/nglview { };
 
   nomadnet = callPackage ../development/python-modules/nomadnet { };
 
@@ -10345,6 +10361,8 @@ self: super: with self; {
 
   patch-ng = callPackage ../development/python-modules/patch-ng { };
 
+  patchpy = callPackage ../development/python-modules/patchpy { };
+
   path = callPackage ../development/python-modules/path { };
 
   path-and-address = callPackage ../development/python-modules/path-and-address { };
@@ -10504,8 +10522,7 @@ self: super: with self; {
   petsc4py = toPythonModule (pkgs.petsc.override {
     python3 = python;
     python3Packages = self;
-    withPetsc4py = true;
-    withFullDeps = true;
+    pythonSupport = true;
   });
 
   pex = callPackage ../development/python-modules/pex { };
@@ -14135,6 +14152,8 @@ self: super: with self; {
 
   quart-cors = callPackage ../development/python-modules/quart-cors { };
 
+  quart-schema = callPackage ../development/python-modules/quart-schema { };
+
   quaternion = callPackage ../development/python-modules/quaternion { };
 
   qudida = callPackage ../development/python-modules/qudida { };
@@ -15350,6 +15369,13 @@ self: super: with self; {
   sleekxmppfs = callPackage ../development/python-modules/sleekxmppfs { };
 
   sleepyq = callPackage ../development/python-modules/sleepyq { };
+
+  slepc4py = toPythonModule (pkgs.slepc.override {
+    pythonSupport = true;
+    python3 = self.python;
+    python3Packages = self;
+    petsc = petsc4py;
+  });
 
   sleqp = toPythonModule (pkgs.sleqp.override { pythonSupport = true; python3Packages = self; });
 
