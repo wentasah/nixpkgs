@@ -2,6 +2,7 @@
   lib,
   buildGoModule,
   fetchFromGitHub,
+  installShellFiles,
   nix-update-script,
 }:
 let
@@ -22,6 +23,10 @@ buildGoModule {
 
   vendorHash = "sha256-ofJYarmnOHONu2lZ76GvSua0ViP1gr6968xAuQ/VRNk=";
 
+  nativeBuildInputs = [
+    installShellFiles
+  ];
+
   modRoot = "go/cli/mcap";
 
   env.GOWORK = "off";
@@ -38,6 +43,13 @@ buildGoModule {
     # https://github.com/foxglove/mcap/issues/895
     "-skip=TestCat|TestInfo"
   ];
+
+  postInstall = ''
+    installShellCompletion --cmd mcap \
+      --bash <($out/bin/mcap completion bash) \
+      --fish <($out/bin/mcap completion fish) \
+      --zsh <($out/bin/mcap completion zsh)
+  '';
 
   passthru = {
     updateScript = nix-update-script { };
