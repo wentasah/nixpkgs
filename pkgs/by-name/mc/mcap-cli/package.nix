@@ -1,6 +1,8 @@
 {
+  stdenv,
   lib,
   buildGoModule,
+  buildPackages,
   fetchFromGitHub,
   installShellFiles,
   nix-update-script,
@@ -44,13 +46,17 @@ buildGoModule {
     "-skip=TestCat|TestInfo"
   ];
 
-  postInstall = ''
-    installShellCompletion --cmd mcap \
-      --bash <($out/bin/mcap completion bash) \
-      --fish <($out/bin/mcap completion fish) \
-      --zsh <($out/bin/mcap completion zsh)
-  '';
-
+  postInstall = lib.optionalString (stdenv.hostPlatform.emulatorAvailable buildPackages) (
+    let
+      emulator = stdenv.hostPlatform.emulator buildPackages;
+    in
+    ''
+      installShellCompletion --cmd mcap \
+        --bash <(${emulator} $out/bin/mcap completion bash) \
+        --fish <(${emulator} $out/bin/mcap completion fish) \
+        --zsh <(${emulator} $out/bin/mcap completion zsh)
+    ''
+  );
   passthru = {
     updateScript = nix-update-script { };
   };
