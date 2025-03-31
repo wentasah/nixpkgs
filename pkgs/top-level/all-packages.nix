@@ -2701,8 +2701,7 @@ with pkgs;
 
   inherit (nodePackages) uppy-companion;
 
-  usb-modeswitch = callPackage ../development/tools/misc/usb-modeswitch { };
-  usb-modeswitch-data = callPackage ../development/tools/misc/usb-modeswitch/data.nix { };
+  usb-modeswitch-data = callPackage ../by-name/us/usb-modeswitch/data.nix { };
 
   persistent-evdev = python3Packages.callPackage ../servers/persistent-evdev { };
 
@@ -3018,7 +3017,7 @@ with pkgs;
 
   tsm-client-withGui = callPackage ../by-name/ts/tsm-client/package.nix { enableGui = true; };
 
-  tracy = callPackage ../by-name/tr/tracy/package.nix { withWayland = stdenv.isLinux; };
+  tracy = callPackage ../by-name/tr/tracy/package.nix { withWayland = stdenv.hostPlatform.isLinux; };
   tracy-glfw = callPackage ../by-name/tr/tracy/package.nix { withWayland = false; };
   tracy-wayland = callPackage ../by-name/tr/tracy/package.nix { withWayland = true; };
 
@@ -3273,6 +3272,10 @@ with pkgs;
   gitlab-workhorse = callPackage ../applications/version-management/gitlab/gitlab-workhorse { };
 
   gitqlient = libsForQt5.callPackage ../applications/version-management/gitqlient { };
+
+  globalplatform = callPackage ../by-name/gl/globalplatform/package.nix {
+    inherit (darwin.apple_sdk.frameworks) PCSC;
+  };
 
   glogg = libsForQt5.callPackage ../tools/text/glogg { };
 
@@ -3815,8 +3818,6 @@ with pkgs;
   matrix-synapse-plugins = recurseIntoAttrs matrix-synapse-unwrapped.plugins;
 
   maubot = with python3Packages; toPythonApplication maubot;
-
-  mautrix-signal = recurseIntoAttrs (callPackage ../servers/mautrix-signal { });
 
   mautrix-telegram = recurseIntoAttrs (callPackage ../servers/mautrix-telegram { });
 
@@ -4408,9 +4409,7 @@ with pkgs;
 
   pipecontrol = libsForQt5.callPackage ../applications/audio/pipecontrol { };
 
-  pulumiPackages = recurseIntoAttrs (
-    callPackage ../tools/admin/pulumi-packages { }
-  );
+  pulumiPackages = recurseIntoAttrs pulumi.pkgs;
 
   pulumi-bin = callPackage ../tools/admin/pulumi-bin { };
 
@@ -5543,6 +5542,7 @@ with pkgs;
   flutterPackages-source = recurseIntoAttrs (callPackage ../development/compilers/flutter { useNixpkgsEngine = true; });
   flutterPackages = flutterPackages-bin;
   flutter = flutterPackages.stable;
+  flutter329 = flutterPackages.v3_29;
   flutter327 = flutterPackages.v3_27;
   flutter326 = flutterPackages.v3_26;
   flutter324 = flutterPackages.v3_24;
@@ -5782,7 +5782,7 @@ with pkgs;
       if stdenv.hostPlatform == stdenv.targetPlatform
          && stdenv.buildPlatform == stdenv.hostPlatform
       then buildPackages.gnat-bootstrap14
-      else buildPackages.gnat13;
+      else buildPackages.gnat14;
     stdenv =
       if stdenv.hostPlatform == stdenv.targetPlatform
          && stdenv.buildPlatform == stdenv.hostPlatform
@@ -7438,8 +7438,6 @@ with pkgs;
 
   black = with python3Packages; toPythonApplication black;
 
-  blackfire = callPackage ../development/tools/misc/blackfire { };
-
   black-macchiato = with python3Packages; toPythonApplication black-macchiato;
 
   buck = callPackage ../development/tools/build-managers/buck {
@@ -7473,8 +7471,6 @@ with pkgs;
   libbpf_0 = callPackage ../os-specific/linux/libbpf/0.x.nix { };
 
   bundlewrap = with python3.pkgs; toPythonApplication bundlewrap;
-
-  cadre = callPackage ../development/tools/cadre { };
 
   # Wrapper that works as gcc or g++
   # It can be used by setting in nixpkgs config like this, for example:
@@ -7523,8 +7519,6 @@ with pkgs;
   chruby = callPackage ../development/tools/misc/chruby { rubies = null; };
 
   cloudcompare = libsForQt5.callPackage ../applications/graphics/cloudcompare { };
-
-  coder = callPackage ../development/tools/coder { };
 
   cookiecutter = with python3Packages; toPythonApplication cookiecutter;
 
@@ -7693,7 +7687,7 @@ with pkgs;
 
   gnumake = callPackage ../development/tools/build-managers/gnumake { };
   gradle-packages = import ../development/tools/build-managers/gradle {
-    inherit jdk17 jdk21;
+    inherit jdk11 jdk17 jdk21 jdk23;
   };
   gradleGen = gradle-packages.gen;
   wrapGradle = callPackage gradle-packages.wrapGradle { };
@@ -8051,9 +8045,7 @@ with pkgs;
     stdenv = gccStdenv;
   };
 
-  tarmac = callPackage ../development/tools/tarmac {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
+  tarmac = callPackage ../development/tools/tarmac { };
 
   teensyduino = arduino-core.override { withGui = true; withTeensyduino = true; };
 
@@ -8129,8 +8121,6 @@ with pkgs;
     inherit (darwin.apple_sdk_11_0.frameworks) CoreServices;
   };
 
-  xcode-install = callPackage ../development/tools/xcode-install { };
-
   xcbuild = callPackage ../by-name/xc/xcbuild/package.nix {
     stdenv =
       # xcbuild is included in the SDK. Avoid an infinite recursion by using a bootstrap stdenv.
@@ -8146,8 +8136,6 @@ with pkgs;
   } ../by-name/xc/xcbuild/setup-hook.sh;
 
   xcodebuild = xcbuild;
-
-  xcpretty = callPackage ../development/tools/xcpretty { };
 
   xxdiff = libsForQt5.callPackage ../development/tools/misc/xxdiff { };
 
@@ -10045,7 +10033,7 @@ with pkgs;
     });
 
   libsForQt5 = (recurseIntoAttrs (import ./qt5-packages.nix {
-    inherit lib __splicedPackages makeScopeWithSplicing' generateSplicesForMkScope pkgsHostTarget;
+    inherit lib config __splicedPackages makeScopeWithSplicing' generateSplicesForMkScope pkgsHostTarget;
   })) // { __recurseIntoDerivationForReleaseJobs = true; };
 
   # plasma5Packages maps to the Qt5 packages set that is used to build the plasma5 desktop
@@ -10339,8 +10327,7 @@ with pkgs;
 
   sqlite-interactive = (sqlite.override { interactive = true; }).bin;
 
-  stlink = callPackage ../development/tools/misc/stlink { };
-  stlink-gui = callPackage ../development/tools/misc/stlink { withGUI = true; };
+  stlink-gui = callPackage ../by-name/st/stlink/package.nix { withGUI = true; };
 
   streamlink-twitch-gui-bin = callPackage ../applications/video/streamlink-twitch-gui/bin.nix { };
 
@@ -12624,7 +12611,7 @@ with pkgs;
     pinentry = pinentry-curses;
   };
 
-  blender = callPackage  ../applications/misc/blender {
+  blender = callPackage  ../by-name/bl/blender/package.nix {
     openexr = openexr_3;
     python3Packages = python311Packages;
     inherit (darwin.apple_sdk.frameworks) Cocoa CoreGraphics ForceFeedback OpenAL OpenGL;
@@ -12927,8 +12914,6 @@ with pkgs;
   evolution-data-server-gtk4 = evolution-data-server.override { withGtk3 = false; withGtk4 = true; };
   evolution = callPackage ../applications/networking/mailreaders/evolution/evolution { };
   evolutionWithPlugins = callPackage ../applications/networking/mailreaders/evolution/evolution/wrapper.nix { plugins = [ evolution evolution-ews ]; };
-
-  fdr = libsForQt5.callPackage ../applications/science/programming/fdr { };
 
   fetchmail = callPackage ../applications/misc/fetchmail { };
   fetchmail_7 = callPackage ../applications/misc/fetchmail/v7.nix { };
@@ -15158,6 +15143,9 @@ with pkgs;
 
   vscode-extensions = recurseIntoAttrs (callPackage ../applications/editors/vscode/extensions { });
 
+
+  vscode-extensions-update-script = callPackage ../by-name/vs/vscode-extensions-update/vscode-extensions-update-script.nix { };
+
   vscode-js-debug = callPackage ../by-name/vs/vscode-js-debug/package.nix {
     inherit (darwin.apple_sdk.frameworks) AppKit Security;
   };
@@ -16529,15 +16517,10 @@ with pkgs;
   or-tools = callPackage ../development/libraries/science/math/or-tools {
     inherit (darwin) DarwinTools;
     python = python3;
-    protobuf = protobuf_26.override {
+    protobuf = protobuf_29.override {
       abseil-cpp = abseil-cpp_202407;
     };
-    # or-tools builds with -std=c++17, so abseil-cpp must
-    # also be built that way
-    abseil-cpp = abseil-cpp_202407.override {
-      static = true;
-      cxxStandard = "17";
-    };
+    abseil-cpp = abseil-cpp_202407;
   };
 
   p4est-sc = callPackage ../development/libraries/science/math/p4est-sc {
@@ -17853,10 +17836,6 @@ with pkgs;
 
   clash-verge-rev = callPackage ../by-name/cl/clash-verge-rev/package.nix {
     libsoup = libsoup_3;
-  };
-
-  wings = callPackage ../by-name/wi/wings/package.nix {
-    erlang = erlang_25;
   };
 
   rustdesk-flutter = callPackage ../by-name/ru/rustdesk-flutter/package.nix {
