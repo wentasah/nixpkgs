@@ -1191,10 +1191,6 @@ with pkgs;
 
   git-publish = python3Packages.callPackage ../applications/version-management/git-publish { };
 
-  git-quickfix = callPackage ../applications/version-management/git-quickfix {
-    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
-  };
-
   git-recent = callPackage ../applications/version-management/git-recent {
     util-linux = if stdenv.hostPlatform.isLinux then util-linuxMinimal else util-linux;
   };
@@ -2057,8 +2053,6 @@ with pkgs;
   contacts = callPackage ../tools/misc/contacts {
     inherit (darwin.apple_sdk.frameworks) Foundation AddressBook;
   };
-
-  colorls = callPackage ../tools/system/colorls { };
 
   coloursum = callPackage ../tools/text/coloursum {
     inherit (darwin.apple_sdk.frameworks) Security;
@@ -3124,10 +3118,6 @@ with pkgs;
 
   featherpad = qt5.callPackage ../applications/editors/featherpad { };
 
-  feroxbuster = callPackage ../tools/security/feroxbuster {
-    inherit (darwin.apple_sdk.frameworks) Security SystemConfiguration;
-  };
-
   ffsend = callPackage ../tools/misc/ffsend {
     inherit (darwin.apple_sdk.frameworks) Security AppKit;
   };
@@ -3172,8 +3162,6 @@ with pkgs;
   lp_solve = callPackage ../applications/science/math/lp_solve {
     inherit (darwin) autoSignDarwinBinariesHook;
   };
-
-  fastlane = callPackage ../tools/admin/fastlane { };
 
   fontmatrix = libsForQt5.callPackage ../applications/graphics/fontmatrix { };
 
@@ -3509,8 +3497,6 @@ with pkgs;
   headscale = callPackage ../servers/headscale {
     buildGoModule = buildGo123Module;
   };
-
-  hiera-eyaml = callPackage ../tools/system/hiera-eyaml { };
 
   hobbits = libsForQt5.callPackage ../tools/graphics/hobbits { };
 
@@ -4362,8 +4348,6 @@ with pkgs;
   ovito = qt6Packages.callPackage ../applications/graphics/ovito {
     inherit (darwin.apple_sdk.frameworks) VideoDecodeAcceleration;
   };
-
-  oxidized = callPackage ../tools/admin/oxidized { };
 
   p4c = callPackage ../development/compilers/p4c {
     protobuf = protobuf_21;
@@ -6870,7 +6854,7 @@ with pkgs;
   # PHP interpreters, packages and extensions.
   #
   # Set default PHP interpreter, extensions and packages
-  php = php83;
+  php = php84;
   phpExtensions = php.extensions;
   phpPackages = php.packages;
 
@@ -7912,8 +7896,6 @@ with pkgs;
 
   premake = premake4;
 
-  procodile = callPackage ../tools/system/procodile { };
-
   pry = callPackage ../development/tools/pry { };
 
   pycritty = with python3Packages; toPythonApplication pycritty;
@@ -8497,7 +8479,7 @@ with pkgs;
   };
   fftwMpi = fftw.override { enableMpi = true; };
 
-  flint = callPackage ../development/libraries/flint { };
+  flint = flint3;
 
   flint3 = callPackage ../development/libraries/flint/3.nix { };
 
@@ -9725,8 +9707,6 @@ with pkgs;
 
   nettle = import ../development/libraries/nettle { inherit callPackage fetchurl; };
 
-  newt = callPackage ../development/libraries/newt { python = python3; };
-
   libnghttp2 = nghttp2.lib;
 
   nghttp3 = callPackage ../development/libraries/nghttp3 { inherit (darwin.apple_sdk.frameworks) CoreServices; };
@@ -9772,12 +9752,6 @@ with pkgs;
     ogre_13 ogre_14;
 
   ogre = ogre_14;
-
-  one_gadget = callPackage ../development/tools/misc/one_gadget { };
-
-  oneDNN = callPackage ../development/libraries/oneDNN { };
-
-  oneDNN_2 = callPackage ../development/libraries/oneDNN/2.nix { };
 
   openalSoft = callPackage ../development/libraries/openal-soft {
     inherit (darwin.apple_sdk.frameworks) CoreServices AudioUnit AudioToolbox;
@@ -13802,8 +13776,6 @@ with pkgs;
 
   luddite = with python3Packages; toPythonApplication luddite;
 
-  goobook = with python3Packages; toPythonApplication goobook;
-
   lumail = callPackage ../applications/networking/mailreaders/lumail {
     lua = lua5_1;
   };
@@ -16058,7 +16030,7 @@ with pkgs;
   };
 
   starsector = callPackage ../games/starsector {
-    openjdk = openjdk8;
+    openjdk = openjdk17;
   };
 
   scummvm = callPackage ../games/scummvm {
@@ -17085,8 +17057,6 @@ with pkgs;
   lima-bin = callPackage ../applications/virtualization/lima/bin.nix { };
 
   image_optim = callPackage ../applications/graphics/image_optim { inherit (nodePackages) svgo; };
-
-  itamae = callPackage ../tools/admin/itamae { };
 
   # using the new configuration style proposal which is unstable
   jack1 = callPackage ../misc/jackaudio/jack1.nix { };
