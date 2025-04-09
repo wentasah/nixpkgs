@@ -8,7 +8,7 @@
 
 }:
 # The return value of this function will be an attrset with arbitrary depth and
-# the `anything` returned by callTest at its test leafs.
+# the `anything` returned by callTest at its test leaves.
 # The tests not supported by `system` will be replaced with `{}`, so that
 # `passthru.tests` can contain links to those without breaking on architectures
 # where said tests are unsupported.
@@ -177,6 +177,7 @@ in
   agate = runTest ./web-servers/agate.nix;
   agda = runTest ./agda.nix;
   age-plugin-tpm-decrypt = runTest ./age-plugin-tpm-decrypt.nix;
+  agnos = discoverTests (import ./agnos.nix);
   agorakit = runTest ./web-apps/agorakit.nix;
   airsonic = runTest ./airsonic.nix;
   akkoma = runTestOn [ "x86_64-linux" "aarch64-linux" ] {
@@ -274,8 +275,8 @@ in
   cadvisor = handleTestOn [ "x86_64-linux" ] ./cadvisor.nix { };
   cage = handleTest ./cage.nix { };
   cagebreak = handleTest ./cagebreak.nix { };
-  calibre-web = handleTest ./calibre-web.nix { };
-  calibre-server = handleTest ./calibre-server.nix { };
+  calibre-web = runTest ./calibre-web.nix;
+  calibre-server = import ./calibre-server.nix { inherit pkgs runTest; };
   canaille = handleTest ./canaille.nix { };
   castopod = handleTest ./castopod.nix { };
   cassandra_3_0 = handleTest ./cassandra.nix { testPackage = pkgs.cassandra_3_0; };
@@ -338,6 +339,30 @@ in
   containers-unified-hierarchy = handleTest ./containers-unified-hierarchy.nix { };
   convos = handleTest ./convos.nix { };
   corerad = handleTest ./corerad.nix { };
+  cosmic = runTest {
+    imports = [ ./cosmic.nix ];
+    _module.args.testName = "cosmic";
+    _module.args.enableAutologin = false;
+    _module.args.enableXWayland = true;
+  };
+  cosmic-autologin = runTest {
+    imports = [ ./cosmic.nix ];
+    _module.args.testName = "cosmic-autologin";
+    _module.args.enableAutologin = true;
+    _module.args.enableXWayland = true;
+  };
+  cosmic-noxwayland = runTest {
+    imports = [ ./cosmic.nix ];
+    _module.args.testName = "cosmic-noxwayland";
+    _module.args.enableAutologin = false;
+    _module.args.enableXWayland = false;
+  };
+  cosmic-autologin-noxwayland = runTest {
+    imports = [ ./cosmic.nix ];
+    _module.args.testName = "cosmic-autologin-noxwayland";
+    _module.args.enableAutologin = true;
+    _module.args.enableXWayland = false;
+  };
   coturn = handleTest ./coturn.nix { };
   couchdb = handleTest ./couchdb.nix { };
   crabfit = handleTest ./crabfit.nix { };
@@ -480,7 +505,7 @@ in
     imports = [ ./firefox.nix ];
     _module.args.firefoxPackage = pkgs.floorp;
   };
-  fluent-bit = handleTest ./fluent-bit.nix { };
+  fluent-bit = runTest ./fluent-bit.nix;
   fluentd = handleTest ./fluentd.nix { };
   fluidd = handleTest ./fluidd.nix { };
   fontconfig-default-fonts = handleTest ./fontconfig-default-fonts.nix { };
@@ -655,7 +680,7 @@ in
   jool = import ./jool.nix { inherit pkgs runTest; };
   jotta-cli = handleTest ./jotta-cli.nix { };
   k3s = handleTest ./k3s { };
-  kafka = handleTest ./kafka.nix { };
+  kafka = handleTest ./kafka { };
   kanboard = runTest ./web-apps/kanboard.nix;
   kanidm = handleTest ./kanidm.nix { };
   kanidm-provisioning = handleTest ./kanidm-provisioning.nix { };

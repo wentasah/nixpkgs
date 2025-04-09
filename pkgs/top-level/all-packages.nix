@@ -7381,6 +7381,7 @@ with pkgs;
   beam = callPackage ./beam-packages.nix { };
   beam_minimal = callPackage ./beam-packages.nix {
     beam = beam_minimal;
+    systemdSupport = false;
     wxSupport = false;
   };
 
@@ -7916,8 +7917,6 @@ with pkgs;
 
   ansible-builder = with python3Packages; toPythonApplication ansible-builder;
 
-  ansible-doctor = callPackage ../tools/admin/ansible/doctor.nix { };
-
   yakut = python3Packages.callPackage ../development/tools/misc/yakut { };
 
   ### DEVELOPMENT / TOOLS / LANGUAGE-SERVERS
@@ -7929,10 +7928,6 @@ with pkgs;
       { };
 
   inherit (callPackages ../development/tools/language-servers/nixd { }) nixf nixt nixd;
-
-  ansible-later = callPackage ../tools/admin/ansible/later.nix { };
-
-  ansible-lint = callPackage ../tools/admin/ansible/lint.nix { };
 
   antlr2 = callPackage ../development/tools/parsing/antlr/2.7.7.nix { };
   antlr3_4 = callPackage ../development/tools/parsing/antlr/3.4.nix { };
@@ -8933,7 +8928,7 @@ with pkgs;
   };
 
   yourkit-java = callPackage ../by-name/yo/yourkit-java/package.nix {
-    jre = jdk17;
+    jre = jdk21;
   };
 
   yq = python3.pkgs.toPythonApplication python3.pkgs.yq;
@@ -12431,6 +12426,7 @@ with pkgs;
     withMysql = false;
     withNotification = false;
     withIcingadb = false;
+    withPerfdata = false;
   };
 
   nagiosPlugins = recurseIntoAttrs (callPackages ../servers/monitoring/nagios-plugins { });
@@ -15100,7 +15096,7 @@ with pkgs;
   };
 
   kubelogin-oidc = callPackage ../by-name/ku/kubelogin-oidc/package.nix {
-    buildGoModule = buildGo123Module;
+    buildGoModule = buildGo124Module;
   };
 
   kthxbye = callPackage ../servers/monitoring/prometheus/kthxbye.nix { };
@@ -19007,7 +19003,7 @@ with pkgs;
   nixosOptionsDoc = attrs: (import ../../nixos/lib/make-options-doc) ({ inherit pkgs lib; } // attrs);
 
   nix-eval-jobs = callPackage ../tools/package-management/nix-eval-jobs {
-    nix = nixVersions.nix_2_26;
+    nix = nixVersions.nix_2_28;
   };
 
   nix-delegate = haskell.lib.compose.justStaticExecutables haskellPackages.nix-delegate;
