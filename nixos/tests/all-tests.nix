@@ -198,6 +198,7 @@ in
   amd-sev = runTest ./amd-sev.nix;
   angie-api = runTest ./angie-api.nix;
   anki-sync-server = runTest ./anki-sync-server.nix;
+  anubis = runTest ./anubis.nix;
   anuko-time-tracker = runTest ./anuko-time-tracker.nix;
   apcupsd = runTest ./apcupsd.nix;
   apfs = runTest ./apfs.nix;
@@ -713,6 +714,7 @@ in
   languagetool = handleTest ./languagetool.nix { };
   lanraragi = handleTest ./lanraragi.nix { };
   latestKernel.login = handleTest ./login.nix { latestKernel = true; };
+  lavalink = runTest ./lavalink.nix;
   leaps = handleTest ./leaps.nix { };
   lemmy = handleTest ./lemmy.nix { };
   libinput = handleTest ./libinput.nix { };
@@ -1148,6 +1150,7 @@ in
   redmine = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./redmine.nix { };
   renovate = handleTest ./renovate.nix { };
   replace-dependencies = handleTest ./replace-dependencies { };
+  reposilite = runTest ./reposilite.nix;
   restartByActivationScript = handleTest ./restart-by-activation-script.nix { };
   restic-rest-server = handleTest ./restic-rest-server.nix { };
   restic = handleTest ./restic.nix { };

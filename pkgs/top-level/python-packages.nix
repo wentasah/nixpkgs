@@ -2649,6 +2649,8 @@ self: super: with self; {
 
   colbert-ai = callPackage ../development/python-modules/colbert-ai { };
 
+  colcon = callPackage ../development/python-modules/colcon { };
+
   collections-extended = callPackage ../development/python-modules/collections-extended { };
 
   collidoscope = callPackage ../development/python-modules/collidoscope { };
@@ -3091,6 +3093,13 @@ self: super: with self; {
   daqp = callPackage ../development/python-modules/daqp { };
 
   darkdetect = callPackage ../development/python-modules/darkdetect { };
+
+  dartsim = toPythonModule (
+    pkgs.dartsim.override {
+      pythonSupport = true;
+      python3Packages = self;
+    }
+  );
 
   dasbus = callPackage ../development/python-modules/dasbus { };
 
@@ -4377,6 +4386,8 @@ self: super: with self; {
   emcee = callPackage ../development/python-modules/emcee { };
 
   emoji = callPackage ../development/python-modules/emoji { };
+
+  emojis = callPackage ../development/python-modules/emojis { };
 
   empty-files = callPackage ../development/python-modules/empty-files { };
 
@@ -13648,6 +13659,8 @@ self: super: with self; {
   pytest-resource-path = callPackage ../development/python-modules/pytest-resource-path { };
 
   pytest-responses = callPackage ../development/python-modules/pytest-responses { };
+
+  pytest-retry = callPackage ../development/python-modules/pytest-retry { };
 
   pytest-reverse = callPackage ../development/python-modules/pytest-reverse { };
 

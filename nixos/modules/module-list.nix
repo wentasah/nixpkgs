@@ -408,6 +408,7 @@
   ./services/audio/icecast.nix
   ./services/audio/jack.nix
   ./services/audio/jmusicbot.nix
+  ./services/audio/lavalink.nix
   ./services/audio/liquidsoap.nix
   ./services/audio/marytts.nix
   ./services/audio/mopidy.nix
@@ -1047,6 +1048,7 @@
   ./services/networking/adguardhome.nix
   ./services/networking/alice-lg.nix
   ./services/networking/amuled.nix
+  ./services/networking/anubis.nix
   ./services/networking/aria2.nix
   ./services/networking/asterisk.nix
   ./services/networking/atftpd.nix
@@ -1610,6 +1612,7 @@
   ./services/web-apps/pretix.nix
   ./services/web-apps/privatebin.nix
   ./services/web-apps/prosody-filer.nix
+  ./services/web-apps/reposilite.nix
   ./services/web-apps/rimgo.nix
   ./services/web-apps/rutorrent.nix
   ./services/web-apps/screego.nix

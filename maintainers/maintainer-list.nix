@@ -3947,16 +3947,6 @@
     github = "CaptainJawZ";
     githubId = 43111068;
   };
-  caralice = {
-    name = "Alice Carroll";
-    email = "nix@alice-carroll.pet";
-    github = "thecaralice";
-    githubId = 43097806;
-    keys = [
-      { fingerprint = "C7EA B182 2AB1 246C 0FB8  DD72 0514 0B67 902C D3AF"; }
-      { fingerprint = "DA77 EDDB 4AF5 244C 665E  9176 A05E A86A 5834 1AA8"; }
-    ];
-  };
   CardboardTurkey = {
     name = "Kiran Ostrolenk";
     email = "kiran@ostrolenk.co.uk";
@@ -4992,6 +4982,12 @@
     githubId = 292650;
     name = "Daniel McCarney";
     keys = [ { fingerprint = "8026 D24A A966 BF9C D3CD  CB3C 08FB 2BFC 470E 75B4"; } ];
+  };
+  cr0n = {
+    name = "cr0n";
+    github = "n0rc";
+    githubId = 355000;
+    email = "cr0n@cypherpunks.cc";
   };
   Crafter = {
     email = "crafter@crafter.rocks";
@@ -6908,6 +6904,12 @@
     github = "eilvelia";
     githubId = 10106819;
     name = "eilvelia";
+  };
+  ejiektpobehuk = {
+    email = "oss@ejiek.id";
+    github = "ejiektpobehuk";
+    githubId = 7649041;
+    name = "Vlad Petrov";
   };
   eken = {
     email = "edvin.kallstrom@protonmail.com";
@@ -14514,6 +14516,16 @@
     githubId = 1809783;
     name = "Marco Maggesi";
   };
+  magistau = {
+    name = "Mg. Tau";
+    email = "nix@alice-carroll.pet";
+    github = "magistau";
+    githubId = 43097806;
+    keys = [
+      { fingerprint = "C7EA B182 2AB1 246C 0FB8  DD72 0514 0B67 902C D3AF"; }
+      { fingerprint = "DA77 EDDB 4AF5 244C 665E  9176 A05E A86A 5834 1AA8"; }
+    ];
+  };
   magneticflux- = {
     email = "skaggsm333@gmail.com";
     github = "magneticflux-";
@@ -16446,6 +16458,12 @@
     githubId = 220262;
     name = "Ion Mudreac";
   };
+  MulliganSecurity = {
+    email = "mulligansecurity@riseup.net";
+    github = "MulliganSecurity";
+    githubId = 196982523;
+    name = "MulliganSecurity";
+  };
   multisn8 = {
     email = "all-things-nix@multisamplednight.com";
     github = "MultisampledNight";
@@ -16672,6 +16690,13 @@
     github = "nanotwerp";
     githubId = 17240342;
     name = "Nano Twerpus";
+  };
+  nanoyaki = {
+    name = "Hana Kretzer";
+    email = "hanakretzer@gmail.com";
+    github = "nanoyaki";
+    githubId = 144328493;
+    keys = [ { fingerprint = "D89F 440C 6CD7 4753 090F  EC7A 4682 C5CB 4D9D EA3C"; } ];
   };
   naphta = {
     github = "naphta";
