@@ -1,6 +1,7 @@
 {
   lib,
   fetchFromGitHub,
+  sound-theme-freedesktop,
   rustPlatform,
   libcosmicAppHook,
   pulseaudio,
@@ -19,6 +20,11 @@ rustPlatform.buildRustPackage (finalAttrs: {
     tag = "epoch-${finalAttrs.version}";
     hash = "sha256-ezOeRgqI/GOWFknUVZI7ZLEy1GYaBI+/An83HWKL6ho=";
   };
+
+  postPatch = ''
+    substituteInPlace src/components/app.rs \
+      --replace-fail '/usr/share/sounds/freedesktop/stereo/audio-volume-change.oga' '${sound-theme-freedesktop}/share/sounds/freedesktop/stereo/audio-volume-change.oga'
+  '';
 
   useFetchCargoVendor = true;
   cargoHash = "sha256-vYehF2RjPrTZiuGcRUe4XX3ftRo7f+SIoKizD/kOtR8=";
@@ -56,10 +62,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "OSD for the COSMIC Desktop Environment";
     mainProgram = "cosmic-osd";
     license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [
-      nyabinary
-      HeitorAugustoLN
-    ];
+    maintainers = lib.teams.cosmic.members;
     platforms = lib.platforms.linux;
   };
 })

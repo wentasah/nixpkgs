@@ -29,18 +29,18 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "sile";
-  version = "0.15.10";
+  version = "0.15.12";
 
   src = fetchurl {
     url = "https://github.com/sile-typesetter/sile/releases/download/v${finalAttrs.version}/sile-${finalAttrs.version}.tar.zst";
-    hash = "sha256-sPABtKfIpamGNWELnCnkVagHeuHq/1KoT364/aLHDu0=";
+    hash = "sha256-oyNBEdVrsi8MuiYIlU7IjfJg60dy8FTtKXcJEgA+yKA=";
   };
 
   cargoDeps = rustPlatform.fetchCargoVendor {
     inherit (finalAttrs) pname version src;
     dontConfigure = true;
     nativeBuildInputs = [ zstd ];
-    hash = "sha256-57NcGm46aggPO+/54P1arCSPV3BHlAWwmWIzbpkT2js=";
+    hash = "sha256-v/sqXA4aAXGcGy+/2UrtThN3jS30q35QPwpchS7oRgk=";
   };
 
   nativeBuildInputs = [
