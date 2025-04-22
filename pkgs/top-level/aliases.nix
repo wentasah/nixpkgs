@@ -290,6 +290,7 @@ mapAliases {
   apacheKafka_3_6 = throw "apacheKafka_2_8 through _3_6 have been removed from nixpkgs as outdated"; # Added 2024-11-27
   antimicroX = throw "'antimicroX' has been renamed to/replaced by 'antimicrox'"; # Converted to throw 2024-10-17
   apacheAnt = ant; # Added 2024-11-28
+  appimagekit = throw "'appimagekit' has been removed as it was broken in nixpkgs and archived upstream"; # Added 2025-04-19
   apple-sdk_10_12 = throw "apple-sdk_10_12 was removed as Nixpkgs no longer supports macOS 10.12; see the 25.05 release notes"; # Added 2024-10-27
   apple-sdk_10_13 = throw "apple-sdk_10_13 was removed as Nixpkgs no longer supports macOS 10.13; see the 25.05 release notes"; # Added 2024-10-27
   apple-sdk_10_14 = throw "apple-sdk_10_14 was removed as Nixpkgs no longer supprots macOS 10.14; see the 25.05 release notes"; # Added 2024-10-27
@@ -325,6 +326,7 @@ mapAliases {
   baget = throw "'baget' has been removed due to being unmaintained";
   bashInteractive_5 = throw "'bashInteractive_5' has been renamed to/replaced by 'bashInteractive'"; # Converted to throw 2024-10-17
   bash_5 = throw "'bash_5' has been renamed to/replaced by 'bash'"; # Converted to throw 2024-10-17
+  bareboxTools = throw "bareboxTools has been removed due to lack of interest in maintaining it in nixpkgs"; # Added 2025-04-19
   BeatSaberModManager = beatsabermodmanager; # Added 2024-06-12
   beam_nox = throw "beam_nox has been removed in favor of beam_minimal or beamMinimalPackages"; # Added 2025-04-01
   beatsabermodmanager = throw "'beatsabermodmanager' has been removed due to lack of upstream maintainenance. Consider using 'bs-manager' instead"; # Added 2025-03-18
@@ -358,6 +360,7 @@ mapAliases {
 
   budgie = throw "The `budgie` scope has been removed and all packages moved to the top-level"; # Added 2024-07-14
   budgiePlugins = throw "The `budgiePlugins` scope has been removed and all packages moved to the top-level"; # Added 2024-07-14
+  buildBarebox = throw "buildBarebox has been removed due to lack of interest in maintaining it in nixpkgs"; # Added 2025-04-19
   buildGo122Module = throw "Go 1.22 is end-of-life, and 'buildGo122Module' has been removed. Please use a newer builder version."; # Added 2025-03-28
   buildGoPackage = throw "`buildGoPackage` has been deprecated and removed, see the Go section in the nixpkgs manual for details"; # Added 2024-11-18
 
@@ -392,6 +395,7 @@ mapAliases {
   cargo-inspect = throw "'cargo-inspect' has been removed due to lack of upstream maintenance. Upstream recommends cargo-expand."; # Added 2025-01-26
   cargo-web = throw "'cargo-web' has been removed due to lack of upstream maintenance"; # Added 2025-01-26
   cawbird = throw "cawbird has been abandoned upstream and is broken anyways due to Twitter closing its API";
+  centerim = throw "centerim has been removed due to upstream disappearing"; # Added 2025-04-18
   certmgr-selfsigned = certmgr; # Added 2023-11-30
   cgal_4 = throw "cgal_4 has been removed as it is obsolete use cgal instead"; # Added 2024-12-30
   cgal_5 = cgal; # Added 2024-12-30
@@ -413,6 +417,7 @@ mapAliases {
   ChowPhaser = chow-phaser; # Added 2024-06-12
   ChowKick = chow-kick; # Added 2024-06-12
   CHOWTapeModel = chow-tape-model; # Added 2024-06-12
+  chromatic = throw "chromatic has been removed due to being unmaintained and failing to build"; # Added 2025-04-18
   chrome-gnome-shell = gnome-browser-connector; # Added 2022-07-27
   cinnamon = throw "The cinnamon scope has been removed and all packages have been moved to the top-level"; # Added 2024-11-25
   cloog = throw "cloog has been removed from Nixpkgs, as it is unmaintained and obsolete"; # Added 2024-09-13
@@ -685,6 +690,7 @@ mapAliases {
   gdome2 = throw "'gdome2' has been removed from nixpkgs, as it is umaintained and obsolete"; # Added 2024-12-29
   geocode-glib = "throw 'geocode-glib' has been removed, as it was unused and used outdated libraries"; # Added 2025-04-16
   geos_3_11 = throw "geos_3_11 has been removed from nixpgks. Please use a more recent 'geos' instead.";
+  gfbgraph = throw "'gfbgraph' has been removed as it was archived upstream and unused in nixpkgs"; # Added 2025-04-20
   gfortran48 = throw "'gfortran48' has been removed from nixpkgs"; # Added 2024-09-10
   gfortran49 = throw "'gfortran49' has been removed from nixpkgs"; # Added 2024-09-11
   gfortran7 = throw "gfortran7 has been removed from Nixpkgs, as it is unmaintained and obsolete"; # Added 2024-11-20
@@ -851,6 +857,7 @@ mapAliases {
   isl_0_17 = throw "isl_0_17 has been removed from Nixpkgs, as it is unmaintained and obsolete"; # Added 2024-11-20
   iso-flags-png-320x420 = lib.warnOnInstantiate "iso-flags-png-320x420 has been renamed to iso-flags-png-320x240" iso-flags-png-320x240; # Added 2024-07-17
   itktcl = tclPackages.itktcl; # Added 2024-10-02
+  iv = throw "iv has been removed as it was no longer required for neuron and broken"; # Added 2025-04-18
   ix = throw "ix has been removed from Nixpkgs, as the ix.io pastebin has been offline since Dec. 2023"; # Added 2025-04-11
 
   ### J ###
@@ -1463,6 +1470,7 @@ mapAliases {
   prometheus-openldap-exporter = throw "'prometheus-openldap-exporter' has been removed from nixpkgs, as it was unmaintained"; # Added 2024-09-01
   prometheus-minio-exporter = throw "'prometheus-minio-exporter' has been removed from nixpkgs, use Minio's built-in Prometheus integration instead"; # Added 2024-06-10
   prometheus-tor-exporter = throw "'prometheus-tor-exporter' has been removed from nixpkgs, as it was broken and unmaintained"; # Added 2024-10-30
+  protobuf_23 = throw "'protobuf_23' has been removed from nixpkgs. Consider using a more recent version of the protobuf library"; # Added 2025-04-20
   protobuf3_24 = protobuf_24;
   protobuf3_23 = protobuf_23;
   protobuf3_21 = protobuf_21;
@@ -1562,6 +1570,7 @@ mapAliases {
   SDL_classic = SDL1; # Added 2024-09-03
   SDL1 = throw "'SDL1' has been removed as development ended long ago with SDL 2.0 replacing it, use SDL_compat instead"; # Added 2025-03-27
   SDL_gpu = throw "'SDL_gpu' has been removed due to lack of upstream maintenance and known users"; # Added 2025-03-15
+  SDL_image_2_0 = throw "'SDL_image_2_0' has been removed in favor of the latest version"; # Added 2025-04-20
   s2n = throw "'s2n' has been renamed to/replaced by 's2n-tls'"; # Converted to throw 2024-10-17
   sandboxfs = throw "'sandboxfs' has been removed due to being unmaintained, consider using linux namespaces for sandboxing instead"; # Added 2024-06-06
   sane-backends-git = throw "'sane-backends-git' has been renamed to/replaced by 'sane-backends'"; # Converted to throw 2024-10-17
@@ -1660,6 +1669,7 @@ mapAliases {
   strelka = throw "strelka depends on Python 2.6+, and does not support Python 3."; # Added 2025-03-17
   sumneko-lua-language-server = lua-language-server; # Added 2023-02-07
   sumokoin = throw "sumokoin has been removed as it was abandoned upstream"; # Added 2024-11-23
+  supertag = throw "supertag has been removed as it was abandoned upstream and fails to build"; # Added 2025-04-20
   swiProlog = lib.warnOnInstantiate "swiProlog has been renamed to swi-prolog" swi-prolog; # Added 2024-09-07
   swiPrologWithGui = lib.warnOnInstantiate "swiPrologWithGui has been renamed to swi-prolog-gui" swi-prolog-gui; # Added 2024-09-07
   swig1 = throw "swig1 has been removed as it is obsolete"; # Added 2024-08-23
@@ -1699,6 +1709,8 @@ mapAliases {
   teamspeak_client = teamspeak3; # Added 2024-11-07
   teamspeak5_client = teamspeak6-client; # Added 2025-01-29
   teck-programmer = throw "teck-programmer was removed because it was broken and unmaintained"; # added 2024-08-23
+  telepathy-gabble = throw "'telepathy-gabble' has been removed as it was unmaintained, unused, broken and used outdated libraries"; # Added 2025-04-20
+  telepathy-logger = throw "'telepathy-logger' has been removed as it was unmaintained, unused and broken"; # Added 2025-04-20
   teleport_13 = throw "teleport 13 has been removed as it is EOL. Please upgrade to Teleport 14 or later"; # Added 2024-05-26
   teleport_14 = throw "teleport 14 has been removed as it is EOL. Please upgrade to Teleport 15 or later"; # Added 2024-10-18
   teleport_15 = throw "teleport 15 has been removed as it is EOL. Please upgrade to Teleport 16 or later"; # Added 2025-03-28
@@ -1926,6 +1938,7 @@ mapAliases {
   zfs_2_1 = throw "zfs 2.1 has been removed as it is EOL. Please upgrade to a newer version"; # Added 2024-12-25
   zig_0_9 = throw "zig 0.9 has been removed, upgrade to a newer version instead"; # Added 2025-01-24
   zig_0_10 = throw "zig 0.10 has been removed, upgrade to a newer version instead"; # Added 2025-01-24
+  zig_0_11 = throw "zig 0.11 has been removed, upgrade to a newer version instead"; # Added 2025-04-09
   zimlib = throw "'zimlib' has been removed because it was an outdated and unused version of 'libzim'"; # Added 2025-03-07
   zinc = zincsearch; # Added 2023-05-28
   zk-shell = throw "zk-shell has been removed as it was broken and unmaintained"; # Added 2024-08-10

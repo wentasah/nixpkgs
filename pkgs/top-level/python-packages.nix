@@ -93,6 +93,14 @@ self: super: with self; {
 
   adguardhome = callPackage ../development/python-modules/adguardhome { };
 
+  adios2 = toPythonModule (
+    pkgs.adios2.override {
+      python3 = python;
+      python3Packages = self;
+      pythonSupport = true;
+    }
+  );
+
   adjusttext = callPackage ../development/python-modules/adjusttext { };
 
   adlfs = callPackage ../development/python-modules/adlfs { };
@@ -3488,6 +3496,8 @@ self: super: with self; {
 
   disnake = callPackage ../development/python-modules/disnake { };
 
+  disposable-email-domains = callPackage ../development/python-modules/disposable-email-domains { };
+
   dissect = callPackage ../development/python-modules/dissect { };
 
   dissect-archive = callPackage ../development/python-modules/dissect-archive { };
@@ -3879,6 +3889,8 @@ self: super: with self; {
   django-tagging = callPackage ../development/python-modules/django-tagging { };
 
   django-taggit = callPackage ../development/python-modules/django-taggit { };
+
+  django-tasks = callPackage ../development/python-modules/django-tasks { };
 
   django-tastypie = callPackage ../development/python-modules/django-tastypie { };
 
@@ -7278,6 +7290,13 @@ self: super: with self; {
 
   kaggle = callPackage ../development/python-modules/kaggle { };
 
+  kahip = toPythonModule (
+    pkgs.kahip.override {
+      pythonSupport = true;
+      python3Packages = self;
+    }
+  );
+
   kaitaistruct = callPackage ../development/python-modules/kaitaistruct { };
 
   kajiki = callPackage ../development/python-modules/kajiki { };
@@ -8119,6 +8138,8 @@ self: super: with self; {
   llm-jq = callPackage ../development/python-modules/llm-jq { };
 
   llm-ollama = callPackage ../development/python-modules/llm-ollama { };
+
+  llm-openai-plugin = callPackage ../development/python-modules/llm-openai-plugin { };
 
   llmx = callPackage ../development/python-modules/llmx { };
 
@@ -12257,11 +12278,10 @@ self: super: with self; {
 
   pygal = callPackage ../development/python-modules/pygal { };
 
-  pygame = callPackage ../development/python-modules/pygame { SDL2_image = pkgs.SDL2_image_2_0; };
+  pygame = callPackage ../development/python-modules/pygame { };
 
   pygame-ce = callPackage ../development/python-modules/pygame-ce {
     inherit (pkgs.darwin.apple_sdk.frameworks) AppKit;
-    SDL2_image = pkgs.SDL2_image_2_0;
     SDL2_mixer = pkgs.SDL2_mixer_2_0;
   };
 
@@ -15565,11 +15585,7 @@ self: super: with self; {
 
   sentinels = callPackage ../development/python-modules/sentinels { };
 
-  sentry-sdk = sentry-sdk_1;
-
-  sentry-sdk_1 = callPackage ../development/python-modules/sentry-sdk/1.nix { };
-
-  sentry-sdk_2 = callPackage ../development/python-modules/sentry-sdk/default.nix { };
+  sentry-sdk = callPackage ../development/python-modules/sentry-sdk/default.nix { };
 
   sepaxml = callPackage ../development/python-modules/sepaxml { };
 
@@ -16106,18 +16122,7 @@ self: super: with self; {
 
   soxr = callPackage ../development/python-modules/soxr { libsoxr = pkgs.soxr; };
 
-  spacy = callPackage ../development/python-modules/spacy {
-    # fix error: ‘_PyCFrame’ has no member named ‘use_tracing’
-    # see: https://aur.archlinux.org/packages/python-spacy
-    cython_0 = cython_0.overridePythonAttrs (old: rec {
-      version = "0.29.37";
-      src = pkgs.fetchPypi {
-        pname = "Cython";
-        inherit version;
-        hash = "sha256-+BPUpt2Ure5dT/JmGR0dlb9tQWSk+sxTVCLAIbJQTPs=";
-      };
-    });
-  };
+  spacy = callPackage ../development/python-modules/spacy { };
 
   spacy-alignments = callPackage ../development/python-modules/spacy-alignments { };
 
@@ -16799,6 +16804,8 @@ self: super: with self; {
 
   symbolic = callPackage ../development/python-modules/symbolic { };
 
+  symbolic_10 = callPackage ../development/python-modules/symbolic/10.nix { };
+
   symengine = callPackage ../development/python-modules/symengine { inherit (pkgs) symengine; };
 
   symfc = callPackage ../development/python-modules/symfc { };
@@ -16975,8 +16982,6 @@ self: super: with self; {
 
   tensorflow-bin = callPackage ../development/python-modules/tensorflow/bin.nix {
     inherit (pkgs.config) cudaSupport;
-    # https://www.tensorflow.org/install/source#gpu
-    cudaPackages = pkgs.cudaPackages_12;
   };
 
   tensorflow-build =
@@ -17391,9 +17396,7 @@ self: super: with self; {
 
   torchaudio = callPackage ../development/python-modules/torchaudio { };
 
-  torchaudio-bin = callPackage ../development/python-modules/torchaudio/bin.nix {
-    cudaPackages = pkgs.cudaPackages_12;
-  };
+  torchaudio-bin = callPackage ../development/python-modules/torchaudio/bin.nix { };
 
   torchbench = callPackage ../development/python-modules/torchbench { };
 
@@ -17427,9 +17430,7 @@ self: super: with self; {
 
   torchvision = callPackage ../development/python-modules/torchvision { };
 
-  torchvision-bin = callPackage ../development/python-modules/torchvision/bin.nix {
-    cudaPackages = pkgs.cudaPackages_12;
-  };
+  torchvision-bin = callPackage ../development/python-modules/torchvision/bin.nix { };
 
   tornado = callPackage ../development/python-modules/tornado { };
 

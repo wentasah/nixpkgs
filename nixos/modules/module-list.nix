@@ -290,6 +290,7 @@
   ./programs/quark-goldleaf.nix
   ./programs/regreet.nix
   ./programs/rog-control-center.nix
+  ./programs/rush.nix
   ./programs/rust-motd.nix
   ./programs/ryzen-monitor-ng.nix
   ./programs/screen.nix
@@ -313,6 +314,7 @@
   ./programs/system-config-printer.nix
   ./programs/systemtap.nix
   ./programs/tcpdump.nix
+  ./programs/television.nix
   ./programs/thefuck.nix
   ./programs/thunar.nix
   ./programs/thunderbird.nix
@@ -367,6 +369,7 @@
   ./security/auditd.nix
   ./security/ca.nix
   ./security/chromium-suid-sandbox.nix
+  ./security/default.nix
   ./security/dhparams.nix
   ./security/doas.nix
   ./security/duosec.nix
@@ -1172,6 +1175,7 @@
   ./services/networking/kea.nix
   ./services/networking/keepalived/default.nix
   ./services/networking/keybase.nix
+  ./services/networking/kismet.nix
   ./services/networking/knot.nix
   ./services/networking/kresd.nix
   ./services/networking/lambdabot.nix
@@ -1349,6 +1353,7 @@
   ./services/networking/veilid.nix
   ./services/networking/vdirsyncer.nix
   ./services/networking/vsftpd.nix
+  ./services/networking/vwifi.nix
   ./services/networking/wasabibackend.nix
   ./services/networking/websockify.nix
   ./services/networking/wg-access-server.nix

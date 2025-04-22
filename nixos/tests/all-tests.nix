@@ -460,7 +460,7 @@ in
   evcc = runTest ./evcc.nix;
   fail2ban = runTest ./fail2ban.nix;
   fakeroute = handleTest ./fakeroute.nix { };
-  fancontrol = handleTest ./fancontrol.nix { };
+  fancontrol = runTest ./fancontrol.nix;
   fanout = handleTest ./fanout.nix { };
   fcitx5 = handleTest ./fcitx5 { };
   fedimintd = runTest ./fedimintd.nix;
@@ -636,7 +636,7 @@ in
   home-assistant = runTest ./home-assistant.nix;
   hostname = handleTest ./hostname.nix { };
   hound = handleTest ./hound.nix { };
-  hub = handleTest ./git/hub.nix { };
+  hub = runTest ./git/hub.nix;
   hydra = runTest ./hydra;
   i3wm = handleTest ./i3wm.nix { };
   icingaweb2 = runTest ./icingaweb2.nix;
@@ -697,11 +697,12 @@ in
   kernel-latest-ath-user-regd = handleTest ./kernel-latest-ath-user-regd.nix { };
   kernel-rust = handleTest ./kernel-rust.nix { };
   keter = handleTest ./keter.nix { };
-  kexec = handleTest ./kexec.nix { };
+  kexec = runTest ./kexec.nix;
   keycloak = discoverTests (import ./keycloak.nix);
   keyd = handleTest ./keyd.nix { };
   keymap = handleTest ./keymap.nix { };
   kimai = runTest ./kimai.nix;
+  kismet = runTest ./kismet.nix;
   kmonad = runTest ./kmonad.nix;
   knot = runTest ./knot.nix;
   komga = handleTest ./komga.nix { };
@@ -740,7 +741,7 @@ in
   localsend = handleTest ./localsend.nix { };
   locate = handleTest ./locate.nix { };
   login = handleTest ./login.nix { };
-  logrotate = handleTest ./logrotate.nix { };
+  logrotate = runTest ./logrotate.nix;
   loki = handleTest ./loki.nix { };
   luks = handleTest ./luks.nix { };
   lvm2 = handleTest ./lvm2 { };
@@ -770,7 +771,7 @@ in
   mailhog = runTest ./mailhog.nix;
   mailpit = runTest ./mailpit.nix;
   mailman = runTest ./mailman.nix;
-  man = handleTest ./man.nix { };
+  man = runTest ./man.nix;
   mariadb-galera = handleTest ./mysql/mariadb-galera.nix { };
   marytts = handleTest ./marytts.nix { };
   mastodon = pkgs.recurseIntoAttrs (handleTest ./web-apps/mastodon { inherit handleTestOn; });
@@ -1177,6 +1178,7 @@ in
   rsyslogd = handleTest ./rsyslogd.nix { };
   rtkit = runTest ./rtkit.nix;
   rtorrent = handleTest ./rtorrent.nix { };
+  rush = runTest ./rush.nix;
   rustls-libssl = handleTest ./rustls-libssl.nix { };
   rxe = handleTest ./rxe.nix { };
   sabnzbd = handleTest ./sabnzbd.nix { };
@@ -1205,7 +1207,7 @@ in
   shadowsocks = handleTest ./shadowsocks { };
   shattered-pixel-dungeon = handleTest ./shattered-pixel-dungeon.nix { };
   shiori = handleTest ./shiori.nix { };
-  signal-desktop = handleTest ./signal-desktop.nix { };
+  signal-desktop = runTest ./signal-desktop.nix;
   silverbullet = handleTest ./silverbullet.nix { };
   simple = handleTest ./simple.nix { };
   sing-box = handleTest ./sing-box.nix { };
