@@ -428,6 +428,7 @@ with pkgs;
     powerdns = python3Packages.callPackage ../tools/networking/octodns/providers/powerdns { };
     cloudflare = python3Packages.callPackage ../tools/networking/octodns/providers/cloudflare { };
     ddns = python3Packages.callPackage ../tools/networking/octodns/providers/ddns { };
+    transip = python3Packages.callPackage ../tools/networking/octodns/providers/transip { };
   };
 
   oletools = with python3.pkgs; toPythonApplication oletools;
@@ -1112,15 +1113,6 @@ with pkgs;
   font-v = with python3Packages; toPythonApplication font-v;
 
   fontbakery = with python3Packages; toPythonApplication fontbakery;
-
-  weylus = callPackage ../applications/graphics/weylus {
-    inherit (darwin.apple_sdk.frameworks)
-      ApplicationServices
-      Carbon
-      Cocoa
-      VideoToolbox
-      ;
-  };
 
   genealogos-api = genealogos-cli.override {
     crate = "api";
@@ -2064,7 +2056,7 @@ with pkgs;
 
   babelfish = callPackage ../shells/fish/babelfish.nix { };
 
-  bat-extras = recurseIntoAttrs (callPackages ../tools/misc/bat-extras { });
+  bat-extras = recurseIntoAttrs (lib.makeScope newScope (callPackage ../tools/misc/bat-extras { }));
 
   beauty-line-icon-theme = callPackage ../data/icons/beauty-line-icon-theme {
     inherit (plasma5Packages) breeze-icons;
@@ -3455,14 +3447,6 @@ with pkgs;
 
   fstl = qt5.callPackage ../applications/graphics/fstl { };
 
-  fdbPackages = dontRecurseIntoAttrs (callPackage ../servers/foundationdb { });
-
-  inherit (fdbPackages)
-    foundationdb73
-    ;
-
-  foundationdb = foundationdb73;
-
   fuse-ext2 = darwin.apple_sdk_11_0.callPackage ../tools/filesystems/fuse-ext2 { };
 
   fwknop = callPackage ../tools/security/fwknop {
@@ -4332,7 +4316,6 @@ with pkgs;
   mangohud = callPackage ../tools/graphics/mangohud {
     libXNVCtrl = linuxPackages.nvidia_x11.settings.libXNVCtrl;
     mangohud32 = pkgsi686Linux.mangohud;
-    inherit (python3Packages) mako;
   };
 
   marimo = with python3Packages; toPythonApplication marimo;
@@ -4510,7 +4493,7 @@ with pkgs;
 
   nifskope = libsForQt5.callPackage ../tools/graphics/nifskope { };
 
-  nlopt = callPackage ../development/libraries/nlopt { octave = null; };
+  nlopt = callPackage ../development/libraries/nlopt { };
 
   notation = callPackage ../by-name/no/notation/package.nix {
     buildGoModule = buildGo123Module;
@@ -6676,6 +6659,8 @@ with pkgs;
       lldb_20 = llvmPackages_20.lldb;
       llvm_20 = llvmPackages_20.llvm;
       bolt_20 = llvmPackages_20.bolt;
+
+      mkLLVMPackages = llvmPackagesSet.mkPackage;
     })
     llvmPackages_12
     llvmPackages_13
@@ -6700,6 +6685,7 @@ with pkgs;
     lldb_20
     llvm_20
     bolt_20
+    mkLLVMPackages
     ;
 
   lorri = callPackage ../tools/misc/lorri {
@@ -8326,7 +8312,6 @@ with pkgs;
   gnumake = callPackage ../development/tools/build-managers/gnumake { };
   gradle-packages = import ../development/tools/build-managers/gradle {
     inherit
-      jdk11
       jdk17
       jdk21
       jdk23
@@ -8460,8 +8445,6 @@ with pkgs;
       wrap ${targetPackages.stdenv.cc.bintools.targetPrefix}mold ${../build-support/bintools-wrapper/ld-wrapper.sh} ${mold}/bin/mold
     '';
   };
-
-  moon = callPackage ../development/tools/build-managers/moon/default.nix { };
 
   mopsa = ocamlPackages.mopsa.bin;
 
@@ -10488,8 +10471,6 @@ with pkgs;
 
   mlt = darwin.apple_sdk_11_0.callPackage ../development/libraries/mlt { };
 
-  mlv-app = libsForQt5.callPackage ../applications/video/mlv-app { };
-
   mpeg2dec = libmpeg2;
 
   msoffcrypto-tool = with python3.pkgs; toPythonApplication msoffcrypto-tool;
@@ -10631,7 +10612,6 @@ with pkgs;
     # TODO: LTO does not work.
     # https://github.com/NixOS/nixpkgs/issues/343123
     enableLto = false;
-    openexr = openexr_2;
   };
 
   opencv4WithoutCuda = opencv4.override {
@@ -13107,9 +13087,6 @@ with pkgs;
     withoutInitTools = true;
   };
 
-  # FIXME: `tcp-wrapper' is actually not OS-specific.
-  trickster = callPackage ../servers/trickster/trickster.nix { };
-
   trinsic-cli = callPackage ../tools/admin/trinsic-cli {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
@@ -13871,8 +13848,6 @@ with pkgs;
   inherit (callPackage ../development/tools/devpod { }) devpod devpod-desktop;
 
   dfasma = libsForQt5.callPackage ../applications/audio/dfasma { };
-
-  dfilemanager = libsForQt5.callPackage ../applications/file-managers/dfilemanager { };
 
   direwolf = callPackage ../applications/radio/direwolf {
     hamlib = hamlib_4;
@@ -15489,8 +15464,7 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) AppKit;
   };
 
-  openimageio = darwin.apple_sdk_11_0.callPackage ../development/libraries/openimageio {
-  };
+  openimageio_2 = callPackage ../by-name/op/openimageio/2.nix { };
 
   open-music-kontrollers = lib.recurseIntoAttrs {
     eteroj = callPackage ../applications/audio/open-music-kontrollers/eteroj.nix { };
@@ -16436,8 +16410,8 @@ with pkgs;
 
   vscode-extensions = recurseIntoAttrs (callPackage ../applications/editors/vscode/extensions { });
 
-  vscode-extensions-update-script =
-    callPackage ../by-name/vs/vscode-extensions-update/vscode-extensions-update-script.nix
+  vscode-extension-update-script =
+    callPackage ../by-name/vs/vscode-extension-update/vscode-extension-update-script.nix
       { };
 
   vscode-js-debug = callPackage ../by-name/vs/vscode-js-debug/package.nix {
@@ -16509,9 +16483,9 @@ with pkgs;
 
   webcamoid = qt6Packages.callPackage ../applications/video/webcamoid { };
 
-  webcord = callPackage ../by-name/we/webcord/package.nix { electron = electron_34; };
+  webcord = callPackage ../by-name/we/webcord/package.nix { electron = electron_35; };
 
-  webcord-vencord = callPackage ../by-name/we/webcord-vencord/package.nix { electron = electron_33; };
+  webcord-vencord = callPackage ../by-name/we/webcord-vencord/package.nix { electron = electron_34; };
 
   webmacs = libsForQt5.callPackage ../applications/networking/browsers/webmacs {
     stdenv = if stdenv.cc.isClang then gccStdenv else stdenv;
@@ -17035,13 +17009,6 @@ with pkgs;
 
   ddnet-server = ddnet.override { buildClient = false; };
 
-  devilutionx = callPackage ../games/devilutionx {
-    fmt = fmt_9;
-    SDL2_classic = SDL2_classic.override {
-      withStatic = true;
-    };
-  };
-
   duckmarines = callPackage ../games/duckmarines { love = love_0_10; };
 
   dwarf-fortress-packages = recurseIntoAttrs (callPackage ../games/dwarf-fortress { });
@@ -17181,9 +17148,7 @@ with pkgs;
     useProprietaryAssets = false;
   };
 
-  ldmud = callPackage ../games/ldmud { };
-
-  ldmud-full = callPackage ../games/ldmud {
+  ldmud-full = callPackage ../by-name/ld/ldmud/package.nix {
     ipv6Support = true;
     mccpSupport = true;
     mysqlSupport = true;
@@ -18345,8 +18310,6 @@ with pkgs;
 
   brgenml1lpr = pkgsi686Linux.callPackage ../misc/cups/drivers/brgenml1lpr { };
 
-  calaos_installer = libsForQt5.callPackage ../misc/calaos/installer { };
-
   clinfo = callPackage ../tools/system/clinfo {
     inherit (darwin.apple_sdk.frameworks) OpenCL;
   };
@@ -18807,8 +18770,6 @@ with pkgs;
 
   qtrvsim = libsForQt5.callPackage ../applications/science/computer-architecture/qtrvsim { };
 
-  qzdl = libsForQt5.callPackage ../games/qzdl { };
-
   rbspy = darwin.apple_sdk_11_0.callPackage ../development/tools/rbspy { };
 
   pick-colour-picker = python3Packages.callPackage ../applications/graphics/pick-colour-picker {
@@ -18994,6 +18955,7 @@ with pkgs;
   inherit (callPackage ../servers/web-apps/wordpress { })
     wordpress
     wordpress_6_7
+    wordpress_6_8
     ;
 
   wordpressPackages = recurseIntoAttrs (
