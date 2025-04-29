@@ -1,4 +1,4 @@
-From bed560fcf352343d75f8a4c719d2710c60420672 Mon Sep 17 00:00:00 2001
+From 939b22acdf7d8df92fbba833be76e0da0df3e121 Mon Sep 17 00:00:00 2001
 From: Michal Sojka <michal.sojka@cvut.cz>
 Date: Fri, 25 Jan 2019 18:26:26 +0100
 Subject: [PATCH 2/2] Test 8-page alignment
@@ -9,10 +9,10 @@ Subject: [PATCH 2/2] Test 8-page alignment
  2 files changed, 13 insertions(+)
 
 diff --git a/AMC-buildpdf.cc b/AMC-buildpdf.cc
-index 73dea3ca..a4549e57 100644
+index 4d7c818b..47a0d973 100644
 --- a/AMC-buildpdf.cc
 +++ b/AMC-buildpdf.cc
-@@ -89,6 +89,8 @@ int main(int argc, char** argv )
+@@ -94,6 +94,8 @@ int main(int argc, char** argv )
  	processing_error = PDF.load_pdf(command + 9);
        } else if(sscanf(command, "page pdf %ld", &i) == 1) {
  	processing_error = PDF.new_page_from_pdf(i);
@@ -22,10 +22,10 @@ index 73dea3ca..a4549e57 100644
  	PDF.identity_matrix();
        } else if(sscanf(command, "matrix %lf %lf %lf %lf %lf %lf",
 diff --git a/AMC-perl/AMC/Annotate.pm b/AMC-perl/AMC/Annotate.pm
-index 6e15af59..cbb49f37 100644
+index adc7009c..5b188e96 100755
 --- a/AMC-perl/AMC/Annotate.pm
 +++ b/AMC-perl/AMC/Annotate.pm
-@@ -1036,6 +1036,14 @@ sub student_draw_page {
+@@ -1190,6 +1190,14 @@ sub student_draw_page {
      }
  }
  
@@ -40,7 +40,7 @@ index 6e15af59..cbb49f37 100644
  # process a student copy
  
  sub process_student {
-@@ -1077,6 +1085,9 @@ sub process_student {
+@@ -1231,6 +1239,9 @@ sub process_student {
      for my $page ( $self->student_pages($student) ) {
          $self->student_draw_page( $student, $page );
      }
@@ -48,8 +48,8 @@ index 6e15af59..cbb49f37 100644
 +        $self->draw_empty_page($i+1);
 +    }
  
-     $self->{data}->end_transaction('aOST');
- }
+     if ( $self->{add_corrected} ) {
+         if ( -f $self->{pdf_corrected} ) {
 -- 
-2.34.1
+2.49.0
 

@@ -1,4 +1,4 @@
-From 20c120c57a65eb0ab9203cb347bb78b664b80974 Mon Sep 17 00:00:00 2001
+From f22f952164a12ce2a0306cbc0e65013d2a1108fa Mon Sep 17 00:00:00 2001
 From: Michal Sojka <michal.sojka@cvut.cz>
 Date: Sun, 21 Jan 2018 23:13:00 +0100
 Subject: [PATCH 1/2] AMC-TXT: New global option ShowGroupText
@@ -16,7 +16,7 @@ add group text before and after every question.
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/AMC-perl/AMC/Filter/plain.pm b/AMC-perl/AMC/Filter/plain.pm
-index 5970266d..e0f7d4be 100644
+index 900b85f0..4fcc2869 100644
 --- a/AMC-perl/AMC/Filter/plain.pm
 +++ b/AMC-perl/AMC/Filter/plain.pm
 @@ -63,6 +63,7 @@ sub new {
@@ -43,15 +43,15 @@ index 5970266d..e0f7d4be 100644
          lang                  => '',
          code                  => 0,
          'latex-preambule'     => '',
-@@ -487,7 +490,7 @@ sub read_file {
+@@ -508,7 +511,7 @@ sub read_file {
          if (/^\s*\*([\(\)])(?:\[([^]]*)\])?\s*(.*)/) {
              my $action  = $1;
              my $options = $2;
 -            my $text    = $3;
 +            my $text=$self->{'options'}->{'showgrouptext'} ? $3 : "";
+             $self->value_cleanup( $self->{reader_state}->{follow} );
              debug "Group A=" . printable($action) . " O=" . printable($options);
              my %oo = $self->read_options($options);
-             if ( $action eq '(' ) {
 -- 
-2.34.1
+2.49.0
 
