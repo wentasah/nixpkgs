@@ -651,6 +651,7 @@
   ./services/hardware/nvidia-optimus.nix
   ./services/hardware/openrgb.nix
   ./services/hardware/pcscd.nix
+  ./services/hardware/pid-fan-controller.nix
   ./services/hardware/pommed.nix
   ./services/hardware/power-profiles-daemon.nix
   ./services/hardware/powerstation.nix
@@ -799,6 +800,7 @@
   ./services/misc/domoticz.nix
   ./services/misc/duckdns.nix
   ./services/misc/duckling.nix
+  ./services/misc/dump1090-fa.nix
   ./services/misc/dwm-status.nix
   ./services/misc/dysnomia.nix
   ./services/misc/errbot.nix
@@ -984,6 +986,7 @@
   ./services/monitoring/pgscv.nix
   ./services/monitoring/prometheus/alertmanager-gotify-bridge.nix
   ./services/monitoring/prometheus/alertmanager-irc-relay.nix
+  ./services/monitoring/prometheus/alertmanager-ntfy.nix
   ./services/monitoring/prometheus/alertmanager-webhook-logger.nix
   ./services/monitoring/prometheus/alertmanager.nix
   ./services/monitoring/prometheus/default.nix
