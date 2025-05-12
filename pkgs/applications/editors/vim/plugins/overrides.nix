@@ -120,6 +120,8 @@
   websocat,
   # luau-lsp-nvim dependencies
   luau-lsp,
+  # nvim-vstsl dependencies
+  vtsls,
 }:
 self: super:
 let
@@ -2591,6 +2593,11 @@ in
     nvimSkipModules = "client.client";
   };
 
+  nvim-vtsls = super.nvim-vtsls.overrideAttrs {
+    runtimeDeps = [ vtsls ];
+    dependencies = [ self.nvim-lspconfig ];
+  };
+
   nvzone-menu = super.nvzone-menu.overrideAttrs {
     checkInputs = with self; [
       # Optional integrations
@@ -3344,6 +3351,10 @@ in
       # some leftover from development
       "textcase.plugin.range"
     ];
+  };
+
+  timerly = super.timerly.overrideAttrs {
+    dependencies = [ self.nvzone-volt ];
   };
 
   tmux-complete-vim = super.tmux-complete-vim.overrideAttrs {
