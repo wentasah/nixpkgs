@@ -296,6 +296,16 @@ in
     dependencies = [ self.plenary-nvim ];
   };
 
+  blink-cmp-npm-nvim = super.blink-cmp-npm-nvim.overrideAttrs {
+    nvimSkipModules = [
+      # Test files
+      "blink-cmp-npm.utils.compute_meta_spec"
+      "blink-cmp-npm.utils.generate_doc_spec"
+      "blink-cmp-npm.utils.ignore_version_spec"
+      "blink-cmp-npm.utils.semantic_sort_spec"
+    ];
+  };
+
   blink-emoji-nvim = super.blink-emoji-nvim.overrideAttrs {
     dependencies = [ self.blink-cmp ];
   };
@@ -1768,8 +1778,12 @@ in
   };
 
   mason-nvim = super.mason-nvim.overrideAttrs {
-    # lua/mason-vendor/zzlib/inflate-bwo.lua:15: 'end' expected near '&'
-    nvimSkipModules = "mason-vendor.zzlib.inflate-bwo";
+    nvimSkipModules = [
+      # lua/mason-vendor/zzlib/inflate-bwo.lua:15: 'end' expected near '&'
+      "mason-vendor.zzlib.inflate-bwo"
+      # E5108: Error executing lua ...mplugin-mason.nvim-2025-05-06/lua/mason-test/helpers.lua:7: module 'luassert.spy' not found:
+      "mason-test.helpers"
+    ];
   };
 
   mason-tool-installer-nvim = super.mason-tool-installer-nvim.overrideAttrs {
