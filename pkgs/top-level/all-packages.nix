@@ -351,8 +351,6 @@ with pkgs;
     perlPackages = perl538Packages;
   };
 
-  collision = callPackage ../applications/misc/collision { };
-
   coolercontrol = recurseIntoAttrs (callPackage ../applications/system/coolercontrol { });
 
   copilot-language-server-fhs = copilot-language-server.fhs;
@@ -1124,8 +1122,6 @@ with pkgs;
       enableJavaFX = true;
     };
   };
-
-  memos = callPackage ../servers/memos { };
 
   mkosi = python3Packages.callPackage ../tools/virtualization/mkosi { inherit systemd; };
 
@@ -2375,7 +2371,7 @@ with pkgs;
   patool = with python3Packages; toPythonApplication patool;
 
   pocket-casts = callPackage ../by-name/po/pocket-casts/package.nix {
-    electron = electron_34;
+    electron = electron_35;
   };
 
   pixcat = with python3Packages; toPythonApplication pixcat;
@@ -4236,11 +4232,6 @@ with pkgs;
 
   polaris-web = callPackage ../servers/polaris/web.nix { };
 
-  projectlibre = callPackage ../applications/misc/projectlibre {
-    jre = jre8;
-    jdk = jdk8;
-  };
-
   projectm_3 = libsForQt5.callPackage ../applications/audio/projectm_3 { };
 
   proxmark3 = libsForQt5.callPackage ../tools/security/proxmark3/default.nix { };
@@ -4289,8 +4280,6 @@ with pkgs;
   qarte = libsForQt5.callPackage ../applications/video/qarte { };
 
   qlcplus = libsForQt5.callPackage ../applications/misc/qlcplus { };
-
-  quickbms = pkgsi686Linux.callPackage ../tools/archivers/quickbms { };
 
   qdigidoc = libsForQt5.callPackage ../tools/security/qdigidoc { };
 
@@ -4581,8 +4570,6 @@ with pkgs;
 
   tiled = libsForQt5.callPackage ../applications/editors/tiled { };
 
-  timetrap = callPackage ../applications/office/timetrap { };
-
   tinc = callPackage ../tools/networking/tinc { };
 
   tikzit = libsForQt5.callPackage ../tools/typesetting/tikzit { };
@@ -4691,6 +4678,7 @@ with pkgs;
     # Enable next line for console graphics. Note that it requires `sixel`
     # enabled terminals such as mlterm or xterm -ti 340
     SDL = SDL_sixel;
+    SDL_image = SDL_image.override { SDL = SDL_sixel; };
   };
 
   openconnectPackages = callPackage ../tools/networking/openconnect { };
@@ -4738,8 +4726,6 @@ with pkgs;
   td = callPackage ../tools/misc/td { };
 
   tweet-hs = haskell.lib.compose.justStaticExecutables haskellPackages.tweet-hs;
-
-  tkgate = callPackage ../applications/science/electronics/tkgate/1.x.nix { };
 
   tremor-rs = callPackage ../tools/misc/tremor-rs { };
 
@@ -6561,7 +6547,7 @@ with pkgs;
 
   pypy = pypy2;
   pypy2 = pypy27;
-  pypy3 = pypy310;
+  pypy3 = pypy311;
 
   # Python interpreter that is build with all modules, including tkinter.
   # These are for compatibility and should not be used inside Nixpkgs.
@@ -6633,6 +6619,7 @@ with pkgs;
     python3Minimal
     pypy27
     pypy310
+    pypy311
     ;
 
   # List of extensions with overrides to apply to all Python package sets.
@@ -6650,6 +6637,7 @@ with pkgs;
   pypy27Packages = pypy27.pkgs;
   pypy3Packages = pypy3.pkgs;
   pypy310Packages = pypy310.pkgs;
+  pypy311Packages = pypy311.pkgs;
 
   pythonManylinuxPackages = callPackage ./../development/interpreters/python/manylinux { };
 
@@ -6819,8 +6807,6 @@ with pkgs;
   or1k-newlib = callPackage ../development/misc/or1k/newlib.nix { };
 
   ### DEVELOPMENT / TOOLS
-
-  actiona = libsForQt5.callPackage ../applications/misc/actiona { };
 
   inherit (callPackage ../development/tools/alloy { })
     alloy5
@@ -13203,8 +13189,6 @@ with pkgs;
   libutp = callPackage ../applications/networking/p2p/libutp { };
   libutp_3_4 = callPackage ../applications/networking/p2p/libutp/3.4.nix { };
 
-  ledger-web = callPackage ../applications/office/ledger-web { };
-
   linphone = libsForQt5.callPackage ../applications/networking/instant-messengers/linphone { };
 
   lmms = libsForQt5.callPackage ../applications/audio/lmms {
@@ -13248,8 +13232,6 @@ with pkgs;
   };
 
   mandelbulber = callPackage ../applications/graphics/mandelbulber { };
-
-  mapmap = libsForQt5.callPackage ../applications/video/mapmap { };
 
   mastodon-bot = nodePackages.mastodon-bot;
 
@@ -14680,6 +14662,7 @@ with pkgs;
     # that it requires sixel graphics compatible terminals like mlterm
     # or xterm -ti 340
     SDL = SDL_sixel;
+    SDL_image = SDL_image.override { SDL = SDL_sixel; };
   };
 
   zotero_7 = pkgs.zotero;
@@ -15721,8 +15704,6 @@ with pkgs;
 
   sageWithDoc = sage.override { withDoc = true; };
 
-  suitesparse_4_2 = callPackage ../development/libraries/science/math/suitesparse/4.2.nix { };
-  suitesparse_4_4 = callPackage ../development/libraries/science/math/suitesparse/4.4.nix { };
   suitesparse_5_3 = callPackage ../development/libraries/science/math/suitesparse {
     inherit (llvmPackages) openmp;
   };
@@ -16204,31 +16185,7 @@ with pkgs;
   # this driver ships with pre-compiled 32-bit binary libraries
   cnijfilter_2_80 = pkgsi686Linux.callPackage ../misc/cups/drivers/cnijfilter_2_80 { };
 
-  faust = res.faust2;
-
-  faust2 = callPackage ../applications/audio/faust/faust2.nix { };
-
-  faust2alqt = libsForQt5.callPackage ../applications/audio/faust/faust2alqt.nix { };
-
-  faust2alsa = callPackage ../applications/audio/faust/faust2alsa.nix { };
-
-  faust2csound = callPackage ../applications/audio/faust/faust2csound.nix { };
-
-  faust2sc = callPackage ../applications/audio/faust/faust2sc.nix { };
-
-  faust2firefox = callPackage ../applications/audio/faust/faust2firefox.nix { };
-
-  faust2jack = callPackage ../applications/audio/faust/faust2jack.nix { };
-
-  faust2jackrust = callPackage ../applications/audio/faust/faust2jackrust.nix { };
-
-  faust2jaqt = libsForQt5.callPackage ../applications/audio/faust/faust2jaqt.nix { };
-
-  faust2ladspa = callPackage ../applications/audio/faust/faust2ladspa.nix { };
-
-  faust2lv2 = libsForQt5.callPackage ../applications/audio/faust/faust2lv2.nix { };
-
-  faustlive = callPackage ../applications/audio/faust/faustlive.nix { };
+  faust = faust2;
 
   flashprint = libsForQt5.callPackage ../applications/misc/flashprint { };
 
@@ -16766,6 +16723,9 @@ with pkgs;
     # Note that it requires sixel capable terminals such as mlterm
     # or xterm -ti 340
     SDL = SDL_sixel;
+    SDL_gfx = SDL_gfx.override { SDL = SDL_sixel; };
+    SDL_image = SDL_image.override { SDL = SDL_sixel; };
+    SDL_ttf = SDL_ttf.override { SDL = SDL_sixel; };
   };
 
   yacreader = callPackage ../applications/graphics/yacreader { };
