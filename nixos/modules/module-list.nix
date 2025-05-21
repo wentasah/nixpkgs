@@ -331,6 +331,7 @@
   ./programs/vivid.nix
   ./programs/wavemon.nix
   ./programs/wayland/cardboard.nix
+  ./programs/wayland/gtklock.nix
   ./programs/wayland/hyprland.nix
   ./programs/wayland/hyprlock.nix
   ./programs/wayland/labwc.nix
@@ -603,7 +604,6 @@
   ./services/games/archisteamfarm.nix
   ./services/games/armagetronad.nix
   ./services/games/crossfire-server.nix
-  ./services/games/deliantra-server.nix
   ./services/games/factorio.nix
   ./services/games/freeciv.nix
   ./services/games/mchprs.nix
@@ -713,7 +713,6 @@
   ./services/logging/ulogd.nix
   ./services/logging/vector.nix
   ./services/mail/automx2.nix
-  ./services/mail/clamsmtp.nix
   ./services/mail/cyrus-imap.nix
   ./services/mail/davmail.nix
   ./services/mail/dkimproxy-out.nix
@@ -904,7 +903,6 @@
   ./services/misc/servarr/whisparr.nix
   ./services/misc/serviio.nix
   ./services/misc/sickbeard.nix
-  ./services/misc/signald.nix
   ./services/misc/siproxd.nix
   ./services/misc/snapper.nix
   ./services/misc/soft-serve.nix
@@ -1268,7 +1266,6 @@
   ./services/networking/picosnitch.nix
   ./services/networking/pixiecore.nix
   ./services/networking/pleroma.nix
-  ./services/networking/polipo.nix
   ./services/networking/powerdns.nix
   ./services/networking/pppd.nix
   ./services/networking/pptpd.nix

@@ -432,12 +432,15 @@ mapAliases {
   citra = throw "citra has been removed from nixpkgs, as it has been taken down upstream"; # added 2024-03-04
   citra-nightly = throw "citra-nightly has been removed from nixpkgs, as it has been taken down upstream"; # added 2024-03-04
   citra-canary = throw "citra-canary has been removed from nixpkgs, as it has been taken down upstream"; # added 2024-03-04
+  clean = throw "'clean' has been removed from nixpkgs, as it is unmaintained and broken"; # Added 2025-05-18
   cloog = throw "cloog has been removed from Nixpkgs, as it is unmaintained and obsolete"; # Added 2024-09-13
   cloog_0_18_0 = throw "cloog_0_18_0 has been removed from Nixpkgs, as it is unmaintained and obsolete"; # Added 2024-09-13
   cloogppl = throw "cloogppl has been removed from Nixpkgs, as it is unmaintained and obsolete"; # Added 2024-09-13
+  clamsmtp = throw "'clamsmtp' has been removed as it is unmaintained and broken"; # Added 2025-05-17
   clang-sierraHack = throw "clang-sierraHack has been removed because it solves a problem that no longer seems to exist. Hey, what were you even doing with that thing anyway?"; # Added 2024-10-05
   clang-sierraHack-stdenv = clang-sierraHack; # Added 2024-10-05
   inherit (libsForQt5.mauiPackages) clip; # added 2022-05-17
+  cloudlogoffline = throw "cloudlogoffline has been removed"; # added 2025-05-18
   clwrapperFunction = throw "Lisp packages have been redesigned. See 'lisp-modules' in the nixpkgs manual."; # Added 2024-05-07
   CoinMP = coinmp; # Added 2024-06-12
   collada-dom = opencollada; # added 2024-02-21
@@ -566,8 +569,10 @@ mapAliases {
   ec2-utils = amazon-ec2-utils; # Added 2022-02-01
 
   ecryptfs-helper = throw "'ecryptfs-helper' has been removed, for filesystem-level encryption, use fscrypt"; # Added 2025-04-08
+  edbrowse = throw "'edbrowse' has been removed as it was unmaintained in Nixpkgs"; # Added 2025-05-18
   edUnstable = throw "edUnstable was removed; use ed instead"; # Added 2024-07-01
   edgedb = throw "edgedb replaced to gel because of change of upstream"; # Added 2025-02-24
+  edge-runtime = throw "'edge-runtime' was removed as it was unused, unmaintained, likely insecure and failed to build"; # Added 2025-05-18
   eintopf = lauti; # Project was renamed, added 2025-05-01
   elasticsearch7Plugins = elasticsearchPlugins;
   electronplayer = throw "'electronplayer' has been removed as it had been discontinued upstream since October 2024"; # Added 2024-12-17
@@ -619,6 +624,8 @@ mapAliases {
   erlangR26_odbc_javac = throw "erlangR26_odbc_javac has been removed in favor of erlang_26_odbc_javac"; # added 2024-05-24
 
   erlang_language_platform = throw "erlang_language_platform has been renamed erlang-language-platform"; # added 2025-04-04
+
+  est-sfs = throw "'est-sfs' has been removed as it was unmaintained in Nixpkgs"; # Added 2025-05-18
 
   ethabi = throw "ethabi has been removed due to lack of maintainence upstream and no updates in Nixpkgs"; # Added 2024-07-16
   eww-wayland = lib.warnOnInstantiate "eww now can build for X11 and wayland simultaneously, so `eww-wayland` is deprecated, use the normal `eww` package instead." eww;
@@ -724,7 +731,9 @@ mapAliases {
   gfortran7 = throw "gfortran7 has been removed from Nixpkgs, as it is unmaintained and obsolete"; # Added 2024-11-20
   gfortran8 = throw "gfortran8 has been removed from Nixpkgs, as it is unmaintained and obsolete"; # Added 2024-11-20
   gg = go-graft; # Added 2025-03-07
+  ggobi = throw "'ggobi' has been removed from Nixpkgs, as it is unmaintained and broken"; # Added 2025-05-18
   ghostwriter = makePlasma5Throw "ghostwriter"; # Added 2023-03-18
+  git-annex-utils = throw "'git-annex-utiks' has been removed as it is unmaintained"; # Added 2025-05-18
   git-codeowners = throw "'git-codeowners' has been removed due to lack of upstream maintenance"; # Added 2025-01-25
   gmni = throw "gmni has been removed as it is no longer maintained upstream"; # Added 2025-05-02
   gmp5 = throw "'gmp5' has been removed as it is unmaintained. Consider using 'gmp' instead"; # Added 2024-10-28
@@ -995,6 +1004,7 @@ mapAliases {
   libixp_hg = libixp;
   libjpeg_drop = throw "'libjpeg_drop' has been renamed to/replaced by 'libjpeg_original'"; # Converted to throw 2024-10-17
   liblastfm = throw "'liblastfm' has been renamed to/replaced by 'libsForQt5.liblastfm'"; # Converted to throw 2024-10-17
+  libmp3splt = throw "'libmp3splt' has been removed due to lack of maintenance upstream."; # Added 2025-05-17
   libmx = throw "'libmx' has been removed due to lack of maintenance upstream."; # Added 2024-12-04
   liboop = throw "liboop has been removed as it is unmaintained upstream."; # Added 2024-08-14
   libosmo-sccp = libosmo-sigtran; # Added 2024-12-20
@@ -1135,6 +1145,7 @@ mapAliases {
   lxd-unwrapped = lib.warnOnInstantiate "lxd-unwrapped has been renamed to lxd-unwrapped-lts" lxd-unwrapped-lts; # Added 2024-04-01
   lzma = throw "'lzma' has been renamed to/replaced by 'xz'"; # Converted to throw 2024-10-17
   lzwolf = throw "'lzwolf' has been removed because it's no longer maintained upstream. Consider using 'ecwolf'"; # Added 2025-03-02
+
   ### M ###
 
   ma1sd = throw "ma1sd was dropped as it is unmaintained"; # Added 2024-07-10
@@ -1148,6 +1159,7 @@ mapAliases {
   maligned = throw "maligned was deprecated upstream in favor of x/tools/go/analysis/passes/fieldalignment"; # Added 20204-08-24
   manicode = throw "manicode has been renamed to codebuff"; # Added 2024-12-10
   manta = throw "manta does not support python3, and development has been abandoned upstream"; # Added 2025-03-17
+  manticore = throw "manticore is no longer maintained since 2020, and doesn't build since smlnj-110.99.7.1"; # Added 2025-05-17
 
   maple-mono-NF = throw ''
     maple-mono-NF had been moved to maple-mono.NF.
@@ -1206,6 +1218,7 @@ mapAliases {
   microcodeAmd = microcode-amd; # Added 2024-09-08
   microcodeIntel = microcode-intel; # Added 2024-09-08
   micropad = throw "micropad has been removed, since it was unmaintained and blocked the Electron 27 removal."; # Added 2025-02-24
+  microsoft-edge = throw "microsoft-edge has been removed due to lack of maintenance in nixpkgs"; # Added 2025-05-19
   microsoft_gsl = microsoft-gsl; # Added 2023-05-26
   MIDIVisualizer = midivisualizer; # Added 2024-06-12
   mikutter = throw "'mikutter' has been removed because the package was broken and had no maintainers"; # Added 2024-10-01
@@ -1232,6 +1245,7 @@ mapAliases {
   mongodb-5_0 = throw "mongodb-5_0 has been removed, it's end of life since October 2024"; # Added 2024-10-01
   moz-phab = mozphab; # Added 2022-08-09
   mp3info = throw "'mp3info' has been removed due to lack of maintenance upstream. Consider using 'eartag' or 'tagger' instead"; # Added 2024-09-14
+  mp3splt = throw "'mp3splt' has been removed due to lack of maintenance upstream."; # Added 2025-05-17
   mpc-cli = mpc; # Added 2024-10-14
   mpc_cli = mpc; # Added 2024-10-14
   mpd_clientlib = throw "'mpd_clientlib' has been renamed to/replaced by 'libmpdclient'"; # Converted to throw 2024-10-17
@@ -1317,6 +1331,7 @@ mapAliases {
   newlib-nanoCross = newlib-nano; # Added 2024-09-06
   nix-direnv-flakes = nix-direnv;
   nix-ld-rs = nix-ld; # Added 2024-08-17
+  nix-plugin-pijul = throw "nix-plugin-pijul has been removed due to being discontinued"; # added 2025-05-18
   nix-repl = throw (
     # Added 2018-08-26
     "nix-repl has been removed because it's not maintained anymore, "
@@ -1544,6 +1559,7 @@ mapAliases {
 
   PlistCpp = plistcpp; # Added 2024-01-05
   pocket-updater-utility = pupdate; # Added 2024-01-25
+  polipo = throw "'polipo' has been removed as it is unmaintained upstream"; # Added 2025-05-18
   poppler_utils = poppler-utils; # Added 2025-02-27
   powerline-rs = throw "'powerline-rs' has been removed due to lack of upstream maintenance"; # Added 2025-01-26
   premake3 = throw "'premake3' has been removed since it is unmaintained. Consider using 'premake' instead"; # Added 2025-05-10
@@ -1570,6 +1586,7 @@ mapAliases {
   psensor = throw "'psensor' has been removed due to lack of maintenance upstream. Consider using 'mission-center', 'resources' or 'monitorets' instead"; # Added 2024-09-14
   psstop = throw "'psstop' has been removed because the upstream repo has been archived"; # Added 2025-05-10
   ptask = throw "'ptask' has been removed because its upstream is unavailable"; # Added 2025-05-10
+  purple-signald = throw "'purple-signald' has been removed due to lack of upstream maintenance"; # Added 2025-05-17
   pwndbg = throw "'pwndbg' has been removed due to dependency version incompatibilities that are infeasible to maintain in nixpkgs. Use the downstream flake that pwndbg provides instead: https://github.com/pwndbg/pwndbg"; # Added 2025-02-09
   pxlib = throw "pxlib has been removed due to failing to build and lack of upstream maintenance"; # Added 2025-04-28
   pxview = throw "pxview has been removed due to failing to build and lack of upstream maintenance"; # Added 2025-04-28
@@ -1636,6 +1653,7 @@ mapAliases {
   rftg = throw "'rftg' has been removed due to lack of maintenance upstream."; # Added 2024-12-04
   rigsofrods = rigsofrods-bin; # Added 2023-03-22
   ring-daemon = throw "'ring-daemon' has been renamed to/replaced by 'jami-daemon'"; # Converted to throw 2024-10-17
+  riko4 = throw "'riko4' has been removed as it was unmaintained, failed to build and dependend on outdated libraries"; # Added 2025-05-18
   rippled = throw "rippled has been removed as it was broken and had not been updated since 2022"; # Added 2024-11-25
   rippled-validator-keys-tool = throw "rippled-validator-keys-tool has been removed as it was broken and had not been updated since 2022"; # Added 2024-11-25
   rke2_testing = throw "'rke2_testing' has been removed from nixpkgs as the RKE2 testing channel no longer serves releases"; # Added 2025-06-02
@@ -1690,6 +1708,7 @@ mapAliases {
   serial-unit-testing = throw "'serial-unit-testing' has been removed due to lack of upstream maintenance"; # Added 2025-01-25
   serious-sans = throw "'serious-sans' has been renamed to 'serious-shanns', which is not currently packaged"; # Added 2025-01-26
   session-desktop-appimage = session-desktop;
+  setserial = throw "'setserial' has been removed as it had been abandoned upstream"; # Added 2025-05-18
   sequoia = sequoia-sq; # Added 2023-06-26
   sexp = sexpp; # Added 2023-07-03
   sgrep = throw "'sgrep' has been removed as it was unmaintained upstream since 1998 and broken with gcc 14"; # Added 2025-05-17
@@ -1698,10 +1717,13 @@ mapAliases {
   shell-hist = throw "'shell-hist' has been removed due to lack of upstream maintenance"; # Added 2025-01-25
   shipyard = jumppad; # Added 2023-06-06
   siduck76-st = st-snazzy; # Added 2024-12-24
+  signald = throw "'signald' has been removed due to lack of upstream maintenance"; # Added 2025-05-17
+  signaldctl = throw "'signaldctl' has been removed due to lack of upstream maintenance"; # Added 2025-05-17
   signal-desktop-beta = throw "signal-desktop-beta has been removed to make the signal-desktop package easier to maintain";
   signal-desktop-source = lib.warnOnInstantiate "'signal-desktop-source' is now exposed at 'signal-desktop'." signal-desktop; # Added 2025-04-16
   silc_server = throw "'silc_server' has been removed because it is unmaintained"; # Added 2025-05-12
   silc_client = throw "'silc_client' has been removed because it is unmaintained"; # Added 2025-05-12
+  siproxd = throw "'siproxd' has been as it was unmaintained and incompatible with newer libosip versions"; # Added 2025-05-18
   sheesy-cli = throw "'sheesy-cli' has been removed due to lack of upstream maintenance"; # Added 2025-01-26
   shout = nodePackages.shout; # Added unknown; moved 2024-10-19
   sky = throw "'sky' has been removed because its upstream website disappeared"; # Added 2024-07-21
@@ -1794,6 +1816,7 @@ mapAliases {
   sync = taler-sync; # Added 2024-09-04
   syncthing-cli = throw "'syncthing-cli' has been renamed to/replaced by 'syncthing'"; # Converted to throw 2024-10-17
   syncthingtray-qt6 = syncthingtray; # Added 2024-03-06
+  syncthing-tray = throw "syncthing-tray has been removed because it is broken and unmaintained";
 
   ### T ###
 
@@ -2021,6 +2044,7 @@ mapAliases {
   xineUI = throw "'xineUI' has been renamed to/replaced by 'xine-ui'"; # Converted to throw 2024-10-17
   xlsxgrep = throw "'xlsxgrep' has been dropped due to lack of maintenance."; # Added 2024-11-01
   xmlada = gnatPackages.xmlada; # Added 2024-02-25
+  xmlroff = throw "'xmlroff' has been removed as it is unmaintained and broken"; # Added 2025-05-18
   xmr-stak = throw "xmr-stak has been removed from nixpkgs because it was broken"; # Added 2024-07-15
   xmake-core-sv = throw "'xmake-core-sv' has been removed, use 'libsv' instead"; # Added 2024-10-10
   xournal = throw "'xournal' has been removed due to lack of activity upstream and depending on gnome2. Consider using 'xournalpp' instead."; # Added 2024-12-06
@@ -2126,7 +2150,6 @@ mapAliases {
     purple-matrix
     purple-mm-sms
     purple-plugin-pack
-    purple-signald
     purple-slack
     purple-vk-plugin
     purple-xmpp-http-upload

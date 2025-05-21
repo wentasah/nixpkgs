@@ -1181,8 +1181,8 @@ let
         mktplcRef = {
           name = "vscode-database-client2";
           publisher = "cweijan";
-          version = "8.3.1";
-          hash = "sha256-SLZkuWChkNt4+99kAauDx3Dz3wjnYEfTsFFH/i6ugeo=";
+          version = "8.3.2";
+          hash = "sha256-cBFc8F8FwP7rSWyRTZqi19MihwHE6xNpb4I4O+4zhWs=";
         };
         meta = {
           description = "Database Client For Visual Studio Code";
@@ -1326,8 +1326,8 @@ let
         mktplcRef = {
           publisher = "denoland";
           name = "vscode-deno";
-          version = "3.44.1";
-          hash = "sha256-biYQdt275OpbADEPPvraOPb5omRbQfkOX5+lWbU/kkw=";
+          version = "3.44.2";
+          hash = "sha256-fwQvAqyYXg2oAUXUef9nW/WzZGillx0XRyXd/cMy7Ho=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/denoland.vscode-deno/changelog";
@@ -1587,8 +1587,8 @@ let
           # semver scheme, contrary to preview versions which are listed on
           # the VSCode Marketplace and use a calver scheme. We should avoid
           # using preview versions, because they expire after two weeks.
-          version = "17.0.3";
-          hash = "sha256-jU1N5tJ4V3jzSNW9oE8AH5PRhTmsiIGnu65+IH5NxO0=";
+          version = "17.1.0";
+          hash = "sha256-WPSMf1yLXSDqImpMTxn1eXcSrimVSVjjaXDzFMQ/l0E=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/eamodio.gitlens/changelog";
@@ -2514,8 +2514,8 @@ let
         mktplcRef = {
           name = "Ionide-fsharp";
           publisher = "Ionide";
-          version = "7.25.8";
-          hash = "sha256-/pnLLFj6Iwn14GLGbuc2Ex7IbNmXFiH1Btd12cCGGes=";
+          version = "7.25.10";
+          hash = "sha256-2d12itLc9qBZZ7nQNS/80K46dde2RUKpkWgPwFxogIs=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/Ionide.Ionide-fsharp/changelog";
@@ -3949,8 +3949,8 @@ let
         mktplcRef = {
           name = "prisma";
           publisher = "Prisma";
-          version = "6.7.1";
-          hash = "sha256-qgWCC2aIUGS8XG9E8Z9Ya2BGBmL8RwRcHNdbJJFvPws=";
+          version = "6.8.2";
+          hash = "sha256-jortg6SQId1373+4p3Tbej2Q1oz2UhUf+o8xb4PmOVM=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/Prisma.prisma/changelog";
@@ -4387,8 +4387,8 @@ let
         mktplcRef = {
           publisher = "shopify";
           name = "ruby-lsp";
-          version = "0.9.23";
-          hash = "sha256-toCxWCMun+siVVXH6tjfe71XeAoXyEBiRRR0ViaMDUw=";
+          version = "0.9.24";
+          hash = "sha256-nlPqdn7tOQhr4Z/8N0aHAnkqKtYrpQCzwRGsseT8K5g=";
         };
         meta = {
           description = "VS Code plugin for connecting with the Ruby LSP";
@@ -4675,8 +4675,8 @@ let
         mktplcRef = {
           name = "svelte-vscode";
           publisher = "svelte";
-          version = "109.6.0";
-          hash = "sha256-oyeVtOcTqvcIhG+mq0TmQyOZcp7fENCpy3M7bkaP+N4=";
+          version = "109.8.0";
+          hash = "sha256-T0pNjjeKKX/T1Oc+zvOHu74H4r4F9Ogk5gDV7z0+D9I=";
         };
         meta = {
           changelog = "https://github.com/sveltejs/language-tools/releases";
@@ -4823,6 +4823,8 @@ let
       tecosaur.latex-utilities = callPackage ./tecosaur.latex-utilities { };
 
       tekumara.typos-vscode = callPackage ./tekumara.typos-vscode { };
+
+      teros-technology.teroshdl = callPackage ./teros-technology-teroshdl { };
 
       theangryepicbanana.language-pascal = buildVscodeMarketplaceExtension {
         mktplcRef = {

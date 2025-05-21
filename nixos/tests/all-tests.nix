@@ -994,6 +994,7 @@ in
   orthanc = runTest ./orthanc.nix;
   owncast = handleTest ./owncast.nix { };
   outline = handleTest ./outline.nix { };
+  i18n = runTest ./i18n.nix;
   image-contents = handleTest ./image-contents.nix { };
   openvscode-server = handleTest ./openvscode-server.nix { };
   open-webui = runTest ./open-webui.nix;
@@ -1019,7 +1020,7 @@ in
   paperless = handleTest ./paperless.nix { };
   parsedmarc = handleTest ./parsedmarc { };
   password-option-override-ordering = handleTest ./password-option-override-ordering.nix { };
-  pdns-recursor = handleTest ./pdns-recursor.nix { };
+  pdns-recursor = runTest ./pdns-recursor.nix;
   pds = handleTest ./pds.nix { };
   peerflix = handleTest ./peerflix.nix { };
   peering-manager = handleTest ./web-apps/peering-manager.nix { };

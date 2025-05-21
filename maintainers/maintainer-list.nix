@@ -13973,6 +13973,12 @@
     github = "LogicalOverflow";
     githubId = 5919957;
   };
+  lheintzmann1 = {
+    email = "lheintzmann1@disroot.org";
+    github = "lheintzmann1";
+    githubId = 141759313;
+    name = "Lucas Heintzmann";
+  };
   lhvwb = {
     email = "nathaniel.baxter@gmail.com";
     github = "nathanielbaxter";
@@ -21006,6 +21012,12 @@
     githubId = 807447;
     name = "Robert Scott";
   };
+  Rishabh5321 = {
+    name = "Rishabh Singh";
+    email = "rishabh98818@gmail.com";
+    github = "Rishabh5321";
+    githubId = 40533251;
+  };
   Rishik-Y = {
     name = "Rishik Yalamanchili";
     email = "202301258@daiict.ac.in";
@@ -24613,6 +24625,20 @@
     github = "ctheune";
     githubId = 1220572;
     name = "Christian Theune";
+  };
+  thevar1able = {
+    email = "var1able+nixpkgs@var1able.network";
+    github = "thevar1able";
+    githubId = 875885;
+    name = "Konstantin Bogdanov";
+    keys = [
+      { fingerprint = "3221 7A73 EB95 0E9E E550  36A3 DB39 9448 D9FE 52F1"; }
+    ];
+  };
+  theverygaming = {
+    name = "theverygaming";
+    github = "theverygaming";
+    githubId = 18639279;
   };
   thiagokokada = {
     email = "thiagokokada@gmail.com";

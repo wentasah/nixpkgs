@@ -4532,14 +4532,6 @@ with pkgs;
 
   teamviewer = libsForQt5.callPackage ../applications/networking/remote/teamviewer { };
 
-  inherit
-    (callPackages ../servers/teleport {
-    })
-    teleport_16
-    teleport_17
-    teleport
-    ;
-
   telepresence = callPackage ../tools/networking/telepresence {
     pythonPackages = python3Packages;
   };
@@ -7847,7 +7839,11 @@ with pkgs;
 
   boost = boost187;
 
-  inherit (callPackages ../development/libraries/botan { })
+  inherit
+    (callPackages ../development/libraries/botan {
+      # botan3 only sensibly works with libcxxStdenv when building static binaries
+      stdenv = if stdenv.hostPlatform.isStatic then buildPackages.libcxxStdenv else stdenv;
+    })
     botan2
     botan3
     ;
@@ -9337,6 +9333,7 @@ with pkgs;
 
   inherit
     ({
+      protobuf_31 = callPackage ../development/libraries/protobuf/31.nix { };
       protobuf_30 = callPackage ../development/libraries/protobuf/30.nix { };
       protobuf_29 = callPackage ../development/libraries/protobuf/29.nix { };
       protobuf_28 = callPackage ../development/libraries/protobuf/28.nix { };
@@ -9348,6 +9345,7 @@ with pkgs;
         abseil-cpp = abseil-cpp_202103;
       };
     })
+    protobuf_31
     protobuf_30
     protobuf_29
     protobuf_28
@@ -10274,10 +10272,6 @@ with pkgs;
 
   charybdis = callPackage ../servers/irc/charybdis {
     autoreconfHook = buildPackages.autoreconfHook269;
-  };
-
-  clickhouse = callPackage ../servers/clickhouse {
-    llvmPackages = llvmPackages_16;
   };
 
   clickhouse-cli = with python3Packages; toPythonApplication clickhouse-cli;
@@ -13203,7 +13197,9 @@ with pkgs;
 
   luddite = with python3Packages; toPythonApplication luddite;
 
-  lutris-unwrapped = python3.pkgs.callPackage ../applications/misc/lutris { };
+  lutris-unwrapped = python3.pkgs.callPackage ../applications/misc/lutris {
+    inherit (pkgs) meson;
+  };
   lutris = callPackage ../applications/misc/lutris/fhsenv.nix { };
   lutris-free = lutris.override {
     steamSupport = false;
@@ -14935,15 +14931,6 @@ with pkgs;
 
   cutemaze = qt6Packages.callPackage ../games/cutemaze { };
 
-  deliantra-server = callPackage ../games/deliantra/server.nix {
-    # perl538 defines 'struct object' in sv.h. many conflicts result
-    perl = perl540;
-    perlPackages = perl540Packages;
-  };
-  deliantra-arch = callPackage ../games/deliantra/arch.nix { };
-  deliantra-maps = callPackage ../games/deliantra/maps.nix { };
-  deliantra-data = callPackage ../games/deliantra/data.nix { };
-
   ddnet-server = ddnet.override { buildClient = false; };
 
   duckmarines = callPackage ../games/duckmarines { love = love_0_10; };
@@ -15230,10 +15217,6 @@ with pkgs;
 
   rott-shareware = rott.override {
     buildShareware = true;
-  };
-
-  starsector = callPackage ../games/starsector {
-    openjdk = openjdk17;
   };
 
   scummvm = callPackage ../games/scummvm { };
@@ -16522,8 +16505,6 @@ with pkgs;
   pgadmin4 = callPackage ../tools/admin/pgadmin { };
 
   pgadmin4-desktopmode = callPackage ../tools/admin/pgadmin { server-mode = false; };
-
-  pgmodeler = qt6Packages.callPackage ../applications/misc/pgmodeler { };
 
   philipstv = with python3Packages; toPythonApplication philipstv;
 
