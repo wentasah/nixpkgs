@@ -3065,14 +3065,13 @@ with pkgs;
 
   gibberish-detector = with python3Packages; toPythonApplication gibberish-detector;
 
-  gitlab = callPackage ../applications/version-management/gitlab { };
-  gitlab-ee = callPackage ../applications/version-management/gitlab {
+  gitlab-ee = callPackage ../by-name/gi/gitlab/package.nix {
     gitlabEnterprise = true;
   };
 
   gitlab-triage = callPackage ../applications/version-management/gitlab-triage { };
 
-  gitlab-workhorse = callPackage ../applications/version-management/gitlab/gitlab-workhorse { };
+  gitlab-workhorse = callPackage ../by-name/gi/gitlab/gitlab-workhorse { };
 
   gitqlient = libsForQt5.callPackage ../applications/version-management/gitqlient { };
 
@@ -4071,9 +4070,9 @@ with pkgs;
   };
 
   osl = libsForQt5.callPackage ../development/compilers/osl {
-    libclang = llvmPackages_15.libclang;
-    clang = clang_15;
-    llvm = llvm_15;
+    libclang = llvmPackages_19.libclang;
+    clang = clang_19;
+    llvm = llvm_19;
   };
 
   ossec-agent = callPackage ../tools/security/ossec/agent.nix { };
@@ -4144,6 +4143,8 @@ with pkgs;
   pdd = python3Packages.callPackage ../tools/misc/pdd { };
 
   pdfminer = with python3Packages; toPythonApplication pdfminer-six;
+
+  pdfium-binaries-v8 = pdfium-binaries.override { withV8 = true; };
 
   pgsync = callPackage ../development/tools/database/pgsync { };
 
@@ -11200,6 +11201,8 @@ with pkgs;
   linux_6_12_hardened = linuxKernel.kernels.linux_6_12_hardened;
   linuxPackages_6_13_hardened = linuxKernel.packages.linux_6_13_hardened;
   linux_6_13_hardened = linuxKernel.kernels.linux_6_13_hardened;
+  linuxPackages_6_14_hardened = linuxKernel.packages.linux_6_14_hardened;
+  linux_6_14_hardened = linuxKernel.kernels.linux_6_14_hardened;
 
   # GNU Linux-libre kernels
   linuxPackages-libre = linuxKernel.packages.linux_libre;
@@ -13258,8 +13261,6 @@ with pkgs;
 
   michabo = libsForQt5.callPackage ../applications/misc/michabo { };
 
-  midori = wrapFirefox midori-unwrapped { };
-
   miniaudicle = qt6Packages.callPackage ../applications/audio/miniaudicle { };
 
   minitube = libsForQt5.callPackage ../applications/video/minitube { };
@@ -14474,7 +14475,7 @@ with pkgs;
 
   webcamoid = qt6Packages.callPackage ../applications/video/webcamoid { };
 
-  webcord = callPackage ../by-name/we/webcord/package.nix { electron = electron_35; };
+  webcord = callPackage ../by-name/we/webcord/package.nix { electron = electron_36; };
 
   webcord-vencord = callPackage ../by-name/we/webcord-vencord/package.nix { electron = electron_34; };
 
@@ -16222,8 +16223,6 @@ with pkgs;
     inherit (darwin) sigtool;
   };
 
-  lima-bin = callPackage ../applications/virtualization/lima/bin.nix { };
-
   image_optim = callPackage ../applications/graphics/image_optim { inherit (nodePackages) svgo; };
 
   # using the new configuration style proposal which is unstable
@@ -16282,6 +16281,8 @@ with pkgs;
   mailcore2 = callPackage ../development/libraries/mailcore2 {
     icu = icu71;
   };
+
+  meilisearch_1_11 = callPackage ../by-name/me/meilisearch/package.nix { version = "1.11.3"; };
 
   mongocxx = callPackage ../development/libraries/mongocxx/default.nix { };
 
@@ -16937,5 +16938,9 @@ with pkgs;
 
   rustdesk-flutter = callPackage ../by-name/ru/rustdesk-flutter/package.nix {
     flutter = flutter324;
+  };
+
+  davis = callPackage ../by-name/da/davis/package.nix {
+    php = php83; # https://github.com/tchapi/davis/issues/195
   };
 }
