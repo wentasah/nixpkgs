@@ -420,7 +420,7 @@ in
   ecryptfs = runTest ./ecryptfs.nix;
   fscrypt = runTest ./fscrypt.nix;
   fastnetmon-advanced = runTest ./fastnetmon-advanced.nix;
-  eintopf = runTest ./eintopf.nix;
+  lauti = runTest ./lauti.nix;
   ejabberd = runTest ./xmpp/ejabberd.nix;
   elk = handleTestOn [ "x86_64-linux" ] ./elk.nix { };
   emacs-daemon = runTest ./emacs-daemon.nix;
@@ -714,6 +714,7 @@ in
   kthxbye = runTest ./kthxbye.nix;
   kubernetes = handleTestOn [ "x86_64-linux" ] ./kubernetes { };
   kubo = import ./kubo { inherit recurseIntoAttrs runTest; };
+  lact = runTest ./lact.nix;
   ladybird = runTest ./ladybird.nix;
   languagetool = runTest ./languagetool.nix;
   lanraragi = runTest ./lanraragi.nix;
@@ -1302,6 +1303,7 @@ in
   systemd-escaping = runTest ./systemd-escaping.nix;
   systemd-initrd-bridge = runTest ./systemd-initrd-bridge.nix;
   systemd-initrd-btrfs-raid = runTest ./systemd-initrd-btrfs-raid.nix;
+  systemd-initrd-credentials = runTest ./systemd-initrd-credentials.nix;
   systemd-initrd-luks-fido2 = runTest ./systemd-initrd-luks-fido2.nix;
   systemd-initrd-luks-keyfile = runTest ./systemd-initrd-luks-keyfile.nix;
   systemd-initrd-luks-empty-passphrase = runTest {
