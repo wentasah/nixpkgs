@@ -1166,6 +1166,12 @@
     githubId = 2335822;
     name = "Alexandre Esteves";
   };
+  alexnabokikh = {
+    email = "nabokikh@duck.com";
+    github = "alexnabokikh";
+    githubId = 42908293;
+    name = "Alex Nabokikh";
+  };
   alexnortung = {
     name = "alexnortung";
     email = "alex_nortung@live.dk";
@@ -1330,13 +1336,6 @@
     github = "alxsimon";
     githubId = 9567176;
     name = "Alexis Simon";
-  };
-  alyaeanyx = {
-    email = "alyaeanyx@mailbox.org";
-    github = "alyaeanyx";
-    githubId = 74795488;
-    name = "alyaeanyx";
-    keys = [ { fingerprint = "1F73 8879 5E5A 3DFC E2B3 FA32 87D1 AADC D25B 8DEE"; } ];
   };
   amadaluzia = {
     email = "amad@atl.tools";
@@ -2644,6 +2643,12 @@
     github = "azuwis";
     githubId = 9315;
     name = "Zhong Jianxin";
+  };
+  b-m-f = {
+    email = "maximilian@sodawa.com";
+    github = "b-m-f";
+    githubId = 2843450;
+    name = "Maximilian Ehlers";
   };
   b-rodrigues = {
     email = "bruno@brodrigues.co";
@@ -6876,6 +6881,12 @@
     github = "DominicWrege";
     githubId = 7389000;
     name = "Dominic Wrege";
+  };
+  dwt = {
+    email = "spamfaenger@gmx.de";
+    github = "dwt";
+    githubId = 57199;
+    name = "Martin Häcker";
   };
   dxf = {
     email = "dingxiangfei2009@gmail.com";
@@ -15562,6 +15573,12 @@
     name = "Max Niederman";
     keys = [ { fingerprint = "1DE4 424D BF77 1192 5DC4  CF5E 9AED 8814 81D8 444E"; } ];
   };
+  max06 = {
+    email = "max06.net@outlook.com";
+    github = "max06";
+    githubId = 7556827;
+    name = "Flo";
+  };
   maxbrunet = {
     email = "max@brnt.mx";
     github = "maxbrunet";
@@ -17122,6 +17139,12 @@
     githubId = 1131571;
     name = "naelstrof";
   };
+  naggie = {
+    name = "Cal Bryant";
+    email = "callan.bryant@gmail.com";
+    github = "naggie";
+    githubId = 208440;
+  };
   nagisa = {
     name = "Simonas Kazlauskas";
     email = "nixpkgs@kazlauskas.me";
@@ -18094,8 +18117,10 @@
     github = "numinit";
     githubId = 369111;
     keys = [
-      # >=2025
+      # >=2025, stays in one place
       { fingerprint = "FD28 F9C9 81C5 D78E 56E8  8311 5C3E B94D 198F 1491"; }
+      # >=2025, travels with me
+      { fingerprint = "C48F 475F 30A9 B192 3213  D5D5 C6E2 4809 77B2 F2F4"; }
       # <=2024
       { fingerprint = "190B DA97 F616 DE35 6899  ED17 F819 F1AF 2FC1 C1FF"; }
     ];
@@ -19158,6 +19183,13 @@
     github = "penguwin";
     githubId = 13225611;
     name = "Nicolas Martin";
+  };
+  pentane = {
+    email = "cyclopentane@aidoskyneen.eu";
+    github = "cyclic-pentane";
+    githubId = 74795488;
+    name = "pentane";
+    keys = [ { fingerprint = "4231 75F6 8360 68C8 2ACB AEDA 63F4 EC2F FE55 0874"; } ];
   };
   perchun = {
     name = "Perchun Pak";
@@ -26258,14 +26290,6 @@
     githubId = 230381;
     name = "Daniel Nilsson";
   };
-  vrifox = {
-    email = "vrifox@vrifox.cc";
-    github = "vrifox";
-    githubId = 109021367;
-    keys = [ { fingerprint = "413C 73F0 C5BD 6318 826A  42D9 D400 98E5 B60B 2197"; } ];
-    matrix = "@vri:cozy.town";
-    name = "Vri";
-  };
   vrinek = {
     email = "vrinek@hey.com";
     github = "vrinek";
@@ -27105,6 +27129,12 @@
     github = "yamashitax";
     githubId = 99486674;
     name = "山下";
+  };
+  yanek = {
+    name = "Noé Ksiazek";
+    email = "noe.ksiazek@pm.me";
+    github = "yanek";
+    githubId = 5952366;
   };
   yanganto = {
     name = "Antonio Yang";
