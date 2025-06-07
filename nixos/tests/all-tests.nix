@@ -264,6 +264,7 @@ in
   bpf = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./bpf.nix { };
   bpftune = runTest ./bpftune.nix;
   breitbandmessung = runTest ./breitbandmessung.nix;
+  broadcast-box = runTest ./broadcast-box.nix;
   brscan5 = runTest ./brscan5.nix;
   btrbk = runTest ./btrbk.nix;
   btrbk-doas = runTest ./btrbk-doas.nix;
@@ -410,6 +411,7 @@ in
   drawterm = discoverTests (import ./drawterm.nix);
   drbd = runTest ./drbd.nix;
   druid = handleTestOn [ "x86_64-linux" ] ./druid { };
+  drupal = runTest ./drupal.nix;
   drbd-driver = runTest ./drbd-driver.nix;
   dublin-traceroute = runTest ./dublin-traceroute.nix;
   earlyoom = handleTestOn [ "x86_64-linux" ] ./earlyoom.nix { };
