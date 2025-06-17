@@ -4,6 +4,7 @@
   fetchurl,
   fetchzip,
   quilt,
+  ipv6Support ? true,
 }:
 
 stdenv.mkDerivation rec {
@@ -15,22 +16,30 @@ stdenv.mkDerivation rec {
     sha256 = "171yl9kfm8w7l17dfxild99mbf877a9k5zg8yysgb1j8nz51a1ja";
   };
 
-  patches = [
-    ./remove-setuid.patch
-  ];
-
   debian = fetchzip {
     url = "http://ftp.de.debian.org/debian/pool/main/u/ucspi-tcp/ucspi-tcp_0.88-11.debian.tar.xz";
     sha256 = "0x8h46wkm62dvyj1acsffcl4s06k5zh6139qxib3zzhk716hv5xg";
   };
+
+  patches = lib.optional ipv6Support [
+    (fetchurl {
+      url = "https://salsa.debian.org/debian/ucspi-tcp/-/raw/debian/1%250.88-11/debian/ipv6-support.patch";
+      sha256 = "1hp9svfb2pn7ij37z3axhw4lhx5ckvz3rgxgjz8a5bi2y0v0w3mb";
+    })
+  ];
 
   nativeBuildInputs = [
     quilt
   ];
 
   # Plain upstream tarball doesn't build, apply patches from Debian
-  postPatch = ''
+  prePatch = ''
     QUILT_PATCHES=$debian/patches quilt push -a
+  '';
+
+  postPatch = ''
+    # Remove setuid
+    substituteInPlace hier.c --replace-fail ',02755);' ',0755);'
   '';
 
   # The build system is weird; 'make install' doesn't install anything, instead
@@ -53,6 +62,14 @@ stdenv.mkDerivation rec {
     # run the newly built installer
     ./install
 
+  '' + lib.optionalString ipv6Support ''
+    # Replicate Debian's man install logic (some man pages from
+    # ipv6-support.patch will be overwritten below by
+    # debian/ucspi-tcp-man/*.1).
+    rm -rf "$out/usr/man/man5"  # don't include tcp-environ(5)
+    mv -v "$out"/man/man1/*.1 "$out/share/man/man1/"
+
+  '' + ''
     # Install Debian man pages (upstream has none)
     cp $debian/ucspi-tcp-man/*.1 "$out/share/man/man1"
   '';
