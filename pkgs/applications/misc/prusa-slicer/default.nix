@@ -37,6 +37,7 @@
   ctestCheckHook,
   withSystemd ? lib.meta.availableOn stdenv.hostPlatform systemd,
   systemd,
+  udevCheckHook,
   z3,
   wxGTK-override ? null,
   opencascade-override ? null,
@@ -69,6 +70,13 @@ stdenv.mkDerivation (finalAttrs: {
     rev = "version_${finalAttrs.version}";
   };
 
+  # only applies to prusa slicer because super-slicer overrides *all* patches
+  patches = [
+    # https://github.com/NixOS/nixpkgs/issues/415703
+    # https://gitlab.archlinux.org/archlinux/packaging/packages/prusa-slicer/-/merge_requests/5
+    ./allow_wayland.patch
+  ];
+
   # (not applicable to super-slicer fork)
   postPatch = lib.optionalString (finalAttrs.pname == "prusa-slicer") (
     # Patch required for GCC 14, but breaks on clang
@@ -90,6 +98,7 @@ stdenv.mkDerivation (finalAttrs: {
     pkg-config
     wrapGAppsHook3
     wxGTK-override'
+    udevCheckHook
   ];
 
   buildInputs =
@@ -132,6 +141,8 @@ stdenv.mkDerivation (finalAttrs: {
   strictDeps = true;
 
   separateDebugInfo = true;
+
+  doInstallCheck = true;
 
   # The build system uses custom logic - defined in
   # cmake/modules/FindNLopt.cmake in the package source - for finding the nlopt

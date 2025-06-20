@@ -254,6 +254,7 @@ in
   bittorrent = runTest ./bittorrent.nix;
   blockbook-frontend = runTest ./blockbook-frontend.nix;
   blocky = handleTest ./blocky.nix { };
+  bookstack = runTest ./bookstack.nix;
   boot = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./boot.nix { };
   bootspec = handleTestOn [ "x86_64-linux" ] ./bootspec.nix { };
   boot-stage1 = runTest ./boot-stage1.nix;
@@ -1282,14 +1283,7 @@ in
   swapspace = handleTestOn [ "aarch64-linux" "x86_64-linux" ] ./swapspace.nix { };
   sway = runTest ./sway.nix;
   swayfx = runTest ./swayfx.nix;
-  switchTest = runTest {
-    imports = [ ./switch-test.nix ];
-    defaults.system.switch.enableNg = false;
-  };
-  switchTestNg = runTest {
-    imports = [ ./switch-test.nix ];
-    defaults.system.switch.enableNg = true;
-  };
+  switchTest = runTest ./switch-test.nix;
   sx = runTest ./sx.nix;
   sympa = runTest ./sympa.nix;
   syncthing = runTest ./syncthing.nix;
@@ -1398,6 +1392,7 @@ in
   tinydns = runTest ./tinydns.nix;
   tinyproxy = runTest ./tinyproxy.nix;
   tinywl = runTest ./tinywl.nix;
+  tlsrpt = runTest ./tlsrpt.nix;
   tmate-ssh-server = runTest ./tmate-ssh-server.nix;
   tomcat = runTest ./tomcat.nix;
   tor = runTest ./tor.nix;
@@ -1464,7 +1459,7 @@ in
   vault-postgresql = runTest ./vault-postgresql.nix;
   vaultwarden = discoverTests (import ./vaultwarden.nix);
   vdirsyncer = runTest ./vdirsyncer.nix;
-  vector = handleTest ./vector { };
+  vector = import ./vector { inherit runTest; };
   velocity = runTest ./velocity.nix;
   vengi-tools = runTest ./vengi-tools.nix;
   victoriametrics = handleTest ./victoriametrics { };
