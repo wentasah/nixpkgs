@@ -627,6 +627,8 @@ self: super: with self; {
 
   altgraph = callPackage ../development/python-modules/altgraph { };
 
+  altruistclient = callPackage ../development/python-modules/altruistclient { };
+
   amaranth = callPackage ../development/python-modules/amaranth { };
 
   amaranth-boards = callPackage ../development/python-modules/amaranth-boards { };
@@ -2235,6 +2237,8 @@ self: super: with self; {
 
   calmjs-types = callPackage ../development/python-modules/calmjs-types { };
 
+  calmsize = callPackage ../development/python-modules/calmsize { };
+
   calver = callPackage ../development/python-modules/calver { };
 
   calysto = callPackage ../development/python-modules/calysto { };
@@ -2629,6 +2633,8 @@ self: super: with self; {
   clize = callPackage ../development/python-modules/clize { };
 
   clldutils = callPackage ../development/python-modules/clldutils { };
+
+  cloudcheck = callPackage ../development/python-modules/cloudcheck { };
 
   cloudevents = callPackage ../development/python-modules/cloudevents { };
 
@@ -3927,9 +3933,13 @@ self: super: with self; {
 
   django-pgactivity = callPackage ../development/python-modules/django-pgactivity { };
 
+  django-pghistory = callPackage ../development/python-modules/django-pghistory { };
+
   django-pglock = callPackage ../development/python-modules/django-pglock { };
 
   django-pglocks = callPackage ../development/python-modules/django-pglocks { };
+
+  django-pgtrigger = callPackage ../development/python-modules/django-pgtrigger { };
 
   django-phonenumber-field = callPackage ../development/python-modules/django-phonenumber-field { };
 
@@ -4894,6 +4904,8 @@ self: super: with self; {
 
   fast-histogram = callPackage ../development/python-modules/fast-histogram { };
 
+  fast-simplification = callPackage ../development/python-modules/fast-simplification { };
+
   fastai = callPackage ../development/python-modules/fastai { };
 
   fastapi = callPackage ../development/python-modules/fastapi { };
@@ -4917,6 +4929,8 @@ self: super: with self; {
   fastcrc = callPackage ../development/python-modules/fastcrc { };
 
   fastdiff = callPackage ../development/python-modules/fastdiff { };
+
+  fastdotcom = callPackage ../development/python-modules/fastdotcom { };
 
   fastdownload = callPackage ../development/python-modules/fastdownload { };
 
@@ -6984,6 +6998,8 @@ self: super: with self; {
 
   interruptingcow = callPackage ../development/python-modules/interruptingcow { };
 
+  intervals = callPackage ../development/python-modules/intervals { };
+
   intervaltree = callPackage ../development/python-modules/intervaltree { };
 
   into-dbus-python = callPackage ../development/python-modules/into-dbus-python { };
@@ -7563,6 +7579,8 @@ self: super: with self; {
 
   kalshi-python = callPackage ../development/python-modules/kalshi-python { };
 
+  kanalizer = callPackage ../development/python-modules/kanalizer { };
+
   kanidm = callPackage ../development/python-modules/kanidm { };
 
   kaptan = callPackage ../development/python-modules/kaptan { };
@@ -8088,7 +8106,7 @@ self: super: with self; {
     (p: p.py)
   ];
 
-  libpyfoscam = callPackage ../development/python-modules/libpyfoscam { };
+  libpyfoscamcgi = callPackage ../development/python-modules/libpyfoscamcgi { };
 
   libpysal = callPackage ../development/python-modules/libpysal { };
 
@@ -12293,6 +12311,8 @@ self: super: with self; {
 
   pybase64 = callPackage ../development/python-modules/pybase64 { };
 
+  pybbox = callPackage ../development/python-modules/pybbox { };
+
   pybcj = callPackage ../development/python-modules/pybcj { };
 
   pybids = callPackage ../development/python-modules/pybids { };
@@ -13433,6 +13453,8 @@ self: super: with self; {
 
   pyprusalink = callPackage ../development/python-modules/pyprusalink { };
 
+  pyps4-2ndscreen = callPackage ../development/python-modules/pyps4-2ndscreen { };
+
   pypsrp = callPackage ../development/python-modules/pypsrp { };
 
   pyptlib = callPackage ../development/python-modules/pyptlib { };
@@ -13983,6 +14005,10 @@ self: super: with self; {
 
   pytest-asyncio = callPackage ../development/python-modules/pytest-asyncio { };
 
+  pytest-asyncio-cooperative =
+    callPackage ../development/python-modules/pytest-asyncio-cooperative
+      { };
+
   pytest-asyncio_0_21 = pytest-asyncio.overridePythonAttrs (old: rec {
     version = "0.21.2";
     src = pkgs.fetchFromGitHub {
@@ -14238,6 +14264,8 @@ self: super: with self; {
   pytest-trio = callPackage ../development/python-modules/pytest-trio { };
 
   pytest-twisted = callPackage ../development/python-modules/pytest-twisted { };
+
+  pytest-unmagic = callPackage ../development/python-modules/pytest-unmagic { };
 
   pytest-unordered = callPackage ../development/python-modules/pytest-unordered { };
 
@@ -14802,6 +14830,8 @@ self: super: with self; {
 
   pytorch-lightning = callPackage ../development/python-modules/pytorch-lightning { };
 
+  pytorch-memlab = callPackage ../development/python-modules/pytorch-memlab { };
+
   pytorch-metric-learning = callPackage ../development/python-modules/pytorch-metric-learning { };
 
   pytorch-msssim = callPackage ../development/python-modules/pytorch-msssim { };
@@ -15163,6 +15193,8 @@ self: super: with self; {
   radiotherm = callPackage ../development/python-modules/radiotherm { };
 
   radish-bdd = callPackage ../development/python-modules/radish-bdd { };
+
+  radixtarget = callPackage ../development/python-modules/radixtarget { };
 
   radon = callPackage ../development/python-modules/radon { };
 
@@ -15947,6 +15979,8 @@ self: super: with self; {
   scipp = callPackage ../development/python-modules/scipp { };
 
   scipy = callPackage ../development/python-modules/scipy { };
+
+  scipy-stubs = callPackage ../development/python-modules/scipy-stubs { };
 
   scmrepo = callPackage ../development/python-modules/scmrepo { };
 
@@ -18105,6 +18139,8 @@ self: super: with self; {
   treex = callPackage ../development/python-modules/treex { };
 
   treq = callPackage ../development/python-modules/treq { };
+
+  trevorproxy = callPackage ../development/python-modules/trevorproxy { };
 
   trezor = callPackage ../development/python-modules/trezor { };
 
