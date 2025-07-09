@@ -18,10 +18,12 @@
 with pkgs.lib;
 
 let
+  # TODO: remove when handleTest is gone (make sure nixosTests and nixos/release.nix#tests are unaffected)
+  # TODO: when removing, also deprecate `test` attribute in ../lib/testing/run.nix
   discoverTests =
     val:
     if isAttrs val then
-      if hasAttr "test" val then
+      if (val ? test) then
         callTest val
       else
         mapAttrs (n: s: if n == "passthru" then s else discoverTests s) val
@@ -1277,6 +1279,7 @@ in
   sgt-puzzles = runTest ./sgt-puzzles.nix;
   shadow = runTest ./shadow.nix;
   shadowsocks = handleTest ./shadowsocks { };
+  sharkey = runTest ./web-apps/sharkey.nix;
   shattered-pixel-dungeon = runTest ./shattered-pixel-dungeon.nix;
   shiori = runTest ./shiori.nix;
   signal-desktop = runTest ./signal-desktop.nix;
