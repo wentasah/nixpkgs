@@ -12416,7 +12416,6 @@ with pkgs;
   );
 
   gimp = callPackage ../applications/graphics/gimp/2.0 {
-    autoreconfHook = buildPackages.autoreconfHook269;
     lcms = lcms2;
   };
 
@@ -13313,10 +13312,6 @@ with pkgs;
     ;
 
   taxi-cli = with python3Packages; toPythonApplication taxi;
-
-  msmtp = callPackage ../applications/networking/msmtp {
-    autoreconfHook = buildPackages.autoreconfHook269;
-  };
 
   imapfilter = callPackage ../applications/networking/mailreaders/imapfilter.nix {
     lua = lua5;
