@@ -201,27 +201,15 @@ with pkgs;
     } ../build-support/setup-hooks/add-bin-to-path.sh
   ) { };
 
-  aider-chat = with python312Packages; toPythonApplication aider-chat;
+  aider-chat-with-playwright = aider-chat.withOptional { withPlaywright = true; };
 
-  aider-chat-with-playwright =
-    with python312Packages;
-    toPythonApplication (aider-chat.withOptional { withPlaywright = true; });
+  aider-chat-with-browser = aider-chat.withOptional { withBrowser = true; };
 
-  aider-chat-with-browser =
-    with python312Packages;
-    toPythonApplication (aider-chat.withOptional { withBrowser = true; });
+  aider-chat-with-help = aider-chat.withOptional { withHelp = true; };
 
-  aider-chat-with-help =
-    with python312Packages;
-    toPythonApplication (aider-chat.withOptional { withHelp = true; });
+  aider-chat-with-bedrock = aider-chat.withOptional { withBedrock = true; };
 
-  aider-chat-with-bedrock =
-    with python312Packages;
-    toPythonApplication (aider-chat.withOptional { withBedrock = true; });
-
-  aider-chat-full =
-    with python312Packages;
-    toPythonApplication (aider-chat.withOptional { withAll = true; });
+  aider-chat-full = aider-chat.withOptional { withAll = true; };
 
   autoreconfHook = callPackage (
     {
@@ -394,8 +382,6 @@ with pkgs;
       stdenv = gccStdenv;
     }
   );
-
-  djhtml = python3Packages.callPackage ../development/tools/djhtml { };
 
   dnf-plugins-core = with python3Packages; toPythonApplication dnf-plugins-core;
 
@@ -4289,10 +4275,6 @@ with pkgs;
 
   rsibreak = libsForQt5.callPackage ../applications/misc/rsibreak { };
 
-  rss2email = callPackage ../applications/networking/feedreaders/rss2email {
-    pythonPackages = python3Packages;
-  };
-
   rucio = callPackage ../by-name/ru/rucio/package.nix {
     # Pinned to python 3.12 while python313Packages.future does not evaluate and
     # until https://github.com/CZ-NIC/pyoidc/issues/649 is resolved
@@ -4488,10 +4470,6 @@ with pkgs;
       pkgs = pkgs.__splicedPackages;
     }
   );
-
-  tor = callPackage ../tools/security/tor { };
-
-  torsocks = callPackage ../tools/security/tor/torsocks.nix { };
 
   trackma-curses = trackma.override { withCurses = true; };
 
@@ -9249,7 +9227,6 @@ with pkgs;
       };
       protobuf_27 = callPackage ../development/libraries/protobuf/27.nix { };
       protobuf_25 = callPackage ../development/libraries/protobuf/25.nix { };
-      protobuf_24 = callPackage ../development/libraries/protobuf/24.nix { };
       protobuf_21 = callPackage ../development/libraries/protobuf/21.nix {
         abseil-cpp = abseil-cpp_202103;
       };
@@ -9259,7 +9236,6 @@ with pkgs;
     protobuf_29
     protobuf_27
     protobuf_25
-    protobuf_24
     protobuf_21
     ;
 
@@ -10242,7 +10218,7 @@ with pkgs;
   freshrss-extensions = recurseIntoAttrs (callPackage ../servers/web-apps/freshrss/extensions { });
 
   grafana = callPackage ../servers/monitoring/grafana { };
-  grafanaPlugins = callPackages ../servers/monitoring/grafana/plugins { };
+  grafanaPlugins = recurseIntoAttrs (callPackages ../servers/monitoring/grafana/plugins { });
 
   hasura-cli = callPackage ../servers/hasura/cli.nix { };
 
@@ -11739,8 +11715,6 @@ with pkgs;
 
   qgis = callPackage ../applications/gis/qgis { };
 
-  qmapshack = libsForQt5.callPackage ../applications/gis/qmapshack { };
-
   spatialite-gui = callPackage ../by-name/sp/spatialite-gui/package.nix {
     wxGTK = wxGTK32;
   };
@@ -12183,7 +12157,7 @@ with pkgs;
 
   gnuradio = callPackage ../applications/radio/gnuradio/wrapper.nix {
     unwrapped = callPackage ../applications/radio/gnuradio {
-      python = python311;
+      python = python3;
     };
   };
   gnuradioPackages = lib.recurseIntoAttrs gnuradio.pkgs;
@@ -13717,8 +13691,7 @@ with pkgs;
 
   scantailor-universal = callPackage ../applications/graphics/scantailor/universal.nix { };
 
-  scribus_1_5 = libsForQt5.callPackage ../applications/office/scribus/default.nix { };
-  scribus = scribus_1_5;
+  scribus = callPackage ../applications/office/scribus/default.nix { };
 
   seafile-client = libsForQt5.callPackage ../applications/networking/seafile-client { };
 
@@ -13811,9 +13784,7 @@ with pkgs;
 
   sonic-visualiser = libsForQt5.callPackage ../applications/audio/sonic-visualiser { };
 
-  spek = callPackage ../applications/audio/spek {
-    autoreconfHook = buildPackages.autoreconfHook269;
-  };
+  spek = callPackage ../applications/audio/spek { };
 
   squeezelite-pulse = callPackage ../by-name/sq/squeezelite/package.nix {
     audioBackend = "pulse";
