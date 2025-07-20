@@ -543,8 +543,6 @@ with pkgs;
 
   prefer-remote-fetch = import ../build-support/prefer-remote-fetch;
 
-  opendrop = python3Packages.callPackage ../tools/networking/opendrop { };
-
   pe-bear = libsForQt5.callPackage ../applications/misc/pe-bear { };
 
   magika = with python3Packages; toPythonApplication magika;
@@ -2214,7 +2212,7 @@ with pkgs;
   };
 
   hyprland = callPackage ../by-name/hy/hyprland/package.nix {
-    stdenv = gcc14Stdenv;
+    stdenv = gcc15Stdenv;
   };
 
   hyprpolkitagent = callPackage ../by-name/hy/hyprpolkitagent/package.nix {
@@ -2708,6 +2706,7 @@ with pkgs;
   cudaPackages_12_5 = callPackage ./cuda-packages.nix { cudaMajorMinorVersion = "12.5"; };
   cudaPackages_12_6 = callPackage ./cuda-packages.nix { cudaMajorMinorVersion = "12.6"; };
   cudaPackages_12_8 = callPackage ./cuda-packages.nix { cudaMajorMinorVersion = "12.8"; };
+  cudaPackages_12_9 = callPackage ./cuda-packages.nix { cudaMajorMinorVersion = "12.9"; };
   cudaPackages_12 = cudaPackages_12_8; # Latest supported by cudnn
 
   cudaPackages = recurseIntoAttrs cudaPackages_12;
@@ -3567,8 +3566,6 @@ with pkgs;
   nodePackages = dontRecurseIntoAttrs nodejs.pkgs;
 
   node2nix = nodePackages.node2nix;
-
-  kcollectd = kdePackages.callPackage ../tools/misc/kcollectd { };
 
   ktailctl = kdePackages.callPackage ../applications/networking/ktailctl { };
 
@@ -5895,9 +5892,12 @@ with pkgs;
     ocamlformat_0_26_1
     ;
 
+  inherit (ocaml-ng.ocamlPackages_5_2)
+    ocamlformat_0_26_2
+    ;
+
   inherit (ocamlPackages)
     ocamlformat # latest version
-    ocamlformat_0_26_2
     ocamlformat_0_27_0
     ;
 
@@ -6282,10 +6282,13 @@ with pkgs;
     elixir_1_19
     elixir_1_18
     elixir_1_17
+    elixir-ls
+    ;
+
+  inherit (beam.packages.erlang_26.beamPackages)
     elixir_1_16
     elixir_1_15
     elixir_1_14
-    elixir-ls
     ;
 
   inherit (beam.packages.erlang)
@@ -6864,11 +6867,9 @@ with pkgs;
 
   automake111x = callPackage ../development/tools/misc/automake/automake-1.11.x.nix { };
 
-  automake115x = callPackage ../development/tools/misc/automake/automake-1.15.x.nix { };
-
   automake116x = callPackage ../development/tools/misc/automake/automake-1.16.x.nix { };
 
-  automake117x = callPackage ../development/tools/misc/automake/automake-1.17.x.nix { };
+  automake118x = callPackage ../development/tools/misc/automake/automake-1.18.x.nix { };
 
   bandit = with python3Packages; toPythonApplication bandit;
 
@@ -7233,15 +7234,6 @@ with pkgs;
   );
 
   flow = callPackage ../development/tools/analysis/flow { };
-
-  framac = callPackage ../by-name/fr/framac/package.nix {
-    ocamlPackages = ocaml-ng.ocamlPackages_5_2;
-    why3 = why3.override {
-      version = "1.7.2";
-      coqPackages = coqPackages_8_18;
-      ocamlPackages = ocaml-ng.ocamlPackages_5_2;
-    };
-  };
 
   fswatch = callPackage ../development/tools/misc/fswatch {
     autoreconfHook = buildPackages.autoreconfHook269;
@@ -8484,13 +8476,11 @@ with pkgs;
   json2yaml = haskell.lib.compose.justStaticExecutables haskellPackages.json2yaml;
 
   keybinder = callPackage ../development/libraries/keybinder {
-    automake = automake111x;
     lua = lua5_1;
   };
 
   keybinder3 = callPackage ../development/libraries/keybinder3 {
     gtk3 = if stdenv.hostPlatform.isDarwin then gtk3-x11 else gtk3;
-    automake = automake111x;
   };
 
   krb5 = callPackage ../development/libraries/kerberos/krb5.nix {
@@ -11680,10 +11670,6 @@ with pkgs;
 
   themes = name: callPackage (../data/misc/themes + ("/" + name + ".nix")) { };
 
-  tela-circle-icon-theme = callPackage ../data/icons/tela-circle-icon-theme {
-    inherit (libsForQt5) breeze-icons;
-  };
-
   tex-gyre = callPackages ../data/fonts/tex-gyre { };
 
   tex-gyre-math = callPackages ../data/fonts/tex-gyre-math { };
@@ -12093,8 +12079,6 @@ with pkgs;
     };
   };
 
-  haruna = kdePackages.callPackage ../applications/video/haruna { };
-
   input-leap = qt6Packages.callPackage ../applications/misc/input-leap {
     avahi = avahi.override { withLibdnssdCompat = true; };
   };
@@ -12334,8 +12318,6 @@ with pkgs;
     ];
   };
 
-  firefox_decrypt = python3Packages.callPackage ../tools/security/firefox_decrypt { };
-
   floorp-unwrapped = import ../applications/networking/browsers/floorp {
     inherit
       stdenv
@@ -12520,10 +12502,6 @@ with pkgs;
       haskellPackages.hledger-web;
   hledger-utils = with python3.pkgs; toPythonApplication hledger-utils;
 
-  hollywood = callPackage ../applications/misc/hollywood {
-    inherit (python3Packages) pygments;
-  };
-
   hovercraft = python3Packages.callPackage ../applications/misc/hovercraft { };
 
   hpack = haskell.lib.compose.justStaticExecutables haskellPackages.hpack;
@@ -12539,8 +12517,6 @@ with pkgs;
   huggle = libsForQt5.callPackage ../applications/misc/huggle { };
 
   hushboard = python3.pkgs.callPackage ../applications/audio/hushboard { };
-
-  hydrogen = qt5.callPackage ../applications/audio/hydrogen { };
 
   hyperion-ng = libsForQt5.callPackage ../applications/video/hyperion-ng { };
 
@@ -12835,8 +12811,6 @@ with pkgs;
   klee = callPackage ../applications/science/logic/klee {
     llvmPackages = llvmPackages_13;
   };
-
-  kmetronome = qt6Packages.callPackage ../applications/audio/kmetronome { };
 
   kmplayer = libsForQt5.callPackage ../applications/video/kmplayer { };
 
@@ -14755,8 +14729,6 @@ with pkgs;
 
   garden-of-coloured-lights = callPackage ../games/garden-of-coloured-lights { allegro = allegro4; };
 
-  gcompris = kdePackages.callPackage ../games/gcompris { };
-
   gl-gsync-demo = callPackage ../games/gl-gsync-demo {
     libXNVCtrl = linuxPackages.nvidia_x11.settings.libXNVCtrl;
   };
@@ -15476,6 +15448,21 @@ with pkgs;
   };
 
   inherit
+    (callPackage ./rocq-packages.nix {
+      inherit (ocaml-ng)
+        ocamlPackages_4_14
+        ;
+    })
+    mkRocqPackages
+    rocqPackages_9_0
+    rocq-core_9_0
+    rocqPackages_9_1
+    rocq-core_9_1
+    rocqPackages
+    rocq-core
+    ;
+
+  inherit
     (callPackage ./coq-packages.nix {
       inherit (ocaml-ng)
         ocamlPackages_4_05
@@ -15483,6 +15470,11 @@ with pkgs;
         ocamlPackages_4_10
         ocamlPackages_4_12
         ocamlPackages_4_14
+        ;
+      inherit
+        rocqPackages_9_0
+        rocqPackages_9_1
+        rocqPackages
         ;
     })
     mkCoqPackages
@@ -15524,21 +15516,6 @@ with pkgs;
     coq_9_1
     coqPackages
     coq
-    ;
-
-  inherit
-    (callPackage ./rocq-packages.nix {
-      inherit (ocaml-ng)
-        ocamlPackages_4_14
-        ;
-    })
-    mkRocqPackages
-    rocqPackages_9_0
-    rocq-core_9_0
-    rocqPackages_9_1
-    rocq-core_9_1
-    rocqPackages
-    rocq-core
     ;
 
   coq-kernel = callPackage ../applications/editors/jupyter-kernels/coq { };
