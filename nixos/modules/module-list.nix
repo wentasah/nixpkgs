@@ -779,7 +779,6 @@
   ./services/matrix/mautrix-telegram.nix
   ./services/matrix/mautrix-whatsapp.nix
   ./services/matrix/mjolnir.nix
-  ./services/matrix/mx-puppet-discord.nix
   ./services/matrix/pantalaimon.nix
   ./services/matrix/synapse-auto-compressor.nix
   ./services/matrix/synapse.nix
@@ -1843,6 +1842,8 @@
   ./system/boot/uvesafb.nix
   ./system/boot/zram-as-tmp.nix
   ./system/etc/etc-activation.nix
+  ./system/service/systemd/system.nix
+  ./system/service/systemd/user.nix
   ./tasks/auto-upgrade.nix
   ./tasks/bcache.nix
   ./tasks/cpu-freq.nix

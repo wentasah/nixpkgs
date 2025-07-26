@@ -65,11 +65,6 @@ stdenv.mkDerivation (finalAttrs: {
     "GCC_PP=${stdenv.cc.targetPrefix}c++"
   ];
 
-  patches = [
-    ./0001-AMC-TXT-New-global-option-ShowGroupText.patch
-    ./0002-Test-8-page-alignment.patch
-  ];
-
   preFixup = ''
     makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
   '';
@@ -109,41 +104,40 @@ stdenv.mkDerivation (finalAttrs: {
     gobject-introspection
   ];
 
-  buildInputs =
-    [
-      cairo
-      cairo.dev
-      dblatex
-      gnumake
-      graphicsmagick
-      gsettings-desktop-schemas
-      gtk3
-      hicolor-icon-theme
-      libnotify
-      librsvg
-      libxslt
-      netpbm
-      opencv
-      pango
-      poppler
-    ]
-    ++ (with perlPackages; [
-      perl
-      ArchiveZip
-      Cairo
-      CairoGObject
-      DBDSQLite
-      DBI
-      Glib
-      GlibObjectIntrospection
-      Gtk3
-      LocaleGettext
-      PerlMagick
-      TextCSV
-      XMLParser
-      XMLSimple
-      XMLWriter
-    ]);
+  buildInputs = [
+    cairo
+    cairo.dev
+    dblatex
+    gnumake
+    graphicsmagick
+    gsettings-desktop-schemas
+    gtk3
+    hicolor-icon-theme
+    libnotify
+    librsvg
+    libxslt
+    netpbm
+    opencv
+    pango
+    poppler
+  ]
+  ++ (with perlPackages; [
+    perl
+    ArchiveZip
+    Cairo
+    CairoGObject
+    DBDSQLite
+    DBI
+    Glib
+    GlibObjectIntrospection
+    Gtk3
+    LocaleGettext
+    PerlMagick
+    TextCSV
+    XMLParser
+    XMLSimple
+    XMLWriter
+  ]);
 
   passthru = {
     tlType = "run";

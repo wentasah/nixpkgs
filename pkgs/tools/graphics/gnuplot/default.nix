@@ -32,8 +32,6 @@
   qttools,
   qtbase,
   qtsvg,
-  enableInfo ? true,
-  emacs,
 }:
 
 assert libX11 != null -> (fontconfig != null && gnused != null && coreutils != null);
@@ -49,54 +47,48 @@ in
     sha256 = "sha256-7FLjr4xAg9RTgVKz8T20f20pkpo/bs7FNlyDTnfyUas=";
   };
 
-  outputs = [ "out" ] ++ lib.optional enableInfo "info";
+  nativeBuildInputs = [
+    makeWrapper
+    pkg-config
+    texinfo
+  ]
+  ++ lib.optional withQt qttools;
 
-  nativeBuildInputs =
-    [
-      makeWrapper
-      pkg-config
-      texinfo
-    ]
-    ++ lib.optional withQt qttools
-    ++ lib.optional enableInfo emacs;
-
-  buildInputs =
-    [
-      cairo
-      gd
-      libcerf
-      pango
-      readline
-      zlib
-    ]
-    ++ lib.optional withTeXLive texliveSmall
-    ++ lib.optional withLua lua
-    ++ lib.optional withCaca libcaca
-    ++ lib.optionals withX [
-      libX11
-      libXpm
-      libXt
-      libXaw
-    ]
-    ++ lib.optionals withQt [
-      qtbase
-      qtsvg
-    ]
-    ++ lib.optional withWxGTK wxGTK32;
+  buildInputs = [
+    cairo
+    gd
+    libcerf
+    pango
+    readline
+    zlib
+  ]
+  ++ lib.optional withTeXLive texliveSmall
+  ++ lib.optional withLua lua
+  ++ lib.optional withCaca libcaca
+  ++ lib.optionals withX [
+    libX11
+    libXpm
+    libXt
+    libXaw
+  ]
+  ++ lib.optionals withQt [
+    qtbase
+    qtsvg
+  ]
+  ++ lib.optional withWxGTK wxGTK32;
 
   postPatch = ''
     # lrelease is in qttools, not in qtbase.
     sed -i configure -e 's|''${QT5LOC}/lrelease|lrelease|'
   '';
 
-  configureFlags =
-    [
-      (if withX then "--with-x" else "--without-x")
-      (if withQt then "--with-qt=qt5" else "--without-qt")
-      (if aquaterm then "--with-aquaterm" else "--without-aquaterm")
-    ]
-    ++ lib.optional withCaca "--with-caca"
-    ++ lib.optional withTeXLive "--with-texdir=${placeholder "out"}/share/texmf/tex/latex/gnuplot";
+  configureFlags = [
+    (if withX then "--with-x" else "--without-x")
+    (if withQt then "--with-qt=qt5" else "--without-qt")
+    (if aquaterm then "--with-aquaterm" else "--without-aquaterm")
+  ]
+  ++ lib.optional withCaca "--with-caca"
+  ++ lib.optional withTeXLive "--with-texdir=${placeholder "out"}/share/texmf/tex/latex/gnuplot";
 
   CXXFLAGS = lib.optionalString (stdenv.hostPlatform.isDarwin && withQt) "-std=c++11";
 
@@ -126,8 +118,6 @@ in
   ];
 
   enableParallelBuilding = true;
-
-  installTargets = [ "install" ] ++ lib.optional enableInfo "install-info";
 
   meta = with lib; {
     homepage = "http://www.gnuplot.info/";
