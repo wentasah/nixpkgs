@@ -2170,6 +2170,8 @@ self: super: with self; {
 
   buildcatrust = callPackage ../development/python-modules/buildcatrust { };
 
+  buildstream-plugins = callPackage ../development/python-modules/buildstream-plugins { };
+
   bump-my-version = callPackage ../development/python-modules/bump-my-version { };
 
   bump2version = callPackage ../development/python-modules/bump2version { };
@@ -4865,13 +4867,6 @@ self: super: with self; {
 
   f3d = toPythonModule (
     pkgs.f3d.override {
-      withPythonBinding = true;
-      python3Packages = self;
-    }
-  );
-
-  f3d_egl = toPythonModule (
-    pkgs.f3d_egl.override {
       withPythonBinding = true;
       python3Packages = self;
     }
@@ -10484,6 +10479,8 @@ self: super: with self; {
 
   nskeyedunarchiver = callPackage ../development/python-modules/nskeyedunarchiver { };
 
+  nsw-fuel-api-client = callPackage ../development/python-modules/nsw-fuel-api-client { };
+
   nsz = callPackage ../development/python-modules/nsz { };
 
   ntc-templates = callPackage ../development/python-modules/ntc-templates { };
@@ -11937,8 +11934,6 @@ self: super: with self; {
 
   prison = callPackage ../development/python-modules/prison { };
 
-  private-gpt = callPackage ../development/python-modules/private-gpt { };
-
   process-tests = callPackage ../development/python-modules/process-tests { };
 
   procmon-parser = callPackage ../development/python-modules/procmon-parser { };
@@ -13275,6 +13270,8 @@ self: super: with self; {
 
   pymongo-inmemory = callPackage ../development/python-modules/pymongo-inmemory { };
 
+  pymonoprice = callPackage ../development/python-modules/pymonoprice { };
+
   pymoo = callPackage ../development/python-modules/pymoo { };
 
   pymorphy2 = callPackage ../development/python-modules/pymorphy2 { };
@@ -14575,6 +14572,8 @@ self: super: with self; {
   python-izone = callPackage ../development/python-modules/python-izone { };
 
   python-jenkins = callPackage ../development/python-modules/python-jenkins { };
+
+  python-join-api = callPackage ../development/python-modules/python-join-api { };
 
   python-jose = callPackage ../development/python-modules/python-jose { };
 
@@ -17150,6 +17149,8 @@ self: super: with self; {
 
   squarify = callPackage ../development/python-modules/squarify { };
 
+  srctools = callPackage ../development/python-modules/srctools { };
+
   sre-yield = callPackage ../development/python-modules/sre-yield { };
 
   srp = callPackage ../development/python-modules/srp { };
@@ -19389,12 +19390,7 @@ self: super: with self; {
 
   vtjp = callPackage ../development/python-modules/vtjp { };
 
-  vtk = toPythonModule (
-    pkgs.vtk_9.override {
-      inherit python;
-      enablePython = true;
-    }
-  );
+  vtk = toPythonModule (pkgs.vtk-full.override { python3Packages = self; });
 
   vttlib = callPackage ../development/python-modules/vttlib { };
 
@@ -19665,6 +19661,8 @@ self: super: with self; {
   winacl = callPackage ../development/python-modules/winacl { };
 
   winsspi = callPackage ../development/python-modules/winsspi { };
+
+  wirelesstagpy = callPackage ../development/python-modules/wirelesstagpy { };
 
   wirerope = callPackage ../development/python-modules/wirerope { };
 

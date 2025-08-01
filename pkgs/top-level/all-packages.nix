@@ -2112,8 +2112,6 @@ with pkgs;
     waylandSupport = !stdenv.hostPlatform.isDarwin;
   };
 
-  f3d_egl = f3d.override { vtk_9 = vtk_9_egl; };
-
   fast-cli = nodePackages.fast-cli;
 
   ### TOOLS/TYPESETTING/TEX
@@ -4080,9 +4078,6 @@ with pkgs;
   };
 
   pfstools = libsForQt5.callPackage ../tools/graphics/pfstools { };
-
-  piper-train = callPackage ../tools/audio/piper/train.nix { };
-  piper-tts = callPackage ../tools/audio/piper { };
 
   phosh = callPackage ../applications/window-managers/phosh { };
 
@@ -6847,23 +6842,17 @@ with pkgs;
   electron-source = callPackage ../development/tools/electron { };
 
   inherit (callPackages ../development/tools/electron/binary { })
-    electron_33-bin
-    electron_34-bin
     electron_35-bin
     electron_36-bin
     electron_37-bin
     ;
 
   inherit (callPackages ../development/tools/electron/chromedriver { })
-    electron-chromedriver_33
-    electron-chromedriver_34
     electron-chromedriver_35
     electron-chromedriver_36
     electron-chromedriver_37
     ;
 
-  electron_33 = electron_33-bin;
-  electron_34 = electron_34-bin;
   electron_35 =
     if lib.meta.availableOn stdenv.hostPlatform electron-source.electron_35 then
       electron-source.electron_35
@@ -9635,17 +9624,19 @@ with pkgs;
     wine = wineWowPackages.staging;
   };
 
-  vtk_9 = libsForQt5.callPackage ../development/libraries/vtk/9.x.nix {
-    stdenv = if stdenv.cc.isClang then llvmPackages_17.stdenv else stdenv;
+  inherit (callPackage ../development/libraries/vtk { }) vtk_9_5;
+
+  vtk = vtk_9_5;
+
+  vtk-full = vtk.override {
+    qtVersion = "6";
+    mpiSupport = true;
+    pythonSupport = true;
   };
 
-  vtk_9_withQt5 = vtk_9.override { enableQt = true; };
+  vtkWithQt5 = vtk.override { qtVersion = "5"; };
 
-  vtk = vtk_9;
-
-  vtk_9_egl = vtk_9.override { enableEgl = true; };
-
-  vtkWithQt5 = vtk_9_withQt5;
+  vtkWithQt6 = vtk.override { qtVersion = "6"; };
 
   vulkan-caps-viewer = libsForQt5.callPackage ../tools/graphics/vulkan-caps-viewer { };
 
@@ -12188,7 +12179,7 @@ with pkgs;
   };
 
   buildMozillaMach =
-    opts: callPackage (import ../applications/networking/browsers/firefox/common.nix opts) { };
+    opts: callPackage (import ../build-support/build-mozilla-mach/default.nix opts) { };
 
   firefox-unwrapped = import ../applications/networking/browsers/firefox/packages/firefox.nix {
     inherit
@@ -12806,8 +12797,6 @@ with pkgs;
 
   kubeval-schema = callPackage ../applications/networking/cluster/kubeval/schema.nix { };
 
-  kubernetes = callPackage ../applications/networking/cluster/kubernetes { };
-  kubectl = callPackage ../applications/networking/cluster/kubernetes/kubectl.nix { };
   kubectl-convert = kubectl.convert;
 
   kubectl-view-allocations =
@@ -13067,6 +13056,7 @@ with pkgs;
 
   inherit (mopidyPackages)
     mopidy
+    mopidy-listenbrainz
     mopidy-bandcamp
     mopidy-iris
     mopidy-jellyfin
@@ -14918,11 +14908,7 @@ with pkgs;
   springLobby = callPackage ../games/spring/springlobby.nix { };
 
   steam-run = steam.run;
-
-  # This exists so Hydra tries to build all of Steam's dependencies.
-  steam-fhsenv-without-steam = steam.override { steam-unwrapped = null; };
-
-  steam-run-free = steam-fhsenv-without-steam.run;
+  steam-run-free = steam.run-free;
 
   steamback = python3.pkgs.callPackage ../tools/games/steamback { };
 
@@ -16054,7 +16040,7 @@ with pkgs;
     );
 
   nix-eval-jobs = callPackage ../tools/package-management/nix-eval-jobs {
-    nix = nixVersions.nix_2_29;
+    nix = nixVersions.nix_2_30;
   };
 
   nix-delegate = haskell.lib.compose.justStaticExecutables haskellPackages.nix-delegate;

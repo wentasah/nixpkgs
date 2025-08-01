@@ -3520,6 +3520,12 @@
     githubId = 33910565;
     name = "Abdallah Gamal";
   };
+  bohanubis = {
+    email = "BK_anubis_GG@proton.me";
+    name = "bohanubis";
+    github = "bohanubis";
+    githubId = 77834479;
+  };
   bohreromir = {
     github = "bohreromir";
     githubId = 40412303;
@@ -9647,6 +9653,12 @@
     github = "guibou";
     githubId = 9705357;
     name = "Guillaume Bouchard";
+  };
+  guilhermenl = {
+    email = "acc.guilhermenl@gmail.com";
+    github = "guilherme-n-l";
+    githubId = 95086304;
+    name = "Guilherme Lima";
   };
   GuillaumeDesforges = {
     email = "aceus02@gmail.com";
@@ -26237,6 +26249,12 @@
     github = "undefined-moe";
     githubId = 29992205;
     keys = [ { fingerprint = "6684 4E7D D213 C75D 8828  6215 C714 A58B 6C1E 0F52"; } ];
+  };
+  ungeskriptet = {
+    name = "David Wronek";
+    email = "nix@david-w.eu";
+    github = "ungeskriptet";
+    githubId = 40729975;
   };
   unhammer = {
     email = "unhammer@fsfe.org";
