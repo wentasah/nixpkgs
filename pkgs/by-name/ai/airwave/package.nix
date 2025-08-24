@@ -2,7 +2,7 @@
   lib,
   multiStdenv,
   fetchFromGitHub,
-  wine,
+  wineWowPackages,
   cmake,
   makeWrapper,
   file,
@@ -12,27 +12,18 @@
 }:
 
 let
+  wine-wow64 = wineWowPackages.stableFull;
+in
+multiStdenv.mkDerivation (finalAttrs: {
+  pname = "airwave";
   version = "1.3.3";
 
-  airwave-src = fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "phantom-code";
     repo = "airwave";
-    rev = version;
-    sha256 = "1ban59skw422mak3cp57lj27hgq5d3a4f6y79ysjnamf8rpz9x4s";
+    tag = finalAttrs.version;
+    hash = "sha256-mvT0b0auKiu1T8cbR9RoBT94hKSnXDamqkIQPnUqVq0=";
   };
-
-  wine-wow64 = wine.override {
-    wineRelease = "stable";
-    wineBuild = "wineWow";
-  };
-
-in
-
-multiStdenv.mkDerivation {
-  pname = "airwave";
-  inherit version;
-
-  src = airwave-src;
 
   nativeBuildInputs = [
     cmake
@@ -57,7 +48,7 @@ multiStdenv.mkDerivation {
     # For airwave-host-32.exe.so, point wineg++ to 32-bit versions of
     # these libraries, as $NIX_LDFLAGS contains only 64-bit ones.
     substituteInPlace src/host/CMakeLists.txt --replace '-m32' \
-      '-m32 -L${wine-wow64}/lib -L${wine-wow64}/lib/wine -L${multiStdenv.cc.libc.out}/lib/32'
+      '-m32 -L${lib.getLib wine-wow64}/lib -L${lib.getLib wine-wow64}/lib/wine -L${lib.getLib multiStdenv.cc.libc}/lib/32'
   '';
 
   # libstdc++.so link gets lost in 64-bit executables during
@@ -73,8 +64,8 @@ multiStdenv.mkDerivation {
     mv $out/bin $out/libexec
     mkdir $out/bin
     mv $out/libexec/airwave-manager $out/bin
-    wrapProgram $out/libexec/airwave-host-32.exe --set WINELOADER ${wine-wow64}/bin/wine
-    wrapProgram $out/libexec/airwave-host-64.exe --set WINELOADER ${wine-wow64}/bin/wine64
+    wrapProgram $out/libexec/airwave-host-32.exe --set WINELOADER ${lib.getExe' wine-wow64 "wine"}
+    wrapProgram $out/libexec/airwave-host-64.exe --set WINELOADER ${lib.getExe' wine-wow64 "wine64"}
   '';
 
   meta = {
@@ -93,4 +84,4 @@ multiStdenv.mkDerivation {
     maintainers = with lib.maintainers; [ michalrus ];
     hydraPlatforms = [ ];
   };
-}
+})
