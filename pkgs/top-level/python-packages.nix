@@ -8442,8 +8442,6 @@ self: super: with self; {
 
   llama-index = callPackage ../development/python-modules/llama-index { };
 
-  llama-index-agent-openai = callPackage ../development/python-modules/llama-index-agent-openai { };
-
   llama-index-cli = callPackage ../development/python-modules/llama-index-cli { };
 
   llama-index-core = callPackage ../development/python-modules/llama-index-core { };
@@ -8500,14 +8498,6 @@ self: super: with self; {
 
   llama-index-multi-modal-llms-openai =
     callPackage ../development/python-modules/llama-index-multi-modal-llms-openai
-      { };
-
-  llama-index-program-openai =
-    callPackage ../development/python-modules/llama-index-program-openai
-      { };
-
-  llama-index-question-gen-openai =
-    callPackage ../development/python-modules/llama-index-question-gen-openai
       { };
 
   llama-index-readers-database =
@@ -14407,6 +14397,8 @@ self: super: with self; {
 
   pytest-plt = callPackage ../development/python-modules/pytest-plt { };
 
+  pytest-plus = callPackage ../development/python-modules/pytest-plus { };
+
   pytest-pook = callPackage ../development/python-modules/pytest-pook { };
 
   pytest-postgresql = callPackage ../development/python-modules/pytest-postgresql { };
@@ -19274,8 +19266,6 @@ self: super: with self; {
   unidic-lite = callPackage ../development/python-modules/unidic-lite { };
 
   unidiff = callPackage ../development/python-modules/unidiff { };
-
-  unifi = callPackage ../development/python-modules/unifi { };
 
   unifi-ap = callPackage ../development/python-modules/unifi-ap { };
 
