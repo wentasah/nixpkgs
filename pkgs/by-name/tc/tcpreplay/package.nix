@@ -17,11 +17,11 @@ stdenv.mkDerivation rec {
 
   buildInputs = [ libpcap ];
 
-  # Allow having different prefix for header files (libpcap) and
-  # libraries (libpcap.lib)
+  # Allow having different prefix for header files (default output
+  # "out") and libraries ("lib" output)
   postPatch = ''
     substituteInPlace configure \
-      --replace-fail 'ls ''${testdir}/$dir/libpcap' 'ls ${libpcap.lib}/$dir/libpcap'
+      --replace-fail 'ls ''${testdir}/$dir/libpcap' 'ls ${lib.getLib libpcap}/$dir/libpcap'
   '';
 
   configureFlags = [
