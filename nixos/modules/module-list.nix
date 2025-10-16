@@ -66,6 +66,7 @@
   ./hardware/decklink.nix
   ./hardware/device-tree.nix
   ./hardware/digitalbitbox.nix
+  ./hardware/facter
   ./hardware/flipperzero.nix
   ./hardware/flirc.nix
   ./hardware/fw-fanctrl.nix
@@ -1487,6 +1488,7 @@
   ./services/security/tor.nix
   ./services/security/torify.nix
   ./services/security/torsocks.nix
+  ./services/security/tsidp.nix
   ./services/security/usbguard.nix
   ./services/security/vault-agent.nix
   ./services/security/vault.nix
@@ -1571,6 +1573,7 @@
   ./services/web-apps/dex.nix
   ./services/web-apps/discourse.nix
   ./services/web-apps/documize.nix
+  ./services/web-apps/docuseal.nix
   ./services/web-apps/dokuwiki.nix
   ./services/web-apps/dolibarr.nix
   ./services/web-apps/drupal.nix
