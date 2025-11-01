@@ -4254,6 +4254,11 @@
     githubId = 498906;
     name = "Karolis Stasaitis";
   };
+  carlostome = {
+    name = "Carlos Tomé Cortiñas";
+    github = "carlostome";
+    githubId = 2206578;
+  };
   carlsverre = {
     email = "accounts@carlsverre.com";
     github = "carlsverre";
@@ -5233,12 +5238,6 @@
     github = "corngood";
     githubId = 3077118;
     name = "David McFarland";
-  };
-  coroa = {
-    email = "jonas@chaoflow.net";
-    github = "coroa";
-    githubId = 2552981;
-    name = "Jonas Hörsch";
   };
   costrouc = {
     email = "chris.ostrouchov@gmail.com";
@@ -17317,6 +17316,17 @@
     githubId = 7831184;
     name = "John Mercier";
   };
+  mochienya = {
+    name = "mochienya";
+    github = "mochienya";
+    githubId = 187453775;
+    matrix = "@mochienya:matrix.org";
+    keys = [
+      {
+        fingerprint = "7A49 5110 84F4 EAF1 BE30  5CF0 CC3B E964 564F 9554";
+      }
+    ];
+  };
   mockersf = {
     email = "francois.mockers@vleue.com";
     github = "mockersf";
@@ -18045,6 +18055,12 @@
     name = "Nasir Hussain";
     keys = [ { fingerprint = "7A10 AB8E 0BEC 566B 090C  9BE3 D812 6E55 9CE7 C35D"; } ];
   };
+  nasrally = {
+    email = "suffer.ring@ya.ru";
+    github = "nasrally";
+    githubId = 50599445;
+    name = "Nikita Grishko";
+  };
   nat-418 = {
     github = "nat-418";
     githubId = 93013864;
@@ -18715,6 +18731,12 @@
     name = "Noah Gitsham";
     github = "noahgitsham";
     githubId = 73707948;
+  };
+  nobbele = {
+    name = "nobbele";
+    email = "realnobbele@gmail.com";
+    github = "nobbele";
+    githubId = 17962514;
   };
   nobbz = {
     name = "Norbert Melzer";
@@ -29024,6 +29046,13 @@
     matrix = "@zeri:matrix.org";
     github = "zeri42";
     githubId = 68825133;
+  };
+  zerodya = {
+    name = "Nicola";
+    email = "nicola.pagliuca@pm.me";
+    matrix = "@zerodya:beeper.com";
+    github = "Zerodya";
+    githubId = 73220426;
   };
   zestsystem = {
     email = "mk337337@gmail.com";
