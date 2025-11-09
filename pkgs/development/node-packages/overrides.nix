@@ -33,10 +33,6 @@ final: prev: {
     '';
   };
 
-  "@electron-forge/cli" = prev."@electron-forge/cli".override {
-    buildInputs = [ final.node-gyp-build ];
-  };
-
   fast-cli = prev.fast-cli.override {
     nativeBuildInputs = [ pkgs.buildPackages.makeWrapper ];
     prePatch = ''
@@ -119,14 +115,6 @@ final: prev: {
     name = "rush";
   };
 
-  ts-node = prev.ts-node.override {
-    nativeBuildInputs = [ pkgs.buildPackages.makeWrapper ];
-    postInstall = ''
-      wrapProgram "$out/bin/ts-node" \
-      --prefix NODE_PATH : ${pkgs.typescript}/lib/node_modules
-    '';
-  };
-
   tsun = prev.tsun.override {
     nativeBuildInputs = [ pkgs.buildPackages.makeWrapper ];
     postInstall = ''
@@ -144,22 +132,6 @@ final: prev: {
       pango
       libjpeg
     ];
-  };
-
-  vega-lite = prev.vega-lite.override {
-    postInstall = ''
-      cd node_modules
-      for dep in ${final.vega-cli}/lib/node_modules/vega-cli/node_modules/*; do
-        if [[ ! -d ''${dep##*/} ]]; then
-          ln -s "${final.vega-cli}/lib/node_modules/vega-cli/node_modules/''${dep##*/}"
-        fi
-      done
-    '';
-    passthru.tests = {
-      simple-execution = callPackage ./package-tests/vega-lite.nix {
-        inherit (final) vega-lite;
-      };
-    };
   };
 
   wavedrom-cli = prev.wavedrom-cli.override {
