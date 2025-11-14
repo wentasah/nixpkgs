@@ -569,6 +569,7 @@
   ./services/desktops/gnome/gnome-online-miners.nix
   ./services/desktops/gnome/gnome-remote-desktop.nix
   ./services/desktops/gnome/gnome-settings-daemon.nix
+  ./services/desktops/gnome/gnome-software.nix
   ./services/desktops/gnome/gnome-user-share.nix
   ./services/desktops/gnome/localsearch.nix
   ./services/desktops/gnome/rygel.nix
@@ -1267,6 +1268,7 @@
   ./services/networking/ncdns.nix
   ./services/networking/ncps.nix
   ./services/networking/ndppd.nix
+  ./services/networking/nebula-lighthouse-service.nix
   ./services/networking/nebula.nix
   ./services/networking/netbird.nix
   ./services/networking/netbird/server.nix
