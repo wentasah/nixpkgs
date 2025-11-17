@@ -2,7 +2,7 @@
 # Do not edit!
 
 {
-  version = "2025.11.1";
+  version = "2025.11.2";
   components = {
     "3_day_blinds" =
       ps: with ps; [
@@ -6245,7 +6245,8 @@
         dbus-fast
         habluetooth
         pyserial
-      ]; # missing inputs: togrill-bluetooth
+        togrill-bluetooth
+      ];
     "tolo" =
       ps: with ps; [
         tololib
@@ -7928,6 +7929,7 @@
     "tod"
     "todo"
     "todoist"
+    "togrill"
     "tolo"
     "tomato"
     "tomorrowio"

@@ -1208,6 +1208,8 @@ self: super: with self; {
 
   av = callPackage ../development/python-modules/av { };
 
+  av_13 = callPackage ../development/python-modules/av_13 { };
+
   avahi = toPythonModule (
     pkgs.avahi.override {
       inherit python;
@@ -3897,6 +3899,8 @@ self: super: with self; {
 
   django-admin-sortable2 = callPackage ../development/python-modules/django-admin-sortable2 { };
 
+  django-agnocomplete = callPackage ../development/python-modules/django-agnocomplete { };
+
   django-allauth = callPackage ../development/python-modules/django-allauth { };
 
   django-annoying = callPackage ../development/python-modules/django-annoying { };
@@ -4081,6 +4085,8 @@ self: super: with self; {
 
   django-modelcluster = callPackage ../development/python-modules/django-modelcluster { };
 
+  django-modelsearch = callPackage ../development/python-modules/django-modelsearch { };
+
   django-modeltranslation = callPackage ../development/python-modules/django-modeltranslation { };
 
   django-mptt = callPackage ../development/python-modules/django-mptt { };
@@ -4134,6 +4140,8 @@ self: super: with self; {
   django-postgresql-netfields =
     callPackage ../development/python-modules/django-postgresql-netfields
       { };
+
+  django-probes = callPackage ../development/python-modules/django-probes { };
 
   django-prometheus = callPackage ../development/python-modules/django-prometheus { };
 
@@ -4682,6 +4690,8 @@ self: super: with self; {
   ed25519-blake2b = callPackage ../development/python-modules/ed25519-blake2b { };
 
   edalize = callPackage ../development/python-modules/edalize { };
+
+  edge-tts = callPackage ../development/python-modules/edge-tts { };
 
   editables = callPackage ../development/python-modules/editables { };
 
@@ -5349,6 +5359,8 @@ self: super: with self; {
   flammkuchen = callPackage ../development/python-modules/flammkuchen { };
 
   flasgger = callPackage ../development/python-modules/flasgger { };
+
+  flash-attn = callPackage ../development/python-modules/flash-attn { };
 
   flashinfer = callPackage ../development/python-modules/flashinfer { };
 
@@ -6321,8 +6333,6 @@ self: super: with self; {
   gpustat = callPackage ../development/python-modules/gpustat { };
 
   gpxpy = callPackage ../development/python-modules/gpxpy { };
-
-  gpy = callPackage ../development/python-modules/gpy { };
 
   gpytorch = callPackage ../development/python-modules/gpytorch { };
 
@@ -7617,8 +7627,6 @@ self: super: with self; {
   jsondiff = callPackage ../development/python-modules/jsondiff { };
 
   jsonfeed = callPackage ../development/python-modules/jsonfeed { };
-
-  jsonfield = callPackage ../development/python-modules/jsonfield { };
 
   jsonformatter = callPackage ../development/python-modules/jsonformatter { };
 
@@ -11580,8 +11588,6 @@ self: super: with self; {
 
   paramiko = callPackage ../development/python-modules/paramiko { };
 
-  paramz = callPackage ../development/python-modules/paramz { };
-
   paranoid-crypto = callPackage ../development/python-modules/paranoid-crypto { };
 
   parfive = callPackage ../development/python-modules/parfive { };
@@ -12921,6 +12927,8 @@ self: super: with self; {
 
   pycrdt = callPackage ../development/python-modules/pycrdt { };
 
+  pycrdt-store = callPackage ../development/python-modules/pycrdt-store { };
+
   pycrdt-websocket = callPackage ../development/python-modules/pycrdt-websocket { };
 
   pycritty = callPackage ../development/python-modules/pycritty { };
@@ -14033,6 +14041,8 @@ self: super: with self; {
 
   pypytools = callPackage ../development/python-modules/pypytools { };
 
+  pyqodeng-angr = callPackage ../development/python-modules/pyqodeng-angr { };
+
   pyqrcode = callPackage ../development/python-modules/pyqrcode { };
 
   pyqt-builder = callPackage ../development/python-modules/pyqt-builder { };
@@ -15070,8 +15080,6 @@ self: super: with self; {
   python-json-logger = callPackage ../development/python-modules/python-json-logger { };
 
   python-jsonpath = callPackage ../development/python-modules/python-jsonpath { };
-
-  python-jsonrpc-server = callPackage ../development/python-modules/python-jsonrpc-server { };
 
   python-juicenet = callPackage ../development/python-modules/python-juicenet { };
 
@@ -18701,6 +18709,8 @@ self: super: with self; {
   todoist-api-python = callPackage ../development/python-modules/todoist-api-python { };
 
   toggl-cli = callPackage ../development/python-modules/toggl-cli { };
+
+  togrill-bluetooth = callPackage ../development/python-modules/togrill-bluetooth { };
 
   token-bucket = callPackage ../development/python-modules/token-bucket { };
 
