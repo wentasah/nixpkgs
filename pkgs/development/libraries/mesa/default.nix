@@ -150,6 +150,7 @@ stdenv.mkDerivation {
 
   patches = [
     ./opencl.patch
+    ./musl.patch
   ];
 
   postPatch = ''
@@ -340,6 +341,7 @@ stdenv.mkDerivation {
     moveToOutput bin/panfrost_compile $cross_tools
     moveToOutput bin/panfrost_texfeatures $cross_tools
     moveToOutput bin/panfrostdump $cross_tools
+    moveToOutput bin/pco_clc $cross_tools
     moveToOutput bin/vtn_bindgen2 $cross_tools
 
     moveToOutput "lib/lib*OpenCL*" $opencl
