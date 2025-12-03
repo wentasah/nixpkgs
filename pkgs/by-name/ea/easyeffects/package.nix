@@ -47,6 +47,7 @@ let
     ;
   inherit (kdePackages)
     appstream-qt
+    breeze
     breeze-icons
     extra-cmake-modules
     kcolorscheme
@@ -60,13 +61,13 @@ in
 
 stdenv.mkDerivation rec {
   pname = "easyeffects";
-  version = "8.0.3";
+  version = "8.0.5";
 
   src = fetchFromGitHub {
     owner = "wwmm";
     repo = "easyeffects";
     tag = "v${version}";
-    hash = "sha256-N1VxA68IzNPZcDodoFTdQ0zpS5hCrHyLjP8Y/bqO/JA=";
+    hash = "sha256-LBF8P512XeawlSgOz6AV03Q3ZGTwn+Gnqwh0xU0WEz4=";
   };
 
   patches = [ ./qmlmodule-fix.patch ];
@@ -82,6 +83,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     appstream-qt
+    breeze
     breeze-icons
     deepfilternet
     fftw

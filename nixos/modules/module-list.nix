@@ -913,7 +913,6 @@
   ./services/misc/podgrab.nix
   ./services/misc/polaris.nix
   ./services/misc/portunus.nix
-  ./services/misc/preload.nix
   ./services/misc/pufferpanel.nix
   ./services/misc/pykms.nix
   ./services/misc/radicle.nix
@@ -1123,6 +1122,7 @@
   ./services/networking/chisel-server.nix
   ./services/networking/cjdns.nix
   ./services/networking/clatd.nix
+  ./services/networking/cloudflare-ddns.nix
   ./services/networking/cloudflare-dyndns.nix
   ./services/networking/cloudflare-warp.nix
   ./services/networking/cloudflared.nix
@@ -1727,6 +1727,7 @@
   ./services/web-apps/suwayomi-server.nix
   ./services/web-apps/szurubooru.nix
   ./services/web-apps/trilium.nix
+  ./services/web-apps/tuliprox.nix
   ./services/web-apps/umami.nix
   ./services/web-apps/vikunja.nix
   ./services/web-apps/wakapi.nix
@@ -1944,7 +1945,6 @@
   ./virtualisation/libvirtd.nix
   ./virtualisation/lxc.nix
   ./virtualisation/lxcfs.nix
-  ./virtualisation/multipass.nix
   ./virtualisation/nixos-containers.nix
   ./virtualisation/oci-containers.nix
   ./virtualisation/oci-options.nix

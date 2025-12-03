@@ -569,6 +569,7 @@ in
     imports = [ ./firefox.nix ];
     _module.args.firefoxPackage = pkgs.firefox-esr-140;
   };
+  firefox-syncserver = runTest ./firefox-syncserver.nix;
   firefoxpwa = runTest ./firefoxpwa.nix;
   firejail = runTest ./firejail.nix;
   firewall = runTest {
@@ -982,7 +983,6 @@ in
   mpd = runTest ./mpd.nix;
   mpv = runTest ./mpv.nix;
   mtp = runTest ./mtp.nix;
-  multipass = runTest ./multipass.nix;
   mumble = runTest ./mumble.nix;
   munge = runTest ./munge.nix;
   munin = runTest ./munin.nix;
@@ -1582,6 +1582,7 @@ in
   trilium-server = runTestOn [ "x86_64-linux" ] ./trilium-server.nix;
   tsm-client-gui = runTest ./tsm-client-gui.nix;
   ttyd = runTest ./web-servers/ttyd.nix;
+  tuliprox = runTest ./tuliprox.nix;
   tuned = runTest ./tuned.nix;
   tuptime = runTest ./tuptime.nix;
   turbovnc-headless-server = runTest ./turbovnc-headless-server.nix;
@@ -1659,6 +1660,10 @@ in
   whoami = runTest ./whoami.nix;
   whoogle-search = runTest ./whoogle-search.nix;
   wiki-js = runTest ./wiki-js.nix;
+  windmill = import ./windmill {
+    inherit pkgs runTest;
+    inherit (pkgs) lib;
+  };
   wine = handleTest ./wine.nix { };
   wireguard = import ./wireguard {
     inherit pkgs runTest;

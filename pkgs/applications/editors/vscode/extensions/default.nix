@@ -727,8 +727,8 @@ let
         mktplcRef = {
           name = "vscode-intelephense-client";
           publisher = "bmewburn";
-          version = "1.15.3";
-          hash = "sha256-0GgXdBpEcJVqQ1FXBlN1vAqhPUgi/3WBMaPZH2M545A=";
+          version = "1.16.1";
+          hash = "sha256-dcfFtVnk5qyCeiM0nZwscKQZDhUXIkg1TJxVUuzA69Q=";
         };
         meta = {
           description = "PHP code intelligence for Visual Studio Code";
@@ -1005,8 +1005,8 @@ let
         mktplcRef = {
           name = "coder-remote";
           publisher = "coder";
-          version = "1.11.3";
-          hash = "sha256-7OXk7ykx4JuRZT6HNNGt2r2Bm4qU+q1yaViKPGoT2f0=";
+          version = "1.11.4";
+          hash = "sha256-m9FVEbfWLe9FweJH/wYFJbnXPkRmLDQEU3n30/f/pko=";
         };
         meta = {
           description = "Extension for Visual Studio Code to open any Coder workspace in VS Code with a single click";
@@ -1242,8 +1242,8 @@ let
         mktplcRef = {
           name = "languagetool-linter";
           publisher = "davidlday";
-          version = "0.25.2";
-          hash = "sha256-LVOjY0ZOrgPI6XDVXpJbfT7Z+x5VR5glsL4+HKwlbys=";
+          version = "0.25.3";
+          hash = "sha256-ZxIBjvDUThxmJwvaP3N/nM4b2dGkM0jiklcwiAzPXiY=";
         };
         meta = {
           description = "LanguageTool integration for VS Code";
@@ -1900,8 +1900,8 @@ let
         mktplcRef = {
           publisher = "github";
           name = "codespaces";
-          version = "1.17.5";
-          hash = "sha256-xv7Yx2chKqKnC7tKcvXUKrL5DBW0eFT8hi0p9shwX04=";
+          version = "1.18.0";
+          hash = "sha256-D5Khohd1oV8c7uHT6zgiZsigtafAWdXinV2NTUF0EaM=";
         };
 
         meta = {
@@ -1965,8 +1965,8 @@ let
         mktplcRef = {
           name = "gitlab-workflow";
           publisher = "gitlab";
-          version = "6.57.4";
-          hash = "sha256-dkDRRzxcDbzKw7L7wyHkoK4awSNxVapsO5tZoc/+zFk=";
+          version = "6.58.0";
+          hash = "sha256-kkPLa+xviFUuCmB/+BE3p4tPFSi90aCXO6GcjwHurFI=";
         };
         meta = {
           description = "GitLab extension for Visual Studio Code";
@@ -3023,8 +3023,8 @@ let
         mktplcRef = {
           publisher = "mesonbuild";
           name = "mesonbuild";
-          version = "1.27.0";
-          hash = "sha256-dEDDw8fDBkRYE09mrOzQNzAhWZEczTTahBZT4nhrClw=";
+          version = "1.28.0";
+          hash = "sha256-mvW0u0Tpc1JqoFJYyRirdcLDCHfm72XvTs8sFvvw490=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/mesonbuild.mesonbuild/changelog";
@@ -3852,8 +3852,8 @@ let
         mktplcRef = {
           publisher = "redhat";
           name = "java";
-          version = "1.48.0";
-          hash = "sha256-/JW5PVM4USBflC5eloi8u9AgpdIzkpEmoHKYr1yVkgI=";
+          version = "1.49.0";
+          hash = "sha256-4uBn2NHd32ZsooTJ0c9PWJ14YHIq7RgXb+KdaH4vuCo=";
         };
         buildInputs = [ jdk ];
         meta = {
@@ -4465,8 +4465,8 @@ let
         mktplcRef = {
           name = "vscode-stylelint";
           publisher = "stylelint";
-          version = "1.5.3";
-          hash = "sha256-fgMs9/gYhhHCkiKJX5rDRbiXy6gxvmLhU6blNxEoNc8=";
+          version = "1.6.0";
+          hash = "sha256-t0zS4+UZePViqkGgVezy/2CyyqilUKb6byTYukbxqr8=";
         };
         meta = {
           description = "Official Stylelint extension for Visual Studio Code";
@@ -5336,8 +5336,8 @@ let
         mktplcRef = {
           name = "php-debug";
           publisher = "xdebug";
-          version = "1.38.0";
-          hash = "sha256-QOA8At2akj9zLYxIuQJLkDL2Zg/isPIssFG/UipRBbU=";
+          version = "1.38.2";
+          hash = "sha256-GkKzFkEutlMTtO1n6R5ragtyiMvu2Rt8v63jXAW6CkM=";
         };
         meta = {
           description = "PHP Debug Adapter";
@@ -5498,8 +5498,8 @@ let
         mktplcRef = {
           name = "vscode-zig";
           publisher = "ziglang";
-          version = "0.6.15";
-          hash = "sha256-iSkB99l+C82eMaSPV9D2+EJthIC4qIIzB2+YAZM8Uaw=";
+          version = "0.6.17";
+          hash = "sha256-OIGe981dupmyyhjxq11/AYaV2cjvNEe4FvXBospNgu0=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/ziglang.vscode-zig/changelog";
