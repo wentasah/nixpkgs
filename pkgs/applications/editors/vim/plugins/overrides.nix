@@ -2832,6 +2832,10 @@ assertNoAdditions {
     dependencies = [ self.oil-nvim ];
   };
 
+  oil-lsp-diagnostics-nvim = super.oil-lsp-diagnostics-nvim.overrideAttrs {
+    dependencies = [ self.oil-nvim ];
+  };
+
   ollama-nvim = super.ollama-nvim.overrideAttrs {
     dependencies = [ self.plenary-nvim ];
   };
@@ -4089,19 +4093,6 @@ assertNoAdditions {
     dependencies = [
       self.plenary-nvim
     ];
-  };
-
-  vscode-diff-nvim = super.vscode-diff-nvim.overrideAttrs {
-    dependencies = [
-      self.nui-nvim
-    ];
-    nativeBuildInputs = [ cmake ];
-    dontUseCmakeConfigure = true;
-    buildPhase = ''
-      runHook preBuild
-      make
-      runHook postBuild
-    '';
   };
 
   which-key-nvim = super.which-key-nvim.overrideAttrs {

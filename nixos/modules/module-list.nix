@@ -201,6 +201,7 @@
   ./programs/direnv.nix
   ./programs/dmrconfig.nix
   ./programs/droidcam.nix
+  ./programs/dsearch.nix
   ./programs/dublin-traceroute.nix
   ./programs/ecryptfs.nix
   ./programs/environment.nix
@@ -340,6 +341,7 @@
   ./programs/vivid.nix
   ./programs/vscode.nix
   ./programs/wavemon.nix
+  ./programs/wayland/dms-shell.nix
   ./programs/wayland/dwl.nix
   ./programs/wayland/gtklock.nix
   ./programs/wayland/hyprland.nix
@@ -605,6 +607,7 @@
   ./services/development/zammad.nix
   ./services/display-managers/cosmic-greeter.nix
   ./services/display-managers/default.nix
+  ./services/display-managers/dms-greeter.nix
   ./services/display-managers/gdm.nix
   ./services/display-managers/greetd.nix
   ./services/display-managers/lemurs.nix
@@ -1628,6 +1631,7 @@
   ./services/web-apps/icingaweb2/icingaweb2.nix
   ./services/web-apps/icingaweb2/module-monitoring.nix
   ./services/web-apps/ifm.nix
+  ./services/web-apps/immich-kiosk.nix
   ./services/web-apps/immich-public-proxy.nix
   ./services/web-apps/immich.nix
   ./services/web-apps/invidious.nix

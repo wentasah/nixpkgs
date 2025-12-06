@@ -390,6 +390,7 @@ with pkgs;
 
   oletools = with python3.pkgs; toPythonApplication oletools;
 
+  ollama-cpu = callPackage ../by-name/ol/ollama/package.nix { acceleration = false; };
   ollama-rocm = callPackage ../by-name/ol/ollama/package.nix { acceleration = "rocm"; };
   ollama-cuda = callPackage ../by-name/ol/ollama/package.nix { acceleration = "cuda"; };
   ollama-vulkan = callPackage ../by-name/ol/ollama/package.nix { acceleration = "vulkan"; };
@@ -2143,8 +2144,6 @@ with pkgs;
     inherit (gst_all_1) gstreamer gst-plugins-base;
   };
 
-  mpd-sima = python3Packages.callPackage ../tools/audio/mpd-sima { };
-
   nltk-data = recurseIntoAttrs (callPackage ../tools/text/nltk-data { });
 
   seabios-coreboot = seabios.override { ___build-type = "coreboot"; };
@@ -3217,9 +3216,12 @@ with pkgs;
   nodejs-slim_24 = callPackage ../development/web/nodejs/v24.nix { enableNpm = false; };
   corepack_24 = callPackage ../development/web/nodejs/corepack.nix { nodejs = nodejs_24; };
 
+  nodejs_25 = callPackage ../development/web/nodejs/v25.nix { };
+  nodejs-slim_25 = callPackage ../development/web/nodejs/v25.nix { enableNpm = false; };
+
   # Update this when adding the newest nodejs major version!
-  nodejs_latest = nodejs_24;
-  nodejs-slim_latest = nodejs-slim_24;
+  nodejs_latest = nodejs_25;
+  nodejs-slim_latest = nodejs-slim_25;
 
   buildNpmPackage = callPackage ../build-support/node/build-npm-package { };
 
@@ -6322,8 +6324,6 @@ with pkgs;
     ];
   };
 
-  cmake-format = python3Packages.callPackage ../development/tools/cmake-format { };
-
   # Does not actually depend on Qt 5
   inherit (plasma5Packages) extra-cmake-modules;
 
@@ -6850,8 +6850,8 @@ with pkgs;
 
   argparse-manpage = with python3Packages; toPythonApplication argparse-manpage;
 
-  asio_1_10 = callPackage ../development/libraries/asio/1.10.nix { };
-  asio = callPackage ../development/libraries/asio { };
+  asio_1_32_0 = callPackage ../by-name/as/asio/package.nix { asioVersion = "1.32.0"; };
+  asio_1_36_0 = callPackage ../by-name/as/asio/package.nix { asioVersion = "1.36.0"; };
 
   aspell = callPackage ../development/libraries/aspell { };
 
@@ -6909,12 +6909,6 @@ with pkgs;
     c-blosc
     c-blosc2
     ;
-
-  cachix = (lib.getBin haskellPackages.cachix).overrideAttrs (old: {
-    meta = (old.meta or { }) // {
-      mainProgram = old.meta.mainProgram or "cachix";
-    };
-  });
 
   niv = lib.getBin (haskell.lib.compose.justStaticExecutables haskellPackages.niv);
 
@@ -7473,6 +7467,7 @@ with pkgs;
     icu75
     icu76
     icu77
+    icu78
     ;
 
   icu = icu76;
