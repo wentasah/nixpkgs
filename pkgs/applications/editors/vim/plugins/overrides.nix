@@ -71,6 +71,8 @@
   pandoc,
   # nvim-tinygit
   gitMinimal,
+  # opencode-nvim,
+  opencode,
   # Preview-nvim dependencies
   md-tui,
   # sidekick-nvim dependencies
@@ -122,6 +124,8 @@
   # search-and-replace.nvim dependencies
   fd,
   sad,
+  # tv.nvim dependency
+  television,
 }:
 self: super:
 let
@@ -2867,6 +2871,13 @@ assertNoAdditions {
     };
   });
 
+  opencode-nvim = super.opencode-nvim.overrideAttrs {
+    runtimeDeps = [
+      curl
+      opencode
+    ];
+  };
+
   # The plugin depends on either skim-vim or fzf-vim, but we don't want to force the user so we
   # avoid choosing one of them and leave it to the user
   openscad-nvim = super.openscad-nvim.overrideAttrs {
@@ -3620,6 +3631,10 @@ assertNoAdditions {
 
   tssorter-nvim = super.tssorter-nvim.overrideAttrs {
     dependencies = [ self.nvim-treesitter ];
+  };
+
+  tv-nvim = super.tv-nvim.overrideAttrs {
+    runtimeDeps = [ television ];
   };
 
   typescript-nvim = super.typescript-nvim.overrideAttrs {
