@@ -65,11 +65,6 @@ stdenv.mkDerivation (finalAttrs: {
     "GCC_PP=${stdenv.cc.targetPrefix}c++"
   ];
 
-  patches = [
-    ./0001-AMC-TXT-New-global-option-ShowGroupText.patch
-    ./0002-Test-8-page-alignment.patch
-  ];
-
   preFixup = ''
     makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
   '';
@@ -150,7 +145,7 @@ stdenv.mkDerivation (finalAttrs: {
     pkgs = [ finalAttrs.finalPackage ];
   };
 
-  meta = with lib; {
+  meta = {
     description = "Create and manage multiple choice questionnaires with automated marking";
     mainProgram = "auto-multiple-choice";
     longDescription = ''
@@ -179,8 +174,8 @@ stdenv.mkDerivation (finalAttrs: {
     '';
     homepage = "https://www.auto-multiple-choice.net/";
     changelog = "https://gitlab.com/jojo_boulix/auto-multiple-choice/-/blob/master/ChangeLog";
-    license = licenses.gpl2Plus;
-    maintainers = [ maintainers.thblt ];
-    platforms = platforms.all;
+    license = lib.licenses.gpl2Plus;
+    maintainers = [ lib.maintainers.thblt ];
+    platforms = lib.platforms.all;
   };
 })
