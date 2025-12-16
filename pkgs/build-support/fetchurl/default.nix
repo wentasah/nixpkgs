@@ -135,6 +135,7 @@ lib.extendMkDerivation {
 
       # Passthru information, if any.
       passthru ? { },
+
       # Doing the download on a remote machine just duplicates network
       # traffic, so don't do that by default
       preferLocalBuild ? true,
@@ -240,6 +241,8 @@ lib.extendMkDerivation {
 
     derivationArgs
     // {
+      __structuredAttrs = true;
+
       name =
         if finalAttrs.pname or null != null && finalAttrs.version or null != null then
           "${finalAttrs.pname}-${finalAttrs.version}"
@@ -281,7 +284,7 @@ lib.extendMkDerivation {
 
       # Disable TLS verification only when we know the hash and no credentials are
       # needed to access the resource
-      SSL_CERT_FILE =
+      env.SSL_CERT_FILE =
         if
           (
             hash_.outputHash == ""
@@ -315,14 +318,13 @@ lib.extendMkDerivation {
         ''
       ) curlOpts;
 
-      curlOptsList = lib.escapeShellArgs curlOptsList;
-
       inherit
-        showURLs
-        mirrorsFile
-        postFetch
+        curlOptsList
         downloadToTemp
         executable
+        mirrorsFile
+        postFetch
+        showURLs
         ;
 
       impureEnvVars = impureEnvVars ++ netrcImpureEnvVars;
@@ -337,7 +339,7 @@ lib.extendMkDerivation {
         else
           ''
             ${netrcPhase}
-            curlOpts="$curlOpts --netrc-file $PWD/netrc"
+            curlOpts+=(--netrc-file "$PWD/netrc")
           '';
 
       inherit meta;
