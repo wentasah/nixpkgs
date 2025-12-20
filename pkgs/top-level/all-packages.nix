@@ -1061,14 +1061,11 @@ with pkgs;
     }
   );
 
+  htop-vim = htop.override { withVimKeys = true; };
+
   inherit (callPackages ../tools/networking/iroh/default.nix { })
     iroh-relay
     iroh-dns-server
-    ;
-
-  inherit (callPackages ../tools/networking/ivpn/default.nix { })
-    ivpn
-    ivpn-service
     ;
 
   kanata-with-cmd = kanata.override { withCmd = true; };
@@ -1481,7 +1478,6 @@ with pkgs;
 
   authelia = callPackage ../servers/authelia {
     buildGoModule = buildGo124Module;
-    pnpm = pnpm_10;
   };
 
   authentik-outposts = recurseIntoAttrs (callPackages ../by-name/au/authentik/outposts.nix { });
@@ -1628,14 +1624,6 @@ with pkgs;
   };
 
   passExtensions = recurseIntoAttrs pass.extensions;
-
-  gopass = callPackage ../tools/security/gopass { };
-
-  gopass-hibp = callPackage ../tools/security/gopass/hibp.nix { };
-
-  git-credential-gopass = callPackage ../tools/security/gopass/git-credential.nix { };
-
-  gopass-summon-provider = callPackage ../tools/security/gopass/summon.nix { };
 
   kerf = kerf_1; # kerf2 is WIP
   kerf_1 = callPackage ../development/interpreters/kerf {
@@ -1873,7 +1861,13 @@ with pkgs;
 
   inherit (ocamlPackages) dot-merlin-reader;
 
-  inherit (ocamlPackages) dune_2 dune_3 dune-release;
+  inherit (ocamlPackages) dune-release;
+
+  dune_2 = callPackage ../by-name/du/dune/package.nix {
+    version = "2.9.3";
+  };
+
+  dune_3 = callPackage ../by-name/du/dune/package.nix { };
 
   dvc = with python3.pkgs; toPythonApplication dvc;
 
@@ -2789,6 +2783,10 @@ with pkgs;
     efiSupport = true;
   };
 
+  grub2_ieee1275 = grub2.override {
+    ieee1275Support = true;
+  };
+
   grub2_light = grub2.override {
     zfsSupport = false;
   };
@@ -3609,6 +3607,11 @@ with pkgs;
     ;
   pnpm = pnpm_10;
 
+  inherit (callPackages ../build-support/node/fetch-pnpm-deps { })
+    fetchPnpmDeps
+    pnpmConfigHook
+    ;
+
   po4a = perlPackages.Po4a;
 
   podman-compose = python3Packages.callPackage ../applications/virtualization/podman-compose { };
@@ -3932,8 +3935,6 @@ with pkgs;
   video2midi = callPackage ../tools/audio/video2midi {
     pythonPackages = python3Packages;
   };
-
-  vikunja = callPackage ../by-name/vi/vikunja/package.nix { pnpm = pnpm_9; };
 
   vimpager = callPackage ../tools/misc/vimpager { };
   vimpager-latest = callPackage ../tools/misc/vimpager/latest.nix { };
@@ -5010,10 +5011,11 @@ with pkgs;
     mlton20180207Binary
     mlton20180207
     mlton20210117
+    mlton20241230
     mltonHEAD
     ;
 
-  mlton = mlton20210117;
+  mlton = mlton20241230;
 
   mono = mono6;
 
@@ -7302,8 +7304,6 @@ with pkgs;
     lib.warn "hunspellWithDicts is deprecated, please use hunspell.withDicts instead."
       hunspell.withDicts
       (_: dicts);
-
-  hydra = callPackage ../by-name/hy/hydra/package.nix { nix = nixVersions.nix_2_32; };
 
   icu-versions = callPackages ../development/libraries/icu { };
   inherit (icu-versions)
@@ -10593,8 +10593,6 @@ with pkgs;
 
   electrum-ltc = libsForQt5.callPackage ../applications/misc/electrum/ltc.nix { };
 
-  elf-dissector = libsForQt5.callPackage ../applications/misc/elf-dissector { };
-
   inherit (recurseIntoAttrs (callPackage ../applications/editors/emacs { }))
     emacs30
     emacs30-gtk3
@@ -10954,7 +10952,7 @@ with pkgs;
 
   hpack = haskell.lib.compose.justStaticExecutables haskellPackages.hpack;
 
-  hugin = callPackage ../applications/graphics/hugin {
+  hugin = callPackage ../by-name/hu/hugin/package.nix {
     wxGTK = wxGTK32;
   };
 
@@ -12497,9 +12495,7 @@ with pkgs;
 
   youtube-dl-light = with python3Packages; toPythonApplication youtube-dl-light;
 
-  youtube-music = callPackage ../applications/audio/youtube-music {
-    pnpm = pnpm_10;
-  };
+  youtube-music = callPackage ../applications/audio/youtube-music { };
 
   yt-dlp-light = yt-dlp.override {
     atomicparsleySupport = false;
@@ -13465,8 +13461,6 @@ with pkgs;
     cairo = cairo.override { x11Support = true; };
   };
 
-  # this is a wrapper for kicad.base and kicad.libraries
-  kicad = callPackage ../applications/science/electronics/kicad { };
   # this is the same but without the (sizable) 3D models library
   kicad-small = kicad.override {
     pname = "kicad-small";
@@ -13495,7 +13489,7 @@ with pkgs;
     with3d = false;
   };
 
-  kicadAddons = recurseIntoAttrs (callPackage ../applications/science/electronics/kicad/addons { });
+  kicadAddons = recurseIntoAttrs (callPackage ../by-name/ki/kicad/addons/package.nix { });
 
   librepcb = qt6Packages.callPackage ../applications/science/electronics/librepcb { };
 
@@ -13879,8 +13873,6 @@ with pkgs;
     }
   );
 
-  resp-app = libsForQt5.callPackage ../applications/misc/resp-app { };
-
   pgadmin4-desktopmode = pgadmin4.override { server-mode = false; };
 
   philipstv = with python3Packages; toPythonApplication philipstv;
@@ -14179,10 +14171,6 @@ with pkgs;
 
   clash-verge-rev = callPackage ../by-name/cl/clash-verge-rev/package.nix {
     libsoup = libsoup_3;
-  };
-
-  davis = callPackage ../by-name/da/davis/package.nix {
-    php = php83; # https://github.com/tchapi/davis/issues/195
   };
 
   gpac-unstable = callPackage ../by-name/gp/gpac/package.nix {
