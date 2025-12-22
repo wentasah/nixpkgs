@@ -272,6 +272,7 @@ mapAliases {
   mkdocs-macros = mkdocs-macros-plugin; # added 2025-09-02
   mkdocs-minify = throw "'mkdocs-minify' has been renamed to/replaced by 'mkdocs-minify-plugin'"; # Converted to throw 2025-10-29
   mne-python = throw "'mne-python' has been renamed to/replaced by 'mne'"; # Converted to throw 2025-10-29
+  mpris-server = throw "mpris-server was removed because it is unused"; # added 2025-10-31
   msldap-bad = throw "'msldap-bad' has been renamed to/replaced by 'badldap'"; # added 2025-11-06
   multi_key_dict = throw "'multi_key_dict' has been renamed to/replaced by 'multi-key-dict'"; # Converted to throw 2025-10-29
   mutag = throw "mutag has been removed because it is unmaintained since 2018"; # added 2025-05-25
@@ -315,6 +316,7 @@ mapAliases {
   protonvpn-nm-lib = throw "protonvpn-nm-lib source code was removed from upstream"; # Added 2025-10-16
   proxy_tools = throw "'proxy_tools' has been renamed to/replaced by 'proxy-tools'"; # Converted to throw 2025-10-29
   ptable = throw "ptable has been removed, as it is unmaintained and broken"; # added 2025-05-25
+  publicsuffix = throw "'publicsuffix' is unmaintained since 2019. The API compatible publicsuffix2 should be used instead."; # Added 2025-12-19
   push-receiver = throw "push-receiver has been removed since it is unmaintained for 3 years"; # added 2025-05-17
   pushbullet = throw "'pushbullet' has been renamed to/replaced by 'pushbullet-py'"; # Converted to throw 2025-10-29
   Pweave = throw "'Pweave' has been renamed to/replaced by 'pweave'"; # Converted to throw 2025-10-29

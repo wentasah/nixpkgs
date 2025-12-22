@@ -269,6 +269,7 @@ mapAliases {
   a4term = throw "'a4term' has been renamed to/replaced by 'a4'"; # Converted to throw 2025-10-27
   abseil-cpp_202301 = throw "abseil-cpp_202301 has been removed as it was unused in tree"; # Added 2025-08-09
   abseil-cpp_202501 = throw "abseil-cpp_202501 has been removed as it was unused in tree"; # Added 2025-09-15
+  adjustor = throw "adjustor has been removed as it part of the 'handheld-daemon' package"; # Added 2025-11-16
   adminer-pematon = throw "'adminer-pematon' has been renamed to/replaced by 'adminneo'"; # Converted to throw 2025-10-27
   adminerneo = throw "'adminerneo' has been renamed to/replaced by 'adminneo'"; # Converted to throw 2025-10-27
   adobe-reader = throw "'adobe-reader' has been removed, as it was broken, outdated and insecure"; # Added 2025-05-31
@@ -385,6 +386,7 @@ mapAliases {
   canonicalize-jars-hook = throw "'canonicalize-jars-hook' has been renamed to/replaced by 'stripJavaArchivesHook'"; # Converted to throw 2025-10-27
   cardboard = throw "cardboard has been removed because it has been marked as broken since at least November 2024."; # Added 2025-09-28
   cargo-espflash = throw "'cargo-espflash' has been renamed to/replaced by 'espflash'"; # Converted to throw 2025-10-27
+  cargo-sync-readme = throw "'cargo-sync-readme' has been removed because upstream 404s"; # Converted to throw 2025-12-18
   cargonode = throw "'cargonode' has been removed due to lack of upstream maintenance"; # Added 2025-06-18
   cask = throw "'cask' has been renamed to/replaced by 'emacs.pkgs.cask'"; # Converted to throw 2025-10-27
   catalyst-browser = throw "'catalyst-browser' has been removed due to a lack of maintenance and not satisfying our security criteria for browsers."; # Added 2025-06-25
@@ -767,6 +769,7 @@ mapAliases {
   jdk23_headless = throw "OpenJDK 23 was removed as it has reached its end of life"; # Added 2025-11-04
   jdk24 = throw "OpenJDK 24 was removed as it has reached its end of life"; # Added 2025-10-04
   jdk24_headless = throw "OpenJDK 24 was removed as it has reached its end of life"; # Added 2025-10-04
+  jellyfin-media-player = jellyfin-desktop; # Added 2025-12-14
   jesec-rtorrent = throw "'jesec-rtorrent' has been removed due to lack of maintenance upstream."; # Added 2025-11-20
   jikespg = throw "'jikespg' has been removed due to lack of maintenance upstream."; # Added 2025-06-10
   jing = jing-trang; # Added 2025-09-18
@@ -1329,6 +1332,8 @@ mapAliases {
   preload = throw "'preload' has been removed due to lack of usage and being broken since its introduction into nixpkgs"; # Added 2025-11-29
   presage = throw "presage has been removed, as it has been unmaintained since 2018"; # Added 2025-06-19
   preserves-nim = throw "'preserves-nim' has been removed due to a hostile upstream moving tags and breaking src FODs"; # Added 2025-09-01
+  prisma = prisma_7; # Added 2025-12-19
+  prisma-engines = prisma-engines_7; # Added 2025-12-19
   private-gpt = throw "'private-gpt' has been removed from nixpkgs, as it was broken and unmaintained"; # Added 2025-07-28
   probe-rs = throw "'probe-rs' has been renamed to/replaced by 'probe-rs-tools'"; # Converted to throw 2025-10-27
   proj_7 = throw "proj_7 has been removed, as it was broken and unused"; # Added 2025-09-16
@@ -1568,6 +1573,7 @@ mapAliases {
   tclx = throw "'tclx' has been renamed to/replaced by 'tclPackages.tclx'"; # Converted to throw 2025-10-27
   tcp-cutter = throw "tcp-cutter has been removed because it fails to compile and the source url is dead"; # Added 2025-05-25
   tdesktop = throw "'tdesktop' has been renamed to/replaced by 'telegram-desktop'"; # Converted to throw 2025-10-27
+  tdfgo = throw "'tdfgo' has been removed because it was removed from upstream"; # Added 2025-12-18
   tdlib-purple = throw "'tdlib-purple' has been renamed to/replaced by 'pidginPackages.tdlib-purple'"; # Converted to throw 2025-10-27
   tdom = throw "'tdom' has been renamed to/replaced by 'tclPackages.tdom'"; # Converted to throw 2025-10-27
   teamspeak5_client = throw "'teamspeak5_client' has been renamed to/replaced by 'teamspeak6-client'"; # Converted to throw 2025-10-27
@@ -1585,6 +1591,7 @@ mapAliases {
   terminus-nerdfont = throw "'terminus-nerdfont' has been renamed to/replaced by 'nerd-fonts.terminess-ttf'"; # Converted to throw 2025-10-27
   testVersion = throw "'testVersion' has been renamed to/replaced by 'testers.testVersion'"; # Converted to throw 2025-10-27
   tet = throw "'tet' has been removed for lack of maintenance"; # Added 2025-10-12
+  tewi-font = throw "'tewi-font' has been removed because it was removed from upstream"; # Added 2025-12-18
   texinfo4 = throw "'texinfo4' has been removed in favor of the latest version"; # Added 2025-06-08
   textual-paint = throw "'textual-paint' has been removed as it is broken"; # Added 2025-09-10
   tezos-rust-libs = throw "ligo has been removed from nixpkgs for lack of maintenance"; # Added 2025-06-03

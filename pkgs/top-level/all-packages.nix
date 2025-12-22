@@ -918,7 +918,7 @@ with pkgs;
   };
 
   wrapGAppsNoGuiHook = callPackage ../build-support/setup-hooks/wrap-gapps-hook {
-    makeWrapper = makeBinaryWrapper;
+    makeWrapper = buildPackages.makeBinaryWrapper;
   };
 
   separateDebugInfo = makeSetupHook {
@@ -1976,7 +1976,7 @@ with pkgs;
 
   intensity-normalization = with python3Packages; toPythonApplication intensity-normalization;
 
-  jellyfin-media-player = kdePackages.callPackage ../applications/video/jellyfin-media-player { };
+  jellyfin-desktop = kdePackages.callPackage ../applications/video/jellyfin-desktop { };
 
   jellyfin-mpv-shim = python3Packages.callPackage ../applications/video/jellyfin-mpv-shim { };
 
@@ -3739,7 +3739,7 @@ with pkgs;
 
   safety-cli = with python3.pkgs; toPythonApplication safety;
 
-  sasview = libsForQt5.callPackage ../applications/science/misc/sasview { };
+  sasview = callPackage ../applications/science/misc/sasview { };
 
   saunafs = callPackage ../by-name/sa/saunafs/package.nix {
     fmt = fmt_11;
@@ -10123,11 +10123,15 @@ with pkgs;
       zfs_2_3 = callPackage ../os-specific/linux/zfs/2_3.nix {
         configFile = "user";
       };
+      zfs_2_4 = callPackage ../os-specific/linux/zfs/2_4.nix {
+        configFile = "user";
+      };
       zfs_unstable = callPackage ../os-specific/linux/zfs/unstable.nix {
         configFile = "user";
       };
     })
     zfs_2_3
+    zfs_2_4
     zfs_unstable
     ;
   zfs = zfs_2_3;
