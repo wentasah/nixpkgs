@@ -1130,11 +1130,11 @@
     "vendorHash": "sha256-33NOGIvqLpgndG68GxAeoiISjWV7ApR4jmvqyZHjPKo="
   },
   "rootlyhq_rootly": {
-    "hash": "sha256-FfGASW8NlaGHbJXIwrJQ9DokLIDTXrdaojLnfsV0wHw=",
+    "hash": "sha256-aAZTcZ97/rPOfvBwmPTp3BF/G0IkrCrx0u4yPiTfXrY=",
     "homepage": "https://registry.terraform.io/providers/rootlyhq/rootly",
     "owner": "rootlyhq",
     "repo": "terraform-provider-rootly",
-    "rev": "v5.2.0",
+    "rev": "v5.2.1",
     "spdx": "MPL-2.0",
     "vendorHash": "sha256-H0ohTNvSeFYEhHFIJoY37asNWwe+s2RKsDzYbx1CkJw="
   },
@@ -1193,13 +1193,13 @@
     "vendorHash": "sha256-MIO0VHofPtKPtynbvjvEukMNr5NXHgk7BqwIhbc9+u0="
   },
   "selectel_selectel": {
-    "hash": "sha256-/9PIbXyh+CklHQRWWoXxH42KUATi3uyPZRtWWfniB1Q=",
+    "hash": "sha256-2lo5CF+FmQW2JIHCoI5zGZBaquIo4RXzvD8MeNWTHhQ=",
     "homepage": "https://registry.terraform.io/providers/selectel/selectel",
     "owner": "selectel",
     "repo": "terraform-provider-selectel",
-    "rev": "v7.2.1",
+    "rev": "v7.3.0",
     "spdx": "MPL-2.0",
-    "vendorHash": "sha256-Kvolsw4lgh4Q8Vtq4PFzatD0Up/qeyZYfb+UQfwct3o="
+    "vendorHash": "sha256-wAVTsN0ZizBU4dMLK2wxf3RSNE6GCbXL1jTIULpKfNU="
   },
   "siderolabs_talos": {
     "hash": "sha256-PPD4blyXt4/IalzwEn4+lvuD1Qx7VuUD/CUJILDRI5k=",
@@ -1229,13 +1229,13 @@
     "vendorHash": "sha256-skswuFKhN4FFpIunbom9rM/FVRJVOFb1WwHeAIaEjn8="
   },
   "spacelift-io_spacelift": {
-    "hash": "sha256-leXROTarkEHfDmJVLS7kSU3Z27dCF/BfZwBsnujlB90=",
+    "hash": "sha256-GSGKjV5tuwTyPvdwd/Z8t9g7LFkkg4gHKhI3FYt00gQ=",
     "homepage": "https://registry.terraform.io/providers/spacelift-io/spacelift",
     "owner": "spacelift-io",
     "repo": "terraform-provider-spacelift",
-    "rev": "v1.40.0",
+    "rev": "v1.42.0",
     "spdx": "MIT",
-    "vendorHash": "sha256-cX5K221Jnq701Nb+2bC1LmXVL7YvkZ8dkc2wYjDNOSw="
+    "vendorHash": "sha256-XNPXjqrrTIC3WrpvDBP7veAYgmYws9FdF4W3j6ewRPk="
   },
   "splunk-terraform_signalfx": {
     "hash": "sha256-Wixg+biff6OER/nXYa+WGXG7svs4T3E/qwPlV5xJEao=",

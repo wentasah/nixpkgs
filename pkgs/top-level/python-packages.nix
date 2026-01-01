@@ -138,6 +138,8 @@ self: super: with self; {
 
   agate-sql = callPackage ../development/python-modules/agate-sql { };
 
+  agent-client-protocol = callPackage ../development/python-modules/agent-client-protocol { };
+
   agent-py = callPackage ../development/python-modules/agent-py { };
 
   aggdraw = callPackage ../development/python-modules/aggdraw { };
@@ -480,8 +482,6 @@ self: super: with self; {
 
   aiosendspin = callPackage ../development/python-modules/aiosendspin { };
 
-  aiosenz = callPackage ../development/python-modules/aiosenz { };
-
   aioserial = callPackage ../development/python-modules/aioserial { };
 
   aioshelly = callPackage ../development/python-modules/aioshelly { };
@@ -725,6 +725,8 @@ self: super: with self; {
   anndata = callPackage ../development/python-modules/anndata { };
 
   annexremote = callPackage ../development/python-modules/annexremote { };
+
+  annotated-doc = callPackage ../development/python-modules/annotated-doc { };
 
   annotated-types = callPackage ../development/python-modules/annotated-types { };
 
@@ -1957,6 +1959,8 @@ self: super: with self; {
   beziers = callPackage ../development/python-modules/beziers { };
 
   bgutil-ytdlp-pot-provider = callPackage ../development/python-modules/bgutil-ytdlp-pot-provider { };
+
+  bhopengraph = callPackage ../development/python-modules/bhopengraph { };
 
   bibtexparser = callPackage ../development/python-modules/bibtexparser { };
 
@@ -3977,7 +3981,7 @@ self: super: with self; {
   dj-static = callPackage ../development/python-modules/dj-static { };
 
   # LTS with mainsteam support
-  django = self.django_4;
+  django = self.django_5;
 
   django-admin-datta = callPackage ../development/python-modules/django-admin-datta { };
 
@@ -4129,7 +4133,7 @@ self: super: with self; {
 
   django-ipware = callPackage ../development/python-modules/django-ipware { };
 
-  django-jinja = callPackage ../development/python-modules/django-jinja2 { };
+  django-jinja = callPackage ../development/python-modules/django-jinja { };
 
   django-jquery-js = callPackage ../development/python-modules/django-jquery-js { };
 
@@ -10996,7 +11000,9 @@ self: super: with self; {
 
   numbagg = callPackage ../development/python-modules/numbagg { };
 
-  numcodecs = callPackage ../development/python-modules/numcodecs { };
+  numcodecs = callPackage ../development/python-modules/numcodecs {
+    inherit (pkgs) zstd;
+  };
 
   numdifftools = callPackage ../development/python-modules/numdifftools { };
 
@@ -12945,6 +12951,8 @@ self: super: with self; {
 
   pyarrow-hotfix = callPackage ../development/python-modules/pyarrow-hotfix { };
 
+  pyaskalono = callPackage ../development/python-modules/pyaskalono { };
+
   pyasn = callPackage ../development/python-modules/pyasn { };
 
   pyasn1 = callPackage ../development/python-modules/pyasn1 { };
@@ -14540,6 +14548,8 @@ self: super: with self; {
 
   pysensors = callPackage ../development/python-modules/pysensors { };
 
+  pysenz = callPackage ../development/python-modules/pysenz { };
+
   pysequoia = callPackage ../development/python-modules/pysequoia { };
 
   pyserial = callPackage ../development/python-modules/pyserial { };
@@ -16038,6 +16048,8 @@ self: super: with self; {
   quart-cors = callPackage ../development/python-modules/quart-cors { };
 
   quart-schema = callPackage ../development/python-modules/quart-schema { };
+
+  quart-trio = callPackage ../development/python-modules/quart-trio { };
 
   quaternion = callPackage ../development/python-modules/quaternion { };
 
@@ -18782,6 +18794,8 @@ self: super: with self; {
 
   textual-slider = callPackage ../development/python-modules/textual-slider { };
 
+  textual-speedups = callPackage ../development/python-modules/textual-speedups { };
+
   textual-textarea = callPackage ../development/python-modules/textual-textarea { };
 
   textual-universal-directorytree =
@@ -19407,9 +19421,11 @@ self: super: with self; {
 
   typer = callPackage ../development/python-modules/typer { };
 
+  typer-config = callPackage ../development/python-modules/typer-config { };
+
   typer-shell = callPackage ../development/python-modules/typer-shell { };
 
-  typer-slim = self.typer.override { package = "typer-slim"; };
+  typer-slim = callPackage ../development/python-modules/typer-slim { };
 
   types-aiobotocore = callPackage ../development/python-modules/types-aiobotocore { };
 
@@ -19976,6 +19992,8 @@ self: super: with self; {
   unearth = callPackage ../development/python-modules/unearth { };
 
   unicode-rbnf = callPackage ../development/python-modules/unicode-rbnf { };
+
+  unicode-segmentation-rs = callPackage ../development/python-modules/unicode-segmentation-rs { };
 
   unicodecsv = callPackage ../development/python-modules/unicodecsv { };
 

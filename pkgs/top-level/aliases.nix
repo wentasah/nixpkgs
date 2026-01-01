@@ -274,6 +274,7 @@ mapAliases {
   adminerneo = throw "'adminerneo' has been renamed to/replaced by 'adminneo'"; # Converted to throw 2025-10-27
   adobe-reader = throw "'adobe-reader' has been removed, as it was broken, outdated and insecure"; # Added 2025-05-31
   afpfs-ng = throw "'afpfs-ng' has been removed as it was broken and unmaintained for 10 years"; # Added 2025-05-17
+  agrep = throw "'agrep' has been removed due to lack of upstream maintenance. Consider using 'tre' or 'ugrep' instead."; # Added 2025-12-28
   akkoma-emoji = throw "'akkoma-emoji' has been renamed to/replaced by 'blobs_gg'"; # Converted to throw 2025-10-27
   akkoma-frontends.admin-fe = throw "'akkoma-frontends.admin-fe' has been renamed to/replaced by 'akkoma-admin-fe'"; # Converted to throw 2025-10-27
   akkoma-frontends.akkoma-fe = throw "'akkoma-frontends.akkoma-fe' has been renamed to/replaced by 'akkoma-fe'"; # Converted to throw 2025-10-27
@@ -367,6 +368,7 @@ mapAliases {
   blockbench-electron = throw "'blockbench-electron' has been renamed to/replaced by 'blockbench'"; # Converted to throw 2025-10-27
   bloomeetunes = throw "bloomeetunes is unmaintained and has been removed"; # Added 2025-08-26
   bmap-tools = throw "'bmap-tools' has been renamed to/replaced by 'bmaptool'"; # Converted to throw 2025-10-27
+  bob = throw "'bob' has been removed as it is unmaintained upstream and has vulnerable dependencies."; # Added 2025-12-29
   botan2 = throw "botan2 has been removed as it is EOL"; # Added 2025-10-20
   bower2nix = throw "bower2nix has been removed as bower was removed. It is recommended to migrate to yarn."; # Added 2025-09-17
   brasero-original = throw "'brasero-original' has been renamed to/replaced by 'brasero-unwrapped'"; # Converted to throw 2025-10-27
@@ -1616,6 +1618,7 @@ mapAliases {
   tet = throw "'tet' has been removed for lack of maintenance"; # Added 2025-10-12
   tewi-font = throw "'tewi-font' has been removed because it was removed from upstream"; # Added 2025-12-18
   texinfo4 = throw "'texinfo4' has been removed in favor of the latest version"; # Added 2025-06-08
+  texinfo6 = throw "'texinfo6' has been removed in favor of the latest version"; # Added 2025-12-17
   textual-paint = throw "'textual-paint' has been removed as it is broken"; # Added 2025-09-10
   tezos-rust-libs = throw "ligo has been removed from nixpkgs for lack of maintenance"; # Added 2025-06-03
   tf2pulumi = throw "'tf2pulumi' has been removed because upstream removed the repo. Consider using https://github.com/pulumi/pulumi-converter-terraform instead"; # Added 2025-12-21
@@ -1710,7 +1713,7 @@ mapAliases {
   warmux = throw "'warmux' has been removed as it is unmaintained and broken"; # Added 2025-11-03
   warsow = throw "'warsow' has been removed as it is unmaintained and is broken"; # Added 2025-10-09
   warsow-engine = throw "'warsow-engine' has been removed as it is unmaintained and is broken"; # Added 2025-10-09
-  wasm-bindgen-cli = wasm-bindgen-cli_0_2_105;
+  wasm-bindgen-cli = wasm-bindgen-cli_0_2_106;
   wasm-strip = throw "'wasm-strip' has been removed due to upstream deprecation. Use 'wabt' instead."; # Added 2025-11-06
   wavebox = throw "'wavebox' has been removed due to lack of maintenance in nixpkgs"; # Added 2025-06-24
   wavm = throw "wavm has been removed, as it does not build with supported LLVM versions"; # Added 2025-08-10

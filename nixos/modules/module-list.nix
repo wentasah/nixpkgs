@@ -709,6 +709,7 @@
   ./services/hardware/usbmuxd.nix
   ./services/hardware/usbrelayd.nix
   ./services/hardware/vdr.nix
+  ./services/home-automation/deye-dummycloud.nix
   ./services/home-automation/ebusd.nix
   ./services/home-automation/esphome.nix
   ./services/home-automation/evcc.nix
@@ -1531,6 +1532,7 @@
   ./services/system/localtimed.nix
   ./services/system/nix-daemon-firewall.nix
   ./services/system/nix-daemon.nix
+  ./services/system/nohang.nix
   ./services/system/nscd.nix
   ./services/system/nvme-rs.nix
   ./services/system/saslauthd.nix

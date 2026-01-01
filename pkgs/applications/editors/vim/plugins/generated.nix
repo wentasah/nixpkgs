@@ -763,6 +763,19 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  alabaster-nvim = buildVimPlugin {
+    pname = "alabaster.nvim";
+    version = "2025-11-21";
+    src = fetchFromGitHub {
+      owner = "p00f";
+      repo = "alabaster.nvim";
+      rev = "1fc9e29fbbce94f127cc8b21960b7e3c85187960";
+      sha256 = "0jm5rlc1j4gni8qgcba0ssdnakdpl0hrqlm61xmipv0k2sr3wy2y";
+    };
+    meta.homepage = "https://github.com/p00f/alabaster.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
   alchemist-vim = buildVimPlugin {
     pname = "alchemist.vim";
     version = "3.5.0-unstable-2023-09-01";
@@ -942,6 +955,19 @@ final: prev: {
       hash = "sha256-NuRh9VPztFdPdqUX8yuUes084pXkSZStWp6ewUlgqso=";
     };
     meta.homepage = "https://github.com/arsham/arshlib.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  artio-nvim = buildVimPlugin {
+    pname = "artio.nvim";
+    version = "0-unstable-2025-12-28";
+    src = fetchFromGitHub {
+      owner = "comfysage";
+      repo = "artio.nvim";
+      rev = "83909f659c1da7cf8403c31a051f0ccb64c4c636";
+      hash = "sha256-22CIZrIWI8ZjXPnDtdpCzbPmV/EI7z/YFrbGzoogjGA=";
+    };
+    meta.homepage = "https://github.com/comfysage/artio.nvim/";
     meta.hydraPlatforms = [ ];
   };
 
@@ -3505,6 +3531,19 @@ final: prev: {
       hash = "sha256-ykJOEZXFrvCaDMdjITSTWXE5SZsZ6VU5KbYogGlpyTQ=";
     };
     meta.homepage = "https://github.com/Olical/conjure/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  conjure-nvim = buildVimPlugin {
+    pname = "conjure.nvim";
+    version = "2.1-unstable-2025-11-08";
+    src = fetchFromGitHub {
+      owner = "niklasdewally";
+      repo = "conjure.nvim";
+      rev = "dafc1c512b97a85eddba5e994107598db97d73b9";
+      hash = "sha256-VCtnbhwZ8bIOmwUwu+ExU//FNhvsdJrac9Hdy9GKUr4=";
+    };
+    meta.homepage = "https://github.com/niklasdewally/conjure.nvim/";
     meta.hydraPlatforms = [ ];
   };
 
@@ -6961,6 +7000,19 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  iswap-nvim = buildVimPlugin {
+    pname = "iswap.nvim";
+    version = "0-unstable-2024-05-23";
+    src = fetchFromGitHub {
+      owner = "mizlan";
+      repo = "iswap.nvim";
+      rev = "e02cc91f2a8feb5c5a595767d208c54b6e3258ec";
+      hash = "sha256-lAYHvz23f9nJ6rb0NIm+1aq0Vr0SwjPVitPuROtUS2A=";
+    };
+    meta.homepage = "https://github.com/mizlan/iswap.nvim/";
+    meta.hydraPlatforms = [ ];
+  };
+
   jdaddy-vim = buildVimPlugin {
     pname = "jdaddy.vim";
     version = "1.0-unstable-2014-02-22";
@@ -7037,6 +7089,19 @@ final: prev: {
       hash = "sha256-ubZo3TYi72WqcGoSoveYRYcwOYk4oNW28uAYw939u5M=";
     };
     meta.homepage = "https://github.com/HiPhish/jinja.vim/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  jj-nvim = buildVimPlugin {
+    pname = "jj.nvim";
+    version = "0.1.0-unstable-2025-12-25";
+    src = fetchFromGitHub {
+      owner = "NicolasGB";
+      repo = "jj.nvim";
+      rev = "faf1a9f63c55d1d3649896de0d7cc18e4581d71e";
+      hash = "sha256-OxBSxxPQRFq1EPmoUsICMTZFatkkb1mI/tPHCzeIW4Q=";
+    };
+    meta.homepage = "https://github.com/NicolasGB/jj.nvim/";
     meta.hydraPlatforms = [ ];
   };
 
@@ -9119,6 +9184,19 @@ final: prev: {
       hash = "sha256-Mpze6Quz5KNQF+/59JYQCZVJgRGFzTOvC1U+6g9kh/o=";
     };
     meta.homepage = "https://github.com/SidOfc/mkdx/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  model-nvim = buildVimPlugin {
+    pname = "model.nvim";
+    version = "0-unstable-2025-07-15";
+    src = fetchFromGitHub {
+      owner = "gsuuon";
+      repo = "model.nvim";
+      rev = "c4653e9a9431c2629725b919e37eac83d0dbb6aa";
+      hash = "sha256-gz97C8/tlU4SDKLaQ5Lv2NbQP8zQRsNxiIQWHoHHDJY=";
+    };
+    meta.homepage = "https://github.com/gsuuon/model.nvim/";
     meta.hydraPlatforms = [ ];
   };
 
@@ -17186,6 +17264,19 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  vim-buffet = buildVimPlugin {
+    pname = "vim-buffet";
+    version = "2.0.1-unstable-2021-09-03";
+    src = fetchFromGitHub {
+      owner = "bagrat";
+      repo = "vim-buffet";
+      rev = "3ee5c836cd7ded3526902122e06110cd3f8549cb";
+      hash = "sha256-cyZN06Dn+qaL5AjbZfBZIj9Est7b+Q8BYemmWpCt7Gs=";
+    };
+    meta.homepage = "https://github.com/bagrat/vim-buffet/";
+    meta.hydraPlatforms = [ ];
+  };
+
   vim-bufkill = buildVimPlugin {
     pname = "vim-bufkill";
     version = "0-unstable-2022-04-19";
@@ -18457,6 +18548,19 @@ final: prev: {
       hash = "sha256-d5lh5S1YQ1OzlsKmj+cB9UAdbX7haAqo3eR/4s4H7FQ=";
     };
     meta.homepage = "https://github.com/tikhomirov/vim-glsl/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  vim-gml = buildVimPlugin {
+    pname = "vim-gml";
+    version = "0-unstable-2022-10-04";
+    src = fetchFromGitHub {
+      owner = "JafarDakhan";
+      repo = "vim-gml";
+      rev = "382f7aecf6da88c077f34df2f863e750b4d0fdd3";
+      hash = "sha256-xIchBiNEZbrz0LRIWorJEac8y4DBa4akuM4JPqM0Yp4=";
+    };
+    meta.homepage = "https://github.com/JafarDakhan/vim-gml/";
     meta.hydraPlatforms = [ ];
   };
 
@@ -20529,6 +20633,19 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  vim-pythonsense = buildVimPlugin {
+    pname = "vim-pythonsense";
+    version = "0-unstable-2021-06-12";
+    src = fetchFromGitHub {
+      owner = "jeetsukumaran";
+      repo = "vim-pythonsense";
+      rev = "9200a57629c904ed2ab8c9b2e8c5649d311794ba";
+      hash = "sha256-LQTwroaz7Eb/1GMwya1ucEgk74LTMil5Sn64AuT4WNQ=";
+    };
+    meta.homepage = "https://github.com/jeetsukumaran/vim-pythonsense/";
+    meta.hydraPlatforms = [ ];
+  };
+
   vim-qf = buildVimPlugin {
     pname = "vim-qf";
     version = "0.2.0-unstable-2025-05-18";
@@ -21502,6 +21619,19 @@ final: prev: {
       hash = "sha256-7jvoYMhgcPxOVDYqmvHZ8TLW8t/UtVzT84iycXKD4eg=";
     };
     meta.homepage = "https://github.com/osyo-manga/vim-textobj-multiblock/";
+    meta.hydraPlatforms = [ ];
+  };
+
+  vim-textobj-quote = buildVimPlugin {
+    pname = "vim-textobj-quote";
+    version = "1.0-unstable-2023-10-13";
+    src = fetchFromGitHub {
+      owner = "preservim";
+      repo = "vim-textobj-quote";
+      rev = "e99ad285c950576a394a64ff334106b32b23418a";
+      hash = "sha256-SkQavbxgq9WSeoZZnwRWHaHtku82xdgBjHrTz02kNKk=";
+    };
+    meta.homepage = "https://github.com/preservim/vim-textobj-quote/";
     meta.hydraPlatforms = [ ];
   };
 

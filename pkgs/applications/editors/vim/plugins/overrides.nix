@@ -196,6 +196,14 @@ assertNoAdditions {
     ];
   };
 
+  artio-nvim = super.artio-nvim.overrideAttrs {
+    # Requires extui enabled
+    nvimSkipModules = [
+      "artio.view"
+      "artio.picker"
+    ];
+  };
+
   astrocore = super.astrocore.overrideAttrs {
     dependencies = [ self.lazy-nvim ];
   };
@@ -1527,6 +1535,10 @@ assertNoAdditions {
   };
 
   intellitab-nvim = super.intellitab-nvim.overrideAttrs {
+    dependencies = [ self.nvim-treesitter ];
+  };
+
+  iswap-nvim = super.iswap-nvim.overrideAttrs {
     dependencies = [ self.nvim-treesitter ];
   };
 
@@ -4020,6 +4032,10 @@ assertNoAdditions {
     meta = old.meta // {
       maintainers = with lib.maintainers; [ llakala ];
     };
+  });
+
+  vim-textobj-quote = super.vim-textobj-quote.overrideAttrs (old: {
+    dependencies = [ self.vim-textobj-user ];
   });
 
   vim-tpipeline = super.vim-tpipeline.overrideAttrs {
