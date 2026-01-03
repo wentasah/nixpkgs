@@ -9758,8 +9758,6 @@ with pkgs;
 
   papis = with python3Packages; toPythonApplication papis;
 
-  polychromatic = qt6Packages.callPackage ../applications/misc/polychromatic { };
-
   scheherazade-new = scheherazade.override {
     version = "4.400";
   };
