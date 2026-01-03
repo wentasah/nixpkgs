@@ -3656,8 +3656,6 @@ with pkgs;
     extraFonts = true;
   };
 
-  texworks = qt6Packages.callPackage ../applications/editors/texworks { };
-
   tiled = libsForQt5.callPackage ../applications/editors/tiled { };
 
   tinc = callPackage ../tools/networking/tinc { };
