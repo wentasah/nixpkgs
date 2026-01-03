@@ -10124,7 +10124,6 @@ with pkgs;
   wireshark = qt6Packages.callPackage ../applications/networking/sniffers/wireshark {
     libpcap = libpcap.override { withBluez = stdenv.hostPlatform.isLinux; };
   };
-  wireshark-qt = wireshark;
 
   qtwirediff = qt6Packages.callPackage ../applications/networking/sniffers/qtwirediff { };
 
