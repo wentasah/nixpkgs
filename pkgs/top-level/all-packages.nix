@@ -3485,8 +3485,6 @@ with pkgs;
 
   ratarmount = with python3Packages; toPythonApplication ratarmount;
 
-  retext = qt6Packages.callPackage ../applications/editors/retext { };
-
   inherit (callPackage ../tools/security/rekor { })
     rekor-cli
     rekor-server
