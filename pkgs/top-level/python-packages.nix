@@ -142,6 +142,10 @@ self: super: with self; {
 
   agent-py = callPackage ../development/python-modules/agent-py { };
 
+  agentic-threat-hunting-framework =
+    callPackage ../development/python-modules/agentic-threat-hunting-framework
+      { };
+
   aggdraw = callPackage ../development/python-modules/aggdraw { };
 
   aggregate6 = callPackage ../development/python-modules/aggregate6 { };
@@ -2892,6 +2896,8 @@ self: super: with self; {
 
   coinbase-advanced-py = callPackage ../development/python-modules/coinbase-advanced-py { };
 
+  coincidence = callPackage ../development/python-modules/coincidence { };
+
   coincurve = callPackage ../development/python-modules/coincurve { inherit (pkgs) secp256k1; };
 
   coinmetrics-api-client = callPackage ../development/python-modules/coinmetrics-api-client { };
@@ -5328,6 +5334,8 @@ self: super: with self; {
 
   fava-investor = callPackage ../development/python-modules/fava-investor { };
 
+  fava-portfolio-returns = callPackage ../development/python-modules/fava-portfolio-returns { };
+
   favicon = callPackage ../development/python-modules/favicon { };
 
   fe25519 = callPackage ../development/python-modules/fe25519 { };
@@ -6794,6 +6802,8 @@ self: super: with self; {
   };
 
   hdfs = callPackage ../development/python-modules/hdfs { };
+
+  hdfury = callPackage ../development/python-modules/hdfury { };
 
   hdmedians = callPackage ../development/python-modules/hdmedians { };
 
@@ -8549,6 +8559,8 @@ self: super: with self; {
       python3 = python;
     }
   );
+
+  libparse-python = callPackage ../development/python-modules/libparse-python/package.nix { };
 
   libpass = callPackage ../development/python-modules/libpass { };
 
@@ -13441,11 +13453,14 @@ self: super: with self; {
 
   pygal = callPackage ../development/python-modules/pygal { };
 
-  pygame = callPackage ../development/python-modules/pygame { };
+  # pygame-ce is better maintained upstream, the breaking point was https://github.com/NixOS/nixpkgs/pull/475917#issuecomment-3706940043
+  pygame = if pythonAtLeast "3.14" then pygame-ce else pygame-original;
 
   pygame-ce = callPackage ../development/python-modules/pygame-ce { };
 
   pygame-gui = callPackage ../development/python-modules/pygame-gui { };
+
+  pygame-original = callPackage ../development/python-modules/pygame-original { };
 
   pygame-sdl2 = callPackage ../development/python-modules/pygame-sdl2 { };
 
@@ -15592,6 +15607,8 @@ self: super: with self; {
   python-vlc = callPackage ../development/python-modules/python-vlc { };
 
   python-watcherclient = callPackage ../development/python-modules/python-watcherclient { };
+
+  python-wayland-extra = callPackage ../development/python-modules/python-wayland-extra { };
 
   python-whois = callPackage ../development/python-modules/python-whois { };
 
@@ -18208,6 +18225,10 @@ self: super: with self; {
 
   streamcontroller-plugin-tools =
     callPackage ../development/python-modules/streamcontroller-plugin-tools
+      { };
+
+  streamcontroller-streamdeck =
+    callPackage ../development/python-modules/streamcontroller-streamdeck
       { };
 
   streamdeck = callPackage ../development/python-modules/streamdeck { };
