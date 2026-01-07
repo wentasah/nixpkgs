@@ -830,8 +830,9 @@ with pkgs;
     inherit (darwin) signingUtils;
   };
 
-  # No callPackage.  In particular, we don't want `img` *package* in parameters.
-  vmTools = makeOverridable (import ../build-support/vm) { inherit pkgs lib; };
+  vmTools = callPackage ../build-support/vm {
+    img = stdenv.hostPlatform.linux-kernel.target;
+  };
 
   releaseTools = callPackage ../build-support/release { };
 
@@ -3677,6 +3678,8 @@ with pkgs;
 
   reuse = with python3.pkgs; toPythonApplication reuse;
 
+  rmate = rubyPackages.rmate;
+
   rmlint = callPackage ../tools/misc/rmlint {
     inherit (python3Packages) sphinx;
   };
@@ -5232,7 +5235,6 @@ with pkgs;
   # prolog
   yosys-bluespec = callPackage ../development/compilers/yosys/plugins/bluespec.nix { };
   yosys-ghdl = callPackage ../development/compilers/yosys/plugins/ghdl.nix { };
-  yosys-synlig = callPackage ../development/compilers/yosys/plugins/synlig.nix { };
   yosys-symbiflow = callPackage ../development/compilers/yosys/plugins/symbiflow.nix { };
 
   inherit
@@ -6197,14 +6199,6 @@ with pkgs;
     haskellPackages.callPackage ../tools/misc/fffuu { }
   );
 
-  flow = callPackage ../development/tools/analysis/flow {
-    ocamlPackages = ocaml-ng.ocamlPackages.overrideScope (
-      self: super: {
-        ppxlib = super.ppxlib.override { version = "0.33.0"; };
-      }
-    );
-  };
-
   gede = libsForQt5.callPackage ../development/tools/misc/gede { };
 
   gdbgui = python3Packages.callPackage ../development/tools/misc/gdbgui { };
@@ -6974,7 +6968,7 @@ with pkgs;
     else if libc == "bionic" then
       bionic
     else if libc == "uclibc" then
-      uclibc
+      uclibc-ng
     else if libc == "avrlibc" then
       avrlibc
     else if libc == "newlib" && stdenv.hostPlatform.isMsp430 then
@@ -11372,8 +11366,6 @@ with pkgs;
 
   ninja_1_11 = callPackage ../by-name/ni/ninja/package.nix { ninjaRelease = "1.11"; };
 
-  opcua-client-gui = libsForQt5.callPackage ../misc/opcua-client-gui { };
-
   ostinato = libsForQt5.callPackage ../applications/networking/ostinato {
     protobuf = protobuf_21;
   };
@@ -11389,8 +11381,6 @@ with pkgs;
   pinegrow = callPackage ../applications/editors/pinegrow { };
 
   pipe-viewer = perlPackages.callPackage ../applications/video/pipe-viewer { };
-
-  playonlinux = callPackage ../applications/misc/playonlinux { stdenv = stdenv_32bit; };
 
   pleroma-bot = python3Packages.callPackage ../development/python-modules/pleroma-bot { };
 
