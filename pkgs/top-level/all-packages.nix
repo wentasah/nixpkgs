@@ -3438,8 +3438,6 @@ with pkgs;
 
   pydeps = with python3Packages; toPythonApplication pydeps;
 
-  pywal = with python3Packages; toPythonApplication pywal;
-
   remarshal = with python3Packages; toPythonApplication remarshal;
 
   riseup-vpn = qt6Packages.callPackage ../tools/networking/bitmask-vpn {
