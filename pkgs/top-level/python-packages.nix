@@ -20008,8 +20008,6 @@ self: super: with self; {
     inherit (pkgs) typesense curl;
   };
 
-  typesentry = callPackage ../development/python-modules/typesentry { };
-
   typeshed-client = callPackage ../development/python-modules/typeshed-client { };
 
   typing = null;
