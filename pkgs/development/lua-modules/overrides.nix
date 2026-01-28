@@ -35,7 +35,6 @@
   libxcrypt,
   libyaml,
   lua-language-server,
-  luajitPackages,
   mariadb,
   mpfr,
   neovim-unwrapped,
@@ -249,13 +248,6 @@ in
       busted --lua=nlua
       runHook postCheck
     '';
-  };
-
-  image-nvim = prev.image-nvim.overrideAttrs {
-    propagatedBuildInputs = [
-      lua
-      luajitPackages.magick
-    ];
   };
 
   ldbus = prev.ldbus.overrideAttrs (old: {
