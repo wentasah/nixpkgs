@@ -34,8 +34,6 @@ buildDunePackage rec {
   pname = "carton";
   version = "0.7.0";
 
-  minimalOCamlVersion = "4.08";
-
   src = fetchurl {
     url = "https://github.com/mirage/ocaml-git/releases/download/${pname}-v${version}/git-${pname}-v${version}.tbz";
     hash = "sha256-vWkBJdP4ZpRCEwzrFMzsdHay4VyiXix/+1qzk+7yDvk=";
@@ -74,7 +72,8 @@ buildDunePackage rec {
     fmt
   ];
 
-  doCheck = true;
+  # Alcotest depends on cmdliner ≥ 2.0
+  doCheck = false;
   nativeBuildInputs = [
     findlib
   ];

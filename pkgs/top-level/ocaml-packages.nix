@@ -91,6 +91,7 @@ let
         backoff = callPackage ../development/ocaml-modules/backoff { };
 
         bap = callPackage ../development/ocaml-modules/bap {
+          cmdliner = cmdliner_1;
           inherit (pkgs.llvmPackages) llvm;
         };
 
@@ -122,7 +123,9 @@ let
 
         biotk = callPackage ../development/ocaml-modules/biotk { };
 
-        bisect_ppx = callPackage ../development/ocaml-modules/bisect_ppx { };
+        bisect_ppx = callPackage ../development/ocaml-modules/bisect_ppx {
+          cmdliner = cmdliner_1;
+        };
 
         bistro = callPackage ../development/ocaml-modules/bistro { };
 
@@ -220,7 +223,9 @@ let
 
         caqti-type-calendar = callPackage ../development/ocaml-modules/caqti/type-calendar.nix { };
 
-        carton = callPackage ../development/ocaml-modules/carton { };
+        carton = callPackage ../development/ocaml-modules/carton {
+          cmdliner = cmdliner_1;
+        };
 
         carton-git = callPackage ../development/ocaml-modules/carton/git.nix { };
 
@@ -1017,7 +1022,9 @@ let
 
         kafka = callPackage ../development/ocaml-modules/kafka { };
 
-        kafka_lwt = callPackage ../development/ocaml-modules/kafka/lwt.nix { };
+        kafka_lwt = callPackage ../development/ocaml-modules/kafka/lwt.nix {
+          cmdliner = cmdliner_1;
+        };
 
         kcas = callPackage ../development/ocaml-modules/kcas { };
 
@@ -1062,6 +1069,7 @@ let
         lambda-term = callPackage ../development/ocaml-modules/lambda-term { };
 
         lambdapi = callPackage ../development/ocaml-modules/lambdapi {
+          cmdliner = cmdliner_1;
           why3 = pkgs.why3.override { ocamlPackages = self; };
         };
 
@@ -1604,7 +1612,9 @@ let
 
         odig = callPackage ../development/ocaml-modules/odig { };
 
-        odoc = callPackage ../development/ocaml-modules/odoc { };
+        odoc = callPackage ../development/ocaml-modules/odoc {
+          cmdliner = cmdliner_1;
+        };
 
         odoc-parser = callPackage ../development/ocaml-modules/odoc-parser { };
 
@@ -1717,6 +1727,7 @@ let
         piqi-ocaml = callPackage ../development/ocaml-modules/piqi-ocaml { };
 
         plotkicadsch = callPackage ../development/ocaml-modules/plotkicadsch {
+          cmdliner = cmdliner_1;
           inherit (pkgs) coreutils imagemagick;
         };
 
@@ -1762,7 +1773,9 @@ let
 
         ppx_deriving = callPackage ../development/ocaml-modules/ppx_deriving { };
 
-        ppx_deriving_cmdliner = callPackage ../development/ocaml-modules/ppx_deriving_cmdliner { };
+        ppx_deriving_cmdliner = callPackage ../development/ocaml-modules/ppx_deriving_cmdliner {
+          cmdliner = cmdliner_1;
+        };
 
         ppx_deriving_protobuf = callPackage ../development/ocaml-modules/ppx_deriving_protobuf { };
 
