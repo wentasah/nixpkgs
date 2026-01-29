@@ -253,6 +253,8 @@ rec {
     inherit (pkgs) zenity;
   };
 
+  readline = callPackage ../development/lua-modules/readline { inherit (pkgs) readline; };
+
   vicious = callPackage (
     { fetchFromGitHub }:
     stdenv.mkDerivation rec {
