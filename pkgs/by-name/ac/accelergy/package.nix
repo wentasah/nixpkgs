@@ -2,6 +2,7 @@
   lib,
   fetchFromGitHub,
   python3Packages,
+  unstableGitUpdater,
 }:
 
 python3Packages.buildPythonApplication {
@@ -25,6 +26,11 @@ python3Packages.buildPythonApplication {
     yamlordereddictloader
     pyfiglet
   ];
+
+  passthru.updateScript = unstableGitUpdater {
+    tagPrefix = "v";
+    tagFormat = "v*";
+  };
 
   meta = {
     description = "Architecture-level energy/area estimator for accelerator designs";
