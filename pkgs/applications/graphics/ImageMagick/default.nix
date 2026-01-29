@@ -54,6 +54,7 @@
   potrace,
   coreutils,
   curl,
+  versionCheckHook,
   testers,
   nixos-icons,
   perlPackages,
@@ -183,8 +184,13 @@ stdenv.mkDerivation (finalAttrs: {
     done
   '';
 
+  doInstallCheck = true;
+
+  nativeInstallCheckInputs = [
+    versionCheckHook
+  ];
+
   passthru.tests = {
-    version = testers.testVersion { package = finalAttrs.finalPackage; };
     inherit nixos-icons;
     inherit (perlPackages) ImageMagick;
     inherit (python3.pkgs) img2pdf willow;
