@@ -7,14 +7,14 @@
 
 python3Packages.buildPythonApplication {
   pname = "accelergy";
-  version = "unstable-2022-05-03";
+  version = "0.1-unstable-2025-05-26";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "Accelergy-Project";
     repo = "accelergy";
-    rev = "34df8e87a889ae55cecba58992d4573466b40565";
-    hash = "sha256-SRtt1EocHy5fKszpoumC+mOK/qhreoA2/Ff1wcu5WKo=";
+    rev = "6911d15686ee7efdceba7d95605102df4472ae3a";
+    hash = "sha256-YgJbmxJfuw7jk+Ssj5r3cmJYSSepf7aw+Ti3a9brm6o=";
   };
 
   build-system = with python3Packages; [
@@ -25,6 +25,9 @@ python3Packages.buildPythonApplication {
     pyyaml
     yamlordereddictloader
     pyfiglet
+    ruamel-yaml
+    deepdiff
+    jinja2
   ];
 
   passthru.updateScript = unstableGitUpdater {
