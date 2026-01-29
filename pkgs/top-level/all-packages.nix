@@ -10570,8 +10570,6 @@ with pkgs;
     libde265Support = false;
   };
 
-  imagemagick6 = callPackage ../applications/graphics/ImageMagick/6.x.nix { };
-
   imagemagick6Big = imagemagick6.override {
     ghostscriptSupport = true;
   };
