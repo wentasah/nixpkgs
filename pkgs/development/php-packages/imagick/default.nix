@@ -10,7 +10,7 @@ buildPecl {
   pname = "imagick";
 
   version = "3.8.1";
-  sha256 = "sha256-OjWHwKUkwX0NrZZzoWC5DNd26DaDhHThc7VJ7YZDUu4=";
+  hash = "sha256-OjWHwKUkwX0NrZZzoWC5DNd26DaDhHThc7VJ7YZDUu4=";
 
   configureFlags = [ "--with-imagick=${imagemagick.dev}" ];
 
