@@ -8,14 +8,14 @@
   webdav4,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "dvc-webdav";
   version = "3.0.1";
   pyproject = true;
 
   src = fetchPypi {
     pname = "dvc_webdav";
-    inherit version;
+    inherit (finalAttrs) version;
     hash = "sha256-PA0Er7CYWiwVbwtxn0uUN85KzTRmR9j2/uBDtekXx24";
   };
 
@@ -41,4 +41,4 @@ buildPythonPackage rec {
     license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [ fab ];
   };
-}
+})
