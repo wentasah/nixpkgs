@@ -1089,10 +1089,6 @@ with pkgs;
     wine = wineWowPackages.yabridge;
   };
 
-  yafetch = callPackage ../tools/misc/yafetch {
-    stdenv = clangStdenv;
-  };
-
   ### APPLICATIONS/VERSION-MANAGEMENT
 
   # The full-featured Git.
@@ -12421,9 +12417,7 @@ with pkgs;
     hdf5 = hdf5-fortran;
   };
 
-  siesta = callPackage ../applications/science/chemistry/siesta { };
-
-  siesta-mpi = callPackage ../applications/science/chemistry/siesta { useMpi = true; };
+  siesta-mpi = callPackage ../by-name/si/siesta/package.nix { useMpi = true; };
 
   ### SCIENCE/BIOLOGY
 
