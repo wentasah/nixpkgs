@@ -2702,7 +2702,6 @@ dont-distribute-packages:
  - ports
  - poseidon
  - poseidon-postgis
- - postgres-websockets
  - postgresql-common-persistent
  - postgresql-pure
  - postgresql-simple-ltree
@@ -2711,7 +2710,6 @@ dont-distribute-packages:
  - postgresql-tx-query
  - postgresql-tx-squeal
  - postgresql-tx-squeal-compat-simple
- - postgrest
  - postmark
  - potoki
  - potoki-cereal
