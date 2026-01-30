@@ -2,26 +2,32 @@
   lib,
   fetchFromGitHub,
   rustPlatform,
+  installShellFiles,
   gitMinimal,
+  stdenvNoCC,
   versionCheckHook,
   nix-update-script,
 }:
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "rumdl";
-  version = "0.1.2";
+  version = "0.1.6";
 
   src = fetchFromGitHub {
     owner = "rvben";
     repo = "rumdl";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-8K+jZL/yo7ur5WD+5+L+ZHhFkhYo83brgD6Gg1Xo6js=";
+    hash = "sha256-n8rGccgwf0ybttAsYt6OrmFz/aH3TOHksLZMc/AqSv0=";
   };
 
-  cargoHash = "sha256-dpHV5+DJLsjwvLkxtXOS7CYUNKXW57o0O541pO8vN5U=";
+  cargoHash = "sha256-haRjTd7cp0eJnK4CUUVsZZumZ+SVS+TaR1PpkdOoNb4=";
 
   cargoBuildFlags = [
     "--bin=rumdl"
+  ];
+
+  nativeBuildInputs = [
+    installShellFiles
   ];
 
   nativeCheckInputs = [
@@ -34,6 +40,13 @@ rustPlatform.buildRustPackage (finalAttrs: {
     # Prefer the "smoke" profile over "ci" to exclude flaky tests: https://github.com/rvben/rumdl/pull/341
     "--profile smoke"
   ];
+
+  postInstall = lib.optionalString (stdenvNoCC.buildPlatform.canExecute stdenvNoCC.hostPlatform) ''
+    installShellCompletion --cmd rumdl \
+      --bash <("$out/bin/rumdl" completions bash) \
+      --fish <("$out/bin/rumdl" completions fish) \
+      --zsh <("$out/bin/rumdl" completions zsh)
+  '';
 
   doInstallCheck = true;
   nativeInstallCheckInputs = [
