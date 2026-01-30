@@ -2,7 +2,6 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  fetchpatch2,
   cmake,
   gbenchmark,
   gtest,
@@ -15,22 +14,14 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "ada";
-  version = "3.4.1";
+  version = "3.4.2";
 
   src = fetchFromGitHub {
     owner = "ada-url";
     repo = "ada";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-2xrued35FRqmtZjrMTBtl5r/TB/pXNhhcKOfuwjxrhc=";
+    hash = "sha256-+aXZY6JFfbw1N+EkenPhfp6ErUJFnbiJsgHpQq36Os4=";
   };
-
-  patches = [
-    # TODO: remove once included in a release.
-    (fetchpatch2 {
-      url = "https://github.com/ada-url/ada/commit/899e14e1a07fb5ed9ea2589f0397c2f332abf693.patch?full_index=1";
-      hash = "sha256-Vd4Y6xDxkse+MKbvTvNzIoZpjaBOb+qltCiPP4xObS8=";
-    })
-  ];
 
   nativeBuildInputs = [
     cmake
