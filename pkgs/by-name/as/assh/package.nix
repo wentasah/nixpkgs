@@ -10,16 +10,16 @@
 
 buildGoModule rec {
   pname = "assh";
-  version = "2.16.0";
+  version = "2.17.0";
 
   src = fetchFromGitHub {
     repo = "advanced-ssh-config";
     owner = "moul";
     tag = "v${version}";
-    hash = "sha256-rvJJZqVSBdaJ154NV6RaxbymsSsHbKnlJDeR6KHQE7M=";
+    hash = "sha256-X5UWQe4c+QudmXKjFKafivO/OvdBNzyutrL+CUK0olg=";
   };
 
-  vendorHash = "sha256-L2Uo/jsMtxQClF1UDa7NIUbOm7BflvncNsjqGnCsPKo=";
+  vendorHash = "sha256-EA39KqAN9SHPU362j6/j6okvT+eZb2R4unMA0bB+bVg=";
 
   ldflags = [
     "-s"
