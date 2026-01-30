@@ -10,7 +10,7 @@
   pefile,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "virt-firmware";
   version = "25.12";
   pyproject = true;
@@ -18,7 +18,7 @@ buildPythonPackage rec {
   src = fetchFromGitLab {
     owner = "kraxel";
     repo = "virt-firmware";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-sopmWZ8CdLuc0R+QN7MSoqT9kURzOyh9CgbreKuvANw=";
   };
 
@@ -45,9 +45,10 @@ buildPythonPackage rec {
   meta = {
     description = "Tools for virtual machine firmware volumes";
     homepage = "https://gitlab.com/kraxel/virt-firmware";
+    changelog = "https://gitlab.com/kraxel/virt-firmware/-/tags/${finalAttrs.src.tag}";
     license = lib.licenses.gpl2Only;
     maintainers = with lib.maintainers; [
       raitobezarius
     ];
   };
-}
+})
