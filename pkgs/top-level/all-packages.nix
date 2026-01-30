@@ -8549,12 +8549,6 @@ with pkgs;
 
   inherit
     ({
-      kanidm_1_5 = callPackage ../servers/kanidm/1_5.nix {
-        kanidmWithSecretProvisioning = kanidmWithSecretProvisioning_1_5;
-      };
-      kanidm_1_6 = callPackage ../servers/kanidm/1_6.nix {
-        kanidmWithSecretProvisioning = kanidmWithSecretProvisioning_1_6;
-      };
       kanidm_1_7 = callPackage ../servers/kanidm/1_7.nix {
         kanidmWithSecretProvisioning = kanidmWithSecretProvisioning_1_7;
       };
@@ -8562,17 +8556,11 @@ with pkgs;
         kanidmWithSecretProvisioning = kanidmWithSecretProvisioning_1_8;
       };
 
-      kanidmWithSecretProvisioning_1_5 = kanidm_1_5.override { enableSecretProvisioning = true; };
-      kanidmWithSecretProvisioning_1_6 = kanidm_1_6.override { enableSecretProvisioning = true; };
       kanidmWithSecretProvisioning_1_7 = kanidm_1_7.override { enableSecretProvisioning = true; };
       kanidmWithSecretProvisioning_1_8 = kanidm_1_8.override { enableSecretProvisioning = true; };
     })
-    kanidm_1_5
-    kanidm_1_6
     kanidm_1_7
     kanidm_1_8
-    kanidmWithSecretProvisioning_1_5
-    kanidmWithSecretProvisioning_1_6
     kanidmWithSecretProvisioning_1_7
     kanidmWithSecretProvisioning_1_8
     ;

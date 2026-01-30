@@ -13008,6 +13008,12 @@
     githubId = 3267697;
     name = "Joshua Potter";
   };
+  jrrom = {
+    email = "maintainer@jrrom.com";
+    github = "jrrom";
+    githubId = 77691121;
+    name = "Jerome Baeyens";
+  };
   js6pak = {
     name = "js6pak";
     email = "me@6pak.dev";
@@ -24084,12 +24090,6 @@
     githubId = 37299109;
     name = "Shakhzod Kudratov";
   };
-  shamilton = {
-    email = "sgn.hamilton@protonmail.com";
-    github = "SCOTT-HAMILTON";
-    githubId = 24496705;
-    name = "Scott Hamilton";
-  };
   ShamrockLee = {
     email = "shamrocklee@posteo.net";
     github = "ShamrockLee";
@@ -28770,6 +28770,12 @@
     github = "peterablehmann";
     githubId = 36541313;
   };
+  xiangpingjiang = {
+    email = "xiangpingjiang1998@gmail.com";
+    github = "xiangpingjiang";
+    githubId = 45722758;
+    name = "xiangpingjiang";
+  };
   xiaoxiangmoe = {
     name = "ZHAO JinXiang";
     email = "xiaoxiangmoe@gmail.com";
@@ -29242,6 +29248,12 @@
     github = "postgnostic";
     githubId = 37774475;
     name = "Yusuf Duran";
+  };
+  yusufraji = {
+    name = "Yusuf Raji";
+    github = "yusufraji";
+    githubId = 22890520;
+    matrix = "@yusufraji49:matrix.org";
   };
   yvan-sraka = {
     email = "yvan@sraka.xyz";

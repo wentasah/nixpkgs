@@ -25,7 +25,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "RTimothyEdwards";
     repo = "magic";
     tag = finalAttrs.version;
-    hash = "sha256-5Mh2KUvtBOSab3s/Co/hWjKU4SQmY5UxWfrqqDz3q6c=";
+    hash = "sha256-o9x29CDOtSQpQvTach6RaTJxRd2iTjyYi94ZjffUxVI=";
     leaveDotGit = true;
   };
 
