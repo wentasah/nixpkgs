@@ -2614,7 +2614,6 @@ broken-packages:
   - hasql-generic # failure in job https://hydra.nixos.org/build/233204654 at 2023-09-02
   - hasql-migration # failure in job https://hydra.nixos.org/build/295094132 at 2025-04-22
   - hasql-mover # failure in job https://hydra.nixos.org/build/295094128 at 2025-04-22
-  - hasql-notifications # failure in job https://hydra.nixos.org/build/320159319 at 2026-01-26
   - hasql-pipes # failure in job https://hydra.nixos.org/build/295094119 at 2025-04-22
   - hasql-resource-pool # failure in job https://hydra.nixos.org/build/233217667 at 2023-09-02
   - hasql-simple # failure in job https://hydra.nixos.org/build/233249588 at 2023-09-02
