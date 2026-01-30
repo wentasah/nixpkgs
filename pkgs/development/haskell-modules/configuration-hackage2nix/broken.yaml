@@ -1588,6 +1588,7 @@ broken-packages:
   - effin # failure in job https://hydra.nixos.org/build/233212960 at 2023-09-02
   - eflint # failure in job https://hydra.nixos.org/build/295122827 at 2025-04-22
   - egison-pattern-src-haskell-mode # failure in job https://hydra.nixos.org/build/295093048 at 2025-04-22
+  - egison-quote # failure in job https://hydra.nixos.org/build/320478191 at 2026-01-30
   - ehaskell # failure in job https://hydra.nixos.org/build/233196183 at 2023-09-02
   - ehs # failure in job https://hydra.nixos.org/build/233234594 at 2023-09-02
   - eibd-client-simple # failure in job https://hydra.nixos.org/build/233225416 at 2023-09-02
@@ -3790,6 +3791,7 @@ broken-packages:
   - linux-framebuffer # failure in job https://hydra.nixos.org/build/252721503 at 2024-03-16
   - linux-kmod # failure in job https://hydra.nixos.org/build/233205933 at 2023-09-02
   - linux-perf # failure in job https://hydra.nixos.org/build/233193731 at 2023-09-02
+  - linux-ptrace # failure in job https://hydra.nixos.org/build/320478197 at 2026-01-30
   - linux-xattr # failure in job https://hydra.nixos.org/build/233226493 at 2023-09-02
   - linx-gateway # failure in job https://hydra.nixos.org/build/233220744 at 2023-09-02
   - lio-fs # failure in job https://hydra.nixos.org/build/252736678 at 2024-03-16
