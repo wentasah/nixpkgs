@@ -10,14 +10,14 @@
 
 buildPythonPackage rec {
   pname = "pyotgw";
-  version = "2.2.2";
+  version = "2.2.3";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "mvn23";
     repo = "pyotgw";
     tag = version;
-    hash = "sha256-BQgRWXBSmB9AzpPeTJP7motJeKF2G0tyqJpbwIwnxwk=";
+    hash = "sha256-0F+UBIPk+A9z0YJtLVlJAqzMre8GZAio720SCi2dorE=";
   };
 
   build-system = [ setuptools ];
