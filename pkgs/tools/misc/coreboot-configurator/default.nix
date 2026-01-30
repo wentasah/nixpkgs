@@ -36,7 +36,6 @@ stdenv.mkDerivation {
     ninja
     pkg-config
     wrapQtAppsHook
-    wrapQtAppsHook
   ];
   buildInputs = [
     yaml-cpp

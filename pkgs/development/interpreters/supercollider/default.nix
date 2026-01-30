@@ -68,8 +68,7 @@ stdenv.mkDerivation rec {
     qttools
     libsForQt5.wrapQtAppsHook
   ]
-  ++ lib.optionals useSCEL [ emacs ]
-  ++ [ libsForQt5.wrapQtAppsHook ];
+  ++ lib.optionals useSCEL [ emacs ];
 
   buildInputs = [
     gcc

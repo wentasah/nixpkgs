@@ -47,7 +47,6 @@ stdenv.mkDerivation {
     qttools
     wrapGAppsHook3
     wrapQtAppsHook
-    wrapQtAppsHook
   ];
 
   buildInputs = [

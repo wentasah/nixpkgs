@@ -68,7 +68,6 @@ stdenv.mkDerivation rec {
     pkg-config
     doxygen
     wrapQtAppsHook
-    wrapQtAppsHook
   ];
 
   buildInputs = [
