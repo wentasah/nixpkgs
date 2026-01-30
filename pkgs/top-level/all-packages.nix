@@ -9365,12 +9365,24 @@ with pkgs;
       inherit modules;
     };
 
-  nushell = callPackage ../shells/nushell { };
-
-  nushellPlugins = recurseIntoAttrs (
-    callPackage ../shells/nushell/plugins {
-    }
-  );
+  nushellPlugins = recurseIntoAttrs {
+    gstat = callPackage ../by-name/nu/nushell-plugin-gstat/package.nix { };
+    formats = callPackage ../by-name/nu/nushell-plugin-formats/package.nix { };
+    polars = callPackage ../by-name/nu/nushell-plugin-polars/package.nix { };
+    query = callPackage ../by-name/nu/nushell-plugin-query/package.nix { };
+    net = callPackage ../by-name/nu/nushell-plugin-net/package.nix { };
+    units = callPackage ../by-name/nu/nushell-plugin-units/package.nix { };
+    highlight = callPackage ../by-name/nu/nushell-plugin-highlight/package.nix { };
+    dbus = callPackage ../by-name/nu/nushell-plugin-dbus/package.nix {
+      inherit dbus;
+    };
+    skim = callPackage ../by-name/nu/nushell-plugin-skim/package.nix { };
+    semver = callPackage ../by-name/nu/nushell-plugin-semver/package.nix { };
+    hcl = callPackage ../by-name/nu/nushell-plugin-hcl/package.nix { };
+    desktop_notifications =
+      callPackage ../by-name/nu/nushell-plugin-desktop_notifications/package.nix
+        { };
+  };
 
   net-tools =
     # some platforms refer back to this from unixtools, so this is needed to
