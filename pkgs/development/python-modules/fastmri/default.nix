@@ -2,6 +2,7 @@
   lib,
   buildPythonPackage,
   fetchFromGitHub,
+  pythonAtLeast,
 
   # build system
   setuptools,
@@ -65,6 +66,12 @@ buildPythonPackage (finalAttrs: {
   ];
 
   nativeCheckInputs = [ pytestCheckHook ];
+
+  disabledTests = lib.optionals (pythonAtLeast "3.14") [
+    # AttributeError: '...' object has no attribute '__annotations__'.
+    "test_unet_scripting"
+    "test_varnet_scripting"
+  ];
 
   disabledTestPaths = [
     # much older version of pytorch-lightning is used
