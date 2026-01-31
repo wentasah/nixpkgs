@@ -4,6 +4,7 @@
   buildPythonPackage,
   fetchFromGitHub,
   fetchpatch,
+  pythonAtLeast,
 
   # build-system
   setuptools,
@@ -41,6 +42,9 @@ buildPythonPackage (finalAttrs: {
     tag = "v${finalAttrs.version}";
     hash = "sha256-h0+RYgGMz0gPchiKGIu0/NGcWBky5AWNTJKzoupn/iQ=";
   };
+
+  # pydantic.v1.errors.ConfigError: unable to infer type for attribute "target"
+  disabled = pythonAtLeast "3.14";
 
   patches = [
     # Fixes _pickle.UnpicklingError: Weights only load failed.
