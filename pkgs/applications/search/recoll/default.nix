@@ -120,6 +120,7 @@ stdenv.mkDerivation rec {
     ninja
     pkg-config
     which
+    wrapQtAppsHook
   ]
   ++ lib.optionals withGui [
     qtbase
@@ -127,8 +128,7 @@ stdenv.mkDerivation rec {
   ]
   ++ lib.optionals withPython [
     python3Packages.setuptools
-  ]
-  ++ [ wrapQtAppsHook ];
+  ];
 
   buildInputs = [
     aspell

@@ -64,11 +64,11 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     cmake
     qttools
+    wrapQtAppsHook
   ]
   ++ lib.optionals enablePsiMedia [
     pkg-config
-  ]
-  ++ [ wrapQtAppsHook ];
+  ];
 
   buildInputs = [
     qtbase
