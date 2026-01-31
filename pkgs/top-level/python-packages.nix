@@ -2014,6 +2014,8 @@ self: super: with self; {
 
   binsync = callPackage ../development/python-modules/binsync { };
 
+  binwalk3 = callPackage ../development/python-modules/binwalk3 { };
+
   biocframe = callPackage ../development/python-modules/biocframe { };
 
   biocutils = callPackage ../development/python-modules/biocutils { };
@@ -15103,6 +15105,8 @@ self: super: with self; {
   pytest-pook = callPackage ../development/python-modules/pytest-pook { };
 
   pytest-postgresql = callPackage ../development/python-modules/pytest-postgresql { };
+
+  pytest-pretty = callPackage ../development/python-modules/pytest-pretty { };
 
   pytest-pudb = callPackage ../development/python-modules/pytest-pudb { };
 
