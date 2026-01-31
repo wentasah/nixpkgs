@@ -23,7 +23,7 @@
   pytestCheckHook,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "fastmri";
   version = "0.3.0";
   pyproject = true;
@@ -31,7 +31,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "facebookresearch";
     repo = "fastMRI";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-0IJV8OhY5kPWQwUYPKfmdI67TyYzDAPlwohdc0jWcV4=";
   };
 
@@ -76,8 +76,8 @@ buildPythonPackage rec {
   meta = {
     description = "Pytorch-based MRI reconstruction tooling";
     homepage = "https://github.com/facebookresearch/fastMRI";
-    changelog = "https://github.com/facebookresearch/fastMRI/releases/tag/v${version}";
+    changelog = "https://github.com/facebookresearch/fastMRI/releases/tag/${finalAttrs.src.tag}";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ osbm ];
   };
-}
+})
