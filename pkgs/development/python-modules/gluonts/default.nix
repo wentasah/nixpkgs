@@ -1,6 +1,6 @@
 {
-  stdenv,
   lib,
+  stdenv,
   buildPythonPackage,
   fetchFromGitHub,
   fetchpatch,
@@ -20,7 +20,7 @@
   lightning,
   scipy,
 
-  # test
+  # tests
   pytestCheckHook,
   distutils,
   matplotlib,
@@ -30,7 +30,7 @@
   which,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "gluonts";
   version = "0.16.2";
   pyproject = true;
@@ -38,7 +38,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "awslabs";
     repo = "gluonts";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-h0+RYgGMz0gPchiKGIu0/NGcWBky5AWNTJKzoupn/iQ=";
   };
 
@@ -100,7 +100,7 @@ buildPythonPackage rec {
     writableTmpDirAsHomeHook
     which
   ]
-  ++ optional-dependencies.torch;
+  ++ finalAttrs.passthru.optional-dependencies.torch;
 
   disabledTestPaths = [
     # requires `cpflows`, not in Nixpkgs
@@ -119,8 +119,8 @@ buildPythonPackage rec {
   meta = {
     description = "Probabilistic time series modeling in Python";
     homepage = "https://ts.gluon.ai";
-    changelog = "https://github.com/awslabs/gluonts/releases/tag/${src.tag}";
+    changelog = "https://github.com/awslabs/gluonts/releases/tag/${finalAttrs.src.tag}";
     license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [ bcdarwin ];
   };
-}
+})
