@@ -9649,7 +9649,7 @@ with pkgs;
     zfs_2_4
     zfs_unstable
     ;
-  zfs = zfs_2_3;
+  zfs = zfs_2_4;
 
   ### DATA
 
@@ -9990,10 +9990,6 @@ with pkgs;
   cudatext-qt = callPackage ../applications/editors/cudatext { widgetset = "qt5"; };
   cudatext-gtk = callPackage ../applications/editors/cudatext { widgetset = "gtk2"; };
   cudatext = cudatext-qt;
-
-  cqrlog = callPackage ../applications/radio/cqrlog {
-    hamlib = hamlib_4;
-  };
 
   darcs = haskell.lib.compose.disableCabalFlag "library" (
     haskell.lib.compose.justStaticExecutables haskellPackages.darcs

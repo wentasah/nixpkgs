@@ -158,6 +158,7 @@ let
     };
     logger = {
       linux = pkgs.util-linux;
+      darwin = pkgs.darwin.remote_cmds;
     };
     more = {
       linux = pkgs.util-linux;
@@ -241,6 +242,7 @@ let
     };
     wall = {
       linux = pkgs.util-linux;
+      darwin = pkgs.darwin.remote_cmds;
     };
     watch = {
       linux = pkgs.procps;
