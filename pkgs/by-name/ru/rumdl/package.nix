@@ -4,7 +4,7 @@
   rustPlatform,
   installShellFiles,
   gitMinimal,
-  stdenvNoCC,
+  stdenv,
   versionCheckHook,
   nix-update-script,
 }:
@@ -41,7 +41,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     "--profile smoke"
   ];
 
-  postInstall = lib.optionalString (stdenvNoCC.buildPlatform.canExecute stdenvNoCC.hostPlatform) ''
+  postInstall = lib.optionalString (stdenv.buildPlatform.canExecute stdenv.hostPlatform) ''
     installShellCompletion --cmd rumdl \
       --bash <("$out/bin/rumdl" completions bash) \
       --fish <("$out/bin/rumdl" completions fish) \
