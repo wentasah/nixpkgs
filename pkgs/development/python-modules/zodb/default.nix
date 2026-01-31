@@ -23,7 +23,7 @@
   zope-testrunner,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "zodb";
   version = "6.2";
   pyproject = true;
@@ -31,7 +31,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "zopefoundation";
     repo = "zodb";
-    tag = version;
+    tag = finalAttrs.version;
     hash = "sha256-R6qf/9Sr70OsZzes+haT/J6RIz6Wlof/l6rQRl3snHI=";
   };
 
@@ -72,9 +72,9 @@ buildPythonPackage rec {
   meta = {
     description = "Zope Object Database: object database and persistence";
     homepage = "https://zodb-docs.readthedocs.io/";
-    changelog = "https://github.com/zopefoundation/ZODB/blob/${version}/CHANGES.rst";
+    changelog = "https://github.com/zopefoundation/ZODB/blob/${finalAttrs.src.tag}/CHANGES.rst";
     downloadPage = "https://github.com/zopefoundation/ZODB";
     license = lib.licenses.zpl21;
     maintainers = [ ];
   };
-}
+})
