@@ -3,7 +3,7 @@
   kernel,
   kernelModuleMakeFlags,
   stdenv,
-  fetchFromGitea,
+  fetchFromCodeberg,
   libgcrypt,
   lvm2,
 }:
@@ -12,8 +12,7 @@ stdenv.mkDerivation (finalAttrs: {
   pname = "shufflecake";
   version = "0.5.5";
 
-  src = fetchFromGitea {
-    domain = "codeberg.org";
+  src = fetchFromCodeberg {
     owner = "shufflecake";
     repo = "shufflecake-c";
     rev = "v${finalAttrs.version}";
