@@ -69,9 +69,9 @@ rec {
     };
   };
 
-  cupswrapper = stdenv.mkDerivation rec {
+  cupswrapper = stdenv.mkDerivation {
     inherit version src;
-    name = "${model}cupswrapper-${version}";
+    pname = "${model}cupswrapper";
 
     nativeBuildInputs = [
       dpkg
