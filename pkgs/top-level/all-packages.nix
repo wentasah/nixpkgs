@@ -11085,8 +11085,6 @@ with pkgs;
 
   qsstv = qt5.callPackage ../applications/radio/qsstv { };
 
-  qsyncthingtray = libsForQt5.callPackage ../applications/misc/qsyncthingtray { };
-
   qsudo = libsForQt5.callPackage ../applications/misc/qsudo { };
 
   qtbitcointrader = libsForQt5.callPackage ../applications/misc/qtbitcointrader { };
