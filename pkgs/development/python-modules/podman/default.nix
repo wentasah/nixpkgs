@@ -13,17 +13,15 @@
   writableTmpDirAsHomeHook,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "podman";
   version = "5.7.0";
   pyproject = true;
 
-  disabled = pythonOlder "3.11";
-
   src = fetchFromGitHub {
     owner = "containers";
     repo = "podman-py";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-5GbgqwsFBXE3kXdOpbbcmIEkj5FWNBqyWdq2tZQbvK8=";
   };
 
@@ -71,8 +69,8 @@ buildPythonPackage rec {
   meta = {
     description = "Python bindings for Podman's RESTful API";
     homepage = "https://github.com/containers/podman-py";
-    changelog = "https://github.com/containers/podman-py/releases/tag/${src.tag}";
+    changelog = "https://github.com/containers/podman-py/releases/tag/${finalAttrs.src.tag}";
     license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [ fab ];
   };
-}
+})
