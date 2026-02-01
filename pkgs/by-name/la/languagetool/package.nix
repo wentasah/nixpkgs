@@ -44,5 +44,6 @@ stdenv.mkDerivation rec {
     maintainers = with lib.maintainers; [ edwtjo ];
     platforms = jre.meta.platforms;
     description = "Proofreading program for English, French German, Polish, and more";
+    mainProgram = "languagetool";
   };
 }
