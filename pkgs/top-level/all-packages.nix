@@ -10356,10 +10356,6 @@ with pkgs;
 
   hpack = haskell.lib.compose.justStaticExecutables haskellPackages.hpack;
 
-  hugin = callPackage ../by-name/hu/hugin/package.nix {
-    wxGTK = wxGTK32;
-  };
-
   huggle = libsForQt5.callPackage ../applications/misc/huggle { };
 
   hyperion-ng = libsForQt5.callPackage ../applications/video/hyperion-ng { };
