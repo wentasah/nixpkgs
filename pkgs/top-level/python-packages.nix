@@ -4971,6 +4971,8 @@ self: super: with self; {
 
   envisage = callPackage ../development/python-modules/envisage { };
 
+  envoy-data-plane = callPackage ../development/python-modules/envoy-data-plane { };
+
   envoy-reader = callPackage ../development/python-modules/envoy-reader { };
 
   envoy-utils = callPackage ../development/python-modules/envoy-utils { };
