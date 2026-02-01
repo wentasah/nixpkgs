@@ -61,6 +61,10 @@ stdenv.mkDerivation (finalAttrs: {
     install -Dm 0444 -t $out/lib/udev/rules.d ../src/92_pcscd_ccid.rules
     substituteInPlace $out/lib/udev/rules.d/92_pcscd_ccid.rules \
       --replace-fail "/usr/sbin/pcscd" "${pcsclite}/bin/pcscd"
+    # Disable reference to binary that we don't build.
+    substituteInPlace $out/lib/udev/rules.d/92_pcscd_ccid.rules \
+      --replace-fail 'ATTRS{idVendor}=="0d46", ATTRS{idProduct}=="4081", RUN+="/usr/sbin/Kobil_mIDentity_switch"' \
+                     '# disabled: ATTRS{idVendor}=="0d46", ATTRS{idProduct}=="4081", RUN+="/usr/sbin/Kobil_mIDentity_switch"'
   '';
 
   # The resulting shared object ends up outside of the default paths which are
