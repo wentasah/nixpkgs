@@ -167,6 +167,7 @@ let
   ++ lib.optionals cfg.package.withTpm2Units [
     "systemd-pcrlock@.service"
     "systemd-pcrlock.socket"
+    "systemd-tpm2-clear.service"
   ]
   ++ [
 
@@ -218,7 +219,6 @@ let
     "factory-reset.target"
     "systemd-factory-reset-request.service"
     "systemd-factory-reset-reboot.service"
-    "systemd-tpm2-clear.service"
   ]
   ++ cfg.additionalUpstreamSystemUnits;
 
