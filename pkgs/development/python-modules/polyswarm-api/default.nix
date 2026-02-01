@@ -13,14 +13,14 @@
 
 buildPythonPackage rec {
   pname = "polyswarm-api";
-  version = "3.14.1";
+  version = "3.16.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "polyswarm";
     repo = "polyswarm-api";
     tag = version;
-    hash = "sha256-PCAdCM9R8hcf4SYm0scibP4xl769vlMl2jUFWaFBEYI=";
+    hash = "sha256-mdsgHwbGThy2Lzvgzb0mItwJkNspLiqGZzBGGuQdatM=";
   };
 
   build-system = [ setuptools ];
