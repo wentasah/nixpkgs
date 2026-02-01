@@ -69,14 +69,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # Enforce that either model or modelDir is set
-    assertions = [
-      {
-        assertion = cfg.model != null || cfg.modelsDir != null;
-        message = "services.llama-cpp: Either 'model' or 'modelDir' must be set.";
-      }
-    ];
-
     systemd.services.llama-cpp = {
       description = "LLaMA C++ server";
       after = [ "network.target" ];
