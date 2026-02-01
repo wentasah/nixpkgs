@@ -24,9 +24,9 @@ let
 
 in
 rec {
-  driver = pkgsi686Linux.stdenv.mkDerivation rec {
+  driver = pkgsi686Linux.stdenv.mkDerivation {
     inherit src version;
-    name = "${model}drv-${version}";
+    pname = "${model}drv";
 
     nativeBuildInputs = [
       dpkg
