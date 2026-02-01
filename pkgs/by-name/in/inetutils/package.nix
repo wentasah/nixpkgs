@@ -23,6 +23,8 @@ stdenv.mkDerivation rec {
   outputs = [
     "out"
     "apparmor"
+    "info"
+    "man"
   ];
 
   patches = [
