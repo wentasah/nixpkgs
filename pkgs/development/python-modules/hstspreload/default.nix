@@ -7,14 +7,14 @@
 
 buildPythonPackage rec {
   pname = "hstspreload";
-  version = "2025.12.3";
+  version = "2026.2.1";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "sethmlarson";
     repo = "hstspreload";
     tag = version;
-    hash = "sha256-K44Lzom7AQMsnJGN9RYNfZuD+wbbZtTGStjJtS/4NcE=";
+    hash = "sha256-sqmzV9JJy71EF1wtLlKc98KGbe8gqsKaAq+VlqXK7kg=";
   };
 
   build-system = [ setuptools ];
