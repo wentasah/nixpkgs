@@ -6,7 +6,7 @@
   pytestCheckHook,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "protego";
   version = "0.6.0";
   pyproject = true;
@@ -14,7 +14,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "scrapy";
     repo = "protego";
-    tag = version;
+    tag = finalAttrs.version;
     hash = "sha256-qyOY35gNFojewFMFVT58k1s5uM4j9IZzEURnPh+3htE=";
   };
 
@@ -27,8 +27,8 @@ buildPythonPackage rec {
   meta = {
     description = "Module to parse robots.txt files with support for modern conventions";
     homepage = "https://github.com/scrapy/protego";
-    changelog = "https://github.com/scrapy/protego/blob/${src.tag}/CHANGELOG.rst";
+    changelog = "https://github.com/scrapy/protego/blob/${finalAttrs.src.tag}/CHANGELOG.rst";
     license = lib.licenses.bsd3;
     maintainers = [ ];
   };
-}
+})
