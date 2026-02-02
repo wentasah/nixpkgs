@@ -7,7 +7,7 @@
   setuptools,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "dnfile";
   version = "0.18.0";
   pyproject = true;
@@ -15,7 +15,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "malwarefrank";
     repo = "dnfile";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-lIhhiOtMZnYziGeLUK7awJSibP3k8JCYg43jvIl5Puw=";
     fetchSubmodules = true;
   };
@@ -31,8 +31,8 @@ buildPythonPackage rec {
   meta = {
     description = "Module to parse .NET executable files";
     homepage = "https://github.com/malwarefrank/dnfile";
-    changelog = "https://github.com/malwarefrank/dnfile/blob/${src.tag}/HISTORY.rst";
+    changelog = "https://github.com/malwarefrank/dnfile/blob/${finalAttrs.src.tag}/HISTORY.rst";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ fab ];
   };
-}
+})
