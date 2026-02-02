@@ -1560,6 +1560,15 @@ let
         # avoid driver/FS trouble arising from unusual page size
         PPC_64K_PAGES = no;
         PPC_4K_PAGES = yes;
+
+        # Does not get auto-loaded on relevant systems, makes fans stuck at max speed.
+        # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=713943 (2014 :<)
+        # > This module ought to be auto-loaded where it's needed, but somehow that
+        # > has broken.  I asked Benjamin Herrenschmidt (upstream powerpc maintainer
+        # > and the last person to touch it) and he was aware of this but hadn't got
+        # > round to working out why.  The workaround is to build it in[…].
+        # > (It won't do any harm on non-Mac systems.)
+        I2C_POWERMAC = yes;
       };
 
     accel = {
