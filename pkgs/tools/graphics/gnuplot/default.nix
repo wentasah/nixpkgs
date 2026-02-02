@@ -28,18 +28,16 @@
   gnused,
   coreutils,
   withQt ? false,
-  mkDerivation,
   qttools,
+  wrapQtAppsHook,
   qtbase,
   qtsvg,
-  enableInfo ? true,
-  emacs,
 }:
 
 let
   withX = !aquaterm && !stdenv.hostPlatform.isDarwin;
 in
-(if withQt then mkDerivation else stdenv.mkDerivation) rec {
+stdenv.mkDerivation rec {
   pname = "gnuplot";
   version = "6.0.4";
 
@@ -48,15 +46,15 @@ in
     sha256 = "sha256-RY2UdpYl5z1fYjJQD0nLrcsrGDOA1D0iZqD5cBrrnFs=";
   };
 
-  outputs = [ "out" ] ++ lib.optional enableInfo "info";
-
   nativeBuildInputs = [
     makeWrapper
     pkg-config
     texinfo
   ]
-  ++ lib.optional withQt qttools
-  ++ lib.optional enableInfo emacs;
+  ++ lib.optionals withQt [
+    qttools
+    wrapQtAppsHook
+  ];
 
   buildInputs = [
     cairo
@@ -122,8 +120,6 @@ in
   ];
 
   enableParallelBuilding = true;
-
-  installTargets = [ "install" ] ++ lib.optional enableInfo "install-info";
 
   meta = {
     homepage = "http://www.gnuplot.info/";
