@@ -5,21 +5,24 @@
   pycryptodomex,
   pyopenssl,
   pytestCheckHook,
+  setuptools,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "dsinternals";
   version = "1.2.5";
-  format = "setuptools";
+  pyproject = true;
 
   src = fetchFromGitHub {
     owner = "p0dalirius";
     repo = "pydsinternals";
-    rev = version;
+    tag = finalAttrs.version;
     hash = "sha256-ZbYHO7It7R/Zh2dykTa4Ha4m2eyt9zkCzPyc/j79v6A=";
   };
 
-  propagatedBuildInputs = [
+  build-system = [ setuptools ];
+
+  dependencies = [
     pyopenssl
     pycryptodomex
   ];
@@ -36,4 +39,4 @@ buildPythonPackage rec {
     license = lib.licenses.gpl2Only;
     maintainers = with lib.maintainers; [ fab ];
   };
-}
+})
