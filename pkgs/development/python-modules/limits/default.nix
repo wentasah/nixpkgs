@@ -1,10 +1,8 @@
 {
   lib,
-  aetcd,
   buildPythonPackage,
   coredis,
   deprecated,
-  etcd3,
   fetchFromGitHub,
   flaky,
   hatchling,
@@ -34,7 +32,10 @@ buildPythonPackage rec {
     owner = "alisaifee";
     repo = "limits";
     tag = version;
-    hash = "sha256-kghfF2ihEvyMPEGO1m9BquCdeBsYRoPyIljdLL1hToQ=";
+    hash = "sha256-JmxoFc+AWV4qLgexpAysMGRKx2Q6K6AqNoaGkWU28Ro=";
+    postFetch = ''
+      rm "$out/limits/_version.pyi"
+    '';
   };
 
   postPatch = ''
@@ -55,17 +56,14 @@ buildPythonPackage rec {
   ];
 
   optional-dependencies = {
-    redis = [ redis ];
-    rediscluster = [ redis ];
+    async-memcached = [ pymemcache ];
+    async-mongodb = [ motor ];
+    async-redis = [ coredis ];
+    async-valkey = [ valkey ];
     memcached = [ pymemcache ];
     mongodb = [ pymongo ];
-    etcd = [ etcd3 ];
-    async-redis = [ coredis ];
-    # async-memcached = [
-    #   emcache  # Missing module
-    # ];
-    async-mongodb = [ motor ];
-    async-etcd = [ aetcd ];
+    redis = [ redis ];
+    rediscluster = [ redis ];
     valkey = [ valkey ];
   };
 
@@ -89,9 +87,17 @@ buildPythonPackage rec {
   pytestFlags = [ "--benchmark-disable" ];
 
   disabledTests = [
-    "test_moving_window_memcached"
-    # Flaky: compares time to magic value
-    "test_sliding_window_counter_previous_window"
+    # requires docker
+    "TestAsyncConcurrency"
+    "TestAsyncFixedWindow"
+    "TestAsyncMovingWindow"
+    "TestAsyncSlidingWindow"
+    "TestConcreteStorages"
+    "TestConcurrency"
+    "TestFixedWindow"
+    "TestMovingWindow"
+    "TestRedisStorage"
+    "TestSlidingWindow"
   ];
 
   disabledTestMarks = [
