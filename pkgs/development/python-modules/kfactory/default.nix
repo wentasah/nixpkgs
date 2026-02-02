@@ -30,7 +30,7 @@
   pytestCheckHook,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "kfactory";
   version = "2.3.0";
   pyproject = true;
@@ -38,7 +38,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "gdsfactory";
     repo = "kfactory";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     # kfactory uses `.git` to infer the project directory.
     # https://github.com/gdsfactory/kfactory/blob/v2.0.0/src/kfactory/conf.py#L318-L327
     # Otherwise, tests fail with:
@@ -55,7 +55,9 @@ buildPythonPackage rec {
 
   pythonRelaxDeps = [
     "pydantic"
+    "klayout"
   ];
+
   dependencies = [
     aenum
     cachetools
@@ -143,8 +145,8 @@ buildPythonPackage rec {
   meta = {
     description = "KLayout API implementation of gdsfactory";
     homepage = "https://github.com/gdsfactory/kfactory";
-    changelog = "https://github.com/gdsfactory/kfactory/blob/${src.tag}/CHANGELOG.md";
+    changelog = "https://github.com/gdsfactory/kfactory/blob/${finalAttrs.src.tag}/CHANGELOG.md";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ fbeffa ];
   };
-}
+})
