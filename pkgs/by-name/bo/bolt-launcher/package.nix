@@ -153,7 +153,7 @@ buildFHSEnv {
   runScript = "${bolt.name}";
 
   meta = {
-    homepage = "https://github.com/Adamcake/Bolt";
+    homepage = "https://codeberg.org/Adamcake/Bolt";
     description = "Alternative launcher for RuneScape";
     longDescription = ''
       Bolt Launcher supports HDOS/RuneLite by default with an optional feature flag for RS3 (enableRS3).
