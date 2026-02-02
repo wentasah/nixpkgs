@@ -3665,10 +3665,6 @@ with pkgs;
 
   buildWasmBindgenCli = callPackage ../build-support/wasm-bindgen-cli { };
 
-  wasmedge = callPackage ../development/tools/wasmedge {
-    stdenv = clangStdenv;
-  };
-
   woodpecker-agent = callPackage ../development/tools/continuous-integration/woodpecker/agent.nix { };
 
   woodpecker-cli = callPackage ../development/tools/continuous-integration/woodpecker/cli.nix { };
@@ -5548,7 +5544,6 @@ with pkgs;
   electron-source = callPackage ../development/tools/electron { };
 
   inherit (callPackages ../development/tools/electron/binary { })
-    electron_36-bin
     electron_37-bin
     electron_38-bin
     electron_39-bin
@@ -5556,7 +5551,6 @@ with pkgs;
     ;
 
   inherit (callPackages ../development/tools/electron/chromedriver { })
-    electron-chromedriver_36
     electron-chromedriver_37
     electron-chromedriver_38
     electron-chromedriver_39
@@ -5580,11 +5574,7 @@ with pkgs;
           });
       in
       {
-        electron_36 = electron_36-bin;
-        electron_37 = getElectronPkg {
-          src = electron-source.electron_37;
-          bin = electron_37-bin;
-        };
+        electron_37 = electron_37-bin;
         electron_38 = getElectronPkg {
           src = electron-source.electron_38;
           bin = electron_38-bin;
@@ -5599,7 +5589,6 @@ with pkgs;
         };
       }
     )
-    electron_36
     electron_37
     electron_38
     electron_39
@@ -8785,10 +8774,6 @@ with pkgs;
   pypiserver = with python3Packages; toPythonApplication pypiserver;
 
   qremotecontrol-server = libsForQt5.callPackage ../servers/misc/qremotecontrol-server { };
-
-  rabbitmq-server = callPackage ../by-name/ra/rabbitmq-server/package.nix {
-    beamPackages = beam27Packages.extend (self: super: { elixir = elixir_1_18; });
-  };
 
   rethinkdb = callPackage ../servers/nosql/rethinkdb {
     stdenv = clangStdenv;
