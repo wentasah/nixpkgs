@@ -45,7 +45,6 @@ stdenv.mkDerivation rec {
     license = lib.licenses.unfree;
     mainProgram = "TerrariaServer";
     maintainers = with lib.maintainers; [
-      ncfavier
       tomasajt
     ];
   };
