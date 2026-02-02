@@ -13,10 +13,9 @@
   libgit2,
   withDefaultFeatures ? true,
   additionalFeatures ? (p: p),
-  testers,
-  nushell,
   nix-update-script,
   curlMinimal,
+  versionCheckHook,
   writableTmpDirAsHomeHook,
 }:
 
@@ -91,6 +90,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     '';
 
   nativeCheckInputs = [
+    versionCheckHook
     writableTmpDirAsHomeHook
   ];
   checkInputs =
@@ -99,9 +99,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   passthru = {
     shellPath = "/bin/nu";
-    tests.version = testers.testVersion {
-      package = nushell;
-    };
     updateScript = nix-update-script { };
   };
 
