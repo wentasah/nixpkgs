@@ -9,14 +9,14 @@
 
 buildPythonPackage rec {
   pname = "dsinternals";
-  version = "1.2.4";
+  version = "1.2.5";
   format = "setuptools";
 
   src = fetchFromGitHub {
     owner = "p0dalirius";
     repo = "pydsinternals";
     rev = version;
-    hash = "sha256-C1ar9c4F4WI5ICX7PJe8FzVwK8bxZds+kMBpttEp9Ko=";
+    hash = "sha256-ZbYHO7It7R/Zh2dykTa4Ha4m2eyt9zkCzPyc/j79v6A=";
   };
 
   propagatedBuildInputs = [
