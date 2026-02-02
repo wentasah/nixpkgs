@@ -74,6 +74,9 @@ rustPlatform.buildRustPackage (finalAttrs: {
         "plugins::stress_internals::test_exit_early_local_socket"
         "plugins::stress_internals::test_failing_local_socket_fallback"
         "plugins::stress_internals::test_local_socket"
+
+        # Error:   × I/O error: Operation not permitted (os error 1)
+        "shell::environment::env::path_is_a_list_in_repl"
       ];
 
       skippedTestsStr = lib.concatStringsSep " " (lib.map (testId: "--skip=${testId}") skippedTests);
