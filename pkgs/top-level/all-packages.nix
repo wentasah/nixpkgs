@@ -3390,9 +3390,6 @@ with pkgs;
   playwright-driver = (callPackage ../development/web/playwright/driver.nix { }).playwright-core;
   playwright-test = (callPackage ../development/web/playwright/driver.nix { }).playwright-test;
 
-  plik = callPackage ../servers/plik/plik.nix { };
-  plikd = callPackage ../servers/plik/plikd.nix { };
-
   plex = callPackage ../servers/plex { };
 
   plexRaw = callPackage ../servers/plex/raw.nix { };
