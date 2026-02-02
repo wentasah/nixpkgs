@@ -17,22 +17,20 @@
   nushell,
   nix-update-script,
   curlMinimal,
+  writableTmpDirAsHomeHook,
 }:
 
-let
+rustPlatform.buildRustPackage (finalAttrs: {
+  pname = "nushell";
   # NOTE: when updating this to a new non-patch version, please also try to
   # update the plugins. Plugins only work if they are compiled for the same
   # major/minor version.
   version = "0.110.0";
-in
-rustPlatform.buildRustPackage {
-  pname = "nushell";
-  inherit version;
 
   src = fetchFromGitHub {
     owner = "nushell";
     repo = "nushell";
-    tag = version;
+    tag = finalAttrs.version;
     hash = "sha256-iytTJZ70kg2Huwj/BSwDX4h9DVDTlJR2gEHAB2pGn/k=";
   };
 
@@ -61,28 +59,37 @@ rustPlatform.buildRustPackage {
     export NU_TEST_LOCALE_OVERRIDE="en_US.UTF-8"
   '';
 
-  checkPhase = ''
-    runHook preCheck
-    (
+  checkPhase =
+    let
       # The skipped tests all fail in the sandbox because in the nushell test playground,
       # the tmp $HOME is not set, so nu falls back to looking up the passwd dir of the build
       # user (/var/empty). The assertions however do respect the set $HOME.
-      set -x
-      HOME=$(mktemp -d) cargo test -j $NIX_BUILD_CORES --offline -- \
-        --test-threads=$NIX_BUILD_CORES \
-        --skip=repl::test_config_path::test_default_config_path \
-        --skip=repl::test_config_path::test_xdg_config_bad \
-        --skip=repl::test_config_path::test_xdg_config_empty ${lib.optionalString stdenv.hostPlatform.isDarwin ''
-          \
-                  --skip=plugins::config::some \
-                  --skip=plugins::stress_internals::test_exit_early_local_socket \
-                  --skip=plugins::stress_internals::test_failing_local_socket_fallback \
-                  --skip=plugins::stress_internals::test_local_socket
-        ''}
-    )
-    runHook postCheck
-  '';
+      skippedTests = [
+        "repl::test_config_path::test_default_config_path"
+        "repl::test_config_path::test_xdg_config_bad"
+        "repl::test_config_path::test_xdg_config_empty"
+      ]
+      ++ lib.optionals stdenv.hostPlatform.isDarwin [
+        "plugins::config::some"
+        "plugins::stress_internals::test_exit_early_local_socket"
+        "plugins::stress_internals::test_failing_local_socket_fallback"
+        "plugins::stress_internals::test_local_socket"
+      ];
 
+      skippedTestsStr = lib.concatStringsSep " " (lib.map (testId: "--skip=${testId}") skippedTests);
+    in
+    ''
+      runHook preCheck
+
+      cargo test -j $NIX_BUILD_CORES --offline -- \
+        --test-threads=$NIX_BUILD_CORES ${skippedTestsStr}
+
+      runHook postCheck
+    '';
+
+  nativeCheckInputs = [
+    writableTmpDirAsHomeHook
+  ];
   checkInputs =
     lib.optionals stdenv.hostPlatform.isDarwin [ curlMinimal ]
     ++ lib.optionals stdenv.hostPlatform.isLinux [ openssl ];
@@ -106,4 +113,4 @@ rustPlatform.buildRustPackage {
     ];
     mainProgram = "nu";
   };
-}
+})
