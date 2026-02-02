@@ -754,6 +754,8 @@ rec {
           # but users are likely passing non-substitution arguments through substitutions
           # turn off __structuredAttrs to unbreak substituteAll
           __structuredAttrs = false;
+          pname = name;
+          inherit (lib.trivial) version;
           inherit meta;
           inherit depsTargetTargetPropagated;
           inherit propagatedBuildInputs;
