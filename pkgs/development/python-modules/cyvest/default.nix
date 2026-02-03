@@ -53,7 +53,7 @@ buildPythonPackage (finalAttrs: {
   meta = {
     description = "Cybersecurity Investigation Model";
     homepage = "https://github.com/PakitoSec/cyvest";
-    changelog = "https://github.com/PakitoSec/cyvest/releases/tag/v${finalAttrs.src.tag}";
+    changelog = "https://github.com/PakitoSec/cyvest/releases/tag/${finalAttrs.src.tag}";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ fab ];
   };
