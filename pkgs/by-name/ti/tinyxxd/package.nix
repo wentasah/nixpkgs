@@ -2,29 +2,20 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  fetchpatch2,
   installShellFiles,
   vim,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "tinyxxd";
-  version = "1.3.8";
+  version = "1.3.10";
 
   src = fetchFromGitHub {
     repo = "tinyxxd";
     owner = "xyproto";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-ePLqbcwlqBK/x645Yf5pgHSCtBSd3mqktAHhomxU3dM=";
+    hash = "sha256-DrAwUwaiEnaOCo0YLXSaAJDEyBJ4t7mVxEarDSO6XeU=";
   };
-
-  patches = [
-    # Darwin fails to build due to the warning from the unused `-fno-plt` being turned into an error.
-    (fetchpatch2 {
-      url = "https://github.com/xyproto/tinyxxd/commit/63ee0f4a03b06ded1eb531129240a4f0880a41dc.patch?full_index=1";
-      hash = "sha256-sZG7hZUmF0PK2TYcUfHXTz2VCwe5Ba6cm3CVJ9aA2SQ=";
-    })
-  ];
 
   nativeBuildInputs = [ installShellFiles ];
 
