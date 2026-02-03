@@ -1371,8 +1371,6 @@ with pkgs;
     };
   };
 
-  ArchiSteamFarm = callPackage ../applications/misc/ArchiSteamFarm { };
-
   arduino = arduino-core.override { withGui = true; };
 
   arduino-core = callPackage ../development/embedded/arduino/arduino-core/chrootenv.nix { };
@@ -6243,12 +6241,6 @@ with pkgs;
 
   watson-ruby = callPackage ../development/tools/misc/watson-ruby { };
 
-  xcbuild = callPackage ../by-name/xc/xcbuild/package.nix {
-    stdenv =
-      # xcbuild is included in the SDK. Avoid an infinite recursion by using a bootstrap stdenv.
-      if stdenv.hostPlatform.isDarwin then darwin.bootstrapStdenv else stdenv;
-  };
-
   xcbuildHook = makeSetupHook {
     name = "xcbuild-hook";
     propagatedBuildInputs = [ xcbuild ];
@@ -9496,12 +9488,6 @@ with pkgs;
 
   dejavu_fonts = lowPrio (callPackage ../data/fonts/dejavu-fonts { });
 
-  # solve collision for nix-env before https://github.com/NixOS/nix/pull/815
-  dejavu_fontsEnv = buildEnv {
-    name = dejavu_fonts.name;
-    paths = [ dejavu_fonts.out ];
-  };
-
   docbook_sgml_dtd_31 = callPackage ../data/sgml+xml/schemas/sgml-dtd/docbook/3.1.nix { };
 
   docbook_sgml_dtd_41 = callPackage ../data/sgml+xml/schemas/sgml-dtd/docbook/4.1.nix { };
@@ -12337,10 +12323,6 @@ with pkgs;
     ocamlPackages = ocaml-ng.ocamlPackages_4_12;
   };
 
-  bitwuzla = callPackage ../by-name/bi/bitwuzla/package.nix {
-    cadical = cadical.override { version = "2.1.3"; };
-  };
-
   inherit
     (callPackage ./rocq-packages.nix {
       inherit (ocaml-ng)
@@ -12416,10 +12398,6 @@ with pkgs;
       dontDisableStatic = true;
     });
     stdenv = gccStdenv;
-  };
-
-  cvc5 = callPackage ../by-name/cv/cvc5/package.nix {
-    cadical = cadical.override { version = "2.1.3"; };
   };
 
   ekrhyper = callPackage ../applications/science/logic/ekrhyper {
