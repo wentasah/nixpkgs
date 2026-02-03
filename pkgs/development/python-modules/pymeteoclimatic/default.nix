@@ -8,7 +8,7 @@
   setuptools,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "pymeteoclimatic";
   version = "0.1.1";
   pyproject = true;
@@ -16,13 +16,13 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "adrianmo";
     repo = "pymeteoclimatic";
-    tag = version;
+    tag = finalAttrs.version;
     hash = "sha256-Yln+uUwnb5mlPS3uRRzpAH6kSc9hU2jEnhk/3ifiwWI=";
   };
 
-  nativeBuildInputs = [ setuptools ];
+  build-system = [ setuptools ];
 
-  propagatedBuildInputs = [
+  dependencies = [
     beautifulsoup4
     lxml
   ];
@@ -34,8 +34,8 @@ buildPythonPackage rec {
   meta = {
     description = "Python wrapper around the Meteoclimatic service";
     homepage = "https://github.com/adrianmo/pymeteoclimatic";
-    changelog = "https://github.com/adrianmo/pymeteoclimatic/releases/tag/${version}";
-    license = with lib.licenses; [ mit ];
+    changelog = "https://github.com/adrianmo/pymeteoclimatic/releases/tag/${finalAttrs.src.tag}";
+    license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ fab ];
   };
-}
+})
