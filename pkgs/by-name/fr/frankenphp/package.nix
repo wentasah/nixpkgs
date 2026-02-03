@@ -130,7 +130,7 @@ buildGoModule rec {
     homepage = "https://github.com/php/frankenphp";
     license = lib.licenses.mit;
     mainProgram = "frankenphp";
-    maintainers = [ ];
+    maintainers = [ lib.maintainers.piotrkwiecinski ];
     platforms = lib.platforms.linux ++ lib.platforms.darwin;
   };
 }
