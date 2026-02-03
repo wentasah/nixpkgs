@@ -24,7 +24,7 @@
 
   nanobind,
 }:
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "nanobind";
   version = "2.11.0";
   pyproject = true;
@@ -32,7 +32,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "wjakob";
     repo = "nanobind";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     fetchSubmodules = true;
     hash = "sha256-IsR3e6eWKXFtOXq8iZLpXgwrjXVqNnHtuiKdIbTsDlc=";
   };
@@ -76,7 +76,7 @@ buildPythonPackage rec {
 
   meta = {
     homepage = "https://github.com/wjakob/nanobind";
-    changelog = "https://github.com/wjakob/nanobind/blob/${src.tag}/docs/changelog.rst";
+    changelog = "https://github.com/wjakob/nanobind/blob/${finalAttrs.src.tag}/docs/changelog.rst";
     description = "Tiny and efficient C++/Python bindings";
     longDescription = ''
       nanobind is a small binding library that exposes C++ types in Python and
@@ -88,4 +88,4 @@ buildPythonPackage rec {
     license = lib.licenses.bsd3;
     maintainers = with lib.maintainers; [ parras ];
   };
-}
+})
