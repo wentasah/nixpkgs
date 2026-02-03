@@ -67,7 +67,8 @@ in
   };
 
   fixup-yarn-lock = stdenv.mkDerivation {
-    name = "fixup-yarn-lock";
+    pname = "fixup-yarn-lock";
+    inherit (lib.trivial) version;
 
     dontUnpack = true;
     dontBuild = true;
