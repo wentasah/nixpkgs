@@ -30,7 +30,8 @@ let
 in
 {
   prefetch-yarn-deps = stdenv.mkDerivation {
-    name = "prefetch-yarn-deps";
+    pname = "prefetch-yarn-deps";
+    inherit (lib.trivial) version;
 
     dontUnpack = true;
     dontBuild = true;
