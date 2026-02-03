@@ -52,6 +52,7 @@ buildPythonPackage (finalAttrs: {
     versionCheckHook
     writableTmpDirAsHomeHook
   ];
+  versionCheckKeepEnvironment = [ "HOME" ];
 
   postFixup = lib.optionalString withSolc ''
     wrapProgram $out/bin/slither \
