@@ -34,7 +34,7 @@ buildGoModule rec {
   version = "1.11.1";
 
   src = fetchFromGitHub {
-    owner = "dunglas";
+    owner = "php";
     repo = "frankenphp";
     tag = "v${version}";
     hash = "sha256-JzZXg/tkSZqLZn56RyLb8Q8SaeG/tHA8Sqxu99s5ks0=";
@@ -126,9 +126,9 @@ buildGoModule rec {
   };
 
   meta = {
-    changelog = "https://github.com/dunglas/frankenphp/releases/tag/v${version}";
+    changelog = "https://github.com/php/frankenphp/releases/tag/v${version}";
     description = "Modern PHP app server";
-    homepage = "https://github.com/dunglas/frankenphp";
+    homepage = "https://github.com/php/frankenphp";
     license = lib.licenses.mit;
     mainProgram = "frankenphp";
     maintainers = [ ];
