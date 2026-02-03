@@ -10,14 +10,14 @@
 
 buildPythonPackage rec {
   pname = "pymeteoclimatic";
-  version = "0.1.0";
+  version = "0.1.1";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "adrianmo";
     repo = "pymeteoclimatic";
     tag = version;
-    hash = "sha256-rP0+OYDnQ4GuoV7DzR6jtgH6ilTMLjdaEFJcz3L0GYQ=";
+    hash = "sha256-Yln+uUwnb5mlPS3uRRzpAH6kSc9hU2jEnhk/3ifiwWI=";
   };
 
   nativeBuildInputs = [ setuptools ];
