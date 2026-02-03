@@ -565,6 +565,10 @@ let
         # Enable CEC over DisplayPort
         DRM_DP_CEC = whenOlder "6.10" yes;
         DRM_DISPLAY_DP_AUX_CEC = whenAtLeast "6.10" yes;
+
+        # Do not enable Nova drivers, which are still WIP. This is the Kconfig default.
+        NOVA_CORE = whenAtLeast "6.15" no;
+        DRM_NOVA = whenAtLeast "6.16" no;
       }
       //
         lib.optionalAttrs
