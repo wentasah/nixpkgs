@@ -107,6 +107,9 @@ stdenv.mkDerivation (finalAttrs: {
       "x86_64-linux"
       "i686-linux"
     ];
-    maintainers = with lib.maintainers; [ pSub ];
+    maintainers = with lib.maintainers; [
+      pSub
+      ilkecan
+    ];
   };
 })
