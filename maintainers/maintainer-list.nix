@@ -12076,6 +12076,11 @@
     githubId = 1198065;
     name = "Jeffrey David Johnson";
   };
+  jeffcshelton = {
+    github = "jeffcshelton";
+    githubId = 77426854;
+    name = "Jeff Shelton";
+  };
   jefferyoo = {
     email = "oojefferywm@proton.me";
     github = "jefferyoo";
@@ -21555,6 +21560,12 @@
     github = "qaidvoid";
     githubId = 12017109;
     name = "Rabindra Dhakal";
+  };
+  qb114514 = {
+    name = "qb114514";
+    email = "GNUqb114514@outlook.com";
+    github = "GNUqb114514";
+    githubId = 110373832;
   };
   qbisi = {
     name = "qbisicwate";
