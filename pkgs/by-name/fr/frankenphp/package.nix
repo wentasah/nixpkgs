@@ -60,6 +60,7 @@ buildGoModule rec {
     pkg-config
     cctools
     darwin.autoSignDarwinBinariesHook
+    libiconv
   ];
 
   subPackages = [ "frankenphp" ];
@@ -87,11 +88,6 @@ buildGoModule rec {
     export CGO_LDFLAGS="-DFRANKENPHP_VERSION=${version} \
       $(${phpConfig} --ldflags) \
       $(${phpConfig} --libs)"
-  ''
-  + lib.optionalString stdenv.hostPlatform.isDarwin ''
-    # replace hard-code homebrew path
-    substituteInPlace ../frankenphp.go \
-      --replace "-L/opt/homebrew/opt/libiconv/lib" "-L${libiconv}/lib"
   '';
 
   preFixup = ''
