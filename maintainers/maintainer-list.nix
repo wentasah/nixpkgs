@@ -6147,6 +6147,11 @@
     githubId = 1279939;
     name = "Daniel Beckwith";
   };
+  dbeley = {
+    github = "dbeley";
+    githubId = 6568955;
+    name = "David Beley";
+  };
   dbirks = {
     email = "david@birks.dev";
     github = "dbirks";
@@ -11042,6 +11047,11 @@
     githubId = 207392575;
     name = "Isaac Kabel";
   };
+  ikci = {
+    github = "ikcii";
+    githubId = 48479629;
+    name = "ikci";
+  };
   ikervagyok = {
     email = "ikervagyok@gmail.com";
     github = "ikervagyok";
@@ -12065,6 +12075,11 @@
     github = "jefdaj";
     githubId = 1198065;
     name = "Jeffrey David Johnson";
+  };
+  jeffcshelton = {
+    github = "jeffcshelton";
+    githubId = 77426854;
+    name = "Jeff Shelton";
   };
   jefferyoo = {
     email = "oojefferywm@proton.me";
@@ -21546,6 +21561,12 @@
     githubId = 12017109;
     name = "Rabindra Dhakal";
   };
+  qb114514 = {
+    name = "qb114514";
+    email = "GNUqb114514@outlook.com";
+    github = "GNUqb114514";
+    githubId = 110373832;
+  };
   qbisi = {
     name = "qbisicwate";
     email = "qbisicwate@gmail.com";
@@ -24499,6 +24520,12 @@
     email = "dawkins.chris.dev@gmail.com";
     github = "siph";
     githubId = 6619112;
+  };
+  siphc = {
+    name = "siphc";
+    github = "siphc";
+    githubId = 42943030;
+    email = "ayfpan@ucla.edu";
   };
   sir4ur0n = {
     github = "sir4ur0n";
