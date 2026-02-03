@@ -6,7 +6,6 @@
   php,
   brotli,
   watcher,
-  testers,
   frankenphp,
   cctools,
   darwin,
@@ -15,6 +14,7 @@
   makeBinaryWrapper,
   runCommand,
   writeText,
+  versionCheckHook,
 }:
 
 let
@@ -103,15 +103,14 @@ buildGoModule rec {
 
   doCheck = false;
 
+  nativeInstallCheckInputs = [ versionCheckHook ];
+  versionCheckProgramArg = "version";
+  doInstallCheck = true;
+
   passthru = {
     php = phpEmbedWithZts;
     tests = {
       # TODO: real NixOS test with Symfony application
-      version = testers.testVersion {
-        inherit version;
-        package = frankenphp;
-        command = "frankenphp version";
-      };
       phpinfo =
         runCommand "php-cli-phpinfo"
           {
