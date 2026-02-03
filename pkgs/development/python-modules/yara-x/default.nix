@@ -42,6 +42,9 @@ buildPythonPackage rec {
     homepage = "https://github.com/VirusTotal/yara-x/tree/main/py";
     changelog = "https://github.com/VirusTotal/yara-x/tree/${src.tag}/py";
     license = lib.licenses.bsd3;
-    maintainers = with lib.maintainers; [ ivyfanchiang ];
+    maintainers = with lib.maintainers; [
+      ivyfanchiang
+      lesuisse
+    ];
   };
 }
