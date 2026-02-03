@@ -2,6 +2,7 @@
   lib,
   buildPythonPackage,
   buildNpmPackage,
+  fetchpatch2,
   fetchFromGitHub,
   stdenv,
   babel,
@@ -55,7 +56,15 @@ buildPythonPackage {
 
   inherit src;
 
-  patches = [ ./dont-compile-frontend.patch ];
+  patches = [
+    ./dont-compile-frontend.patch
+    # https://github.com/beancount/fava/pull/2176
+    (fetchpatch2 {
+      name = "fix-have-excel-replacement.patch";
+      url = "https://github.com/beancount/fava/commit/36eba34495d189cd391fae0276aa1b6c94940203.patch?full_index=1";
+      hash = "sha256-XSkzygnq8eHkIcp1TT7J3NdcLCIwUxDoyipO4M9M3nE=";
+    })
+  ];
 
   postPatch = ''
     substituteInPlace tests/test_cli.py \
