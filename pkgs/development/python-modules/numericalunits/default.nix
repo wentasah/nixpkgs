@@ -1,6 +1,7 @@
 {
   lib,
   buildPythonPackage,
+  pythonAtLeast,
   fetchFromGitHub,
   setuptools,
   pytestCheckHook,
@@ -10,6 +11,9 @@ buildPythonPackage (finalAttrs: {
   pname = "numericalunits";
   version = "1.26";
   pyproject = true;
+
+  # AttributeError: module 'ast' has no attribute 'Num'
+  disabled = pythonAtLeast "3.14";
 
   src = fetchFromGitHub {
     owner = "sbyrnes321";
