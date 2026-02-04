@@ -1,6 +1,7 @@
 {
   lib,
   buildPythonPackage,
+  crewai,
   fetchFromGitHub,
   hatchling,
   jsonref,
@@ -41,7 +42,7 @@ buildPythonPackage (finalAttrs: {
       torchaudio
       soundfile
     ];
-    # crewai = [ crewai ];
+    crewai = [ crewai ];
     langchain = [
       langchain
       # langchain-anthropic
