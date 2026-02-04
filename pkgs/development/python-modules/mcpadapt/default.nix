@@ -6,6 +6,7 @@
   hatchling,
   jsonref,
   langchain,
+  langchain-anthropic,
   langgraph,
   llama-index,
   mcp,
@@ -45,7 +46,7 @@ buildPythonPackage (finalAttrs: {
     crewai = [ crewai ];
     langchain = [
       langchain
-      # langchain-anthropic
+      langchain-anthropic
       langgraph
     ];
     llamaindex = [ llama-index ];
