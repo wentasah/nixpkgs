@@ -1328,8 +1328,8 @@ let
         mktplcRef = {
           publisher = "discloud";
           name = "discloud";
-          version = "2.27.9";
-          hash = "sha256-6+sAbjpwWTLGZ7uH6rl7LZcNmOnAftiYGithbBlvIak=";
+          version = "2.27.12";
+          hash = "sha256-Id7TpEqF/pFVbZBVRFrlXdN3kBL0BC/nX3Vg2PYgVJU=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/discloud.discloud/changelog";
@@ -4336,8 +4336,8 @@ let
         mktplcRef = {
           publisher = "sonarsource";
           name = "sonarlint-vscode";
-          version = "4.40.0";
-          hash = "sha256-Jzb+ywEGINN4eRVRMUnBloXWT2wubrU91NEBoySx0NQ=";
+          version = "4.42.0";
+          hash = "sha256-jWw5vbORdi/qW8L4D1qbue8tdeiyof01FzJtcZUKs3Y=";
         };
         meta.license = lib.licenses.lgpl3Only;
       };
@@ -5093,8 +5093,8 @@ let
         mktplcRef = {
           publisher = "vscjava";
           name = "vscode-java-test";
-          version = "0.43.1";
-          hash = "sha256-yiKBG1A5ahvB6iTqh2yzFzcKJlU1lu4dqd+4cygWVQ4=";
+          version = "0.44.0";
+          hash = "sha256-Qr4Ms15Nq+/yygWYBDvN5dHIKpQ0yYQjI1p/RNFMWjw=";
         };
         meta = {
           license = lib.licenses.mit;
