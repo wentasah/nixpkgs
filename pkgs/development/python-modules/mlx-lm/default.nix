@@ -24,14 +24,14 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "mlx-lm";
-  version = "0.30.5";
+  version = "0.30.6";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "ml-explore";
     repo = "mlx-lm";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-GXz9VtNJ0ldh8aDAyBvSR2DhZq/NctpPup58WLrIt6Y=";
+    hash = "sha256-DclGHYrCmluS5pn7K/wvN51b2C8i/W8opS4hZ4P/TJk=";
   };
 
   build-system = [
