@@ -7,7 +7,7 @@
   setuptools,
   pytestCheckHook,
   pyvirtualdisplay,
-  xorg,
+  xvfb,
 }:
 
 buildPythonPackage rec {
@@ -37,7 +37,7 @@ buildPythonPackage rec {
     pyvirtualdisplay
   ]
   ++ lib.optionals stdenv.isLinux [
-    xorg.xvfb
+    xvfb
   ];
 
   pythonImportsCheck = [ "mpv" ];
