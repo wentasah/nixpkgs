@@ -16,7 +16,7 @@
   torchaudio,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "mcpadapt";
   version = "0.1.20";
   pyproject = true;
@@ -24,7 +24,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "grll";
     repo = "mcpadapt";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-mUwGKr+QBkqMKhfEEIlF/jZDW7enKYdngNIoxG5hMU4=";
   };
 
@@ -59,8 +59,8 @@ buildPythonPackage rec {
   meta = {
     description = "MCP servers tool";
     homepage = "https://github.com/grll/mcpadapt";
-    changelog = "https://github.com/grll/mcpadapt/releases/tag/${src.tag}";
+    changelog = "https://github.com/grll/mcpadapt/releases/tag/${finalAttrs.src.tag}";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ fab ];
   };
-}
+})
