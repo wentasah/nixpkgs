@@ -467,8 +467,8 @@ in
       "sha256-lNlav7BQkVjbYE9cdnvcdNki9IDo6tTlerD+lt69Rio=";
 
   mypy-boto3-eks =
-    buildMypyBoto3Package "eks" "1.42.28"
-      "sha256-8mDaLGqdD3M6ECsteVw6QMwcY7+VCCGZ2eJAEgwbBl4=";
+    buildMypyBoto3Package "eks" "1.42.42"
+      "sha256-pXTA2pR+HeMrI9BRE3GUGBQwCCzaqXoIukf9Ht/sQ6k=";
 
   mypy-boto3-elastic-inference =
     buildMypyBoto3Package "elastic-inference" "1.36.0"
