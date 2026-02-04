@@ -61,6 +61,7 @@ buildPythonPackage (finalAttrs: {
     "draccus"
     "gymnasium"
     "huggingface-hub"
+    "opencv"
     "rerun-sdk"
     "torch"
     "torchvision"
