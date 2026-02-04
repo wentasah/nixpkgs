@@ -19,14 +19,14 @@
 
 buildPythonPackage rec {
   pname = "denonavr";
-  version = "1.2.0";
+  version = "1.3.1";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "ol-iver";
     repo = "denonavr";
     tag = version;
-    hash = "sha256-/GhlSZhl4VAl0em3QLolSRS0wZQeOhhF+B/91ohqVPw=";
+    hash = "sha256-GrcTNnGanyYwcRIqzh5gToe2Z0E5KM2V7Ph/eBFoljA=";
   };
 
   build-system = [ setuptools ];
