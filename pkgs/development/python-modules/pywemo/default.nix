@@ -13,7 +13,7 @@
   urllib3,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "pywemo";
   version = "2.1.1";
   pyproject = true;
@@ -21,7 +21,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "pywemo";
     repo = "pywemo";
-    tag = version;
+    tag = finalAttrs.version;
     hash = "sha256-IyUahdExD6YNl4vG/bogiLlO8JaRUEslmc5/ZAUMomQ=";
   };
 
@@ -48,8 +48,8 @@ buildPythonPackage rec {
   meta = {
     description = "Python module to discover and control WeMo devices";
     homepage = "https://github.com/pywemo/pywemo";
-    changelog = "https://github.com/pywemo/pywemo/releases/tag/${version}";
+    changelog = "https://github.com/pywemo/pywemo/releases/tag/${finalAttrs.src.tag}";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ fab ];
   };
-}
+})
