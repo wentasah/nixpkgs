@@ -53,11 +53,11 @@ buildPythonPackage rec {
   };
 
   patches = [
-    (replaceVars ./django_5_set_zoneinfo_dir.patch {
+    (replaceVars ./5.2/zoneinfo.patch {
       zoneinfo = tzdata + "/share/zoneinfo";
     })
     # prevent tests from messing with our pythonpath
-    ./django_5_tests_pythonpath.patch
+    ./5.2/pythonpath.patch
     # disable test that expects timezone issues
     ./django_5_disable_failing_tests.patch
 
@@ -72,9 +72,10 @@ buildPythonPackage rec {
       url = "https://github.com/django/django/commit/9cc231e8243091519f5d627cd02ee40bbb853ced.patch";
       hash = "sha256-/aimmqxurMCCntraxOtybEq8qNgZgQWLD5Gxs/3pkIU=";
     })
+    ./5.2/disable-failing-test.patch
   ]
   ++ lib.optionals withGdal [
-    (replaceVars ./django_5_set_geos_gdal_lib.patch {
+    (replaceVars ./5.2/gdal.patch {
       geos = geos;
       gdal = gdal;
       extension = stdenv.hostPlatform.extensions.sharedLibrary;
