@@ -16,12 +16,12 @@
 
 buildPythonPackage rec {
   pname = "nbdev";
-  version = "2.4.14";
+  version = "3.0.10";
   pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-zXUbUFf08IncbDO6sHiZP6KFvhF3d+GsFLPp2EuAW3g=";
+    hash = "sha256-5NPOctZ68qS7ETEr/zwRY9Q66gjVa3F7gyc7cssyI4A=";
   };
 
   pythonRelaxDeps = [ "ipywidgets" ];
