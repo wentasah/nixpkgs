@@ -19,7 +19,7 @@ stdenv.mkDerivation rec {
   version = "2.4.4";
 
   src = fetchurl {
-    url = "mirror://samba/talloc/${pname}-${version}.tar.gz";
+    url = "mirror://samba/talloc/talloc-${version}.tar.gz";
     sha256 = "sha256-VeR5lAGME3Q0hVROcgZ4D/uzyElecEqZY2UD5ud6v1k=";
   };
 
