@@ -16,7 +16,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     hash = "sha256-w1NoWgaUBny//3t1S5z/juPOYFomwJKtTq/M4qKoNv0=";
   };
 
-  GIT_COMMIT_HASH = finalAttrs.src.rev;
+  env.GIT_COMMIT_HASH = finalAttrs.src.rev;
 
   cargoHash = "sha256-N+c2jnJ7a+Nh2UibkaOByh4tKDX52VovYIpeHTpawXo=";
 
@@ -29,7 +29,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
       built with Rust. Features include file persistence, keyboard-driven
       navigation, multi-select capabilities, and sprint management.
     '';
-    homepage = "https://github.com/fulsomenko/kanban";
+    homepage = "https://kanban.yoon.se";
     license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [ fulsomenko ];
     mainProgram = "kanban";

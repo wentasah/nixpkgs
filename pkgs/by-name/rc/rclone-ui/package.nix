@@ -20,26 +20,26 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "rclone-ui";
-  version = "3.4.1";
+  version = "3.4.3";
 
   src = fetchFromGitHub {
     owner = "rclone-ui";
     repo = "rclone-ui";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-d4qJtb8eDZ2txeZxGuweK4tuZaq7E7cRNW5wHdNBalY=";
+    hash = "sha256-YKlznqgKePx6x6P+1nE6sZwYSRZwvpAvMSDjd+MKCvg=";
   };
 
   npmDeps = fetchNpmDeps {
     name = "${finalAttrs.pname}-${finalAttrs.version}-npm-deps";
     inherit (finalAttrs) src;
     forceGitDeps = true;
-    hash = "sha256-xnF7c3g3CpMlW3s1UbJHN+R5K+dzV9/IFZ8T/LoT3fk=";
+    hash = "sha256-SW2bWKM/H3fuRD0Q0Sctbpk13bfpMawU+HohJxfWg+E=";
   };
 
   cargoRoot = "src-tauri";
   buildAndTestSubdir = finalAttrs.cargoRoot;
 
-  cargoHash = "sha256-lemjmsxZsplfC1/nFn84be0JXuKcub5ORkQLL5HQCHY=";
+  cargoHash = "sha256-toq1lscvDvVyQP0oPtf4IeNpxBTxrqJa8JH3cC3iQzk=";
 
   # Disable tauri bundle updater, can be removed when #389107 is merged
   patches = [ ./remove_updater.patch ];

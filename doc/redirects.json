@@ -629,6 +629,9 @@
   "chap-stdenv": [
     "index.html#chap-stdenv"
   ],
+  "sec-problems": [
+    "index.html#sec-problems"
+  ],
   "sec-using-llvm": [
     "index.html#sec-using-llvm"
   ],
@@ -1817,6 +1820,9 @@
   ],
   "fetchtorrent-parameters": [
     "index.html#fetchtorrent-parameters"
+  ],
+  "fetchitchio": [
+    "index.html#fetchitchio"
   ],
   "chap-trivial-builders": [
     "index.html#chap-trivial-builders"
