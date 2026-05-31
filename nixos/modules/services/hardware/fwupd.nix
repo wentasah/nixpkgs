@@ -202,8 +202,8 @@ in
     systemd = {
       packages = [ cfg.package ];
 
-      # fwupd-refresh expects a user that we do not create, so just run with DynamicUser
-      # instead and ensure we take ownership of /var/lib/fwupd
+      # The upstream unit runs as User=fwupd-refresh; ensure it can take
+      # ownership of /var/lib/fwupd.
       services.fwupd-refresh.serviceConfig = {
         StateDirectory = "fwupd";
         # Better for debugging, upstream sets stderr to null for some reason..
@@ -219,7 +219,24 @@ in
     };
     users.groups.fwupd-refresh = { };
 
-    security.polkit.enable = true;
+    security.polkit = {
+      enable = true;
+      # fwupd-refresh.service runs fwupdmgr as the fwupd-refresh user, which
+      # has no seat and therefore falls under <allow_any>auth_admin</allow_any>
+      # for these polkit actions. Upstream expects the uid to be listed under
+      # TrustedUids in fwupd.conf, but on NixOS the uid is allocated at
+      # activation time and not known during evaluation, so grant the actions
+      # via a polkit rule keyed on the user name instead.
+      extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          if ((action.id == "org.freedesktop.fwupd.get-remotes" ||
+               action.id == "org.freedesktop.fwupd.refresh-remote") &&
+              subject.user == "fwupd-refresh") {
+            return polkit.Result.YES;
+          }
+        });
+      '';
+    };
   };
 
   meta = {
