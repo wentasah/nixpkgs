@@ -35,7 +35,7 @@ let
     lib.listToAttrs (map mkEtcFile cfg.package.filesInstalledToEtc);
   extraTrustedKeys =
     let
-      mkName = p: "pki/fwupd/${baseNameOf (toString p)}";
+      mkName = p: "pki/fwupd/${baseNameOf p}";
       mkEtcFile = p: lib.nameValuePair (mkName p) { source = p; };
     in
     lib.listToAttrs (map mkEtcFile cfg.extraTrustedKeys);
@@ -221,12 +221,9 @@ in
 
     security.polkit = {
       enable = true;
-      # fwupd-refresh.service runs fwupdmgr as the fwupd-refresh user, which
-      # has no seat and therefore falls under <allow_any>auth_admin</allow_any>
-      # for these polkit actions. Upstream expects the uid to be listed under
-      # TrustedUids in fwupd.conf, but on NixOS the uid is allocated at
-      # activation time and not known during evaluation, so grant the actions
-      # via a polkit rule keyed on the user name instead.
+      # fwupd-refresh.service has no seat, so polkit denies these actions.
+      # Upstream's TrustedUids needs a static uid which we only allocate at
+      # activation time, so grant access via a rule on the user name instead.
       extraConfig = ''
         polkit.addRule(function(action, subject) {
           if ((action.id == "org.freedesktop.fwupd.get-remotes" ||
