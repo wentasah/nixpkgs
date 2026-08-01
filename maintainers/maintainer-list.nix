@@ -4229,6 +4229,12 @@
     matrix = "@brsvh:mozilla.org";
     name = "Burgess Chang";
   };
+  brw = {
+    email = "hi@bas.sh";
+    github = "brw";
+    githubId = 7560938;
+    name = "Bas van den Wollenberg";
+  };
   bryango = {
     name = "Bryan Lai";
     email = "bryanlais@gmail.com";
@@ -24709,6 +24715,13 @@
     githubId = 6445619;
     name = "Ruben Cano Diaz";
   };
+  Ruddickmg = {
+    name = "Marcus Ruddick";
+    github = "Ruddickmg";
+    githubId = 8334416;
+    email = "ruddickmg@gmail.com";
+    keys = [ { fingerprint = "74FF 0519 D478 AD06 9C23  4F93 343E 322A 4E3B 4C82"; } ];
+  };
   RudiOnTheAir = {
     name = "Rüdiger Schwoon";
     email = "wolf@schwoon.info";
@@ -31812,6 +31825,11 @@
       { fingerprint = "CBF7 FA5E F4B5 8B68 5977  3E3E 4CAC 61D6 A482 FCD9"; }
       { fingerprint = "E22F 760E E074 E57A 21CB  1733 8DD2 9BB5 2C25 EA09"; }
     ];
+  };
+  zinzilulo = {
+    name = "zinzilulo";
+    github = "zinzilulo";
+    githubId = 214774502;
   };
   Zirconium419122 = {
     name = "Rasmus Liaskar";
