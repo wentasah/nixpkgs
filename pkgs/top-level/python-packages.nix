@@ -5527,6 +5527,8 @@ self: super: with self; {
 
   enturclient = callPackage ../development/python-modules/enturclient { };
 
+  enum-tools = callPackage ../development/python-modules/enum-tools { };
+
   env-canada = callPackage ../development/python-modules/env-canada { };
 
   environ-config = callPackage ../development/python-modules/environ-config { };
@@ -5968,6 +5970,8 @@ self: super: with self; {
   feedgenerator = callPackage ../development/python-modules/feedgenerator { };
 
   feedparser = callPackage ../development/python-modules/feedparser { };
+
+  feedparser-sgmllib = callPackage ../development/python-modules/feedparser-sgmllib { };
 
   fenics-basix = callPackage ../development/python-modules/fenics-basix { };
 
@@ -6563,6 +6567,8 @@ self: super: with self; {
     inherit (pkgs) bluez glib pkg-config;
   };
 
+  gatus-api = callPackage ../development/python-modules/gatus-api { };
+
   gawd = callPackage ../development/python-modules/gawd { };
 
   gb-io = callPackage ../development/python-modules/gb-io { };
@@ -7071,6 +7077,8 @@ self: super: with self; {
   google-generativeai = callPackage ../development/python-modules/google-generativeai { };
 
   google-geo-type = callPackage ../development/python-modules/google-geo-type { };
+
+  google-health-api = callPackage ../development/python-modules/google-health-api { };
 
   google-i18n-address = callPackage ../development/python-modules/google-i18n-address { };
 
@@ -12905,6 +12913,8 @@ self: super: with self; {
 
   parse = callPackage ../development/python-modules/parse { };
 
+  parse-crontab = callPackage ../development/python-modules/parse-crontab { };
+
   parse-type = callPackage ../development/python-modules/parse-type { };
 
   parsedatetime = callPackage ../development/python-modules/parsedatetime { };
@@ -14245,6 +14255,8 @@ self: super: with self; {
 
   pybox2d = callPackage ../development/python-modules/pybox2d { };
 
+  pybraendstofpriser = callPackage ../development/python-modules/pybraendstofpriser { };
+
   pybravia = callPackage ../development/python-modules/pybravia { };
 
   pybreaker = callPackage ../development/python-modules/pybreaker { };
@@ -15246,6 +15258,8 @@ self: super: with self; {
   pynamodb = callPackage ../development/python-modules/pynamodb { };
 
   pynanoleaf = callPackage ../development/python-modules/pynanoleaf { };
+
+  pynauty = callPackage ../development/python-modules/pynauty { };
 
   pync = callPackage ../development/python-modules/pync { inherit (pkgs) which; };
 
@@ -18047,6 +18061,8 @@ self: super: with self; {
 
   rq = callPackage ../development/python-modules/rq { };
 
+  rq-scheduler = callPackage ../development/python-modules/rq-scheduler { };
+
   rrdtool = callPackage ../development/python-modules/rrdtool { };
 
   rsa = callPackage ../development/python-modules/rsa { };
@@ -19757,6 +19773,8 @@ self: super: with self; {
 
   strpdatetime = callPackage ../development/python-modules/strpdatetime { };
 
+  strsimpy = callPackage ../development/python-modules/strsimpy { };
+
   structlog = callPackage ../development/python-modules/structlog { };
 
   stubserver = callPackage ../development/python-modules/stubserver { };
@@ -20477,6 +20495,8 @@ self: super: with self; {
   tldextract = callPackage ../development/python-modules/tldextract { };
 
   tlds = callPackage ../development/python-modules/tlds { };
+
+  tlparse = callPackage ../development/python-modules/tlparse { };
 
   tls-client = callPackage ../development/python-modules/tls-client { };
 
@@ -21511,6 +21531,8 @@ self: super: with self; {
   udapi = callPackage ../development/python-modules/udapi { };
 
   udatetime = callPackage ../development/python-modules/udatetime { };
+
+  udsoncan = callPackage ../development/python-modules/udsoncan { };
 
   udtools = callPackage ../development/python-modules/udtools { };
 
@@ -22726,6 +22748,8 @@ self: super: with self; {
   zimports = callPackage ../development/python-modules/zimports { };
 
   zinvolt = callPackage ../development/python-modules/zinvolt { };
+
+  zipfile-inflate64 = callPackage ../development/python-modules/zipfile-inflate64 { };
 
   zipfile2 = callPackage ../development/python-modules/zipfile2 { };
 
