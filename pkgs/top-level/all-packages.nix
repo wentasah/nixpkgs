@@ -2123,10 +2123,6 @@ with pkgs;
 
   gdown = with python3Packages; toPythonApplication gdown;
 
-  gpt4all-cuda = gpt4all.override {
-    cudaSupport = true;
-  };
-
   gprof2dot = with python3Packages; toPythonApplication gprof2dot;
 
   grails = callPackage ../development/web/grails { jdk = null; };
@@ -2764,8 +2760,6 @@ with pkgs;
   mpi = openmpi; # this attribute should used to build MPI applications
 
   quota = if stdenv.hostPlatform.isLinux then linuxquota else unixtools.quota;
-
-  rainbowstream = with python3.pkgs; toPythonApplication rainbowstream;
 
   rapidgzip = with python3Packages; toPythonApplication rapidgzip;
 
@@ -6827,11 +6821,6 @@ with pkgs;
 
   go_latest = go_1_27;
   buildGoLatestModule = buildGo127Module;
-
-  go_1_25 = callPackage ../development/compilers/go/1.25.nix { };
-  buildGo125Module = callPackage ../build-support/go/module.nix {
-    go = buildPackages.go_1_25;
-  };
 
   go_1_26 = callPackage ../development/compilers/go/1.26.nix { };
   buildGo126Module = callPackage ../build-support/go/module.nix {
