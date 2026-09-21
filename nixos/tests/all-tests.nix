@@ -422,6 +422,7 @@ in
   cgit = runTest ./cgit.nix;
   charliecloud = runTest ./charliecloud.nix;
   chhoto-url = runTest ./chhoto-url.nix;
+  chipass = runTest ./chipass.nix;
   chromadb = runTest ./chromadb.nix;
   chromium = (handleTestOn [ "aarch64-linux" "x86_64-linux" ] ./chromium.nix { }).stable or { };
   chrony = runTestOn [ "aarch64-linux" "x86_64-linux" ] ./chrony.nix;
@@ -833,6 +834,7 @@ in
   };
   haproxy = runTest ./haproxy.nix;
   harmonia = runTest ./harmonia.nix;
+  harmonia-gc = runTest ./harmonia-gc.nix;
   haste-server = runTest ./haste-server.nix;
   hbase2 = runTest {
     imports = [ ./hbase.nix ];
@@ -1053,6 +1055,7 @@ in
   linkding = runTest ./web-apps/linkding.nix;
   linkding-postgres = runTest ./web-apps/linkding-postgres.nix;
   linkwarden = runTest ./web-apps/linkwarden.nix;
+  linux-builder-vz-store-gc = runTest ./linux-builder-vz-store-gc.nix;
   listmonk = handleTestOn [ "x86_64-linux" "aarch64-linux" ] ./listmonk.nix { };
   litellm = runTest ./litellm.nix;
   litestream = runTest ./litestream.nix;
