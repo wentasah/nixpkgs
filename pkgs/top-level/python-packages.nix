@@ -4068,8 +4068,6 @@ self: super: with self; {
 
   databases = callPackage ../development/python-modules/databases { };
 
-  databricks-cli = callPackage ../development/python-modules/databricks-cli { };
-
   databricks-connect = callPackage ../development/python-modules/databricks-connect { };
 
   databricks-sdk = callPackage ../development/python-modules/databricks-sdk { };
@@ -9462,6 +9460,8 @@ self: super: with self; {
 
   lb-matching-tools = callPackage ../development/python-modules/lb-matching-tools { };
 
+  lbox-clients = callPackage ../development/python-modules/lbox-clients { };
+
   lc7001 = callPackage ../development/python-modules/lc7001 { };
 
   lcd-i2c = callPackage ../development/python-modules/lcd-i2c { };
@@ -10729,6 +10729,8 @@ self: super: with self; {
   mergedict = callPackage ../development/python-modules/mergedict { };
 
   merkletools = callPackage ../development/python-modules/merkletools { };
+
+  mermaid-py = callPackage ../development/python-modules/mermaid-py { };
 
   meross-iot = callPackage ../development/python-modules/meross-iot { };
 
@@ -19199,8 +19201,6 @@ self: super: with self; {
   slowapi = callPackage ../development/python-modules/slowapi { };
 
   slpp = callPackage ../development/python-modules/slpp { };
-
-  slugid = callPackage ../development/python-modules/slugid { };
 
   sly = callPackage ../development/python-modules/sly { };
 
