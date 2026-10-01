@@ -1776,8 +1776,8 @@ let
         mktplcRef = {
           name = "vscode-jest-runner";
           publisher = "firsttris";
-          version = "0.4.148";
-          hash = "sha256-bqyi1uk4Y1PMOjVv+io3WxJMrJb7UKy368xt6TiySPg=";
+          version = "0.4.149";
+          hash = "sha256-bGDU3/5Pysagt8aoEJJH6VVvR4Oy8IU12AmaAvnKnY8=";
         };
         meta = {
           description = "Simple way to run or debug a single (or multiple) tests from context-menu";
@@ -2047,8 +2047,8 @@ let
         mktplcRef = {
           name = "gitlab-workflow";
           publisher = "gitlab";
-          version = "6.90.3";
-          hash = "sha256-/6R/3FUXuvy836YeZSbw6HMrrIXdPbKqdNFBl4z36Y0=";
+          version = "6.92.0";
+          hash = "sha256-DR0g4aHAWePu46IHNPvxrFDBHoYmHMmiEm4z4AvB4mQ=";
         };
         meta = {
           description = "GitLab extension for Visual Studio Code";
@@ -2751,8 +2751,8 @@ let
         mktplcRef = {
           name = "intellij-idea-keybindings";
           publisher = "k--kato";
-          version = "1.7.7";
-          hash = "sha256-+XF+Odb9nMKclQkB/lwFuVpCHlVq6LNG/gQATVBcrYc=";
+          version = "1.7.8";
+          hash = "sha256-771I7W5jrYVtN25N4jnKudPqhlX1ohGP5dI1vUciYXs=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/k--kato.intellij-idea-keybindings/changelog";
