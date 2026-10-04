@@ -278,6 +278,7 @@ in
   amazon-init-shell = runTest ./amazon-init-shell.nix;
   amazon-ssm-agent = runTest ./amazon-ssm-agent.nix;
   amd-sev = runTest ./amd-sev.nix;
+  amuled = runTest ./amuled.nix;
   android-translation-layer = runTest ./android-translation-layer.nix;
   angie-api = runTest ./angie-api.nix;
   angrr = runTest ./angrr.nix;
@@ -380,6 +381,7 @@ in
   budgie = runTest ./budgie.nix;
   buildbot = runTest ./buildbot.nix;
   buildkite-agents = runTest ./buildkite-agents.nix;
+  buildstream = runTest ./buildstream.nix;
   bulwark = runTest ./bulwark.nix;
   c2fmzq = runTest ./c2fmzq.nix;
   caddy = runTest ./caddy.nix;
@@ -1377,6 +1379,7 @@ in
   ollama-cuda = runTestOn [ "x86_64-linux" "aarch64-linux" ] ./ollama-cuda.nix;
   ollama-rocm = runTestOn [ "x86_64-linux" "aarch64-linux" ] ./ollama-rocm.nix;
   ollama-vulkan = runTestOn [ "x86_64-linux" "aarch64-linux" ] ./ollama-vulkan.nix;
+  ollaya = runTest ./ollaya.nix;
   omada = runTestOn [ "x86_64-linux" ] ./omada.nix;
   ombi = runTest ./ombi.nix;
   omnom = runTest ./omnom;
@@ -1572,6 +1575,7 @@ in
   qemu-firmware = runTestOn [ "x86_64-linux" ] ./qemu-firmware.nix;
   qemu-vm-external-disk-image = runTest ./qemu-vm-external-disk-image.nix;
   qemu-vm-restrictnetwork = handleTest ./qemu-vm-restrictnetwork.nix { };
+  qemu-vm-shared-directories = runTest ./qemu-vm-shared-directories.nix;
   qemu-vm-store = runTest ./qemu-vm-store.nix;
   qemu-vm-volatile-root = runTest ./qemu-vm-volatile-root.nix;
   qgis = handleTest ./qgis.nix { package = pkgs.qgis; };
