@@ -2195,6 +2195,12 @@
     githubId = 25783780;
     name = "aos";
   };
+  apcamargo = {
+    email = "antoniop.camargo@gmail.com";
+    github = "apcamargo";
+    githubId = 22940964;
+    name = "Antonio Camargo";
+  };
   apeyroux = {
     email = "alex@px.io";
     github = "apeyroux";
@@ -8522,6 +8528,12 @@
     github = "emmanuelrosa";
     githubId = 13485450;
     name = "Emmanuel Rosa";
+  };
+  emp = {
+    name = "Heinz Deinhart";
+    email = "dev_nixpkgs@a.nix.at";
+    github = "atemp";
+    githubId = 4732807;
   };
   emptyflask = {
     email = "jon@emptyflask.dev";

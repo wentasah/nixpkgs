@@ -382,6 +382,7 @@ in
   buildbot = runTest ./buildbot.nix;
   buildkite-agents = runTest ./buildkite-agents.nix;
   buildstream = runTest ./buildstream.nix;
+  buildstream-plugins-community = runTest ./buildstream-plugins-community.nix;
   bulwark = runTest ./bulwark.nix;
   c2fmzq = runTest ./c2fmzq.nix;
   caddy = runTest ./caddy.nix;
@@ -593,6 +594,7 @@ in
   echoip = runTest ./echoip.nix;
   ejabberd = runTest ./xmpp/ejabberd.nix;
   elk = handleTestOn [ "x86_64-linux" ] ./elk.nix { };
+  elk-zone = runTest ./web-apps/elk.nix;
   emacs-daemon = runTest ./emacs-daemon.nix;
   endlessh = runTest ./endlessh.nix;
   endlessh-go = runTest ./endlessh-go.nix;
