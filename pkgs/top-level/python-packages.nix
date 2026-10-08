@@ -12313,7 +12313,7 @@ self: super: with self; {
 
   numkong = callPackage ../development/python-modules/numkong { };
 
-  numpy = numpy_2;
+  numpy = callPackage ../development/python-modules/numpy { };
 
   numpy-financial = callPackage ../development/python-modules/numpy-financial { };
 
@@ -12324,10 +12324,6 @@ self: super: with self; {
   numpy-stl = callPackage ../development/python-modules/numpy-stl { };
 
   numpy-typing-compat = callPackage ../development/python-modules/numpy-typing-compat { };
-
-  numpy_1 = callPackage ../development/python-modules/numpy/1.nix { };
-
-  numpy_2 = callPackage ../development/python-modules/numpy/2.nix { };
 
   numpydoc = callPackage ../development/python-modules/numpydoc { };
 
@@ -14992,6 +14988,8 @@ self: super: with self; {
 
   pyfastnoiselite = callPackage ../development/python-modules/pyfastnoiselite { };
 
+  pyfastnoiselite-ledfx = callPackage ../development/python-modules/pyfastnoiselite-ledfx { };
+
   pyfatfs = callPackage ../development/python-modules/pyfatfs { };
 
   pyfaup-rs = callPackage ../development/python-modules/pyfaup-rs { };
@@ -15690,6 +15688,10 @@ self: super: with self; {
 
   pyobjc-core = callPackage ../development/python-modules/pyobjc-core { };
 
+  pyobjc-framework-AVFoundation =
+    callPackage ../development/python-modules/pyobjc-framework-AVFoundation
+      { };
+
   pyobjc-framework-ApplicationServices =
     callPackage ../development/python-modules/pyobjc-framework-ApplicationServices
       { };
@@ -15704,7 +15706,15 @@ self: super: with self; {
     callPackage ../development/python-modules/pyobjc-framework-CoreBluetooth
       { };
 
+  pyobjc-framework-CoreMedia =
+    callPackage ../development/python-modules/pyobjc-framework-CoreMedia
+      { };
+
   pyobjc-framework-CoreText = callPackage ../development/python-modules/pyobjc-framework-CoreText { };
+
+  pyobjc-framework-MediaPlayer =
+    callPackage ../development/python-modules/pyobjc-framework-MediaPlayer
+      { };
 
   pyobjc-framework-Quartz = callPackage ../development/python-modules/pyobjc-framework-Quartz { };
 
@@ -20533,63 +20543,6 @@ self: super: with self; {
     inherit (pkgs.config) cudaSupport;
   };
 
-  tensorflow-build =
-    let
-      compat = rec {
-        #protobufTF = pkgs.protobuf_21.override { abseil-cpp = pkgs.abseil-cpp_202301; };
-        protobufTF = pkgs.protobuf;
-        # https://www.tensorflow.org/install/source#gpu
-        #cudaPackagesTF = pkgs.cudaPackages_11;
-        cudaPackagesTF = pkgs.cudaPackages;
-        grpcTF =
-          (pkgs.grpc.overrideAttrs (oldAttrs: rec {
-            # nvcc fails on recent grpc versions, so we use the latest patch level
-            #  of the grpc version bundled by upstream tensorflow to allow CUDA
-            #  support
-            version = "1.27.3";
-            src = pkgs.fetchFromGitHub {
-              owner = "grpc";
-              repo = "grpc";
-              rev = "v${version}";
-              hash = "sha256-PpiOT4ZJe1uMp5j+ReQulC9jpT0xoR2sAl6vRYKA0AA=";
-              fetchSubmodules = true;
-            };
-            patches = [ ];
-            postPatch = ''
-              sed -i "s/-std=c++11/-std=c++17/" CMakeLists.txt
-              echo "set(CMAKE_CXX_STANDARD 17)" >> CMakeLists.txt
-            '';
-          })).override
-            { protobuf = protobufTF; };
-        protobuf-pythonTF = self.protobuf4.override { protobuf = protobufTF; };
-        grpcioTF = self.grpcio.override { protobuf = protobufTF; };
-        tensorboardTF = self.tensorboard.override {
-          grpcio = grpcioTF;
-          protobuf = protobuf-pythonTF;
-        };
-      };
-    in
-    callPackage ../development/python-modules/tensorflow {
-      inherit (pkgs.config) cudaSupport;
-      flatbuffers-core = pkgs.flatbuffers;
-      flatbuffers-python = self.flatbuffers;
-      cudaPackages = compat.cudaPackagesTF;
-      protobuf-core = compat.protobufTF;
-      protobuf-python = compat.protobuf-pythonTF;
-      grpc = compat.grpcTF;
-      grpcio = compat.grpcioTF;
-      tensorboard = compat.tensorboardTF;
-      #abseil-cpp = pkgs.abseil-cpp_202301;
-      snappy-cpp = pkgs.snappy;
-
-      # Tensorflow 2.13 doesn't support gcc13:
-      # https://github.com/tensorflow/tensorflow/issues/61289
-      #
-      # We use the nixpkgs' default libstdc++ to stay compatible with other
-      # python modules
-      #stdenv = pkgs.stdenvAdapters.useLibsFrom stdenv pkgs.gcc12Stdenv;
-    };
-
   tensorflow-datasets = callPackage ../development/python-modules/tensorflow-datasets { };
 
   tensorflow-estimator-bin =
@@ -21334,6 +21287,8 @@ self: super: with self; {
   tunigo = callPackage ../development/python-modules/tunigo { };
 
   tunit = callPackage ../development/python-modules/tunit { };
+
+  turbohtml = callPackage ../development/python-modules/turbohtml { };
 
   turnt = callPackage ../development/python-modules/turnt { };
 
@@ -22528,7 +22483,7 @@ self: super: with self; {
 
   wasmerPackages = lib.recurseIntoAttrs (callPackage ../development/python-modules/wasmer { });
 
-  wasmtime = callPackage ../development/python-modules/wasmtime { };
+  wasmtime = callPackage ../by-name/wa/wasmtime/python.nix { };
 
   wasserstein = callPackage ../development/python-modules/wasserstein { };
 

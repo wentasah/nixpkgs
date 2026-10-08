@@ -1235,6 +1235,46 @@ lib.mapAttrs mkLicense (
       redistributable = true;
     };
 
+    nvidiaCudnn = {
+      shortName = "cuDNN EULA";
+      fullName = "cuDNN SUPPLEMENT TO SOFTWARE LICENSE AGREEMENT FOR NVIDIA SOFTWARE DEVELOPMENT KITS";
+      url = "https://docs.nvidia.com/deeplearning/cudnn/backend/latest/reference/eula.html";
+      free = false;
+      redistributable = false;
+    };
+
+    nvidiaCusparse_lt = {
+      shortName = "cuSPARSELt EULA";
+      fullName = "cuSPARSELt SUPPLEMENT TO SOFTWARE LICENSE AGREEMENT FOR NVIDIA SOFTWARE DEVELOPMENT KITS";
+      url = "https://docs.nvidia.com/cuda/cusparselt/license.html";
+      free = false;
+      redistributable = false;
+    };
+
+    nvidiaCutensor = {
+      shortName = "cuTENSOR EULA";
+      fullName = "cuTENSOR SUPPLEMENT TO SOFTWARE LICENSE AGREEMENT FOR NVIDIA SOFTWARE DEVELOPMENT KITS";
+      url = "https://docs.nvidia.com/cuda/cutensor/latest/license.html";
+      free = false;
+      redistributable = false;
+    };
+
+    nvidiaTensorrt = {
+      shortName = "TensorRT EULA";
+      fullName = "TensorRT SUPPLEMENT TO SOFTWARE LICENSE AGREEMENT FOR NVIDIA SOFTWARE DEVELOPMENT KITS";
+      url = "https://docs.nvidia.com/deeplearning/tensorrt/latest/reference/sla.html";
+      free = false;
+      redistributable = false;
+    };
+
+    nvidiaMath_sdk_sla = {
+      shortName = "NVIDIA Math SDK SLA";
+      fullName = "LICENSE AGREEMENT FOR NVIDIA MATH LIBRARIES SOFTWARE DEVELOPMENT KITS";
+      url = "https://developer.download.nvidia.com/compute/mathdx/License.txt";
+      free = false;
+      redistributable = false;
+    };
+
     obsidian = {
       fullName = "Obsidian End User Agreement";
       url = "https://obsidian.md/eula";
@@ -1441,6 +1481,12 @@ lib.mapAttrs mkLicense (
       # The license a slightly modified AGPL but still considered unfree by the
       # OSI for what seem like political reasons
       redistributable = true; # Definitely redistributable though, it's an AGPL derivative
+    };
+
+    stalwart = {
+      fullName = "Stalwart Enterprise License 2.0 (SELv2) Agreement";
+      url = "https://github.com/stalwartlabs/cli/blob/main/LICENSES/LicenseRef-SEL.txt";
+      free = false;
     };
 
     stk = {
