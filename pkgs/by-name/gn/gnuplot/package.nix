@@ -14,7 +14,7 @@
   withTeXLive ? false,
   texliveSmall,
   withLua ? false,
-  lua,
+  lua5_2_compat,
   withCaca ? false,
   libcaca,
   libx11,
@@ -33,6 +33,7 @@
 }:
 
 let
+  lua = lua5_2_compat;
   withX = !aquaterm && !stdenv.hostPlatform.isDarwin;
 in
 stdenv.mkDerivation (finalAttrs: {
