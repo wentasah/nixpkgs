@@ -3903,6 +3903,8 @@ self: super: with self; {
 
   cuda-tile = callPackage ../development/python-modules/cuda-tile { };
 
+  cupti-python = callPackage ../development/python-modules/cupti-python { };
+
   cupy = callPackage ../development/python-modules/cupy { };
 
   curated-tokenizers = callPackage ../development/python-modules/curated-tokenizers { };
@@ -8712,6 +8714,8 @@ self: super: with self; {
 
   j2lint = callPackage ../development/python-modules/j2lint { };
 
+  jack-client = callPackage ../development/python-modules/jack-client { };
+
   jaconv = callPackage ../development/python-modules/jaconv { };
 
   jalali-core = callPackage ../development/python-modules/jalali-core { };
@@ -10696,6 +10700,8 @@ self: super: with self; {
 
   mdutils = callPackage ../development/python-modules/mdutils { };
 
+  mdx-breakless-lists = callPackage ../development/python-modules/mdx-breakless-lists { };
+
   mdx-truly-sane-lists = callPackage ../development/python-modules/mdx-truly-sane-lists { };
 
   mdx-wikilink-plus = callPackage ../development/python-modules/mdx-wikilink-plus { };
@@ -12372,6 +12378,8 @@ self: super: with self; {
   nvidia-dlprofviewer = callPackage ../development/python-modules/nvidia-dlprofviewer { };
 
   nvidia-ml-py = callPackage ../development/python-modules/nvidia-ml-py { };
+
+  nvidia-resiliency-ext = callPackage ../development/python-modules/nvidia-resiliency-ext { };
 
   nvmath-python = callPackage ../development/python-modules/nvmath-python { };
 
@@ -14938,8 +14946,6 @@ self: super: with self; {
 
   pyelftools = callPackage ../development/python-modules/pyelftools { };
 
-  pyembroidery = callPackage ../development/python-modules/pyembroidery { };
-
   pyemby = callPackage ../development/python-modules/pyemby { };
 
   pyemd = callPackage ../development/python-modules/pyemd { };
@@ -15971,8 +15977,6 @@ self: super: with self; {
 
   pyqt-builder = callPackage ../development/python-modules/pyqt-builder { };
 
-  pyqt3d = callPackage ../development/python-modules/pyqt3d { };
-
   pyqt5 = callPackage ../development/python-modules/pyqt/5.x.nix { inherit (pkgs) mesa; };
 
   pyqt5-multimedia = self.pyqt5.override { withMultimedia = true; };
@@ -16430,6 +16434,8 @@ self: super: with self; {
   pystemmer = callPackage ../development/python-modules/pystemmer { };
 
   pystiebeleltron = callPackage ../development/python-modules/pystiebeleltron { };
+
+  pystitch = callPackage ../development/python-modules/pystitch { };
 
   pystray = callPackage ../development/python-modules/pystray { };
 
@@ -17552,6 +17558,8 @@ self: super: with self; {
   pyvisa-sim = callPackage ../development/python-modules/pyvisa-sim { };
 
   pyvista = callPackage ../development/python-modules/pyvista { };
+
+  pyvista-validation = callPackage ../development/python-modules/pyvista-validation { };
 
   pyviz-comms = callPackage ../development/python-modules/pyviz-comms { };
 
@@ -20257,6 +20265,8 @@ self: super: with self; {
 
   sunpy = callPackage ../development/python-modules/sunpy { };
 
+  suntime = callPackage ../development/python-modules/suntime { };
+
   sunwatcher = callPackage ../development/python-modules/sunwatcher { };
 
   sunweg = callPackage ../development/python-modules/sunweg { };
@@ -21293,6 +21303,8 @@ self: super: with self; {
   ttls = callPackage ../development/python-modules/ttls { };
 
   ttn-client = callPackage ../development/python-modules/ttn-client { };
+
+  ttnn = callPackage ../development/python-modules/ttnn { inherit (pkgs) tt-metal; };
 
   ttp = callPackage ../development/python-modules/ttp { };
 
@@ -22364,6 +22376,8 @@ self: super: with self; {
 
   vllm = callPackage ../development/python-modules/vllm { };
 
+  vllm-tt-plugin = callPackage ../development/python-modules/vllm-tt-plugin { };
+
   vmas = callPackage ../development/python-modules/vmas { };
 
   vmprof = callPackage ../development/python-modules/vmprof { };
@@ -22482,12 +22496,9 @@ self: super: with self; {
   warlock = callPackage ../development/python-modules/warlock { };
 
   warp-lang = callPackage ../development/python-modules/warp-lang {
-    # warp targets LLVM 21 in its build-from-source path (build_llvm.py clones llvmorg-21.x) and
-    # guards native/clang/clang.cpp for LLVM up to 22, so it builds against nixpkgs' from-source
-    # LLVM 21. One getHostCPUFeatures() call is missing its version guard upstream; the derivation
-    # patches that. See the postPatch in warp-lang/default.nix.
-    stdenv = if stdenv.hostPlatform.isDarwin then pkgs.llvmPackages_21.stdenv else pkgs.stdenv;
-    llvmPackages = pkgs.llvmPackages_21;
+    # warp targets LLVM 22 in its build-from-source path (build_llvm.py clones llvmorg-22.x)
+    stdenv = if stdenv.hostPlatform.isDarwin then pkgs.llvmPackages_22.stdenv else pkgs.stdenv;
+    llvmPackages = pkgs.llvmPackages_22;
   };
 
   warp-nn = callPackage ../development/python-modules/warp-nn { };
