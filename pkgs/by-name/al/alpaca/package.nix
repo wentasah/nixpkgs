@@ -110,14 +110,18 @@ pythonPackages.buildPythonApplication rec {
 
   dontWrapGApps = true;
 
+  preFixup = ''
+    makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
+  '';
+
   makeWrapperArgs = [
-    "\${gappsWrapperArgs[@]}"
-    "--prefix PATH : ${
-      lib.makeBinPath [
-        xdg-utils
-        ollama
-      ]
-    }"
+    "--prefix"
+    "PATH"
+    ":"
+    (lib.makeBinPath [
+      xdg-utils
+      ollama
+    ])
   ];
 
   passthru.updateScript = nix-update-script { };
