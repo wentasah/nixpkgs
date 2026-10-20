@@ -46,13 +46,15 @@ python3Packages.buildPythonApplication (finalAttrs: {
   ]);
 
   makeWrapperArgs = [
-    ''--prefix PATH ':' "${pkgs.notmuch}/bin"''
+    "--prefix"
+    "PATH"
+    ":"
+    "${pkgs.notmuch}/bin"
   ];
 
   outputs = [
     "out"
     "doc"
-    "man"
   ];
 
   meta = {

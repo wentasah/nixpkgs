@@ -25,7 +25,6 @@ stdenv.mkDerivation rec {
   ];
 
   preBuild = ''
-    substituteInPlace Makefile --replace-fail "modules_install" "INSTALL_MOD_PATH=$out modules_install"
     sed -i '/depmod/d' Makefile
   '';
 
@@ -49,6 +48,11 @@ stdenv.mkDerivation rec {
     "KERNELRELEASE=${kernel.modDirVersion}"
     "KERNEL_DIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
     "v4l2loopback.ko"
+  ];
+
+  installFlags = [
+    "DEPMOD=true"
+    "INSTALL_MOD_PATH=${placeholder "out"}"
   ];
 
   passthru.updateScript = nix-update-script { };
