@@ -52,7 +52,6 @@ python3Packages.buildPythonApplication (finalAttrs: {
   outputs = [
     "out"
     "doc"
-    "man"
   ];
 
   meta = {
