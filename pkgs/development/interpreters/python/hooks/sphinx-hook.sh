@@ -31,7 +31,7 @@ buildSphinxPhase() {
     fi
 
     if [ -n "${sphinxBuilders-}" ]; then
-        eval "__sphinxBuilders=($sphinxBuilders)"
+        eval "__sphinxBuilders=(\"\${sphinxBuilders[@]}\")"
     else
         __sphinxBuilders=(html)
     fi
