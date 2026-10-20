@@ -27,7 +27,6 @@ python3Packages.buildPythonApplication (finalAttrs: {
 
   sphinxBuilders = [
     "html"
-    "man"
   ];
 
   dependencies = [
