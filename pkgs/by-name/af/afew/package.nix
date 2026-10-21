@@ -27,6 +27,7 @@ python3Packages.buildPythonApplication (finalAttrs: {
 
   sphinxBuilders = [
     "html"
+    "man"
   ];
 
   dependencies = [
@@ -54,7 +55,6 @@ python3Packages.buildPythonApplication (finalAttrs: {
   outputs = [
     "out"
     "doc"
-    "man"
   ];
 
   meta = {
