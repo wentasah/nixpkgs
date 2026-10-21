@@ -27,7 +27,6 @@ python3Packages.buildPythonApplication (finalAttrs: {
 
   sphinxBuilders = [
     "html"
-    "man"
   ];
 
   dependencies = [
@@ -46,7 +45,10 @@ python3Packages.buildPythonApplication (finalAttrs: {
   ]);
 
   makeWrapperArgs = [
-    ''--prefix PATH ':' "${pkgs.notmuch}/bin"''
+    "--prefix"
+    "PATH"
+    ":"
+    "${pkgs.notmuch}/bin"
   ];
 
   outputs = [

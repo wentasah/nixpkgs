@@ -174,8 +174,6 @@ self: super: with self; {
 
   aigpy = callPackage ../development/python-modules/aigpy { };
 
-  ailment = callPackage ../development/python-modules/ailment { };
-
   aio-geojson-client = callPackage ../development/python-modules/aio-geojson-client { };
 
   aio-geojson-generic-client =
@@ -1102,6 +1100,8 @@ self: super: with self; {
       { };
 
   angr = callPackage ../development/python-modules/angr { };
+
+  angr-data = callPackage ../development/python-modules/angr-data { };
 
   angrcli = callPackage ../development/python-modules/angrcli { inherit (pkgs) coreutils; };
 
@@ -3186,8 +3186,6 @@ self: super: with self; {
 
   clarifai-protocol = callPackage ../development/python-modules/clarifai-protocol { };
 
-  claripy = callPackage ../development/python-modules/claripy { };
-
   class-doc = callPackage ../development/python-modules/class-doc { };
 
   classify-imports = callPackage ../development/python-modules/classify-imports { };
@@ -4244,6 +4242,8 @@ self: super: with self; {
 
   decli = callPackage ../development/python-modules/decli { };
 
+  declib = callPackage ../development/python-modules/declib { };
+
   declinate = callPackage ../development/python-modules/declinate { };
 
   decopatch = callPackage ../development/python-modules/decopatch { };
@@ -4794,6 +4794,8 @@ self: super: with self; {
       { };
 
   django-oauth-toolkit = callPackage ../development/python-modules/django-oauth-toolkit { };
+
+  django-oauth-toolkit_2 = callPackage ../development/python-modules/django-oauth-toolkit/2.nix { };
 
   django-organizations = callPackage ../development/python-modules/django-organizations { };
 
@@ -9624,8 +9626,6 @@ self: super: with self; {
 
   libasyncns = callPackage ../development/python-modules/libasyncns { inherit (pkgs) libasyncns; };
 
-  libbs = callPackage ../development/python-modules/libbs { };
-
   libcap_ng = callPackage (
     {
       python,
@@ -9640,12 +9640,13 @@ self: super: with self; {
     )
   ) { };
 
-  libcec = toPythonModule (
-    pkgs.libcec.override {
-      python3 = python;
-      pythonSupport = true;
-    }
-  );
+  libcec =
+    (toPythonModule (
+      pkgs.libcec.override {
+        python3 = python;
+        pythonSupport = true;
+      }
+    )).python;
 
   libcloud = callPackage ../development/python-modules/libcloud { };
 
@@ -13760,6 +13761,8 @@ self: super: with self; {
 
   playwrightcapture = callPackage ../development/python-modules/playwrightcapture { };
 
+  pleroma-bot = callPackage ../development/python-modules/pleroma-bot { };
+
   plexapi = callPackage ../development/python-modules/plexapi { };
 
   plexauth = callPackage ../development/python-modules/plexauth { };
@@ -15987,7 +15990,7 @@ self: super: with self; {
 
   pypytools = callPackage ../development/python-modules/pypytools { };
 
-  pyqodeng-angr = callPackage ../development/python-modules/pyqodeng-angr { };
+  pyqodeng = callPackage ../development/python-modules/pyqodeng { };
 
   pyqrcode = callPackage ../development/python-modules/pyqrcode { };
 
@@ -16894,8 +16897,6 @@ self: super: with self; {
 
   python-box = callPackage ../development/python-modules/python-box { };
 
-  python-broadlink = callPackage ../development/python-modules/python-broadlink { };
-
   python-bsblan = callPackage ../development/python-modules/python-bsblan { };
 
   python-bugzilla = callPackage ../development/python-modules/python-bugzilla { };
@@ -17662,6 +17663,8 @@ self: super: with self; {
   pyxbe = callPackage ../development/python-modules/pyxbe { };
 
   pyxdg = callPackage ../development/python-modules/pyxdg { };
+
+  pyxdia = callPackage ../development/python-modules/pyxdia { };
 
   pyxeoma = callPackage ../development/python-modules/pyxeoma { };
 
@@ -20418,6 +20421,8 @@ self: super: with self; {
 
   syrupy = callPackage ../development/python-modules/syrupy { };
 
+  syrupy_5 = callPackage ../development/python-modules/syrupy/5.nix { };
+
   syslog-rfc5424-formatter = callPackage ../development/python-modules/syslog-rfc5424-formatter { };
 
   sysrsync = callPackage ../development/python-modules/sysrsync { };
@@ -22042,10 +22047,6 @@ self: super: with self; {
   unicodeit = callPackage ../development/python-modules/unicodeit { };
 
   unicorn = callPackage ../development/python-modules/unicorn { inherit (pkgs) unicorn; };
-
-  unicorn-angr = callPackage ../development/python-modules/unicorn-angr {
-    inherit (pkgs) unicorn-angr;
-  };
 
   unicrypto = callPackage ../development/python-modules/unicrypto { };
 
