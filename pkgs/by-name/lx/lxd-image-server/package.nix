@@ -39,13 +39,12 @@ python3.pkgs.buildPythonApplication (finalAttrs: {
   ];
 
   makeWrapperArgs = [
-    "--prefix"
-    "PATH"
-    ":"
-    (lib.makeBinPath [
-      openssl
-      rsync
-    ])
+    ''--prefix PATH ':' "${
+      lib.makeBinPath [
+        openssl
+        rsync
+      ]
+    }"''
   ];
 
   doCheck = false;

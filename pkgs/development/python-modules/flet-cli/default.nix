@@ -37,9 +37,12 @@ buildPythonPackage rec {
     "watchdog"
   ];
 
-  preFixup = ''
-    makeWrapperArgs+=(--prefix PYTHONPATH : "$PYTHONPATH")
-  '';
+  makeWrapperArgs = [
+    "--prefix"
+    "PYTHONPATH"
+    ":"
+    "$PYTHONPATH"
+  ];
 
   postInstall = ''
     mkdir -p $out/bin

@@ -37,9 +37,12 @@ buildPythonPackage rec {
 
   build-system = [ setuptools ];
 
-  preFixup = ''
-    makeWrapperArgs+=(--prefix PYTHONPATH : "$PYTHONPATH")
-  '';
+  makeWrapperArgs = [
+    "--prefix"
+    "PYTHONPATH"
+    ":"
+    "$PYTHONPATH"
+  ];
 
   _flet_version = ''
     flet_version = "${version}"

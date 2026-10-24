@@ -13,6 +13,7 @@
   withFastColorthief ? false,
   withHaishoku ? false,
   withModernColorthief ? false,
+  writableTmpDirAsHomeHook,
 }:
 
 python3.pkgs.buildPythonApplication rec {
@@ -41,21 +42,15 @@ python3.pkgs.buildPythonApplication rec {
   nativeCheckInputs = [
     python3.pkgs.pytestCheckHook
     imagemagick
+    writableTmpDirAsHomeHook
   ];
 
   makeWrapperArgs = [
-    "--prefix"
-    "PATH"
-    ":"
-    (lib.makeBinPath ([ imagemagick ] ++ lib.optional withColorz colorz))
+    "--prefix PATH : ${lib.makeBinPath ([ imagemagick ] ++ lib.optional withColorz colorz)}"
   ];
 
   postInstall = ''
     installManPage data/man/man1/wal.1
-  '';
-
-  preCheck = ''
-    export HOME=$(mktemp -d)
   '';
 
   pythonImportsCheck = [ "pywal" ];

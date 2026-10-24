@@ -142,28 +142,13 @@ python3Packages.buildPythonApplication (finalAttrs: {
   '';
 
   makeWrapperArgs = [
-    "--chdir"
-    "${placeholder "out"}/lib/pince"
-    "--prefix"
-    "LD_LIBRARY_PATH"
-    ":"
-    LDPath
-    "--prefix"
-    "GI_TYPELIB_PATH"
-    ":"
-    GIPath
-    "--set"
-    "PYTHONPATH"
-    "${placeholder "out"}/lib/pince"
-    "--set"
-    "PYTHONDONTWRITEBYTECODE"
-    "1"
-    "--add-flags"
-    "${placeholder "out"}/lib/pince/PINCE.py"
-    "--prefix"
-    "PATH"
-    ":"
-    (lib.makeBinPath [ pythonEnv ])
+    ''--chdir "$out/lib/pince"''
+    ''--prefix LD_LIBRARY_PATH : "${LDPath}"''
+    ''--prefix GI_TYPELIB_PATH : "${GIPath}"''
+    ''--set PYTHONPATH "$out/lib/pince"''
+    ''--set PYTHONDONTWRITEBYTECODE "1"''
+    ''--add-flags "$out/lib/pince/PINCE.py"''
+    ''--prefix PATH : "${lib.makeBinPath [ pythonEnv ]}"''
   ];
 
   installPhase = ''

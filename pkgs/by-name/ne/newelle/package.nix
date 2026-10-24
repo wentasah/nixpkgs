@@ -87,19 +87,15 @@ python3Packages.buildPythonApplication {
 
   dontWrapGApps = true;
 
-  preFixup = ''
-    makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
-  '';
-
   makeWrapperArgs = [
-    "--prefix"
-    "PATH"
-    ":"
-    (lib.makeBinPath [
-      lsb-release
-      bash
-      ffmpeg
-    ])
+    "\${gappsWrapperArgs[@]}"
+    "--prefix PATH : ${
+      lib.makeBinPath [
+        lsb-release
+        bash
+        ffmpeg
+      ]
+    }"
   ];
 
   passthru.updateScript = nix-update-script { };

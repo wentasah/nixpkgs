@@ -70,15 +70,9 @@ python3Packages.buildPythonApplication (finalAttrs: {
 
   dontWrapGApps = true;
 
-  preFixup = ''
-    makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
-  '';
-
   makeWrapperArgs = [
-    "--prefix"
-    "PATH"
-    ":"
-    (lib.makeBinPath finalAttrs.runtimeDeps)
+    "\${gappsWrapperArgs[@]}"
+    "--prefix PATH : ${lib.makeBinPath finalAttrs.runtimeDeps}"
   ];
 
   postInstall = ''

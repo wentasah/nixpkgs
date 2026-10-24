@@ -52,15 +52,9 @@ python3Packages.buildPythonApplication (finalAttrs: {
   dependencies = with python3Packages; [ pygobject3 ];
 
   dontWrapGApps = true;
-  preFixup = ''
-    makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
-  '';
-
   makeWrapperArgs = [
-    "--prefix"
-    "PATH"
-    ":"
-    (lib.makeBinPath [ pandoc ])
+    "\${gappsWrapperArgs[@]}"
+    "--prefix PATH : ${lib.makeBinPath [ pandoc ]}"
   ];
 
   passthru = {

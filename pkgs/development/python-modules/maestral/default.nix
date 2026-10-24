@@ -80,7 +80,7 @@ buildPythonPackage (finalAttrs: {
     "--prefix"
     "PYTHONPATH"
     ":"
-    "${placeholder "out"}/${python.sitePackages}"
+    "$out/${python.sitePackages}"
   ];
 
   nativeCheckInputs = [ pytestCheckHook ];

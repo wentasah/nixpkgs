@@ -40,14 +40,13 @@ python3Packages.buildPythonApplication (finalAttrs: {
   ];
 
   makeWrapperArgs = [
-    "--prefix"
-    "PATH"
-    ":"
-    (lib.makeBinPath [
-      acpica-tools
-      ethtool
-      libdisplay-info
-    ])
+    "--prefix PATH : ${
+      lib.makeBinPath [
+        acpica-tools
+        ethtool
+        libdisplay-info
+      ]
+    }"
   ];
 
   # Tests require hardware-specific features

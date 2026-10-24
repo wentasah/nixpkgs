@@ -72,9 +72,9 @@ python3Packages.buildPythonApplication rec {
   ];
 
   dontWrapGApps = enableDbusUi;
-  preFixup = lib.optionalString enableDbusUi ''
-    makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
-  '';
+  makeWrapperArgs = lib.optionals enableDbusUi [
+    "\${gappsWrapperArgs[@]}"
+  ];
 
   # darwin has difficulty communicating with server, fails some integration tests
   # Tests are incompatible with pytest>=8 and Python 3.13

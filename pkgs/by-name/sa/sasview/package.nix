@@ -97,9 +97,9 @@ python3.pkgs.buildPythonApplication {
 
   dontWrapQtApps = true;
 
-  preFixup = ''
-    makeWrapperArgs+=("''${qtWrapperArgs[@]}")
-  '';
+  makeWrapperArgs = [
+    "\${qtWrapperArgs[@]}"
+  ];
 
   nativeCheckInputs =
     with python3.pkgs;
