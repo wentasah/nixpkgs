@@ -7,13 +7,13 @@
 
 buildNimPackage (finalAttrs: {
   pname = "mosdepth";
-  version = "0.3.15";
+  version = "0.3.14";
 
   src = fetchFromGitHub {
     owner = "brentp";
     repo = "mosdepth";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-zGg/kPYT0p+Pp32HHrqxRAEUtMbJBaS+d+YloI819Gs=";
+    hash = "sha256-QnUobAXf0Nc7817+4pmDtYOoQgnIjQ7UburTl6JwMGw=";
   };
 
   lockFile = ./lock.json;

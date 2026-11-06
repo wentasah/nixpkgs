@@ -14,14 +14,14 @@
 
 python3Packages.buildPythonPackage (finalAttrs: {
   pname = "boxflat";
-  version = "1.37.1";
+  version = "1.35.5";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "Lawstorant";
     repo = "boxflat";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-509wOfzfbiMujaM8kaPHoWk8IhYlrgZnyom2PQpRqss=";
+    hash = "sha256-R03mQIsa6T1ApV8SMWvilBfiCGcAWvyZ5hDDgAuGd6s=";
   };
 
   build-system = [ python3Packages.setuptools ];
@@ -36,8 +36,6 @@ python3Packages.buildPythonPackage (finalAttrs: {
     python3Packages.pycairo
     python3Packages.pygobject3
     python3Packages.evdev
-    python3Packages.dbus-python
-    python3Packages.trayer
   ];
 
   nativeBuildInputs = [
@@ -53,27 +51,17 @@ python3Packages.buildPythonPackage (finalAttrs: {
     "pycairo"
     "pygobject"
     "PyYAML"
-    "dbus-python"
-    "trayer"
   ];
 
   preBuild = ''
-    substituteInPlace boxflat/app.py \
-      --replace-fail 'if udev_exists and rules_version >= 2:' 'if udev_exists:'
-
     cat > setup.py << EOF
+    import shutil
     from setuptools import setup
 
     with open('requirements.txt') as f:
         install_requires = f.read().splitlines()
 
-    with open('entrypoint.py') as f:
-        content = f.read()
-
-    with open('boxflat/entrypoint.py', 'w') as f:
-        f.write("def main():\n")
-        for line in content.splitlines():
-            f.write("    " + line + "\n")
+    shutil.copyfile('entrypoint.py', 'boxflat/entrypoint.py')
 
     setup(
       name='boxflat',
@@ -132,10 +120,7 @@ python3Packages.buildPythonPackage (finalAttrs: {
     changelog = "https://github.com/Lawstorant/boxflat/releases/tag/v${finalAttrs.version}";
     description = "Control your Moza gear settings";
     license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [
-      racci
-      vinso
-    ];
+    maintainers = with lib.maintainers; [ racci ];
     platforms = lib.platforms.linux;
     mainProgram = "boxflat";
   };

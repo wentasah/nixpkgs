@@ -34,12 +34,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Represent large sets and maps compactly with finite state transducers";
     mainProgram = "fst";
     homepage = "https://github.com/BurntSushi/fst";
-    license =
-      with lib.licenses;
-      OR [
-        unlicense
-        mit
-      ];
+    license = with lib.licenses; [
+      unlicense # or
+      mit
+    ];
     maintainers = with lib.maintainers; [ rmcgibbo ];
   };
 })

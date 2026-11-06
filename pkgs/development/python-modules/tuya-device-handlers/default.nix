@@ -2,7 +2,7 @@
   lib,
   buildPythonPackage,
   fetchFromGitHub,
-  uv-build,
+  poetry-core,
   pyprojectVersionPatchHook,
   tuya-device-sharing-sdk,
   pytestCheckHook,
@@ -11,26 +11,21 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "tuya-device-handlers";
-  version = "0.0.34";
+  version = "0.0.31";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "home-assistant-libs";
     repo = "tuya-device-handlers";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-0O3v43Veqxvnwt5bSJ9ZkLjE5TmNWljNOOO1Srd4NBs=";
+    hash = "sha256-p9/PVw4QgVvqFKGJw/xQihBSbwxBVvErPaXvVyjm0z4=";
   };
-
-  postPatch = ''
-    substituteInPlace pyproject.toml \
-      --replace-fail 'uv_build>=0.13,<0.14' uv_build
-  '';
 
   nativeBuildInputs = [
     pyprojectVersionPatchHook
   ];
 
-  build-system = [ uv-build ];
+  build-system = [ poetry-core ];
 
   dependencies = [ tuya-device-sharing-sdk ];
 

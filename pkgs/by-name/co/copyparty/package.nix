@@ -137,8 +137,8 @@ python3Packages.buildPythonApplication rec {
           # https://github.com/codemirror/codemirror5
           codemirror = lib.licenses.mit;
           # https://github.com/cure53/DOMPurify
-          dompurify = OR [
-            asl20
+          dompurify = [
+            asl20 # or
             mpl20
           ];
           # https://github.com/FortAwesome/Font-Awesome
@@ -162,7 +162,7 @@ python3Packages.buildPythonApplication rec {
           lib.unique
         ];
       in
-      lib.licenses.AND res;
+      res;
     sourceProvenance = with lib.sourceTypes; [
       fromSource
       # the javascript deps come pre-built

@@ -34,7 +34,7 @@ buildPythonPackage rec {
   meta = {
     description = "Module to communicate with the laundrify API";
     homepage = "https://github.com/laundrify/laundrify-pypi";
-    license = lib.licenses.mit;
+    license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [ fab ];
   };
 }

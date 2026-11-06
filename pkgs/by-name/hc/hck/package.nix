@@ -24,12 +24,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Close to drop in replacement for cut that can use a regex delimiter instead of a fixed string";
     homepage = "https://github.com/sstadick/hck";
     changelog = "https://github.com/sstadick/hck/blob/v${finalAttrs.version}/CHANGELOG.md";
-    license =
-      with lib.licenses;
-      OR [
-        mit
-        unlicense
-      ];
+    license = with lib.licenses; [
+      mit # or
+      unlicense
+    ];
     maintainers = with lib.maintainers; [
       gepbird
     ];

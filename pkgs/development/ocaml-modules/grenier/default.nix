@@ -2,18 +2,17 @@
   lib,
   fetchurl,
   buildDunePackage,
-  ocaml,
 }:
 
 buildDunePackage (finalAttrs: {
   pname = "grenier";
-  version = "0.17";
+  version = "0.16";
   src = fetchurl {
     url = "https://github.com/let-def/grenier/releases/download/v${finalAttrs.version}/grenier-${finalAttrs.version}.tbz";
-    hash = "sha256-rc5Uf66bVkjZAtkRc7t4dGahl/gWELdnV0JKszmA5iU=";
+    hash = "sha256-j9Iqv59FicIGAIZU+p7rsc9KWHN+uzQTjGcJUg82t18=";
   };
 
-  doCheck = lib.versionAtLeast ocaml.version "4.11";
+  doCheck = true;
 
   meta = {
     description = "A collection of various algorithms in OCaml";

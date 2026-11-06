@@ -23,12 +23,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Wrapper to execute a command in a pty, even if redirecting the output";
     homepage = "https://github.com/dtolnay/faketty";
     changelog = "https://github.com/dtolnay/faketty/releases/tag/${finalAttrs.version}";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [ figsoda ];
     mainProgram = "faketty";
   };

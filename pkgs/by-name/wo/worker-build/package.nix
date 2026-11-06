@@ -28,12 +28,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Tool to be used as a custom build command for a Cloudflare Workers `workers-rs` project";
     mainProgram = "worker-build";
     homepage = "https://github.com/cloudflare/workers-rs";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [ happysalada ];
   };
 })

@@ -25,9 +25,6 @@
   magma-cuda-static,
   # Use the system NCCL as long as we're targeting CUDA on a supported platform.
   useSystemNccl ? (cudaSupport && cudaPackages.nccl.meta.available || rocmSupport),
-  # Link libnccl.so dynamically by default (like the PyPI and NGC builds), so that extensions
-  # linking NCCL themselves (e.g. DeepEP) share the same NCCL instance as torch.
-  useStaticNccl ? false,
   withNvshmem ? (cudaSupport && cudaPackages.libnvshmem.meta.available),
   withCusparselt ? (cudaSupport && cudaPackages.libcusparse_lt.meta.available),
   withCufile ? (cudaSupport && cudaPackages.libcufile.meta.available),
@@ -495,8 +492,7 @@ buildPythonPackage.override { inherit stdenv; } (finalAttrs: {
     # Use NCCL when cudaSupport is enabled and nccl is available.
     USE_NCCL = setBool useSystemNccl;
     USE_SYSTEM_NCCL = finalAttrs.env.USE_NCCL;
-    # Only read by FindNCCL.cmake (CUDA). ROCm finds RCCL through External/rccl.cmake.
-    USE_STATIC_NCCL = setBool (useSystemNccl && cudaSupport && useStaticNccl);
+    USE_STATIC_NCCL = finalAttrs.env.USE_NCCL;
 
     USE_NVSHMEM = setBool withNvshmem;
 
@@ -631,7 +627,7 @@ buildPythonPackage.override { inherit stdenv; } (finalAttrs: {
     ++ lists.optionals useSystemNccl [
       # Some platforms do not support NCCL (i.e., Jetson)
       (lib.getDev nccl) # Provides nccl.h
-      (if useStaticNccl then lib.getOutput "static" nccl else lib.getLib nccl)
+      (lib.getOutput "static" nccl) # Provides static library
     ]
     ++ lists.optionals withNvshmem [
       cudaPackages.libnvshmem

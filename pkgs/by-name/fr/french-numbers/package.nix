@@ -20,12 +20,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
   meta = {
     description = "Represent numbers in French language";
     homepage = "https://github.com/evenfurther/french-numbers";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     mainProgram = "french-numbers";
     maintainers = with lib.maintainers; [ samueltardieu ];
   };

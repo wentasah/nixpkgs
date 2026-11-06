@@ -24,12 +24,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
   meta = {
     description = "Generator for LS_COLORS with support for multiple color themes";
     homepage = "https://github.com/sharkdp/vivid";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = [ ];
     platforms = lib.platforms.unix;
     mainProgram = "vivid";

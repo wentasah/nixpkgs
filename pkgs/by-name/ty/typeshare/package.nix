@@ -42,12 +42,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     mainProgram = "typeshare";
     homepage = "https://github.com/1password/typeshare";
     changelog = "https://github.com/1password/typeshare/blob/v${finalAttrs.version}/CHANGELOG.md";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = [ lib.maintainers.progrm_jarvis ];
   };
 })

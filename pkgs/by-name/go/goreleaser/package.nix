@@ -1,16 +1,16 @@
 {
   stdenv,
   lib,
-  buildGo127Module,
+  buildGo126Module,
   fetchFromGitHub,
   installShellFiles,
   buildPackages,
   testers,
   goreleaser,
 }:
-buildGo127Module (finalAttrs: {
+buildGo126Module (finalAttrs: {
   pname = "goreleaser";
-  version = "2.20.0";
+  version = "2.17.1";
 
   __structuredAttrs = true;
 
@@ -18,10 +18,10 @@ buildGo127Module (finalAttrs: {
     owner = "goreleaser";
     repo = "goreleaser";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-RVuLoFiApR4zYL1qlCtPO8Qm1iRtQVRYAFEUFrmKTXQ=";
+    hash = "sha256-cySoo8JwvO92+78LXquQ+yJYkTwfEAVdA0fOj2xuWas=";
   };
 
-  vendorHash = "sha256-d/WZfWzUVe2yJEbHuaMAuiJnuOCDsCfcnGFiQcMU954=";
+  vendorHash = "sha256-gWpBkATeT3qqLozSpVySm/BUlCkPLeltBDC/JvTUetg=";
 
   ldflags = [
     "-s"

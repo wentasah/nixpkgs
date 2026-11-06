@@ -4,7 +4,7 @@
   ncurses,
   fetchFromGitHub,
   pkg-config,
-  zig_0_17,
+  zig_0_16,
   nix-update-script,
   zstd,
   installShellFiles,
@@ -13,18 +13,18 @@
 }:
 
 let
-  zig = zig_0_17;
+  zig = zig_0_16;
 in
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "ncdu";
-  version = "2.12.0";
+  version = "2.11.1";
 
   src = fetchFromGitHub {
     owner = "BratishkaErik";
     repo = "ncdu";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-GjwOL95wjerAcuURzX2McmP5djsRktpzPuH7v7TCFNU=";
+    hash = "sha256-Fd7Drw+7vygY9t75B3O0inZPhiGAeUgmpLyq3ymbFSU=";
   };
 
   __structuredAttrs = true;
@@ -44,7 +44,7 @@ stdenv.mkDerivation (finalAttrs: {
   zigDeps = zig.fetchDeps {
     inherit (finalAttrs) pname version src;
     fetchAll = true;
-    hash = "sha256-xWySGABNzbzr63JsEZOsTWqE/ozEMLRXKOIYCzYmmYs=";
+    hash = "sha256-plS7YUHWysZCQ1hHVWlgKvZkDtnjYSFfi3fdMYJVI9I=";
   };
 
   postConfigure = ''

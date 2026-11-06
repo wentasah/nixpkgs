@@ -12,14 +12,14 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "idasen";
-  version = "0.14.0";
+  version = "0.13.1";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "newAM";
     repo = "idasen";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-COxI97ndHbAiIjRs78jyIN4la8n52wi1AyeXMVQXhA4=";
+    hash = "sha256-ejKfXAVvHyWIkg06XqC2pKJjpPuOgHEciPzBb/TGiSU=";
   };
 
   build-system = [ setuptools ];

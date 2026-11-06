@@ -46,7 +46,7 @@ buildPythonPackage rec {
   meta = {
     description = "Simplifies to build parse types based on the parse module";
     homepage = "https://github.com/jenisys/parse_type";
-    license = lib.licenses.mit;
+    license = lib.licenses.bsd3;
     maintainers = with lib.maintainers; [ alunduil ];
   };
 }

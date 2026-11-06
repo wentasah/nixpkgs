@@ -31,12 +31,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
   meta = {
     description = "Example-based texture synthesis written in Rust";
     homepage = "https://github.com/embarkstudios/texture-synthesis";
-    license =
-      with lib.licenses;
-      OR [
-        mit
-        asl20
-      ];
+    license = with lib.licenses; [
+      mit # or
+      asl20
+    ];
     maintainers = [ ];
     mainProgram = "texture-synthesis";
   };

@@ -33,12 +33,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     mainProgram = "cargo-outdated";
     homepage = "https://github.com/kbknapp/cargo-outdated";
     changelog = "https://github.com/kbknapp/cargo-outdated/blob/v${finalAttrs.version}/CHANGELOG.md";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [
       matthiasbeyer
     ];

@@ -1,11 +1,11 @@
 {
   lib,
   buildPythonPackage,
-  fetchFromGitHub,
+  fetchPypi,
   setuptools,
   matplotlib,
   numpy,
-  opencv-python-headless,
+  opencv-python,
   pillow,
   scikit-learn,
   torch,
@@ -19,18 +19,10 @@ buildPythonPackage rec {
   version = "1.5.7";
   pyproject = true;
 
-  src = fetchFromGitHub {
-    owner = "jacobgil";
-    repo = "pytorch-grad-cam";
-    rev = "704393448a7b0c620ee2c2b9597723f1d7f17b3d";
-    hash = "sha256-qNmIl+kERDiJeig6A9UjnwUd7VaO91QqhwszaszLAow=";
+  src = fetchPypi {
+    inherit pname version;
+    hash = "sha256-9r4G+CZnei6SLDh535vjlEsUppZD2A577Jrfsm9rXkI=";
   };
-
-  # Runtime sources match the 1.5.7 sdist, but GitHub's setup.py still declares 1.5.5.
-  postPatch = ''
-    substituteInPlace setup.py \
-      --replace-fail "version='1.5.5'" "version='${version}'"
-  '';
 
   nativeBuildInputs = [
   ];
@@ -46,7 +38,7 @@ buildPythonPackage rec {
   dependencies = [
     matplotlib
     numpy
-    opencv-python-headless
+    opencv-python
     pillow
     scikit-learn
     torchvision

@@ -4,20 +4,16 @@
   patches,
 
   lib,
-  nodejs,
+  nodejs_22,
 
   buildNpmPackage,
 }:
 buildNpmPackage {
   pname = "legends-viewer-frontend";
 
-  inherit
-    version
-    src
-    patches
-    nodejs
-    ;
+  inherit version src patches;
 
+  nodejs = nodejs_22;
   npmDepsHash = "sha256-Hlo+G/d0glDutBwQU1Y5rfLD7IcfWtAClJPyrX5QBQg=";
 
   postPatch = ''

@@ -46,12 +46,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Cargo subcommand \"msrv\": assists with finding your minimum supported Rust version (MSRV)";
     mainProgram = "cargo-msrv";
     homepage = "https://github.com/foresterre/cargo-msrv";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [
       otavio
       matthiasbeyer

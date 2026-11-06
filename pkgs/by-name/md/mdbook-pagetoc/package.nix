@@ -21,7 +21,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Table of contents for mdbook (in sidebar)";
     mainProgram = "mdbook-pagetoc";
     homepage = "https://github.com/slowsage/mdbook-pagetoc";
-    license = lib.licenses.mpl20;
+    license = lib.licenses.mit;
     maintainers = with lib.maintainers; [
       matthiasbeyer
     ];

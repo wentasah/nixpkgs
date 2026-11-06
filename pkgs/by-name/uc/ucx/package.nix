@@ -18,8 +18,6 @@
   cudaPackages,
   enableRocm ? config.rocmSupport,
   rocmPackages,
-  # gdrcopy support (the `gdr_copy` transport, `libuct_cuda_gdrcopy.so`)
-  withGdrcopy ? enableCuda,
 }:
 
 let
@@ -96,9 +94,7 @@ stdenv.mkDerivation (finalAttrs: {
     cudaPackages.cuda_cudart
     cudaPackages.cuda_nvcc
     cudaPackages.cuda_nvml_dev
-  ]
-  ++ lib.optionals withGdrcopy [
-    cudaPackages.gdrcopy
+
   ]
   ++ lib.optionals enableRocm rocmList;
 
@@ -121,15 +117,8 @@ stdenv.mkDerivation (finalAttrs: {
     "--with-dm"
     "--with-verbs=${lib.getDev rdma-core}"
   ]
-  ++ lib.optionals enableCuda [
-    "--with-cuda=${cudaPackages.cuda_nvcc}"
-  ]
-  ++ lib.optionals withGdrcopy [
-    "--with-gdrcopy=${lib.getDev cudaPackages.gdrcopy}"
-  ]
-  ++ lib.optionals enableRocm [
-    "--with-rocm=${rocm}"
-  ];
+  ++ lib.optionals enableCuda [ "--with-cuda=${cudaPackages.cuda_nvcc}" ]
+  ++ lib.optionals enableRocm [ "--with-rocm=${rocm}" ];
 
   postInstall = ''
     find $out/lib/ -name "*.la" -exec rm -f \{} \;
@@ -152,11 +141,5 @@ stdenv.mkDerivation (finalAttrs: {
     # See: https://github.com/openucx/ucx/issues/9873
     badPlatforms = lib.platforms.loongarch64;
     maintainers = with lib.maintainers; [ markuskowa ];
-    problems = lib.optionalAttrs (withGdrcopy && !enableCuda) {
-      gdrcopy-requires-cuda = {
-        kind = "broken";
-        message = "gdrcopy support (withGdrcopy) requires CUDA support (enableCuda).";
-      };
-    };
   };
 })

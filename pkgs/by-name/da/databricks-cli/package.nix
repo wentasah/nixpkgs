@@ -1,15 +1,15 @@
 {
   lib,
-  buildGoLatestModule,
+  buildGoModule,
   fetchFromGitHub,
   gitMinimal,
   python3,
   versionCheckHook,
   nix-update-script,
 }:
-buildGoLatestModule (finalAttrs: {
+buildGoModule (finalAttrs: {
   pname = "databricks-cli";
-  version = "1.22.1";
+  version = "1.20.0";
 
   __structuredAttrs = true;
 
@@ -17,10 +17,10 @@ buildGoLatestModule (finalAttrs: {
     owner = "databricks";
     repo = "cli";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-HtFTeQqCgrKYX7sdh+pGJJw3PD4Q3PGWTDXjdMwPr94=";
+    hash = "sha256-RFtDUvoJskKikLQyunVo5DN0Hr5s/hlKjgl8Y+c2W48=";
   };
 
-  vendorHash = "sha256-DIWYP72gchuhwCfP6kOW6WcIcjhAPumZLIVJ5+bcVuE=";
+  vendorHash = "sha256-moXbF1k1zg5DwVxysaK0ULYx7Ldh4V7SBt9PXI4NAdk=";
 
   subPackages = [ "." ];
 

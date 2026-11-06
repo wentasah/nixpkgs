@@ -114,7 +114,7 @@ buildPythonPackage (finalAttrs: {
     description = "Client library for Fireworks.ai";
     homepage = "https://github.com/fw-ai-external/python-sdk";
     changelog = "https://github.com/fw-ai-external/python-sdk/blob/${finalAttrs.src.tag}/CHANGELOG.md";
-    license = lib.licenses.asl20;
+    license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ sarahec ];
   };
 })

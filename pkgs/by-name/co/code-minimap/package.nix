@@ -24,12 +24,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
   meta = {
     description = "High performance code minimap render";
     homepage = "https://github.com/wfxr/code-minimap";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [ bsima ];
     mainProgram = "code-minimap";
   };

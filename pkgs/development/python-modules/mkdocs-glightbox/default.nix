@@ -12,14 +12,14 @@
 
 buildPythonPackage rec {
   pname = "mkdocs-glightbox";
-  version = "0.5.3";
+  version = "0.5.2";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "blueswen";
     repo = "mkdocs-glightbox";
     tag = "v${version}";
-    hash = "sha256-1W6CvElPnZ2Sxjf8641G1Rd9gJGEO+OftFmeROdAHvg=";
+    hash = "sha256-6HkBeZHBLR3HqWh3WjjCqxR85nQuQqq9+7UwbXOZHRk=";
   };
 
   build-system = [

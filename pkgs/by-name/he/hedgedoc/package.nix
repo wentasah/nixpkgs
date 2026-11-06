@@ -68,11 +68,6 @@ stdenv.mkDerivation (finalAttrs: {
     runHook postBuild
   '';
 
-  # Prune non-prod deps before install to save space
-  preInstall = ''
-    yarn workspaces focus -A --production
-  '';
-
   installPhase = ''
     runHook preInstall
 

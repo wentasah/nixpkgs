@@ -9,7 +9,7 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "pay-respects";
-  version = "0.9.0";
+  version = "0.8.8";
 
   __structuredAttrs = true;
 
@@ -17,10 +17,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     owner = "iff";
     repo = "pay-respects";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-bFPYpAl1wf+0wFLdcl5aQOTyLxgUV8y6LJdfO/37wns=";
+    hash = "sha256-z7GQst70KGNTWAd3sb5eoDnMR2RAmw9RNw3qPeoLWSQ=";
   };
 
-  cargoHash = "sha256-HiZci2m+0qzFbp4HN+WwxohJfSHWo2xSw5N35y7aWso=";
+  cargoHash = "sha256-d3RCjCxJXb5YLai1ZqWKifbb2nLG5j1psuvAorNgFGg=";
 
   env = {
     _DEF_PR_AI_API_KEY = "";

@@ -23,14 +23,14 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "pyrate-limiter";
-  version = "4.5.1";
+  version = "4.5.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "vutran1710";
     repo = "PyrateLimiter";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-IpiRocGjVAPsoNUcpRYqFKm1amtp9ysH1V846a0/nLk=";
+    hash = "sha256-UUNXb4lCcZZ+BPO1t8rStuDTj69dnIMMv6wdlNH+gcI=";
   };
 
   build-system = [

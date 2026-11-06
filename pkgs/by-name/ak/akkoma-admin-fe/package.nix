@@ -5,7 +5,9 @@
   cctools,
   yarn-berry_3,
   nodejs,
+  python311,
   pkg-config,
+  libsass,
   xcbuild,
   nix-update-script,
 }:
@@ -28,16 +30,9 @@ stdenv.mkDerivation (finalAttrs: {
     forceFetchGit = true;
   };
 
-  patches = [
-    ./0001-Use-sass-instead-of-deprecated-node-sass.patch
-    ./0002-Fix-use-of-deprecated-deep.patch
-  ];
-
-  missingHashes = ./missing-hashes.json;
-
   offlineCache = yarn-berry.fetchYarnBerryDeps {
-    inherit (finalAttrs) src missingHashes patches;
-    hash = "sha256-XfRUAlqPp6m0HXeBWPmKZNxVUVKvIRNjDqzBbKWz2Ms=";
+    yarnLock = finalAttrs.src + "/yarn.lock";
+    hash = "sha256-YZlvIr27bHBgsQcBiayqEX07kjX6iH2Kh5wt+PQFq04=";
   };
 
   nativeBuildInputs = [
@@ -45,6 +40,8 @@ stdenv.mkDerivation (finalAttrs: {
     yarn-berry
     nodejs
     pkg-config
+    python311
+    libsass
   ]
   ++ lib.optionals stdenv.hostPlatform.isDarwin [
     xcbuild

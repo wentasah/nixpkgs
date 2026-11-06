@@ -28,10 +28,7 @@ buildDotnetModule rec {
   executables = [ "BoogieDriver" ];
 
   makeWrapperArgs = [
-    "--prefix"
-    "PATH"
-    ":"
-    "${z3}/bin"
+    "--prefix PATH : ${z3}/bin"
   ];
 
   postInstall = ''

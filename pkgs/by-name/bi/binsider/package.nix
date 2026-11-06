@@ -28,12 +28,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
   meta = {
     description = "Analyzer of executables using a terminal user interface";
     homepage = "https://github.com/orhun/binsider";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [ samueltardieu ];
     mainProgram = "binsider";
   };

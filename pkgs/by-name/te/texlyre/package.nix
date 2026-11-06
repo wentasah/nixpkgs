@@ -2,7 +2,7 @@
   lib,
   xsel,
   serve,
-  fetchpatch,
+  fetchzip,
   stdenvNoCC,
   makeWrapper,
   buildNpmPackage,
@@ -13,16 +13,16 @@
 
 buildNpmPackage (finalAttrs: {
   pname = "texlyre";
-  version = "0.14.0";
+  version = "0.13.0";
 
   src = fetchFromGitHub {
     owner = "TeXlyre";
     repo = "texlyre";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-XcrdxinWdC4FL+4Dxx6yZR7Ahsdhb2tkdEzO6KSt12M=";
+    hash = "sha256-oYt+DG8lTAOY8MEZsJw2nkg7LGE/hEY7nw5UT9EQfZU=";
   };
 
-  npmDepsHash = "sha256-EaSimh+e8/yfh3UzjEUDKFn51D8oA91oz+62sDfEmCY=";
+  npmDepsHash = "sha256-MlxMej9huxgC73FUG8iifkxUnJHFWS9y50NaZ4C+aBE=";
 
   postPatch = ''
     sed -i 's/"version": ".*"/"version": "${finalAttrs.version}"/' package.json
@@ -83,12 +83,12 @@ buildNpmPackage (finalAttrs: {
     });
     busytexAssets = stdenvNoCC.mkDerivation (finalAttrs: {
       pname = "busytex-assets";
-      version = "1.4.1";
+      version = "1.4.0";
       src = fetchFromGitHub {
         owner = "TeXlyre";
         repo = "texlyre-busytex";
         tag = "assets-v${finalAttrs.version}";
-        hash = "sha256-exeJEx9Mzf0ivkNM7fwwINfjAhk5dXpvZy3m1j12s8E=";
+        hash = "sha256-TRpfACtq11t1tJ9waavroujgnPLHyNp3i+F4DBYCwuY=";
       };
       dontBuild = true;
       installPhase = "cp -a . $out";

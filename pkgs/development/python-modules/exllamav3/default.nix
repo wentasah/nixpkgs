@@ -45,14 +45,14 @@ let
 in
 buildPythonPackage.override { inherit stdenv; } (finalAttrs: {
   pname = "exllamav3";
-  version = "1.6.6";
+  version = "1.6.2";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "turboderp-org";
     repo = "exllamav3";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-5ndUpO096vejSrnhOaBmOw8Uv8l0JX1o7C5w+IE0ZeE=";
+    hash = "sha256-Q13szUdWsvXagzsqFwbzTIJa0ulsNsZV78UIoPdVH9k=";
   };
 
   pythonRelaxDeps = [

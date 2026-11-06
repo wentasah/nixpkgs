@@ -15,8 +15,6 @@ buildGoModule (finalAttrs: {
   # nixpkgs-update: no auto update
   inherit (source) version src vendorHash;
 
-  __structuredAttrs = true;
-
   env.CGO_ENABLED = "0";
 
   buildPhase =

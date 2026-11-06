@@ -1,15 +1,15 @@
 {
   lib,
-  buildGoLatestModule,
+  buildGo127Module,
   fetchFromGitHub,
   installShellFiles,
   nix-update-script,
   stdenv,
 }:
 
-buildGoLatestModule (finalAttrs: {
+buildGo127Module (finalAttrs: {
   pname = "dux-calendar";
-  version = "2.1.0";
+  version = "2.0.0";
 
   __structuredAttrs = true;
 
@@ -18,12 +18,12 @@ buildGoLatestModule (finalAttrs: {
     repo = "dux-calendar";
     tag = "v${finalAttrs.version}";
     fetchSubmodules = true;
-    hash = "sha256-g7Nb3Gtz0BW3ZtACd3Y7DAC6wKF3nKaQk1raCDs+EAE=";
+    hash = "sha256-a+9wcGGdyTfffUXO/bHfxll8uQfTQ97LeNZuz9kXFNk=";
   };
 
   modRoot = "core";
 
-  vendorHash = "sha256-JT6mHK52mIJh4lzVWYVpqNY2S2oeinSWBIKaI3TiY34=";
+  vendorHash = "sha256-fsrxRMdOG+XfAHBnnhtOsP/8tRl7vyHhT9mPUiozqQ8=";
 
   subPackages = [ "cmd/dcal" ];
 

@@ -120,12 +120,10 @@ buildPythonPackage rec {
     changelog = "https://github.com/pypdfium2-team/pypdfium2/releases/tag/${version}";
     description = "Python bindings to PDFium";
     homepage = "https://pypdfium2.readthedocs.io/";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [ booxter ];
   };
 }

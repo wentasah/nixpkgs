@@ -20,12 +20,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     mainProgram = "svdtools";
     homepage = "https://github.com/stm32-rs/svdtools";
     changelog = "https://github.com/stm32-rs/svdtools/blob/v${finalAttrs.version}/CHANGELOG-rust.md";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [ newam ];
   };
 })

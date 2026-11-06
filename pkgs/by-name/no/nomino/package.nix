@@ -28,12 +28,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Batch rename utility for developers";
     homepage = "https://github.com/yaa110/nomino";
     changelog = "https://github.com/yaa110/nomino/releases/tag/v${finalAttrs.version}";
-    license =
-      with lib.licenses;
-      OR [
-        mit
-        asl20
-      ];
+    license = with lib.licenses; [
+      mit # or
+      asl20
+    ];
     maintainers = [ lib.maintainers.progrm_jarvis ];
     mainProgram = "nomino";
   };

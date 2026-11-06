@@ -59,12 +59,10 @@ lib.extendMkDerivation {
         mainProgram = "cargo-auditable";
         homepage = "https://github.com/rust-secure-code/cargo-auditable";
         changelog = "https://github.com/rust-secure-code/cargo-auditable/blob/v${finalAttrs.version}/cargo-auditable/CHANGELOG.md";
-        license =
-          with lib.licenses;
-          OR [
-            mit
-            asl20
-          ];
+        license = with lib.licenses; [
+          mit # or
+          asl20
+        ];
         maintainers = with lib.maintainers; [ RossSmyth ];
         broken = stdenv.hostPlatform != stdenv.buildPlatform;
       };

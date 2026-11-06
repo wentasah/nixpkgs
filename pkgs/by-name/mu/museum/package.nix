@@ -10,14 +10,14 @@
 
 buildGoModule (finalAttrs: {
   pname = "museum";
-  version = "1.3.68";
+  version = "1.3.66";
 
   src = fetchFromGitHub {
     owner = "ente";
     repo = "ente";
     sparseCheckout = [ "server" ];
     tag = "photos-v${finalAttrs.version}";
-    hash = "sha256-hQXigKk0dgGblwxU//1qN9KWmbhOIh52AtQGArt5rDk=";
+    hash = "sha256-+MADu0b+5VnGzhaFzV+3tAAMcbJD3BpQRNEbh6DGAnw=";
   };
 
   vendorHash = "sha256-F57cQaTD84N3Zk2Cbdp603VD7YkAmPgf0WgWM6cykFA=";

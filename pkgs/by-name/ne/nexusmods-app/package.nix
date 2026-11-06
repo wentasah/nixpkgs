@@ -77,10 +77,7 @@ buildDotnetModule (finalAttrs: {
   '';
 
   makeWrapperArgs = [
-    "--prefix"
-    "PATH"
-    ":"
-    (lib.makeBinPath finalAttrs.runtimeInputs)
+    "--prefix PATH : ${lib.makeBinPath finalAttrs.runtimeInputs}"
   ];
 
   postInstall = ''

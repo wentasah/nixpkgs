@@ -62,13 +62,13 @@ let
 in
 php.buildComposerProject2 (finalAttrs: {
   pname = "movim";
-  version = "0.35.4";
+  version = "0.35.2";
 
   src = fetchFromGitHub {
     owner = "movim";
     repo = "movim";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-UKKJQhQeU8kJHCjciH2sSobO12px1BcBDyy6kt+s4mY=";
+    hash = "sha256-rHPJYz8zjzUmKFEuSZU76LReZfUA1YCQL1f4fHn/2p4=";
   };
 
   php = php.buildEnv (
@@ -127,7 +127,7 @@ php.buildComposerProject2 (finalAttrs: {
     nativeBuildInputs = [ gitMinimal ];
   };
 
-  vendorHash = "sha256-KINOKaBtv0fVNYyihtvRzgCJmh/HFURvhxSJjjMOt74=";
+  vendorHash = "sha256-K2DM+VO4mL1U4q5rv9JgAmdqmaVcFO4KBj41dNBwVME=";
 
   postPatch = ''
     # Our modules are already wrapped, removes missing *.so warnings;

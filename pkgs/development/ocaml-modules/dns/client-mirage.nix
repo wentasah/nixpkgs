@@ -2,6 +2,7 @@
   buildDunePackage,
   dns,
   dns-client,
+  lwt,
   mirage-sleep,
   mirage-mtime,
   mirage-ptime,
@@ -23,6 +24,7 @@ buildDunePackage {
     dns-client
     domain-name
     ipaddr
+    lwt
     mirage-crypto-rng
     mirage-sleep
     mirage-mtime

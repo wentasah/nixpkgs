@@ -17,7 +17,7 @@ let
 in
 {
   options.services.scx-loader = {
-    enable = lib.mkEnableOption "SCX-Loader service, a daemon to run sched_ext schedulers, with a D-Bus interface to manage them with `scxctl`";
+    enable = lib.mkEnableOption "SCX Loader service, a daemon to run schedulers from userspace using dbus. This requires kernel version 6.12 and later.";
 
     package = lib.mkPackageOption pkgs "scx-loader" { };
 
@@ -27,7 +27,7 @@ in
       defaultText = lib.literalExpression "[ pkgs.scx.rustscheds ]";
       example = lib.literalExpression "[ pkgs.scx.full ]";
       description = ''
-        `scx` package to use. Defaults to `scx.rustscheds`, which includes all currently supported schedulers.
+        `scx` package to use. Defaults to `scx.rustscheds`, which includes all currently by `scx_loader` supported schedulers.
       '';
     };
 
@@ -42,7 +42,7 @@ in
             example = "scx_bpfland";
             description = ''
               Default scheduler that will be started automatically when `scx_loader` starts.
-              If not set or set to an empty string, `scx_loader` will not automatically start any scheduler.
+              If not set or set to an empty string, `scx_loader` will not start any scheduler by default.
             '';
           };
         };
@@ -61,6 +61,10 @@ in
       {
         assertion = lib.versionAtLeast config.boot.kernelPackages.kernel.version "6.12";
         message = "SCX is only supported on kernel version 6.12 and above.";
+      }
+      {
+        assertion = !config.services.scx.enable;
+        message = "services.scx and services.scx_loader cannot be enabled simultaneously. Please enable only one of them.";
       }
       {
         assertion =
@@ -87,5 +91,5 @@ in
     };
   };
 
-  meta.maintainers = with lib.maintainers; [ ccicnce113424 ] ++ pkgs.scx.full.meta.maintainers;
+  meta.maintainers = with lib.maintainers; [ ccicnce113424 ];
 }

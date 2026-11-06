@@ -12,14 +12,14 @@
 
 buildPythonPackage rec {
   pname = "pyblu";
-  version = "2.2.0";
+  version = "2.1.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "LouisChrist";
     repo = "pyblu";
     tag = "v${version}";
-    hash = "sha256-x9YFXWYUMYLrSNI4afcELdCqETaZggHUnufAXDgrr3I=";
+    hash = "sha256-5vVdCrvBCLbLlXR2iDtVR6JuJcFYQnuaJMKeor5HvBI=";
   };
 
   pythonRelaxDeps = [ "aiohttp" ];
@@ -43,7 +43,6 @@ buildPythonPackage rec {
     # all tests fail with:
     #  aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host node:11000 ssl:default [Could not contact DNS servers]
     "tests/test_player.py"
-    "tests/test_settings.py"
   ];
 
   meta = {

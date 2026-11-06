@@ -8,16 +8,16 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "fsrx";
-  version = "1.1.2";
+  version = "1.0.3";
 
   src = fetchFromGitHub {
     owner = "jrnxf";
     repo = "fsrx";
     rev = "v${finalAttrs.version}";
-    sha256 = "sha256-iiVY1p0Yn9+JHUoUvPVKJmh+6JhSUvbcvWlRYWNRsCU=";
+    sha256 = "sha256-4tepUeNAMeIArxXt5BEJbOivwXA5B53QheWP93yxW0A=";
   };
 
-  cargoHash = "sha256-Fr/HIaHmmKW9y+NAsGM+VHcnfoLi6t4GZblmW5OunOY=";
+  cargoHash = "sha256-AnpMpfPLeL3ztSkfPqYvERyh4D397gcvlk45A+fE0aU=";
 
   passthru = {
     tests.version = testers.testVersion {

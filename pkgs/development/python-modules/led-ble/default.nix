@@ -41,7 +41,7 @@ buildPythonPackage (finalAttrs: {
     description = "Library for LED BLE devices";
     homepage = "https://github.com/Bluetooth-Devices/led-ble";
     changelog = "https://github.com/Bluetooth-Devices/led-ble/blob/${finalAttrs.src.tag}/CHANGELOG.md";
-    license = lib.licenses.asl20;
+    license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ fab ];
   };
 })

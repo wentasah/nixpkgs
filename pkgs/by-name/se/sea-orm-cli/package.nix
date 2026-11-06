@@ -37,12 +37,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     homepage = "https://www.sea-ql.org/SeaORM";
     description = "Command line utility for SeaORM";
     changelog = "https://github.com/SeaQL/sea-orm/releases/tag/sea-orm-cli%40${finalAttrs.version}";
-    license =
-      with lib.licenses;
-      OR [
-        mit
-        asl20
-      ];
+    license = with lib.licenses; [
+      mit # or
+      asl20
+    ];
     maintainers = with lib.maintainers; [
       traxys
       anish

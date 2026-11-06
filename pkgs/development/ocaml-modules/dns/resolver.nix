@@ -16,7 +16,6 @@
   tls-mirage,
   dnssec,
   ca-certs-nss,
-  grenier,
   alcotest,
 }:
 
@@ -42,7 +41,6 @@ buildDunePackage {
     tls
     tls-mirage
     ca-certs-nss
-    grenier
   ];
 
   doCheck = true;

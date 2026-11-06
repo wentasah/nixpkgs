@@ -14,13 +14,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "delly";
-  version = "2.8.1";
+  version = "2.7.0";
 
   src = fetchFromGitHub {
     owner = "dellytools";
     repo = "delly";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-2SuCeouRnIhn7gE+rDqAphfZKh1CvST5h0J6ojGiKXA=";
+    hash = "sha256-9/nuVrqUHEK7vPtdqiqJLsb720/F4B/cIL3s1j6cWvo=";
   };
 
   buildInputs = [

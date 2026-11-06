@@ -45,12 +45,10 @@ mkDerivation {
   meta = {
     description = "Qt Tactile Feedback";
     homepage = "https://github.com/qt/qtfeedback";
-    license =
-      with lib.licenses;
-      OR [
-        lgpl3Only
-        gpl2Plus
-      ];
+    license = with lib.licenses; [
+      lgpl3Only # or
+      gpl2Plus
+    ];
     maintainers = with lib.maintainers; [
       dotlambda
       OPNA2608

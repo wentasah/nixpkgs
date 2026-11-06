@@ -2,14 +2,11 @@
   buildRedist,
   config,
   lib,
-  manifests,
   openssl,
   stdenv,
 }:
 buildRedist {
-  # Starting with CUDA 13.4, cuda_compat is no longer in the CUDA manifest but in the driver redist.
-  # See ../_cuda/manifests/nvidia-driver/README.md
-  redistName = if manifests.cuda ? cuda_compat then "cuda" else "nvidia-driver";
+  redistName = "cuda";
   pname = "cuda_compat";
 
   # NOTE: Using multiple outputs with symlinks causes build cycles.
@@ -34,8 +31,6 @@ buildRedist {
   meta = {
     description = "Provides minor version forward compatibility for the CUDA runtime";
     homepage = "https://docs.nvidia.com/deploy/cuda-compatibility";
-    # Keep the license independent of where the archive is fetched from.
-    license = lib.licenses.nvidiaCudaRedist;
     problems = lib.optionalAttrs (!config.enableCudaDriverCompat) {
       cuda-compat-disabled = {
         kind = "broken";

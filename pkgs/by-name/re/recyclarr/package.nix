@@ -46,13 +46,12 @@ buildDotnetModule (finalAttrs: {
 
   executables = [ "recyclarr" ];
   makeWrapperArgs = [
-    "--prefix"
-    "PATH"
-    ":"
-    (lib.makeBinPath [
-      git
-      openssl
-    ])
+    "--prefix PATH : ${
+      lib.makeBinPath [
+        git
+        openssl
+      ]
+    }"
   ];
 
   passthru = {

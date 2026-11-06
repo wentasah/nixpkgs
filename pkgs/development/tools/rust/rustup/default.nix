@@ -25,16 +25,16 @@ in
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "rustup";
-  version = "1.29.3";
+  version = "1.29.2";
 
   src = fetchFromGitHub {
     owner = "rust-lang";
     repo = "rustup";
     tag = finalAttrs.version;
-    hash = "sha256-KEfqZtjUSVg0aJTgf5jC7jNJOPYIRuf+8uZRtOXQQ9o=";
+    hash = "sha256-vtfZNMkUAmbdXv0sv7wdm62AjCkYJY188jLx8RrmO2M=";
   };
 
-  cargoHash = "sha256-7NvkXWG8sa7zDveU1jWJ5C+KMpoSg/zSoP44UXNyjUw=";
+  cargoHash = "sha256-UL6nS3SbxKXFWftJLeFY622VQEyAimhNz+YJgZsLHJc=";
 
   nativeBuildInputs = [
     makeBinaryWrapper
@@ -159,12 +159,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Rust toolchain installer";
     homepage = "https://www.rustup.rs/";
     changelog = "https://github.com/rust-lang/rustup/blob/${finalAttrs.version}/CHANGELOG.md";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [
       mic92
     ];

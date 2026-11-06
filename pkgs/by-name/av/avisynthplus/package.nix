@@ -11,13 +11,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "avisynthplus";
-  version = "3.7.6";
+  version = "3.7.5";
 
   src = fetchFromGitHub {
     owner = "AviSynth";
     repo = "AviSynthPlus";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-hIJW5eBb9ZbRQEJXh2LoMzfgQCRh0CKNeIwiP3qjSM0=";
+    hash = "sha256-RkEZWsAKZABtl+SbRLCjMqyQoi9ainbaI9hWlpO6Fwo=";
   };
 
   patchPhase = ''

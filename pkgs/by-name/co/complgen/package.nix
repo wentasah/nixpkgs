@@ -21,7 +21,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     changelog = "https://github.com/adaszko/complgen/blob/v${finalAttrs.version}/CHANGELOG.md";
     description = "Generate {bash,fish,zsh} completions from a single EBNF-like grammar";
     homepage = "https://github.com/adaszko/complgen";
-    license = lib.licenses.gpl3Only;
+    license = lib.licenses.asl20;
     mainProgram = "complgen";
     maintainers = with lib.maintainers; [ hythera ];
   };

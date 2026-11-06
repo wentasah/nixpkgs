@@ -40,12 +40,10 @@ buildPythonPackage (finalAttrs: {
     description = "Python driver for Oracle Database";
     homepage = "https://oracle.github.io/python-oracledb";
     changelog = "https://github.com/oracle/python-oracledb/blob/${finalAttrs.src.tag}/doc/src/release_notes.rst";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        upl
-      ];
+    license = with lib.licenses; [
+      asl20 # and or
+      upl
+    ];
     maintainers = with lib.maintainers; [ harvidsen ];
   };
 })

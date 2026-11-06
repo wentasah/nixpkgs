@@ -12,7 +12,6 @@
   tomlkit,
 
   # tests
-  addBinToPathHook,
   apache-tvm-ffi,
   mktestdocs,
   pytest-benchmark,
@@ -25,6 +24,7 @@ buildPythonPackage (finalAttrs: {
   pname = "kernels";
   version = "0.17.2";
   pyproject = true;
+  __structuredAttrs = true;
 
   src = fetchFromGitHub {
     owner = "huggingface";
@@ -51,7 +51,7 @@ buildPythonPackage (finalAttrs: {
     CARGO_TARGET_DIR = "./target";
   };
 
-  nativeBuildInputs = [
+  build-system = [
     rustPlatform.cargoSetupHook
     rustPlatform.maturinBuildHook
   ];
@@ -67,8 +67,6 @@ buildPythonPackage (finalAttrs: {
   pythonImportsCheck = [ "kernels" ];
 
   nativeCheckInputs = [
-    # test_cli_cache calls the `kernels` executable
-    addBinToPathHook
     apache-tvm-ffi
     mktestdocs
     pytest-benchmark
@@ -76,6 +74,11 @@ buildPythonPackage (finalAttrs: {
     torch
     writableTmpDirAsHomeHook
   ];
+
+  # test_cli_cache calls the `kernels` executable
+  preCheck = ''
+    export PATH="$out/bin:$PATH"
+  '';
 
   disabledTestPaths = [
     # Require internet access

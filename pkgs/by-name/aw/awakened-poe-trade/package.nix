@@ -9,7 +9,6 @@
   libxt,
 
   nix-update-script,
-  commandLineArgs ? [ ],
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -44,7 +43,7 @@ stdenv.mkDerivation (finalAttrs: {
     cp -a ${finalAttrs.passthru.appImageContents}/usr/share/icons $out/share
 
     substituteInPlace $out/share/applications/awakened-poe-trade.desktop \
-      --replace-fail 'Exec=AppRun' 'Exec=awakened-poe-trade ${lib.escapeShellArgs commandLineArgs}'
+      --replace-fail 'Exec=AppRun' 'Exec=awakened-poe-trade'
 
     runHook postInstall
   '';
@@ -52,9 +51,6 @@ stdenv.mkDerivation (finalAttrs: {
   postFixup = ''
     makeWrapper ${lib.getExe electron} $out/bin/awakened-poe-trade \
       --add-flags $out/share/awakened-poe-trade/resources/app.asar \
-      ${
-        lib.optionalString (commandLineArgs != [ ]) "--add-flags ${lib.escapeShellArgs commandLineArgs}"
-      } \
       --prefix LD_LIBRARY_PATH : "${
         lib.makeLibraryPath [
           libxtst

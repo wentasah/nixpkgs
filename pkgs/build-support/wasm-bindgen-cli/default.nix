@@ -41,12 +41,10 @@ rustPlatform.buildRustPackage {
 
   meta = {
     homepage = "https://wasm-bindgen.github.io/wasm-bindgen/";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     description = "Facilitating high-level interactions between wasm modules and JavaScript";
     maintainers = with lib.maintainers; [
       rizary

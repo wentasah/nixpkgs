@@ -92,7 +92,7 @@ in
               vector_dnstap_sink = {
                 type = "vector";
                 inputs = [ "dnstap" ];
-                address = "http://clickhouse:6000";
+                address = "clickhouse:6000";
               };
             };
           };
@@ -186,7 +186,7 @@ in
               vector_dnstap_sink = {
                 type = "vector";
                 inputs = [ "dnstap" ];
-                address = "http://clickhouse:6000";
+                address = "clickhouse:6000";
               };
             };
           };

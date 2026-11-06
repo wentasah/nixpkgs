@@ -46,7 +46,7 @@ let
       meta = meta // {
         description = "C-Util Project is a collection of utility libraries for the C11 language";
         homepage = "https://c-util.github.io/";
-        license = lib.licenses.OR [
+        license = [
           lib.licenses.asl20
           lib.licenses.lgpl21Plus
         ];

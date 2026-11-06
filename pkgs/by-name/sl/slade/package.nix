@@ -3,26 +3,20 @@
   stdenv,
   fetchFromGitHub,
   cmake,
-  cpptrace,
-  curl,
+  pkg-config,
+  which,
+  zip,
+  wxwidgets_3_2,
+  gtk3,
+  sfml_2,
   fluidsynth,
+  curl,
   ftgl,
   glew,
-  glm,
-  gtk3,
-  libarchive,
-  libwebp,
-  libxmp,
   lua5_5,
-  md4c,
   mpg123,
-  nlohmann_json,
-  pkg-config,
-  sfml_2,
-  which,
   wrapGAppsHook3,
-  wxwidgets_3_3,
-  zip,
+  libwebp,
 }:
 
 let
@@ -31,52 +25,43 @@ in
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "slade";
-  version = "3.3.0";
+  version = "3.2.12";
 
   src = fetchFromGitHub {
     owner = "sirjuddington";
     repo = "SLADE";
     tag = finalAttrs.version;
-    hash = "sha256-keh3dkgUovNwMyQRJvrMN2iZSBGrwKSsdeNbxaZQiE8=";
+    hash = "sha256-HSfK4vBGoRlljJ7JEJLjzSLmevIqllTwJ6z8bXPUp0w=";
   };
-
-  patches = [ ./remove-fetchcontent.patch ];
 
   nativeBuildInputs = [
     cmake
     pkg-config
     which
-    wrapGAppsHook3
     zip
+    wrapGAppsHook3
   ];
 
   buildInputs = [
-    cpptrace
-    curl
+    wxwidgets_3_2
+    gtk3
+    sfml_2
     fluidsynth
+    curl
     ftgl
     glew
-    glm
-    gtk3
-    libarchive
-    libwebp
-    libxmp
     lua
-    md4c
     mpg123
-    nlohmann_json
-    sfml_2
-    wxwidgets_3_3
+    libwebp
   ];
 
   cmakeFlags = [
-    "-DwxWidgets_LIBRARIES=${wxwidgets_3_3}/lib"
-    (lib.cmakeFeature "CL_WX_CONFIG" (lib.getExe' (lib.getDev wxwidgets_3_3) "wx-config"))
+    "-DwxWidgets_LIBRARIES=${wxwidgets_3_2}/lib"
+    (lib.cmakeFeature "CL_WX_CONFIG" (lib.getExe' (lib.getDev wxwidgets_3_2) "wx-config"))
   ];
 
   env.NIX_CFLAGS_COMPILE = "-Wno-narrowing";
 
-  # Force x11/xwayland to workaround the 3D view "spinning out" when running under wayland.
   preFixup = ''
     gappsWrapperArgs+=(
       --prefix GDK_BACKEND : x11

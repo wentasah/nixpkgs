@@ -136,12 +136,10 @@ stdenv.mkDerivation (finalAttrs: {
     description = "Fast, hermetic, multi-language build system";
     homepage = "https://buck2.build";
     changelog = "https://github.com/facebook/buck2/releases/tag/${finalAttrs.version}";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     mainProgram = "buck2";
     sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
     maintainers = with lib.maintainers; [

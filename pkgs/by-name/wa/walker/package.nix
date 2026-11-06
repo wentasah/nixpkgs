@@ -61,7 +61,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Wayland-native application runner";
     homepage = "https://github.com/abenz1267/walker";
     changelog = "https://github.com/abenz1267/walker/releases/tag/v${finalAttrs.version}";
-    license = lib.licenses.gpl3Only;
+    license = lib.licenses.mit;
     platforms = lib.platforms.linux;
     maintainers = with lib.maintainers; [
       donovanglover

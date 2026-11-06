@@ -1,20 +1,20 @@
 {
   lib,
-  fetchurl,
+  fetchzip,
   buildDunePackage,
   js_of_ocaml-compiler,
   gen_js_api,
   ojs,
 }:
 
-buildDunePackage (finalAttrs: {
+buildDunePackage rec {
   pname = "vdom";
-  version = "0.4";
-  minimalOCamlVersion = "4.13";
+  version = "0.3";
+  minimalOCamlVersion = "4.08";
 
-  src = fetchurl {
-    url = "https://github.com/LexiFi/ocaml-vdom/releases/download/${finalAttrs.version}/vdom-${finalAttrs.version}.tbz";
-    hash = "sha256-MyFghu7u7WBcRYDIPnYVzHu1QBJmsCWgFPpHAiDREc0=";
+  src = fetchzip {
+    url = "https://github.com/LexiFi/ocaml-vdom/archive/refs/tags/${version}.tar.gz";
+    hash = "sha256-mlXOb+KCdHWNL9PAppan7m7JaP83JEjq+tu14JI+NJo=";
   };
 
   nativeBuildInputs = [
@@ -36,4 +36,4 @@ buildDunePackage (finalAttrs: {
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ jayesh-bhoot ];
   };
-})
+}

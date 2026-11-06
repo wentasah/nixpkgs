@@ -20,12 +20,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
   meta = {
     description = "Markdown to groff (man page) converter";
     homepage = "https://gitlab.com/kornelski/mandown";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = [ lib.maintainers.da157 ];
     mainProgram = "mandown";
   };

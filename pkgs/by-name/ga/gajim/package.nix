@@ -42,13 +42,13 @@ let
 in
 python3.pkgs.buildPythonApplication (finalAttrs: {
   pname = "gajim";
-  version = "2.7.0";
+  version = "2.6.0";
 
   src = fetchFromGitLab {
     owner = "gajim";
     repo = "gajim";
     tag = finalAttrs.version;
-    hash = "sha256-85ilpq/PMdrXjNdWUTxrdrfcRPdsh8ir5iNbRVgE0xM=";
+    hash = "sha256-VxsfHZvS3m+j/xcd9BFcNZactAzG8kBdv1jDnkCghV4=";
   };
 
   pyproject = true;
@@ -97,22 +97,25 @@ python3.pkgs.buildPythonApplication (finalAttrs: {
   propagatedBuildInputs =
     with python3.pkgs;
     [
-      css-parser
-      emoji
-      httpx2
-      keyring
       nbxmpp
-      omemo-dr
+      dbus-python
       pillow
+      css-parser
       precis-i18n
-      pysequoia
+      keyring
+      setuptools
+      packaging
+      gssapi
+      omemo-dr
       qrcode
       sqlalchemy
+      emoji
+      httpx
+      h2
       truststore
-      setuptools
+      pysequoia
     ]
-    ++ httpx2.optional-dependencies.http2
-    ++ httpx2.optional-dependencies.socks
+    ++ httpx.optional-dependencies.socks
     ++ lib.optional enableRST docutils
     ++ extraPythonPackages python3.pkgs;
 

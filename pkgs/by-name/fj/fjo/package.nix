@@ -1,5 +1,6 @@
 {
   lib,
+  stdenv,
   fetchFromCodeberg,
   rustPlatform,
   openssl,
@@ -27,5 +28,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
     homepage = "https://codeberg.org/VoiDD/fjo";
     license = lib.licenses.agpl3Only;
     mainProgram = "berg";
+    broken = stdenv.hostPlatform.isDarwin;
   };
 })

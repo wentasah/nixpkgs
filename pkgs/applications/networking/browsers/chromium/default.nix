@@ -22,7 +22,6 @@
   lib,
   libkrb5,
   widevine-cdm,
-  nixosTests,
 
   # package customization
   # Note: enable* flags should not require full rebuilds (i.e. only affect the wrapper)
@@ -195,8 +194,5 @@ stdenv.mkDerivation {
     inherit (chromium) upstream-info browser;
     mkDerivation = chromium.mkChromiumDerivation;
     inherit sandboxExecutableName;
-    tests = {
-      nixos = if ungoogled then nixosTests.ungoogled-chromium else nixosTests.chromium;
-    };
   };
 }

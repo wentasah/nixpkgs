@@ -1,14 +1,14 @@
 {
   lib,
-  buildGoLatestModule,
+  buildGo127Module,
   fetchFromGitHub,
   installShellFiles,
   nix-update-script,
 }:
 
-buildGoLatestModule (finalAttrs: {
+buildGo127Module (finalAttrs: {
   pname = "dux-gop";
-  version = "2.1.0";
+  version = "2.0.0";
 
   __structuredAttrs = true;
 
@@ -16,10 +16,10 @@ buildGoLatestModule (finalAttrs: {
     owner = "duxlabs-dev";
     repo = "dux-gop";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-NydB/H7I0X7msjRcEqMrFqw+Q299iqOTMp70xySDc5g=";
+    hash = "sha256-GTDomQTBU132DVjqX/o3cZBo9ylUWLvUJ74PSlahgTo=";
   };
 
-  vendorHash = "sha256-ajtmBCQ4OdIpjOQeiL+hj3e6PL2Np4NLnMAcA1AsW/w=";
+  vendorHash = "sha256-bVrNwxylrKkmDWdrw+G/yi3DgVdRZtOVn53HfmpXjJk=";
 
   ldflags = [
     "-w"
@@ -47,6 +47,6 @@ buildGoLatestModule (finalAttrs: {
     license = lib.licenses.mit;
     teams = [ lib.teams.duxlabs ];
     mainProgram = "dgop";
-    platforms = lib.platforms.linux;
+    platforms = lib.platforms.unix;
   };
 })

@@ -39,12 +39,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Git Explorer: cross-platform git workflow improvement tool inspired by Magit";
     homepage = "https://codeberg.org/Piturnah/gex";
     changelog = "https://codeberg.org/Piturnah/gex/releases/tag/${finalAttrs.src.tag}";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [
       azd325
       bot-wxt1221

@@ -7,16 +7,16 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "dness";
-  version = "0.6.1";
+  version = "0.6.0";
 
   src = fetchFromGitHub {
     owner = "nickbabcock";
     repo = "dness";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-X1aV23EJRkms3Hfk/UAwnnnDSVwZucxp0KYXCTaF8ko=";
+    hash = "sha256-Znlygpq0EetCLjtZC39ksaVFeuwMmqI5FhHxsliw+oE=";
   };
 
-  cargoHash = "sha256-WN5sgeBIlF8YIE7xvHI/V14ewyroQZP+v4oFALnu9xo=";
+  cargoHash = "sha256-2NT67tVMI511iISDln3p66Ls8XSLze0JSQZ50/s24tM=";
 
   doCheck = false; # Many tests require network access
 

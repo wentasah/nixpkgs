@@ -50,12 +50,11 @@ rustPlatform.buildRustPackage rec {
     mainProgram = "cached-nix-shell";
     homepage = "https://github.com/xzfc/cached-nix-shell";
     changelog = "https://github.com/xzfc/cached-nix-shell/releases/tag/v${version}";
-    license =
-      with lib.licenses;
-      OR [
-        unlicense
-        mit
-      ];
+    license = with lib.licenses; [
+      unlicense
+      # or
+      mit
+    ];
     maintainers = with lib.maintainers; [ xzfc ];
     platforms = lib.platforms.linux ++ lib.platforms.darwin;
   };

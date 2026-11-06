@@ -41,7 +41,7 @@ stdenv.mkDerivation (finalAttrs: {
     description = "Universal utility for programming FPGAs";
     mainProgram = "openFPGALoader";
     homepage = "https://github.com/trabucayre/openFPGALoader";
-    license = lib.licenses.asl20;
+    license = lib.licenses.agpl3Only;
     maintainers = [ ];
     platforms = lib.platforms.unix;
   };

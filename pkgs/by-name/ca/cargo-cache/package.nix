@@ -29,12 +29,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Manage cargo cache (\${CARGO_HOME}, ~/.cargo/), print sizes of dirs and remove dirs selectively";
     mainProgram = "cargo-cache";
     homepage = "https://github.com/matthiaskrgr/cargo-cache";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [
       matthiasbeyer
     ];

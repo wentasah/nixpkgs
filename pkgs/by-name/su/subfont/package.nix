@@ -3,6 +3,7 @@
   buildNpmPackage,
   cairo,
   fetchurl,
+  nodejs_22,
   pango,
   pixman,
   pkg-config,
@@ -11,16 +12,18 @@
 
 let
   pname = "subfont";
-  version = "7.3.0";
+  version = "7.2.3";
   src = fetchurl {
     url = "https://registry.npmjs.org/subfont/-/subfont-${version}.tgz";
-    hash = "sha256-5KqHn6jo6X8AHWQj/tkn+JSzRqvKQgRGr/rnumQWZ3o=";
+    hash = "sha256-daHPt03dPBCWYXFS8x1SNTRlkmCCdWmmondur6fRBgY=";
   };
 in
 buildNpmPackage (finalAttrs: {
   inherit pname version src;
 
-  npmDepsHash = "sha256-42vpBfy6GTQPNtJYQYr893tFluV+1uLmA9G4ekf2wqc=";
+  nodejs = nodejs_22;
+
+  npmDepsHash = "sha256-ocCVdUtKiWNVzxZljcb2Y+4u3r34drbcNyfKT3Rj1mY=";
 
   postPatch = ''
     ln -s ${./package-lock.json} package-lock.json

@@ -71,7 +71,7 @@ buildPythonPackage (finalAttrs: {
     description = "Module to communicate with the Automower Connect API";
     homepage = "https://github.com/Thomas55555/aioautomower";
     changelog = "https://github.com/Thomas55555/aioautomower/releases/tag/${finalAttrs.src.tag}";
-    license = lib.licenses.mit;
+    license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [ fab ];
   };
 })

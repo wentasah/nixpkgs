@@ -8,7 +8,6 @@
   gettext,
   itstool,
   desktop-file-utils,
-  wrapGAppsHook3,
   gnome,
   glib,
   gtk3,
@@ -33,7 +32,6 @@ stdenv.mkDerivation (finalAttrs: {
     glib
     itstool
     desktop-file-utils
-    wrapGAppsHook3
   ];
 
   buildInputs = [
@@ -44,7 +42,6 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   strictDeps = true;
-  __structuredAttrs = true;
 
   passthru = {
     updateScript = gnome.updateScript {

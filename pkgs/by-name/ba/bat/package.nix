@@ -89,12 +89,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Cat(1) clone with syntax highlighting and Git integration";
     homepage = "https://github.com/sharkdp/bat";
     changelog = "https://github.com/sharkdp/bat/raw/v${finalAttrs.version}/CHANGELOG.md";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     mainProgram = "bat";
     maintainers = with lib.maintainers; [
       dywedir

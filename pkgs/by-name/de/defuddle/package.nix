@@ -7,16 +7,16 @@
 
 buildNpmPackage rec {
   pname = "defuddle";
-  version = "0.19.6";
+  version = "0.19.5";
 
   src = fetchFromGitHub {
     owner = "kepano";
     repo = "defuddle";
     tag = version;
-    hash = "sha256-PmtS4ryoXapMaA0HAzdBaUl6dzeGnXa0rA0VLdC/VRQ=";
+    hash = "sha256-szAaa2g3BDCi3QiTYqvrCWpBzKl/jenvowA+1c2jpI0=";
   };
 
-  npmDepsHash = "sha256-Tr1GasXqqUEPMt6+fUjBatzymuaVjK49tsCw/ivtXCY=";
+  npmDepsHash = "sha256-BUTCUHdQFrC0CIwXFuyTcPkdgGnJLbovh3RMc8UyJ3o=";
 
   passthru.updateScript = nix-update-script { };
 

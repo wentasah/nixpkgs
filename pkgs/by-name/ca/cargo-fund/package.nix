@@ -39,12 +39,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Discover funding links for your project's dependencies";
     mainProgram = "cargo-fund";
     homepage = "https://github.com/acfoltzer/cargo-fund";
-    license =
-      with lib.licenses;
-      OR [
-        mit
-        asl20
-      ];
+    license = with lib.licenses; [
+      mit # or
+      asl20
+    ];
     maintainers = with lib.maintainers; [ johntitor ];
   };
 })

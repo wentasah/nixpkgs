@@ -30,8 +30,8 @@
   };
 
   /**
-     Create a compound license where the user needs to follow both licenses,
-     equivalent to the SPDX `AND` modifier.
+     Create a compound licenses where the user needs to follow both licenses,
+     eqivialent of spdx `and` modifier.
 
     # Inputs
 
@@ -60,8 +60,8 @@
   };
 
   /**
-     Create a license in which an exception has been applied,
-     equivalent to the SPDX `WITH` modifier.
+     Create a licenses exception where a license has a license exception,
+     eqivialent of spdx `with` modifier.
 
     # Inputs
 
@@ -94,9 +94,7 @@
 
   /**
      Create a licenses which can be upgraded to any later version of itself,
-     equivalent to the SPDX `+` modifier.
-     For GPL licenses, do not use the PLUS modifier: use the "-or-later"
-     license (ex. `lib.licenses.gpl3Plus`).
+     eqivialent of spdx `+` modifier
 
     # Inputs
 

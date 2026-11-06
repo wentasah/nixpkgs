@@ -30,8 +30,6 @@
   valgrind,
   protobuf_29,
   nng,
-  glslang,
-  sqlite,
 
   stable,
   testing,
@@ -68,14 +66,8 @@ stdenv.mkDerivation (finalAttrs: {
   patches = [
     # upstream issue 12941 (attempted to upstream, but appreciably unacceptable)
     ./writable.patch
-
     # https://gitlab.com/kicad/code/kicad/-/issues/15687
-    (
-      if (!stable && !testing) then
-        ./runtime_stock_data_path-10.0.9.patch
-      else
-        ./runtime_stock_data_path.patch
-    )
+    ./runtime_stock_data_path.patch
   ];
 
   # tagged releases don't have "unknown"
@@ -145,10 +137,6 @@ stdenv.mkDerivation (finalAttrs: {
 
     # This would otherwise cause a linking requirement for mbedtls.
     (nng.override { mbedtlsSupport = false; })
-  ]
-  ++ optionals (!stable && !testing) [
-    glslang
-    sqlite
   ]
   ++ optionals (stdenv.hostPlatform.isLinux) [
     libspnav

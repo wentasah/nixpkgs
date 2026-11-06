@@ -3,7 +3,6 @@
   stdenv,
   acl,
   cmake,
-  dbus,
   fcitx5,
   fetchFromGitHub,
   gettext,
@@ -12,7 +11,6 @@
   libevdev,
   libinput,
   libnotify,
-  libxcb,
   nix-update-script,
   pkg-config,
   python3,
@@ -31,13 +29,13 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "fcitx5-lotus";
-  version = "6.0.5";
+  version = "6.0.0";
 
   src = fetchFromGitHub {
     owner = "LotusInputMethod";
     repo = "fcitx5-lotus";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-l9/r6GIghNGl1PCSue1nkl9p+CI/6Au1yA36QcQzFe4=";
+    hash = "sha256-zWOnjTaifwhzIk9QLksf/g3EF/SOg1vJmM4IQ5P1+H8=";
   };
 
   passthru = {
@@ -55,13 +53,11 @@ stdenv.mkDerivation (finalAttrs: {
 
   buildInputs = [
     acl
-    dbus
     fcitx5
     kdePackages.extra-cmake-modules
     libevdev
     libinput
     libnotify
-    libxcb
     pythonEnv
     qt6.qtbase
     qt6.qtsvg
@@ -74,12 +70,9 @@ stdenv.mkDerivation (finalAttrs: {
 
   dontWrapQtApps = true;
 
-  doCheck = true;
-
   cmakeFlags = [
     "-DLOTUS_ALT_EXECUTABLE_PREFIX=/nix/store/"
     "-DLOTUS_SETFACL_EXECUTABLE=${acl}/bin/setfacl"
-    (lib.cmakeBool "BUILD_TESTING" finalAttrs.finalPackage.doCheck)
   ];
 
   postFixup = ''

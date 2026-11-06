@@ -27,12 +27,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Linker Proxy: a simple tool to forward linker arguments to the actual linker executable";
     homepage = "https://github.com/esp-rs/embuild";
     changelog = "https://github.com/esp-rs/embuild/blob/v${finalAttrs.version}/CHANGELOG.md";
-    license =
-      with lib.licenses;
-      OR [
-        mit
-        asl20
-      ];
+    license = with lib.licenses; [
+      mit # or
+      asl20
+    ];
     maintainers = with lib.maintainers; [ vpochapuis ];
   };
 })

@@ -30,11 +30,9 @@ rustPlatform.buildRustPackage (finalAttrs: {
     changelog = "https://github.com/houseabsolute/precious/releases/tag/v${finalAttrs.version}";
     mainProgram = "precious";
     maintainers = with lib.maintainers; [ abhisheksingh0x558 ];
-    license =
-      with lib.licenses;
-      OR [
-        mit
-        asl20
-      ];
+    license = with lib.licenses; [
+      mit # or
+      asl20
+    ];
   };
 })

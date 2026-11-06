@@ -7,11 +7,11 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "gccmakedep";
-  version = "1.0.5";
+  version = "1.0.4";
 
   src = fetchurl {
     url = "mirror://xorg/individual/util/gccmakedep-${finalAttrs.version}.tar.xz";
-    hash = "sha256-/7aafNU5/iGdkY1GiL/5Q7nEGpAatSLWIiz6NesNi78=";
+    hash = "sha256-UIj5h2n7Y8Mm6bnSy3yfSmMKKAHdHaBpcdCCkXbPJbY=";
   };
 
   passthru.updateScript = writeScript "update-${finalAttrs.pname}" ''

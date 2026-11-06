@@ -11,13 +11,13 @@
 
 maven.buildMavenPackage rec {
   pname = "sonar-scanner-cli";
-  version = "8.3.1.16491";
+  version = "8.3.0.16463";
 
   src = fetchFromGitHub {
     owner = "SonarSource";
     repo = "sonar-scanner-cli";
     tag = version;
-    hash = "sha256-W0SrJJDljDEWxSInTgpeARLjyTQgFyLk4mMbjlSe+88=";
+    hash = "sha256-JBG0BRWD+7JV2exufFfm6yoXIFWD6mv0/4YSz+swbmg=";
   };
 
   mvnHash = "sha256-07eMgS63BiDv9lqFTnapweWz/t+UaiL61RHU2vEviRk=";

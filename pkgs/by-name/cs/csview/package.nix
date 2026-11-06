@@ -29,12 +29,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     mainProgram = "csview";
     homepage = "https://github.com/wfxr/csview";
     changelog = "https://github.com/wfxr/csview/blob/v${finalAttrs.version}/CHANGELOG.md";
-    license =
-      with lib.licenses;
-      OR [
-        mit
-        asl20
-      ];
+    license = with lib.licenses; [
+      mit # or
+      asl20
+    ];
     maintainers = [ lib.maintainers.progrm_jarvis ];
   };
 })

@@ -79,7 +79,7 @@ buildPythonPackage rec {
     changelog = "https://github.com/miurahr/py7zr/blob/v${version}/docs/Changelog.rst#v${
       builtins.replaceStrings [ "." ] [ "" ] version
     }";
-    license = lib.licenses.lgpl21Plus;
+    license = lib.licenses.gpl2Only;
     maintainers = with lib.maintainers; [
       pitkling
       PopeRigby

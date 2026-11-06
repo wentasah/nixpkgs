@@ -44,6 +44,7 @@ buildPythonPackage (finalAttrs: {
   pname = "diffusers";
   version = "0.42.1";
   pyproject = true;
+  __structuredAttrs = true;
 
   src = fetchFromGitHub {
     owner = "huggingface";

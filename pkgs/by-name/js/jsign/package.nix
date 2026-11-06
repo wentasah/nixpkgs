@@ -1,4 +1,5 @@
 {
+  stdenv,
   lib,
   fetchFromGitHub,
   fetchpatch2,
@@ -60,5 +61,7 @@ maven.buildMavenPackage rec {
       johnazoidberg
     ];
     mainProgram = "jsign";
+    # Build doesn't work, upstream says running the .jar is supported on darwin though
+    broken = stdenv.hostPlatform.isDarwin;
   };
 }

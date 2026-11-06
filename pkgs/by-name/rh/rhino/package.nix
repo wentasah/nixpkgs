@@ -40,12 +40,10 @@ stdenv.mkDerivation (finalAttrs: {
 
     homepage = "https://rhino.github.io/";
 
-    license =
-      with lib.licenses;
-      OR [
-        mpl11
-        gpl2Plus
-      ];
+    license = with lib.licenses; [
+      mpl11 # or
+      gpl2Plus
+    ];
     platforms = lib.platforms.linux ++ lib.platforms.darwin;
   };
 })

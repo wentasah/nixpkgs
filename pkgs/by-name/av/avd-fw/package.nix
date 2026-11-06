@@ -5,12 +5,11 @@
   pkgsCross,
   meson,
   ninja,
-  codecs ? [ "all_free" ],
 }:
 
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "avd-fw";
-  version = "0.2";
+  version = "0.1";
 
   __structuredAttrs = true;
   strictDeps = true;
@@ -19,7 +18,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     owner = "AsahiLinux";
     repo = "avd-fw";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-ib8vn/PbBNv3BWPuWmRZ+dXEcPuJ21Wl+cynf0WPySc=";
+    hash = "sha256-cq/gOgmbCg5IX0GSiS7Z5lBhpursB1Num8LSANw5fpI=";
   };
 
   nativeBuildInputs = [
@@ -28,14 +27,10 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     meson
   ];
 
-  postPatch = ''
-    meson rewrite kwargs set project / version '${finalAttrs.version}'
-  '';
-
-  mesonBuildType = "release";
   mesonFlags = [
     "--cross-file=arm-none-eabi-gcc.ini"
-    (lib.mesonOption "video-codecs" (lib.concatStringsSep "," codecs))
+    "--buildtype"
+    "release"
   ];
 
   meta = {

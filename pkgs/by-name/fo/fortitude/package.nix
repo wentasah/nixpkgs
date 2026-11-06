@@ -4,18 +4,18 @@
   fetchFromGitHub,
 }:
 
-rustPlatform.buildRustPackage (finalAttrs: {
+rustPlatform.buildRustPackage {
   pname = "fortitude";
-  version = "0.10.1";
+  version = "0.7.5-unstable-2025-10-14";
 
   src = fetchFromGitHub {
     owner = "PlasmaFAIR";
     repo = "fortitude";
-    rev = "v${finalAttrs.version}";
-    hash = "sha256-vUfqZhNJ/YIwc5zaC4B6J0+40KeI1XCzt127PzuZ67Q=";
+    rev = "ca65546d69947500eeb37a2bbc58151012ab40d9";
+    hash = "sha256-PKOPQnVQbvqEoCPO9K3ofajbcId83uLbma6R9RiBzys=";
   };
 
-  cargoHash = "sha256-GATbGxCiMsd36XX8EAORB928KbEhyISw60C16/AiBV4=";
+  cargoHash = "sha256-hNAONXSy1uxm7AHvMHWNboL9NpQfvEOfTQivushp7S4=";
 
   meta = {
     description = "Fortran linter written in Rust inspired by Ruff";
@@ -27,4 +27,4 @@ rustPlatform.buildRustPackage (finalAttrs: {
     maintainers = with lib.maintainers; [ loicreynier ];
     platforms = with lib.platforms; windows ++ darwin ++ linux;
   };
-})
+}

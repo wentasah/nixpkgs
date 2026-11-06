@@ -19,6 +19,7 @@ in
   inherit (librewolf-src)
     extraConfigureFlags
     extraPreConfigure
+    extraPatches
     extraPostPatch
     extraPassthru
     ;

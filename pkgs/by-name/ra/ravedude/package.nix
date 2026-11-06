@@ -45,12 +45,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
   meta = {
     description = "Tool to easily flash code onto an AVR microcontroller with avrdude";
     homepage = "https://crates.io/crates/ravedude";
-    license =
-      with lib.licenses;
-      OR [
-        mit
-        asl20
-      ];
+    license = with lib.licenses; [
+      mit # or
+      asl20
+    ];
     platforms = lib.platforms.linux ++ lib.platforms.darwin;
     maintainers = with lib.maintainers; [
       rvarago

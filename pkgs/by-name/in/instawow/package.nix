@@ -7,14 +7,14 @@
 
 python3.pkgs.buildPythonApplication (finalAttrs: {
   pname = "instawow";
-  version = "7.3.0";
+  version = "7.2.4";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "layday";
     repo = "instawow";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-NJDx1eUj+0Vq61lmR0y8R+H6sV8ajUFIpBrWzw2vATA=";
+    hash = "sha256-nac3BWRvU0UKjNvwPAyklzRKkwtriony6cPns6tqyVk=";
   };
 
   # No .git dir available in nix build

@@ -17,10 +17,6 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-tVg9g5aN4ovUElpDzTSLpTQUq3OEiYUaq3YO98ex8wA=";
   };
 
-  patches = [
-    ./odin-2026-11-compat.patch
-  ];
-
   postPatch = ''
     substituteInPlace build.sh \
       --replace-fail "-microarch:native" ""

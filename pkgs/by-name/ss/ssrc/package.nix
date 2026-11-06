@@ -38,7 +38,7 @@ stdenv.mkDerivation (finalAttrs: {
 
     version = finalAttrs.version;
     homepage = "https://shibatch.sourceforge.net/";
-    license = lib.licenses.lgpl21Only;
+    license = lib.licenses.gpl2;
     platforms = lib.platforms.linux;
   };
 })

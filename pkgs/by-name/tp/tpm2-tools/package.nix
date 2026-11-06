@@ -2,6 +2,7 @@
   stdenv,
   fetchurl,
   lib,
+  pandoc,
   pkg-config,
   makeWrapper,
   curl,
@@ -10,6 +11,8 @@
   libuuid,
   abrmdSupport ? true,
   tpm2-abrmd ? null,
+  buildPackages,
+  enableManpages ? buildPackages.pandoc.compiler.bootstrapAvailable,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -24,6 +27,9 @@ stdenv.mkDerivation (finalAttrs: {
   nativeBuildInputs = [
     pkg-config
     makeWrapper
+  ]
+  ++ lib.optionals enableManpages [
+    pandoc
   ];
   buildInputs = [
     curl

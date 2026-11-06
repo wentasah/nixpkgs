@@ -48,7 +48,7 @@ stdenv.mkDerivation {
   meta = {
     homepage = "https://github.com/i-rinat/libvdpau-va-gl";
     description = "VDPAU driver with OpenGL/VAAPI backend";
-    license = lib.licenses.mit;
+    license = lib.licenses.lgpl3;
     platforms = lib.platforms.linux;
     maintainers = [ lib.maintainers.johnrtitor ];
   };

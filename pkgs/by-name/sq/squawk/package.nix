@@ -50,12 +50,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Linter for PostgreSQL, focused on migrations";
     homepage = "https://squawkhq.com";
     changelog = "https://github.com/sbdchd/squawk/blob/v${finalAttrs.version}/CHANGELOG.md";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = lib.licenses.gpl3Only;
     maintainers = [ lib.maintainers.dibenzepin ];
   };
 })

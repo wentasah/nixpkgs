@@ -29,12 +29,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "GraphQL tool for Rust projects";
     mainProgram = "graphql-client";
     homepage = "https://github.com/graphql-rust/graphql-client";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [ bbigras ];
   };
 })

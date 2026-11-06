@@ -35,7 +35,6 @@
   libsecret,
   libxkbcommon,
   pango,
-  patchelf,
   systemdLibs,
   hunspellDicts,
   useHunspell ? true,
@@ -79,38 +78,18 @@ let
     systemdLibs
   ];
 
-  #FIXME: avoid pulling explicit patchelf after resolving https://github.com/NixOS/patchelf/pull/672
-  patchelf' = (
-    patchelf.overrideAttrs (
-      finalAttrs: previousAttrs: {
-        version = "0.15.2";
-        src = fetchurl {
-          url = "https://github.com/NixOS/patchelf/releases/download/${finalAttrs.version}/patchelf-${finalAttrs.version}.tar.bz2";
-          hash = "sha256-F3RfVkFZyOIo/EEtplogSLhGxLa0Igt3y/IkFuAvLXw=";
-        };
-      }
-    )
-  );
-
   # Hunspell
   hunspellDirs = map (lang: "${hunspellDicts.${lang}}/share/hunspell") languages;
-  hunspellTargetDirs = "$out/opt/Pulsar/resources/app.asar.unpacked/node_modules/@pulsar-edit/spellchecker";
-  hunspellCopyCommands = ''
-    if [[ ! -d ${hunspellTargetDirs} ]]; then
-      echo >&2 'ERROR: ''${hunspellTargetDirs} not found!'
-      false
-    fi
-    mkdir -p ${hunspellTargetDirs}/vendor/hunspell_dictionaries
-    ${lib.concatMapStringsSep "\n" (
-      lang: "cp -r ${lang}/* ${hunspellTargetDirs}/vendor/hunspell_dictionaries;"
-    ) hunspellDirs}
-  '';
+  hunspellTargetDirs = "$out/opt/Pulsar/resources/app.asar.unpacked/node_modules/spellchecker/vendor/hunspell_dictionaries";
+  hunspellCopyCommands = lib.concatMapStringsSep "\n" (
+    lang: "cp -r ${lang}/* ${hunspellTargetDirs};"
+  ) hunspellDirs;
 
 in
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "pulsar";
-  version = "1.133.1";
+  version = "1.132.1";
 
   src =
     finalAttrs.passthru.srcs.${stdenv.hostPlatform.system}
@@ -119,11 +98,11 @@ stdenv.mkDerivation (finalAttrs: {
   passthru.srcs = {
     x86_64-linux = fetchurl {
       url = "https://github.com/pulsar-edit/pulsar/releases/download/v${finalAttrs.version}/Linux.pulsar-${finalAttrs.version}.tar.gz";
-      hash = "sha256-zJtdZQFEJnQ4PUNwOiZKphsHbLV0QbJ8XT+AxSWN3tk=";
+      hash = "sha256-66kubyDMEHgRdT38TTESMIZ+wQPPXWHBc0jYY3aMSkU=";
     };
     aarch64-linux = fetchurl {
       url = "https://github.com/pulsar-edit/pulsar/releases/download/v${finalAttrs.version}/ARM.Linux.pulsar-${finalAttrs.version}-arm64.tar.gz";
-      hash = "sha256-hH0/z+zUB/1EBIVClBJIhWhpb/Gdg0WhC65fUq43f1Y=";
+      hash = "sha256-MTWqUlbfjJlIQVy0YBLbenMzA7Xgnkr34nr2t8nhofc=";
     };
   };
 
@@ -141,7 +120,6 @@ stdenv.mkDerivation (finalAttrs: {
     wrapGAppsHook3
     copyDesktopItems
     asar
-    patchelf'
   ];
 
   buildInputs = [
@@ -234,13 +212,14 @@ stdenv.mkDerivation (finalAttrs: {
   + ''
     # Patch the bundled node executables
     find $opt -name "*.node" -exec patchelf --set-rpath "${newLibpath}:$opt" {} \;
-    # Also patch the node executable for ppm
+    # Also patch the node executable for apm
     patchelf --set-rpath "${newLibpath}:$opt" $opt/resources/app/ppm/bin/node
 
     # The pre-packaged ASAR bundle comes with prebuild binaries, expecting libstdc++.so.6
     asarBundle=$TMPDIR/asarbundle
     asar e $opt/resources/app.asar $asarBundle
     find $asarBundle -name "*.node" -exec patchelf --set-rpath "${newLibpath}:$opt" --add-needed libstdc++.so.6 {} \;
+    unlink $asarBundle/node_modules/document-register-element/dre # Self referencing symlink, breaking asar rebundling
     asar p $asarBundle $opt/resources/app.asar
     rm -rf $asarBundle
 
@@ -312,9 +291,7 @@ stdenv.mkDerivation (finalAttrs: {
       pbsds
     ];
     # https://www.electronjs.org/docs/latest/tutorial/electron-timelines
-    # more electron bumps are expected:
-    # - pulsar v1.131.0 bumped electron 12.2.3 -> 30.0.9 in february 2026
-    # - pulsar v1.133.0 bumped electron 30.0.9 -> 32.3.3 in october 2026
-    knownVulnerabilities = [ "Electron version 32 is EOL" ];
+    # a bump is expected (pulsar v1.131.0 bumped electron 12.2.3 -> 30.0.9 in february 2026)
+    knownVulnerabilities = [ "Electron version 30 is EOL" ];
   };
 })

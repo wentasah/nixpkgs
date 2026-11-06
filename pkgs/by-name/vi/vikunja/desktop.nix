@@ -10,7 +10,7 @@
   makeDesktopItem,
   copyDesktopItems,
   darwin,
-  pnpm_12,
+  pnpm_10,
   pnpmConfigHook,
   nodejs,
   perl,
@@ -33,9 +33,9 @@ stdenv.mkDerivation (finalAttrs: {
       src
       sourceRoot
       ;
-    pnpm = pnpm_12;
-    fetcherVersion = 5;
-    hash = "sha256-ULETUJKnz4y13hic+YD0SX6/gUT2WOseZkQGIKYwLJY=";
+    pnpm = pnpm_10;
+    fetcherVersion = 4;
+    hash = "sha256-bUiLKzZJWGscGiKn0oNaaMbSsW/vF0FNUal5Gv7n278=";
   };
 
   env = {
@@ -46,7 +46,7 @@ stdenv.mkDerivation (finalAttrs: {
     makeWrapper
     nodejs
     perl
-    pnpm_12
+    pnpm_10
     pnpmConfigHook
     frontend
   ]

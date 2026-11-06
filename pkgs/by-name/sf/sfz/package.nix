@@ -23,12 +23,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
   meta = {
     description = "Simple static file serving command-line tool written in Rust";
     homepage = "https://github.com/weihanglo/sfz";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = [ ];
     mainProgram = "sfz";
   };

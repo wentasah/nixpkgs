@@ -16,6 +16,7 @@
   nlohmann_json,
   pkg-config,
   python3Packages,
+  removeReferencesTo,
   re2,
   zlib,
   protobuf,
@@ -179,6 +180,7 @@ effectiveStdenv.mkDerivation (finalAttrs: {
   )
   ++ lib.optionals cudaSupport [
     cudaPackages.cuda_nvcc
+    removeReferencesTo
   ]
   ++ lib.optionals isCudaJetson [
     cudaPackages.autoAddCudaCompatRunpath
@@ -410,7 +412,10 @@ effectiveStdenv.mkDerivation (finalAttrs: {
 
   strictDeps = true;
 
-  # nvlink records its library directories in the device code; cuda_nvcc's nvlink wrapper removes them.
+  # See comments in `cudaPackages.nccl`
+  postFixup = lib.optionalString cudaSupport ''
+    remove-references-to -t "${lib.getBin cuda_nvcc}" ''${!outputLib}/lib/libonnxruntime_providers_cuda.so
+  '';
   disallowedRequisites = lib.optionals cudaSupport [ (lib.getBin cuda_nvcc) ];
 
   __structuredAttrs = true;

@@ -2,43 +2,31 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  util-linux,
   coreutils,
-  findutils,
-  fuse3,
-  fuse-overlayfs,
-  glib,
-  kmod,
-  rsync,
-  systemd,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "profile-sync-daemon";
-  version = "7.04";
+  version = "6.50";
 
   src = fetchFromGitHub {
     owner = "graysky2";
     repo = "profile-sync-daemon";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-G2w5V9Eq19Jjx7PZcKH8bBZ3tOoghYaPQyMjlwFkARY=";
+    hash = "sha256-Wb9YLxuu9i9s/Y6trz5NZDU9WRywe3138cp5Q2gWbxM=";
   };
 
   installPhase = ''
     PREFIX=\"\" DESTDIR=$out make install
-    patchShebangs $out/bin/profile-sync-daemon
-    patchShebangs $out/bin/psd-suspend-sync
-
     substituteInPlace $out/bin/profile-sync-daemon \
-      --replace "PATH=\$PATH:/sbin" \
-      "PATH=\$PATH:$out:${coreutils}/bin:${findutils}/bin:${fuse3}/bin:${fuse-overlayfs}/bin:${glib}/bin:${kmod}/bin:${rsync}/bin:${systemd}/bin" \
       --replace "/usr/" "$out/" \
       --replace "sudo " "/run/wrappers/bin/sudo "
     # $HOME detection fails (and is unnecessary)
     sed -i '/^HOME/d' $out/bin/profile-sync-daemon
-    substituteInPlace $out/bin/psd-suspend-sync \
-      --replace "/usr/bin" "$out/bin" \
-      --replace "gdbus monitor" "${glib}/bin/gdbus monitor" \
-      --replace "systemd-inhibit" "${systemd}/bin/systemd-inhibit"
+    substituteInPlace $out/bin/psd-overlay-helper \
+      --replace "PATH=/usr/bin:/bin" "PATH=${util-linux.bin}/bin:${coreutils}/bin" \
+      --replace "sudo " "/run/wrappers/bin/sudo "
   '';
 
   meta = {

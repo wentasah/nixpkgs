@@ -8,7 +8,7 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "libcotp";
-  version = "4.2.2";
+  version = "4.1.0";
 
   __structuredAttrs = true;
 
@@ -16,7 +16,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "paolostivanin";
     repo = "libcotp";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-qHHrINqH+bq7af/5lUwnj/VYkwunr+4WCBocwq60hPM=";
+    hash = "sha256-iNmCQHAl2LIkdJiVByc9CWiJSTo1HIz5Ma5Xjo2n9mA=";
   };
 
   buildInputs = [ libgcrypt ];

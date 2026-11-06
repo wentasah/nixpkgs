@@ -6,7 +6,7 @@
   pnpmConfigHook,
   pnpm_10,
   faketty,
-  nodejs-slim_26,
+  nodejs-slim_22,
   versionCheckHook,
   makeBinaryWrapper,
   nix-update-script,
@@ -14,7 +14,7 @@
 let
   pnpm = pnpm_10;
 
-  nodejs-slim = nodejs-slim_26;
+  nodejs-slim = nodejs-slim_22;
   pnpm' = pnpm.override { inherit nodejs-slim; };
 in
 stdenv.mkDerivation (finalAttrs: {

@@ -5,13 +5,13 @@
 }:
 mkLibretroCore {
   core = "m2000";
-  version = "0-unstable-2026-10-31";
+  version = "0-unstable-2026-08-21";
 
   src = fetchFromGitHub {
     owner = "p2000t";
     repo = "M2000";
-    rev = "dd0e04b12526e79ffd4dec27ba8969f36a627e9d";
-    hash = "sha256-bbkNbrWMspKQQrO6P3irpeD42MgjwZ9EED/88rilHYs=";
+    rev = "da0b8cbef2007c907f5db2166847c3209643865d";
+    hash = "sha256-GxWUMJgEvz6p3JYRJ2Xo02HHupo+hT/noc7pwzjMUNE=";
   };
 
   sourceRoot = "source/src/libretro";

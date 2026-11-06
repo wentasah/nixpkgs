@@ -119,7 +119,6 @@ buildPythonPackage (finalAttrs: {
     "certifi"
     "python-slugify"
     "websockets"
-    "whenever"
   ];
 
   nativeBuildInputs = [

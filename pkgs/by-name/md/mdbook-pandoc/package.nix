@@ -38,12 +38,11 @@ rustPlatform.buildRustPackage rec {
     homepage = "https://github.com/max-heller/mdbook-pandoc";
     description = "A mdbook backend powered by Pandoc";
     changelog = "https://github.com/max-heller/mdbook-pandoc/releases/tag/${src.tag}";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20
+      # or
+      mit
+    ];
     maintainers = with lib.maintainers; [
       astro
     ];

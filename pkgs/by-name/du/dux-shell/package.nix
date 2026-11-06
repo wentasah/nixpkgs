@@ -1,6 +1,6 @@
 {
   lib,
-  buildGoLatestModule,
+  buildGo127Module,
   fetchFromGitHub,
   installShellFiles,
   makeWrapper,
@@ -13,7 +13,7 @@
   qt6,
 }:
 
-buildGoLatestModule (
+buildGo127Module (
   finalAttrs:
   let
     qmlPkgs = with kdePackages; [
@@ -29,7 +29,7 @@ buildGoLatestModule (
   in
   {
     pname = "dux-shell";
-    version = "2.1.0";
+    version = "2.0.0";
 
     __structuredAttrs = true;
 
@@ -38,12 +38,12 @@ buildGoLatestModule (
       repo = "dux-shell";
       tag = "v${finalAttrs.version}";
       fetchSubmodules = true;
-      hash = "sha256-Qp3Md/8UWjzUdC78IbgwKABY+1F2sOGmzWwavWEVS3o=";
+      hash = "sha256-TLb0rbQlxBJOFTVzp7PMEZiKytWn4UnJE2Gfpa+wrbk=";
     };
 
     sourceRoot = "${finalAttrs.src.name}/core";
 
-    vendorHash = "sha256-TZVq/BHFu6brw8MMdGDZWUiZUxtjNjKRKxR8SSV7W50=";
+    vendorHash = "sha256-fN7v7DuWaqhtD28cTr0FZUIyW7nUqhQoVuatsL2fuo4=";
 
     tags = [ "withshell" ];
 

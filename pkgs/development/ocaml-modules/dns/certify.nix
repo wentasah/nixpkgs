@@ -13,7 +13,6 @@
   mirage-crypto-ec,
   lwt,
   tcpip,
-  ca-certs-nss,
 }:
 
 buildDunePackage {
@@ -35,7 +34,6 @@ buildDunePackage {
     mirage-crypto-ec
     lwt
     tcpip
-    ca-certs-nss
   ];
 
   doCheck = true;

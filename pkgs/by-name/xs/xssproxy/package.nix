@@ -37,7 +37,7 @@ stdenv.mkDerivation (finalAttrs: {
     description = "Forward freedesktop.org Idle Inhibition Service calls to Xss";
     mainProgram = "xssproxy";
     homepage = "https://github.com/vincentbernat/xssproxy";
-    license = lib.licenses.mit;
+    license = lib.licenses.gpl3;
     maintainers = with lib.maintainers; [ benley ];
     platforms = lib.platforms.unix;
   };

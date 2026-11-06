@@ -87,7 +87,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
       with the Rust language and Tokio framework.
     '';
     mainProgram = "easytier-core";
-    license = lib.licenses.lgpl3Only;
+    license = lib.licenses.asl20;
     platforms = with lib.platforms; unix ++ windows;
     maintainers = with lib.maintainers; [ ltrump ];
   };

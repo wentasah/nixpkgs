@@ -17,14 +17,14 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "zinvolt";
-  version = "1.1.1";
+  version = "1.1.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "joostlek";
     repo = "python-zinvolt";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-/6Zy7TJN1QJsT5ci9l9ueUFFNBYuSyY7gEFvLOaqbyU=";
+    hash = "sha256-Zt4iWfd0UXSwzOit5IBMkwg15kk0WQn3hPkTrFooa8k=";
   };
 
   nativeBuildInputs = [

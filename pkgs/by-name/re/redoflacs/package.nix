@@ -50,7 +50,7 @@ stdenv.mkDerivation (finalAttrs: {
     description = "Parallel BASH commandline FLAC compressor, verifier, organizer, analyzer, and retagger";
     mainProgram = "redoflacs";
     homepage = finalAttrs.src.meta.homepage;
-    license = lib.licenses.mit;
+    license = lib.licenses.gpl2;
     maintainers = with lib.maintainers; [ peterhoeg ];
     platforms = lib.platforms.all;
   };

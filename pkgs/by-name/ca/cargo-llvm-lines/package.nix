@@ -22,12 +22,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     mainProgram = "cargo-llvm-lines";
     homepage = "https://github.com/dtolnay/cargo-llvm-lines";
     changelog = "https://github.com/dtolnay/cargo-llvm-lines/releases/tag/${finalAttrs.src.rev}";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [
       matthiasbeyer
     ];

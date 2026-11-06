@@ -215,6 +215,5 @@ stdenv.mkDerivation (finalAttrs: {
     ];
     license = lib.licenses.mit;
     platforms = lib.platforms.unix;
-    mainProgram = if withGui then "bitcoin-qt" else "bitcoind";
   };
 })

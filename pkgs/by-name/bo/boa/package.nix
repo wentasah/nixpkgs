@@ -48,12 +48,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Embeddable and experimental Javascript engine written in Rust";
     homepage = "https://github.com/boa-dev/boa";
     changelog = "https://github.com/boa-dev/boa/releases/tag/${finalAttrs.src.tag}";
-    license =
-      with lib.licenses;
-      OR [
-        mit
-        unlicense
-      ];
+    license = with lib.licenses; [
+      mit # or
+      unlicense
+    ];
     mainProgram = "boa";
     maintainers = with lib.maintainers; [ iamanaws ];
   };

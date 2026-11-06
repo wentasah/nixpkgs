@@ -10,8 +10,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
   pname = "cargo-about";
   version = "0.9.0";
 
-  __structuredAttrs = true;
-
   src = fetchFromGitHub {
     owner = "EmbarkStudios";
     repo = "cargo-about";
@@ -35,12 +33,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     description = "Cargo plugin to generate list of all licenses for a crate";
     homepage = "https://github.com/EmbarkStudios/cargo-about";
     changelog = "https://github.com/EmbarkStudios/cargo-about/blob/${finalAttrs.version}/CHANGELOG.md";
-    license =
-      with lib.licenses;
-      OR [
-        mit
-        asl20
-      ];
+    license = with lib.licenses; [
+      mit # or
+      asl20
+    ];
     maintainers = with lib.maintainers; [
       evanjs
       matthiasbeyer

@@ -66,7 +66,7 @@
               vector_sink = {
                 type = "vector";
                 inputs = [ "caddy_logs_timestamp" ];
-                address = "http://clickhouse:6000";
+                address = "clickhouse:6000";
               };
             };
           };

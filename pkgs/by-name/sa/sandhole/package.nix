@@ -1,36 +1,33 @@
 {
-  aws-lc,
   cmake,
   fetchFromCodeberg,
   installShellFiles,
   lib,
   lld,
-  pkg-config,
+  perl,
   rustPlatform,
   stdenv,
   versionCheckHook,
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "sandhole";
-  version = "0.10.5";
+  version = "0.10.4";
 
   src = fetchFromCodeberg {
     owner = "sandhole";
     repo = "sandhole";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-jxjmtAPvXrNODaSh++Rr3GiSGfp3rGt8ThsxdLipx/E=";
+    hash = "sha256-B5Viu9xdUrwZKbV9lUO1gtj7jAMibIoPetCrQFlHqNg=";
   };
 
-  cargoHash = "sha256-RIC4cGibK1mDRp9t4KnXC4ySGMkWdA/8c9mldkGnAT0=";
+  cargoHash = "sha256-z+KxjwggxbYUpvh6L2ZY/dAXL0jiSt8LAvUk7G5fXbM=";
 
   nativeBuildInputs = [
     cmake
     installShellFiles
-    pkg-config
+    perl
   ]
   ++ lib.optionals stdenv.hostPlatform.isDarwin [ lld ];
-
-  buildInputs = [ aws-lc ];
 
   useNextest = true;
   # Skip tests that require networking.

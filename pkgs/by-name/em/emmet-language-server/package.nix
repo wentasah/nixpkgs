@@ -39,12 +39,14 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     pnpm
   ];
 
-  # remove unnecessary files
+  # remove unnecessary and non-deterministic files
   preInstall = ''
     CI=true pnpm --ignore-scripts --prod prune
     find -type f \( -name "*.ts" -o -name "*.map" \) -exec rm -rf {} +
     # https://github.com/pnpm/pnpm/issues/3645
     find node_modules -xtype l -delete
+
+    rm node_modules/.modules.yaml
   '';
 
   installPhase = ''

@@ -1,17 +1,17 @@
 {
   lib,
-  asn1crypto,
   attrs,
   beautifulsoup4,
   buildPythonPackage,
   certvalidator,
   colorama,
-  cryptodatahub,
   cryptoparser,
   dnspython,
   fetchFromGitLab,
-  oscrypto,
-  pycryptodomex,
+  pathlib2,
+  pyfakefs,
+  python-dateutil,
+  pycryptodome,
   requests,
   setuptools,
   setuptools-scm,
@@ -20,15 +20,17 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "cryptolyzer";
-  version = "1.6.1";
+  version = "1.5.0";
   pyproject = true;
 
   src = fetchFromGitLab {
     owner = "coroner";
     repo = "cryptolyzer";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-wGPxK6yL2g7EPb1hyfenm3Op3xJIpJsaWQJcTXx6O/o=";
+    hash = "sha256-2U+7y88m+r1LzOiDp4QydnlQCjBfN6p56Yh9mZMjnyE=";
   };
+
+  pythonRemoveDeps = [ "bs4" ];
 
   build-system = [
     setuptools
@@ -36,16 +38,16 @@ buildPythonPackage (finalAttrs: {
   ];
 
   dependencies = [
-    asn1crypto
     attrs
     beautifulsoup4
     certvalidator
     colorama
-    cryptodatahub
     cryptoparser
     dnspython
-    oscrypto
-    pycryptodomex
+    pathlib2
+    pyfakefs
+    python-dateutil
+    pycryptodome
     requests
     urllib3
   ];
@@ -68,7 +70,7 @@ buildPythonPackage (finalAttrs: {
   meta = {
     description = "Cryptographic protocol analyzer";
     homepage = "https://gitlab.com/coroner/cryptolyzer";
-    changelog = "https://gitlab.com/coroner/cryptolyzer/-/blob/${finalAttrs.src.tag}/CHANGELOG.rst";
+    changelog = "https://gitlab.com/coroner/cryptolyzer/-/blob/v${finalAttrs.version}/CHANGELOG.rst";
     license = lib.licenses.mpl20;
     mainProgram = "cryptolyze";
     teams = with lib.teams; [ ngi ];

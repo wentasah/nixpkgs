@@ -44,12 +44,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     mainProgram = "flip-link";
     homepage = "https://github.com/knurling-rs/flip-link";
     changelog = "https://github.com/knurling-rs/flip-link/blob/${finalAttrs.src.tag}/CHANGELOG.md";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [
       FlorianFranzen
       newam

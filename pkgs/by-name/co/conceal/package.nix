@@ -48,5 +48,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
       jedsek
       kashw2
     ];
+    broken = stdenv.hostPlatform.isDarwin;
   };
 })

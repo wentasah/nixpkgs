@@ -22,6 +22,7 @@
   glibc,
   gsettings-desktop-schemas,
   gst_all_1,
+  gtk2,
   gtk3,
   libGL,
   libdrm,
@@ -116,6 +117,7 @@ let
       gsettings-desktop-schemas
       gst_all_1.gst-plugins-base
       gst_all_1.gstreamer
+      gtk2
       gtk3
       libdrm
       libgbm

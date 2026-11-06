@@ -36,12 +36,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     homepage = "https://github.com/brevity1swos/rgx";
     description = "Terminal regex tester with real-time matching and multi-engine support";
     changelog = "https://github.com/brevity1swos/rgx/releases/tag/${finalAttrs.src.tag}";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [
       Cameo007
       kybe236

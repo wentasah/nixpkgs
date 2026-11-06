@@ -59,7 +59,7 @@ stdenv.mkDerivation {
     description = "Nostr relay implementation in C++";
     homepage = "https://github.com/hoytech/strfry";
     mainProgram = "strfry";
-    license = lib.licenses.gpl3Plus;
+    license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ felixzieger ];
     platforms = lib.platforms.linux;
   };

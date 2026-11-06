@@ -2,14 +2,40 @@
   stdenv,
   lib,
   fetchurl,
-  copyDesktopItems,
   makeDesktopItem,
-  makeWrapper,
   unzip,
+  writeText,
   scummvm,
+  runtimeShell,
 }:
 
 let
+  desktopItem =
+    name: short: long: description:
+    makeDesktopItem {
+      categories = [
+        "Game"
+        "AdventureGame"
+      ];
+      comment = description;
+      desktopName = long;
+      exec = "@out@/bin/${short}";
+      genericName = description;
+      icon = "scummvm";
+      name = name;
+    };
+
+  run =
+    name: short: code:
+    writeText "${short}.sh" ''
+      #!${runtimeShell} -eu
+
+      exec ${scummvm}/bin/scummvm \
+        --path=@out@/share/${name} \
+        --fullscreen \
+        ${code}
+    '';
+
   generic =
     {
       plong,
@@ -37,57 +63,37 @@ let
       {
         inherit pname version;
 
-        __structuredAttrs = true;
-        strictDeps = true;
-
-        nativeBuildInputs = [
-          copyDesktopItems
-          makeWrapper
-          unzip
-        ];
+        nativeBuildInputs = [ unzip ];
 
         dontBuild = true;
         dontFixup = true;
 
         installPhase = ''
-           runHook preInstall
+          runHook preInstall
 
-           mkdir -p $out/share/{${pname},doc/${pname}}
+          mkdir -p $out/bin $out/share/{applications,${pname},doc/${pname}}
 
-          ${lib.concatMapStringsSep "\n" (f: "mv ${f} $out/share/doc/${pname}") docs}
-          ${lib.concatMapStringsSep "\n" (f: "mv ${f} $out/share/${pname}") files}
+          ${lib.concatStringsSep "\n" (map (f: "mv ${f} $out/share/doc/${pname}") docs)}
+          ${lib.concatStringsSep "\n" (map (f: "mv ${f} $out/share/${pname}") files)}
 
-           makeWrapper ${lib.getExe scummvm} $out/bin/${pshort} \
-             --add-flags "--path=$out/share/${pname} --fullscreen ${pcode}"
+          substitute ${run pname pshort pcode} $out/bin/${pshort} \
+            --subst-var out
+          substitute ${
+            desktopItem pname pshort plong description
+          }/share/applications/${pname}.desktop $out/share/applications/${pname}.desktop \
+            --subst-var out
 
-           runHook postInstall
+          chmod 0755 $out/bin/${pshort}
+
+          runHook postInstall
         '';
-
-        desktopItems = [
-          (makeDesktopItem {
-            name = pname;
-            desktopName = plong;
-            comment = description;
-            genericName = description;
-            exec = pshort;
-            icon = "${scummvm}/share/icons/hicolor/scalable/apps/org.scummvm.scummvm.svg";
-            categories = [
-              "Game"
-              "AdventureGame"
-            ];
-          })
-        ];
 
         meta = {
           homepage = "https://www.scummvm.org";
           license = lib.licenses.free; # refer to the readme for exact wording
-          maintainers = with lib.maintainers; [
-            keenanweaver
-            peterhoeg
-          ];
+          maintainers = with lib.maintainers; [ peterhoeg ];
           inherit description;
           inherit (scummvm.meta) platforms;
-          mainProgram = pshort;
         };
       }
       // attrs'
@@ -102,8 +108,8 @@ in
     description = "2D point-and-click science fiction thriller set in a bleak vision of the future";
     version = "1.2";
     src = fetchurl {
-      url = "https://downloads.scummvm.org/frs/extras/Beneath%20a%20Steel%20Sky/${pshort}-cd-${version}.zip";
-      hash = "sha256-UyCblADqtv1/pxUYsvNXyN51z+qlulcCRXWrecyXRZM=";
+      url = "mirror://sourceforge/scummvm/${pshort}-cd-${version}.zip";
+      sha256 = "14s5jz67kavm8l15gfm5xb7pbpn8azrv460mlxzzvdpa02a9n82k";
     };
     files = [ "sky.*" ];
   };
@@ -115,8 +121,8 @@ in
     description = "Fan game of the Broken Sword series";
     version = "1.0";
     src = fetchurl {
-      url = "https://downloads.scummvm.org/frs/extras/Broken%20Sword%202.5/${pshort}-v${version}.zip";
-      hash = "sha256-/2P5EPu1qnumG8qPyt05jWiElqoCJFX0KjBeR90Ockc=";
+      url = "mirror://sourceforge/scummvm/${pshort}-v${version}.zip";
+      sha256 = "0ivj1vflfpih5bs5a902mab88s4d77fwm3ya3fk7pammzc8gjqzz";
     };
     sourceRoot = ".";
     docs = [
@@ -132,10 +138,16 @@ in
     pcode = "drascula";
     description = "Spanish 2D classic point & click style adventure with tons of humor and an easy interface";
     version = "1.0";
+    # srcs = {
     src = fetchurl {
-      url = "https://downloads.scummvm.org/frs/extras/Drascula_%20The%20Vampire%20Strikes%20Back/${pshort}-${version}.zip";
-      hash = "sha256-tzH2y1oiuotMOzNi9XC5oQpntssLOVOUsZqUs25OQt4=";
+      url = "mirror://sourceforge/scummvm/${pshort}-${version}.zip";
+      sha256 = "1pj29rpb754sn6a56f8brfv6f2m1p5qgaqik7d68pfi2bb5zccdp";
     };
+    # audio = fetchurl {
+    # url = "mirror://sourceforge/scummvm/${pshort}-audio-flac-2.0.zip";
+    # sha256 = "1zmqhrby8f5sj1qy6xjdgkvk9wyhr3nw8ljrrl58fmxb83x1rryw";
+    # };
+    # };
     sourceRoot = ".";
     docs = [
       "readme.txt"
@@ -151,8 +163,8 @@ in
     description = "2D point-and-click cyberpunk top-down adventure game";
     version = "1.1";
     src = fetchurl {
-      url = "https://downloads.scummvm.org/frs/extras/Dreamweb/${pshort}-cd-uk-${version}.zip";
-      hash = "sha256-Sm8TkRzmfWLFJuQQSOwGeyefGzeMkhDzngzo0/K4AUI=";
+      url = "mirror://sourceforge/scummvm/${pshort}-cd-uk-${version}.zip";
+      sha256 = "0hh1p3rd7s0ckvri14lc6wdry9vv0vn4h4744v2n4zg63j8i6vsa";
     };
     sourceRoot = ".";
     docs = [ "license.txt" ];
@@ -170,8 +182,8 @@ in
     description = "2D point-and-click adventure game set in the 1940s";
     version = "1.1";
     src = fetchurl {
-      url = "https://downloads.scummvm.org/frs/extras/Flight%20of%20the%20Amazon%20Queen/FOTAQ_Talkie-${version}.zip";
-      hash = "sha256-olzdXgA6Cl5AKvmbIYzH6oGtAyyza4wF3zvRFnA42Kg=";
+      url = "mirror://sourceforge/scummvm/FOTAQ_Talkie-${version}.zip";
+      sha256 = "1a6q71q1dl9vvw2qqsxk5h1sv0gaqy6236zr5905w2is01gdsp52";
     };
     sourceRoot = ".";
     files = [ "*.1c" ];
@@ -184,8 +196,8 @@ in
     description = "2D point-and-click adventure game with a fantasy theme";
     version = "1.1";
     src = fetchurl {
-      url = "https://downloads.scummvm.org/frs/extras/Lure%20of%20the%20Temptress/lure-${version}.zip";
-      hash = "sha256-8xeCRaFIPaEWjDoR5wtl0zw4nx9d9j1POjVohsGJAQg=";
+      url = "mirror://sourceforge/scummvm/lure-${version}.zip";
+      sha256 = "0201i70qcs1m797kvxjx3ygkhg6kcl5yf49sihba2ga8l52q45zk";
     };
     docs = [
       "README"
@@ -194,76 +206,5 @@ in
       "*.PDF"
     ];
     files = [ "*.vga" ];
-  };
-
-  mystery-house = generic {
-    plong = "Mystery House";
-    pshort = "mysteryhouse";
-    pcode = "hires1";
-    description = "Text adventure with Apple II graphics, the first Sierra On-Line game";
-    version = "1.0";
-    src = fetchurl {
-      url = "https://downloads.scummvm.org/frs/extras/Mystery%20House/MYSTHOUS.zip";
-      hash = "sha256-raQSIooUk5RImyjGx/nrqwcitS4Ecy/QqiKUlnPPo6A=";
-    };
-    sourceRoot = ".";
-    docs = [ ];
-    files = [ "MYSTHOUS.DSK" ];
-  };
-
-  nippon-safes-inc = generic rec {
-    plong = "Nippon Safes Inc";
-    pshort = "nippon";
-    pcode = "nippon";
-    description = "Comedy point-and-click adventure game set in a futuristic Japan";
-    version = "1.0";
-    src = fetchurl {
-      url = "https://downloads.scummvm.org/frs/extras/Nippon%20Safes/nippon-${version}.zip";
-      hash = "sha256-U+fixgBl5K7RkxabvNz9ERP6aNPv4cgkC6BzwOINYT8=";
-    };
-    sourceRoot = ".";
-    docs = [
-      "README"
-      "readme.txt"
-    ];
-    files = [
-      "*.CNV"
-      "*.MID"
-      "*.TAB"
-      "DISK*"
-      "EN"
-      "FR"
-      "GE"
-      "IT"
-    ];
-  };
-
-  sfinx = generic rec {
-    plong = "Sfinx";
-    pshort = "sfinx";
-    pcode = "sfinx";
-    description = "Polish 2D point-and-click adventure game set in a fantasy kingdom";
-    version = "1.1";
-    src = fetchurl {
-      url = "https://downloads.scummvm.org/frs/extras/Sfinx/sfinx-en-v${version}.zip";
-      hash = "sha256-9RazCgRlJveMvJI9j5B9Jnq5ZMzZt3CvxyNQ6NRn7E0=";
-    };
-    docs = [ "license.txt" ];
-    files = [ "vol.*" ];
-  };
-
-  soltys = generic rec {
-    plong = "Soltys";
-    pshort = "soltys";
-    pcode = "soltys";
-    description = "Polish 2D point-and-click adventure game about a village mayor";
-    version = "1.0";
-    src = fetchurl {
-      url = "https://downloads.scummvm.org/frs/extras/Soltys/soltys-en-v${version}.zip";
-      hash = "sha256-h7ieZUuKW46+NCy0xcYEmrmkOl77R02cSbr7d9zOSPY=";
-    };
-    sourceRoot = ".";
-    docs = [ "license.txt" ];
-    files = [ "vol.*" ];
   };
 }

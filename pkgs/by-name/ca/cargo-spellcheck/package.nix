@@ -35,12 +35,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     mainProgram = "cargo-spellcheck";
     homepage = "https://github.com/drahnr/cargo-spellcheck";
     changelog = "https://github.com/drahnr/cargo-spellcheck/blob/v${finalAttrs.version}/CHANGELOG.md";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [
       newam
       matthiasbeyer

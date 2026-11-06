@@ -3,7 +3,6 @@
   dns,
   digestif,
   base64,
-  eqaf,
   alcotest,
 }:
 
@@ -16,7 +15,6 @@ buildDunePackage {
     digestif
     dns
     base64
-    eqaf
   ];
 
   doCheck = true;

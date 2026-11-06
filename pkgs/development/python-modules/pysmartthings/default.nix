@@ -57,7 +57,7 @@ buildPythonPackage (finalAttrs: {
     description = "Python library for interacting with the SmartThings cloud API";
     homepage = "https://github.com/andrewsayre/pysmartthings";
     changelog = "https://github.com/andrewsayre/pysmartthings/releases/tag/${finalAttrs.src.tag}";
-    license = lib.licenses.asl20;
+    license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ fab ];
   };
 })

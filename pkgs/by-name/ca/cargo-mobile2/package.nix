@@ -48,12 +48,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
   meta = {
     description = "Rust on mobile made easy";
     homepage = "https://tauri.app/";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [ happysalada ];
   };
 })

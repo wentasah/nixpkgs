@@ -1,6 +1,4 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -i bash --pure --keep GITHUB_TOKEN -p nix git curl cacert jq
-
+#!/usr/bin/env bash
 # Update ratspeak to the latest upstream release tag.
 #
 # Ratspeak resolves its protocol crates from sibling checkouts, so a version

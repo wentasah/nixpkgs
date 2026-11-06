@@ -56,12 +56,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     mainProgram = "cargo-release";
     homepage = "https://github.com/crate-ci/cargo-release";
     changelog = "https://github.com/crate-ci/cargo-release/blob/v${finalAttrs.version}/CHANGELOG.md";
-    license =
-      with lib.licenses;
-      OR [
-        asl20
-        mit
-      ];
+    license = with lib.licenses; [
+      asl20 # or
+      mit
+    ];
     maintainers = with lib.maintainers; [
       gerschtli
       progrm_jarvis
