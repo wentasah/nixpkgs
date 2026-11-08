@@ -726,12 +726,8 @@ in
   fsck = runTest ./fsck.nix;
   fscrypt = runTest ./fscrypt.nix;
   ft2-clone = runTest ./ft2-clone.nix;
-  galene = discoverTests (import ./galene.nix { inherit runTest; });
+  galene = import ./galene.nix { inherit runTest; };
   gancio = runTest ./gancio.nix;
-  garage_1 = import ./garage {
-    inherit runTest;
-    package = pkgsLinux.garage_1;
-  };
   garage_2 = import ./garage {
     inherit runTest;
     package = pkgsLinux.garage_2;
@@ -1309,7 +1305,7 @@ in
   npmrc = runTest ./npmrc.nix;
   nscd = runTest ./nscd.nix;
   nsd = runTest ./nsd.nix;
-  ntfy-sh = handleTest ./ntfy-sh.nix { };
+  ntfy-sh = runTest ./ntfy-sh.nix;
   ntfy-sh-migration = handleTest ./ntfy-sh-migration.nix { };
   ntpd = runTest ./ntpd.nix;
   ntpd-rs = runTest ./ntpd-rs.nix;

@@ -3793,7 +3793,9 @@ self: super: with self; {
 
   cram = callPackage ../development/python-modules/cram { };
 
-  cramjam = callPackage ../development/python-modules/cramjam { };
+  cramjam = callPackage ../development/python-modules/cramjam {
+    inherit (pkgs) zstd;
+  };
 
   crashtest = callPackage ../development/python-modules/crashtest { };
 
@@ -4158,8 +4160,6 @@ self: super: with self; {
 
   datapoint = callPackage ../development/python-modules/datapoint { };
 
-  dataprep-ml = callPackage ../development/python-modules/dataprep-ml { };
-
   dataproperty = callPackage ../development/python-modules/dataproperty { };
 
   datasalad = callPackage ../development/python-modules/datasalad { };
@@ -4325,6 +4325,8 @@ self: super: with self; {
   defang = callPackage ../development/python-modules/defang { };
 
   defcon = callPackage ../development/python-modules/defcon { };
+
+  defeatbeta-api = callPackage ../development/python-modules/defeatbeta-api { };
 
   deform = callPackage ../development/python-modules/deform { };
 
@@ -6445,8 +6447,6 @@ self: super: with self; {
 
   flightradarapi = callPackage ../development/python-modules/flightradarapi { };
 
-  flipr-api = callPackage ../development/python-modules/flipr-api { };
-
   flit = callPackage ../development/python-modules/flit { };
 
   flit-core = callPackage ../development/python-modules/flit-core { };
@@ -7959,6 +7959,8 @@ self: super: with self; {
 
   httpx2 = callPackage ../development/python-modules/httpx2 { };
 
+  httpx2-pytest = callPackage ../development/python-modules/httpx2-pytest { };
+
   huawei-lte-api = callPackage ../development/python-modules/huawei-lte-api { };
 
   inherit (callPackage ../development/python-modules/huaweicloudsdk { })
@@ -8677,6 +8679,8 @@ self: super: with self; {
   iso3166 = callPackage ../development/python-modules/iso3166 { };
 
   iso4217 = callPackage ../development/python-modules/iso4217 { };
+
+  iso4217parse = callPackage ../development/python-modules/iso4217parse { };
 
   iso639-lang = callPackage ../development/python-modules/iso639-lang { };
 
@@ -9760,6 +9764,10 @@ self: super: with self; {
   liblarch = callPackage ../development/python-modules/liblarch { };
 
   liblistenbrainz = callPackage ../development/python-modules/liblistenbrainz { };
+
+  libloot = callPackage ../development/python-modules/libloot {
+    libloot-native = pkgs.libloot;
+  };
 
   liblp = callPackage ../development/python-modules/liblp { };
 
@@ -10964,8 +10972,6 @@ self: super: with self; {
 
   minari = callPackage ../development/python-modules/minari { };
 
-  mindsdb-evaluator = callPackage ../development/python-modules/mindsdb-evaluator { };
-
   minexr = callPackage ../development/python-modules/minexr { };
 
   miniaudio = callPackage ../development/python-modules/miniaudio { };
@@ -11451,7 +11457,9 @@ self: super: with self; {
 
   mtcnn = callPackage ../development/python-modules/mtcnn { };
 
-  mujoco = callPackage ../development/python-modules/mujoco { inherit (pkgs) mujoco; };
+  mujoco = callPackage ../development/python-modules/mujoco { };
+
+  mujoco-core = callPackage ../development/python-modules/mujoco-core { inherit (pkgs) mujoco; };
 
   mujoco-mjx = callPackage ../development/python-modules/mujoco-mjx { mujoco-main = pkgs.mujoco; };
 
@@ -13189,6 +13197,8 @@ self: super: with self; {
 
   otxv2 = callPackage ../development/python-modules/otxv2 { };
 
+  ouilookup = callPackage ../development/python-modules/ouilookup { };
+
   ouman-eh-800-api = callPackage ../development/python-modules/ouman-eh-800-api { };
 
   ourgroceries = callPackage ../development/python-modules/ourgroceries { };
@@ -14919,7 +14929,9 @@ self: super: with self; {
 
   pydantic-graph = callPackage ../development/python-modules/pydantic-graph { };
 
-  pydantic-monty = callPackage ../development/python-modules/pydantic-monty { };
+  pydantic-monty = callPackage ../development/python-modules/pydantic-monty {
+    inherit (pkgs) zstd;
+  };
 
   pydantic-scim = callPackage ../development/python-modules/pydantic-scim { };
 
@@ -15345,7 +15357,9 @@ self: super: with self; {
 
   pyiceberg = callPackage ../development/python-modules/pyiceberg { };
 
-  pyiceberg-core = callPackage ../development/python-modules/pyiceberg-core { };
+  pyiceberg-core = callPackage ../development/python-modules/pyiceberg-core {
+    inherit (pkgs) zstd;
+  };
 
   pyicloud = callPackage ../development/python-modules/pyicloud { };
 
@@ -15992,7 +16006,9 @@ self: super: with self; {
 
   pypdf3 = callPackage ../development/python-modules/pypdf3 { };
 
-  pypdfium2 = callPackage ../development/python-modules/pypdfium2 { };
+  pypdfium2 = callPackage ../development/python-modules/pypdfium2 {
+    inherit (pkgs) jq;
+  };
 
   pypeg2 = callPackage ../development/python-modules/pypeg2 { };
 
@@ -20518,7 +20534,7 @@ self: super: with self; {
 
   symbex = callPackage ../development/python-modules/symbex { };
 
-  symbolic = callPackage ../development/python-modules/symbolic { };
+  symbolic = callPackage ../development/python-modules/symbolic { inherit (pkgs) zstd; };
 
   symengine = callPackage ../development/python-modules/symengine { inherit (pkgs) symengine; };
 
@@ -21558,8 +21574,6 @@ self: super: with self; {
 
   ty = callPackage ../development/python-modules/ty { inherit (pkgs) ty; };
 
-  type-infer = callPackage ../development/python-modules/type-infer { };
-
   typechecks = callPackage ../development/python-modules/typechecks { };
 
   typecode = callPackage ../development/python-modules/typecode { };
@@ -22471,6 +22485,12 @@ self: super: with self; {
   verilogae = callPackage ../development/python-modules/verilogae { };
 
   verlib2 = callPackage ../development/python-modules/verlib2 { };
+
+  vermin = (toPythonModule (pkgs.vermin.override { python3Packages = self; })).overrideAttrs (old: {
+    # hack to not cause a rebuild of python3Packages.python-discovery
+    # FIXME remove on staging
+    nativeBuildInputs = lib.remove pythonMetadataCheckHook old.nativeBuildInputs;
+  });
 
   versioneer = callPackage ../development/python-modules/versioneer { };
 

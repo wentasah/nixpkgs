@@ -51,7 +51,6 @@ buildPythonPackage.override { inherit (torch) stdenv; } (finalAttrs: {
   pname = "flashinfer-python";
   version = "0.7.2.post1";
   pyproject = true;
-  __structuredAttrs = true;
 
   src = fetchFromGitHub {
     owner = "flashinfer-ai";
@@ -175,8 +174,14 @@ buildPythonPackage.override { inherit (torch) stdenv; } (finalAttrs: {
             cuda_crt
             cuda_cudart
             cuda_nvcc
+            cuda_nvrtc # nvrtc.h and libnvrtc, for the CUTLASS fused MoE module
             libcublas
             libcurand
+            # dcp_lse_reduce includes torch's ATen/cuda/CUDAContext.h (cusparse.h, cusolverDn.h) and
+            # c10d's NCCLUtils.hpp (nccl.h), and links -lnccl
+            libcusolver
+            libcusparse
+            nccl
           ]
         )
       );
