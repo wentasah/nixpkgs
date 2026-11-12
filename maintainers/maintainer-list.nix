@@ -1198,6 +1198,12 @@
     githubId = 120214979;
     name = "aktaboot";
   };
+  al2klimov = {
+    email = "alexander.klimov@icinga.com";
+    github = "al2klimov";
+    githubId = 6053266;
+    name = "Alexander A. Klimov";
+  };
   al3xtjames = {
     email = "nix@alextjam.es";
     github = "al3xtjames";
@@ -2900,6 +2906,13 @@
     email = "a@phire.org";
     github = "auchter";
     githubId = 1190483;
+  };
+  AugustDeer = {
+    email = "august@augustdeer.com";
+    github = "AugustDeer";
+    githubId = 153777330;
+    keys = [ { fingerprint = "20E3 D713 5379 ACEF C9BF  E537 4D9B FFF0 C24F 5930"; } ];
+    name = "August Deer";
   };
   augustebaum = {
     email = "auguste.apple@gmail.com";
@@ -6905,6 +6918,12 @@
     githubId = 25856103;
     name = "DDoSolitary";
   };
+  ddymko = {
+    email = "dymkod@gmail.com";
+    github = "ddymko";
+    githubId = 1588386;
+    name = "David Dymko";
+  };
   de11n = {
     email = "nixpkgs-commits@deshaw.com";
     github = "de11n";
@@ -10393,6 +10412,12 @@
     name = "Gerd Flaig";
     github = "gefla";
     githubId = 56790;
+  };
+  gegnep = {
+    name = "Zain Hammad";
+    email = "nix@zainham.com";
+    github = "gegnep";
+    githubId = 96670443;
   };
   genga898 = {
     email = "genga898@gmail.com";
@@ -19745,7 +19770,7 @@
     name = "Marek Mahut";
   };
   mmclinton = {
-    email = "nixpkg.concur071@simplelogin.com";
+    email = "github.mmc@pm.me";
     github = "mmclinton";
     githubId = 96266047;
     name = "Miller Clinton";
@@ -20832,6 +20857,12 @@
     github = "ndavd";
     githubId = 74260683;
     name = "Nuno David";
+  };
+  ndenissov = {
+    email = "n.denissov@proton.me";
+    github = "ndenissov";
+    githubId = 70575593;
+    name = "Nikita Denissov";
   };
   ndl = {
     email = "ndl@endl.ch";
@@ -22993,6 +23024,12 @@
     github = "PedroHLC";
     githubId = 1368952;
     name = "Pedro Lara Campos";
+  };
+  pedrosandre = {
+    name = "Pedro André";
+    github = "PedroSAndre";
+    githubId = 48893259;
+    email = "pedro@ndre.pt";
   };
   peelz = {
     email = "peelz.dev+nixpkgs@gmail.com";
@@ -28900,7 +28937,7 @@
     name = "TakWolf";
   };
   talal = {
-    email = "noreply@talal.ch";
+    email = "noreply@talal.dev";
     github = "talal";
     githubId = 3526562;
     name = "Muhammad Talal Anwar";
@@ -30237,6 +30274,12 @@
     githubId = 144389458;
     name = "sapii";
   };
+  treierxyz = {
+    email = "me@treier.xyz";
+    github = "treierxyz";
+    githubId = 33978534;
+    name = "Oliver Jõgar";
+  };
   trespaul = {
     email = "paul@trespaul.com";
     github = "trespaul";
@@ -30375,6 +30418,11 @@
     matrix = "@tudbut:matrix.tudbut.de";
     github = "tudbut";
     githubId = 48156391;
+  };
+  tulku = {
+    name = "Lucas Chiesa";
+    github = "tulku";
+    githubId = 764126;
   };
   Tungsten842 = {
     name = "Tungsten842";

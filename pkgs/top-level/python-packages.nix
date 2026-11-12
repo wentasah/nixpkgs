@@ -5759,6 +5759,8 @@ self: super: with self; {
 
   eth-utils = callPackage ../development/python-modules/eth-utils { };
 
+  etherscan-python = callPackage ../development/python-modules/etherscan-python { };
+
   ethtool = callPackage ../development/python-modules/ethtool { };
 
   etils = callPackage ../development/python-modules/etils { };
@@ -9568,6 +9570,8 @@ self: super: with self; {
 
   ldap3 = callPackage ../development/python-modules/ldap3 { };
 
+  ldap3-ad-auth = callPackage ../development/python-modules/ldap3-ad-auth { };
+
   ldap3-bleeding-edge = callPackage ../development/python-modules/ldap3-bleeding-edge { };
 
   ldapdomaindump = callPackage ../development/python-modules/ldapdomaindump { };
@@ -9616,6 +9620,8 @@ self: super: with self; {
   lektricowifi = callPackage ../development/python-modules/lektricowifi { };
 
   lerobot = callPackage ../development/python-modules/lerobot { };
+
+  lesscpy = toPythonModule (pkgs.lesscpy.override { python3Packages = self; });
 
   letpot = callPackage ../development/python-modules/letpot { };
 
@@ -12073,7 +12079,9 @@ self: super: with self; {
 
   nebula3-python = callPackage ../development/python-modules/nebula3-python { };
 
-  nemo-relay = callPackage ../development/python-modules/nemo-relay { };
+  nemo-relay = callPackage ../development/python-modules/nemo-relay {
+    inherit (pkgs) zstd;
+  };
 
   nemosis = callPackage ../development/python-modules/nemosis { };
 
@@ -17089,8 +17097,6 @@ self: super: with self; {
 
   python-etcd = callPackage ../development/python-modules/python-etcd { };
 
-  python-etherscan-api = callPackage ../development/python-modules/python-etherscan-api { };
-
   python-ev3dev2 = callPackage ../development/python-modules/python-ev3dev2 { };
 
   python-family-hub-local = callPackage ../development/python-modules/python-family-hub-local { };
@@ -17378,6 +17384,8 @@ self: super: with self; {
   python-ripple-api = callPackage ../development/python-modules/python-ripple-api { };
 
   python-roborock = callPackage ../development/python-modules/python-roborock { };
+
+  python-rpm-spec = callPackage ../development/python-modules/python-rpm-spec { };
 
   python-rtmidi = callPackage ../development/python-modules/python-rtmidi { };
 
@@ -21177,6 +21185,8 @@ self: super: with self; {
   torchaudio-bin = callPackage ../development/python-modules/torchaudio/bin.nix { };
 
   torchbench = callPackage ../development/python-modules/torchbench { };
+
+  torchbenchmark = callPackage ../development/python-modules/torchbenchmark { };
 
   torchcodec = callPackage ../development/python-modules/torchcodec { };
 

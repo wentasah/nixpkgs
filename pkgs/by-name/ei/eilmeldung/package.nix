@@ -1,4 +1,7 @@
 {
+  aws-lc,
+  sqlite,
+  pkg-config,
   lib,
   rustPlatform,
   fetchFromGitHub,
@@ -21,8 +24,13 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   cargoHash = "sha256-FolTX7CBaHjJ5MjuoPydXdlPUIvkQldIzcW78CDJIaQ=";
 
+  buildInputs = [
+    aws-lc
+    sqlite
+  ];
+
   nativeBuildInputs = [
-    rustPlatform.bindgenHook
+    pkg-config
   ];
 
   passthru.updateScript = nix-update-script { };

@@ -8,6 +8,7 @@
   gnumake,
   installShellFiles,
   testers,
+  nix-update-script,
 }:
 
 buildGoModule (finalAttrs: {
@@ -57,10 +58,13 @@ buildGoModule (finalAttrs: {
       --zsh <($out/bin/kubebuilder completion zsh)
   '';
 
-  passthru.tests.version = testers.testVersion {
-    command = "${finalAttrs.finalPackage}/bin/kubebuilder version";
-    package = finalAttrs.finalPackage;
-    version = "v${finalAttrs.version}";
+  passthru = {
+    tests.version = testers.testVersion {
+      command = "${finalAttrs.finalPackage}/bin/kubebuilder version";
+      package = finalAttrs.finalPackage;
+      version = "v${finalAttrs.version}";
+    };
+    updateScript = nix-update-script { };
   };
 
   meta = {
@@ -72,6 +76,7 @@ buildGoModule (finalAttrs: {
     maintainers = with lib.maintainers; [
       hythera
       anthr76
+      ddymko
     ];
   };
 })
