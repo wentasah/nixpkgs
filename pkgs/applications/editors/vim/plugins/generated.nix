@@ -4015,6 +4015,20 @@ final: prev: {
     meta.hydraPlatforms = [ ];
   };
 
+  confetti-vim-syntax = buildVimPlugin {
+    pname = "confetti-vim-syntax";
+    version = "0.1.0";
+    src = fetchFromGitHub {
+      owner = "unclechu";
+      repo = "confetti-vim-syntax";
+      tag = "v0.1.0";
+      hash = "sha256-1aUmEG2x+WsrjL+6Tixoh4rzx1PeCBw2JxyWuh6qxjA=";
+    };
+    meta.homepage = "https://github.com/unclechu/confetti-vim-syntax/";
+    meta.license = getLicenseFromSpdxId "Unlicense";
+    meta.hydraPlatforms = [ ];
+  };
+
   conflict-marker-vim = buildVimPlugin {
     pname = "conflict-marker.vim";
     version = "0-unstable-2024-05-20";
@@ -5751,6 +5765,20 @@ final: prev: {
       hash = "sha256-u4RPwdCihlAkMIHq1oJPIKpzVb4JNDKx2kU9FYBlnY0=";
     };
     meta.homepage = "https://github.com/embark-theme/vim/";
+    meta.license = getLicenseFromSpdxId "MIT";
+    meta.hydraPlatforms = [ ];
+  };
+
+  embers-nvim = buildVimPlugin {
+    pname = "embers.nvim";
+    version = "0-unstable-2026-11-08";
+    src = fetchFromGitHub {
+      owner = "EralpCelebi";
+      repo = "embers.nvim";
+      rev = "89f82989f337f0a1e6be5512fc22c9b8a02b324b";
+      hash = "sha256-nEwoYzDF65QCJ3O4ewxS2DpYauXa7pxt+p85eaUzHOM=";
+    };
+    meta.homepage = "https://github.com/EralpCelebi/embers.nvim/";
     meta.license = getLicenseFromSpdxId "MIT";
     meta.hydraPlatforms = [ ];
   };

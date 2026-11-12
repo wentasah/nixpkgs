@@ -1390,8 +1390,6 @@ with pkgs;
     charles5
     ;
 
-  libtorch-bin = callPackage ../development/libraries/science/math/libtorch/bin.nix { };
-
   behave = with python3Packages; toPythonApplication behave;
 
   blockdiag = with python3Packages; toPythonApplication blockdiag;
@@ -1627,11 +1625,6 @@ with pkgs;
 
   steampipePackages = recurseIntoAttrs (callPackage ../tools/misc/steampipe-packages { });
 
-  inherit (callPackages ../servers/rainloop { })
-    rainloop-community
-    rainloop-standard
-    ;
-
   roundcubePlugins = recurseIntoAttrs (callPackage ../by-name/ro/roundcube/plugins { });
 
   xmlsort = perlPackages.XMLFilterSort;
@@ -1799,6 +1792,7 @@ with pkgs;
     cudaPackages_13_2
     cudaPackages_13_3
     cudaPackages_13_4
+    cudaPackages_13_5
     ;
 
   cudaPackages_12 = cudaPackages_12_9;
@@ -2589,11 +2583,6 @@ with pkgs;
   playwright-test = (callPackage ../development/web/playwright/driver.nix { }).playwright-test;
 
   tabview = with python3Packages; toPythonApplication tabview;
-
-  tdarrPackages = callPackage ../tools/misc/tdarr { };
-
-  tdarr-server = tdarrPackages.server;
-  tdarr-node = tdarrPackages.node;
 
   inherit (callPackage ../development/tools/pnpm { })
     pnpm_10_29_2
@@ -4425,12 +4414,7 @@ with pkgs;
   spark4 = spark_4_0;
   spark = spark_4_0;
 
-  inherit
-    ({
-      spidermonkey_128 = callPackage ../development/interpreters/spidermonkey/128.nix { };
-      spidermonkey_140 = callPackage ../development/interpreters/spidermonkey/140.nix { };
-    })
-    spidermonkey_128
+  inherit ({ spidermonkey_140 = callPackage ../development/interpreters/spidermonkey/140.nix { }; })
     spidermonkey_140
     ;
 
@@ -5198,7 +5182,7 @@ with pkgs;
 
   certbot-full = certbot.withPlugins (
     cp: with cp; [
-      # FIXME unbreak certbot-dns-cloudflare
+      certbot-dns-cloudflare
       certbot-dns-google
       certbot-dns-inwx
       certbot-dns-ovh
@@ -5605,6 +5589,7 @@ with pkgs;
     icu76
     icu77
     icu78
+    icu79
     ;
 
   icu = icu78;
@@ -7996,6 +7981,9 @@ with pkgs;
 
   bitwig-studio = bitwig-studio6;
 
+  brave = (callPackage ../applications/networking/browsers/brave { }).brave;
+  brave-origin = (callPackage ../applications/networking/browsers/brave { }).brave-origin;
+
   breezy = with python3Packages; toPythonApplication breezy;
 
   # calico-felix and calico-node have not been packaged due to libbpf, linking issues
@@ -9436,8 +9424,6 @@ with pkgs;
 
   # To ensure vdrift's code is built on hydra
   vdrift-bin = vdrift.bin;
-
-  vessel = pkgsi686Linux.callPackage ../games/vessel { };
 
   wesnoth-devel = callPackage ../by-name/we/wesnoth/package.nix { enableDevel = true; };
 

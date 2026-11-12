@@ -5260,7 +5260,7 @@ self: super: with self; {
 
   draftjs-exporter = callPackage ../development/python-modules/draftjs-exporter { };
 
-  dragonfly = callPackage ../development/python-modules/dragonfly { };
+  dragonfly2 = callPackage ../development/python-modules/dragonfly2 { };
 
   dragonmapper = callPackage ../development/python-modules/dragonmapper { };
 
@@ -6279,6 +6279,8 @@ self: super: with self; {
 
   flash-mla = callPackage ../development/python-modules/flash-mla { };
 
+  flashinfer-cubin = callPackage ../development/python-modules/flashinfer-cubin { };
+
   flashinfer-jit-cache = callPackage ../development/python-modules/flashinfer-jit-cache { };
 
   flashinfer-python = callPackage ../development/python-modules/flashinfer-python { };
@@ -6398,8 +6400,6 @@ self: super: with self; {
   flask-themer = callPackage ../development/python-modules/flask-themer { };
 
   flask-unsign = callPackage ../development/python-modules/flask-unsign { };
-
-  flask-versioned = callPackage ../development/python-modules/flask-versioned { };
 
   flask-webtest = callPackage ../development/python-modules/flask-webtest { };
 
@@ -7131,8 +7131,6 @@ self: super: with self; {
   google-cloud-iam = callPackage ../development/python-modules/google-cloud-iam { };
 
   google-cloud-iam-logging = callPackage ../development/python-modules/google-cloud-iam-logging { };
-
-  google-cloud-iot = callPackage ../development/python-modules/google-cloud-iot { };
 
   google-cloud-kms = callPackage ../development/python-modules/google-cloud-kms { };
 
@@ -10546,8 +10544,6 @@ self: super: with self; {
 
   malduck = callPackage ../development/python-modules/malduck { };
 
-  mallard-ducktype = callPackage ../development/python-modules/mallard-ducktype { };
-
   mamba-ssm = callPackage ../development/python-modules/mamba-ssm { };
 
   mammoth = callPackage ../development/python-modules/mammoth { };
@@ -12743,8 +12739,6 @@ self: super: with self; {
 
   opencensus-context = callPackage ../development/python-modules/opencensus-context { };
 
-  opencensus-ext-azure = callPackage ../development/python-modules/opencensus-ext-azure { };
-
   opencontainers = callPackage ../development/python-modules/opencontainers { };
 
   opencv-contrib-python = callPackage ../development/python-modules/opencv-contrib-python { };
@@ -12860,7 +12854,9 @@ self: super: with self; {
 
   opensimplex = callPackage ../development/python-modules/opensimplex { };
 
-  openslide = callPackage ../development/python-modules/openslide { inherit (pkgs) openslide; };
+  openslide-python = callPackage ../development/python-modules/openslide-python {
+    inherit (pkgs) openslide;
+  };
 
   openstackdocstheme = callPackage ../development/python-modules/openstackdocstheme { };
 
@@ -13744,8 +13740,6 @@ self: super: with self; {
 
   pillow-jxl-plugin = callPackage ../development/python-modules/pillow-jxl-plugin { };
 
-  pillowfight = callPackage ../development/python-modules/pillowfight { };
-
   pims = callPackage ../development/python-modules/pims { };
 
   pinboard = callPackage ../development/python-modules/pinboard { };
@@ -14160,7 +14154,7 @@ self: super: with self; {
 
   primer3-py = callPackage ../development/python-modules/primer3-py { };
 
-  primp = callPackage ../development/python-modules/primp { };
+  primp = callPackage ../development/python-modules/primp { zstd-c = pkgs.zstd; };
 
   print-color = callPackage ../development/python-modules/print-color { };
 
@@ -16234,7 +16228,7 @@ self: super: with self; {
 
   pyrepetierng = callPackage ../development/python-modules/pyrepetierng { };
 
-  pyreqwest = callPackage ../development/python-modules/pyreqwest { };
+  pyreqwest = callPackage ../development/python-modules/pyreqwest { zstd-c = pkgs.zstd; };
 
   pyrevolve = callPackage ../development/python-modules/pyrevolve { };
 
@@ -17417,7 +17411,9 @@ self: super: with self; {
 
   python-sql = callPackage ../development/python-modules/python-sql { };
 
-  python-statemachine = callPackage ../development/python-modules/python-statemachine { };
+  python-statemachine = callPackage ../development/python-modules/python-statemachine {
+    inherit (pkgs) graphviz;
+  };
 
   python-status = callPackage ../development/python-modules/python-status { };
 
@@ -19388,8 +19384,6 @@ self: super: with self; {
 
   sklearn2pmml = callPackage ../development/python-modules/sklearn2pmml { };
 
-  skodaconnect = callPackage ../development/python-modules/skodaconnect { };
-
   skops = callPackage ../development/python-modules/skops { };
 
   skorch = callPackage ../development/python-modules/skorch { };
@@ -20890,6 +20884,8 @@ self: super: with self; {
 
   tftpy = callPackage ../development/python-modules/tftpy { };
 
+  th1 = callPackage ../development/python-modules/th1 { };
+
   theben-conexa-smgw = callPackage ../development/python-modules/theben-conexa-smgw { };
 
   thefuzz = callPackage ../development/python-modules/thefuzz { };
@@ -21359,7 +21355,9 @@ self: super: with self; {
 
   tree-sitter-json = callPackage ../development/python-modules/tree-sitter-json { };
 
-  tree-sitter-language-pack = callPackage ../development/python-modules/tree-sitter-language-pack { };
+  tree-sitter-language-pack = callPackage ../development/python-modules/tree-sitter-language-pack {
+    inherit (pkgs) zstd;
+  };
 
   tree-sitter-languages = callPackage ../development/python-modules/tree-sitter-languages { };
 
@@ -21457,8 +21455,6 @@ self: super: with self; {
   trx-python = callPackage ../development/python-modules/trx-python { };
 
   trytond = callPackage ../development/python-modules/trytond { };
-
-  ts1-signatures = callPackage ../development/python-modules/ts1-signatures { };
 
   tsfresh = callPackage ../development/python-modules/tsfresh { };
 
@@ -22270,8 +22266,6 @@ self: super: with self; {
   untokenize = callPackage ../development/python-modules/untokenize { };
 
   uonet-request-signer-hebe = callPackage ../development/python-modules/uonet-request-signer-hebe { };
-
-  upass = callPackage ../development/python-modules/upass { };
 
   upb-lib = callPackage ../development/python-modules/upb-lib { };
 
