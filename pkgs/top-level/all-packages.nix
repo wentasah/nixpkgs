@@ -1149,6 +1149,10 @@ with pkgs;
 
   ### APPLICATIONS/EMULATORS/RETROARCH
 
+  dolphin-emu-primehack = callPackage ../by-name/do/dolphin-emu/package.nix {
+    dolphinVariant = "primehack";
+  };
+
   libretro = recurseIntoAttrs (callPackage ../by-name/li/libretroPackages/packages.nix { });
 
   retroarch = wrapRetroArch { };
@@ -1737,6 +1741,8 @@ with pkgs;
 
   blacken-docs = with python3Packages; toPythonApplication blacken-docs;
 
+  cfait-gui = lib.addMetaAttrs { mainProgram = "cfait-gui"; } cfait.gui;
+
   cffconvert = python3Packages.toPythonApplication python3Packages.cffconvert;
 
   aiovban-pyaudio = python3Packages.toPythonApplication python3Packages.aiovban-pyaudio;
@@ -2275,8 +2281,6 @@ with pkgs;
 
   miniupnpd-nftables = miniupnpd.override { firewall = "nftables"; };
 
-  mitmproxy = with python3Packages; toPythonApplication mitmproxy;
-
   mjpegtoolsFull = mjpegtools.override {
     withMinimal = false;
   };
@@ -2585,7 +2589,6 @@ with pkgs;
 
   segger-jlink-headless = callPackage ../by-name/se/segger-jlink/package.nix { headless = true; };
 
-  semgrep = python3.pkgs.toPythonApplication python3.pkgs.semgrep;
   inherit (semgrep.passthru) semgrep-core;
 
   seqdiag = with python3Packages; toPythonApplication seqdiag;
@@ -6115,61 +6118,6 @@ with pkgs;
 
   reposilitePlugins = recurseIntoAttrs (callPackage ../by-name/re/reposilite/plugins.nix { });
 
-  rocksdb_9_10 = rocksdb.overrideAttrs rec {
-    pname = "rocksdb";
-    version = "9.10.0";
-    src = fetchFromGitHub {
-      owner = "meta";
-      repo = pname;
-      rev = "v${version}";
-      hash = "sha256-G+DlQwEUyd7JOCjS1Hg1cKWmA/qAiK8UpUIKcP+riGQ=";
-    };
-  };
-
-  rocksdb_8_11 = rocksdb.overrideAttrs rec {
-    pname = "rocksdb";
-    version = "8.11.4";
-    src = fetchFromGitHub {
-      owner = "meta";
-      repo = pname;
-      rev = "v${version}";
-      hash = "sha256-ZrU7G3xeimF3H2LRGBDHOq936u5pH/3nGecM4XEoWc8=";
-    };
-  };
-
-  rocksdb_8_3 = rocksdb.overrideAttrs rec {
-    pname = "rocksdb";
-    version = "8.3.2";
-    src = fetchFromGitHub {
-      owner = "meta";
-      repo = pname;
-      rev = "v${version}";
-      hash = "sha256-mfIRQ8nkUbZ3Bugy3NAvOhcfzFY84J2kBUIUBcQ2/Qg=";
-    };
-  };
-
-  rocksdb_7_10 = rocksdb.overrideAttrs rec {
-    pname = "rocksdb";
-    version = "7.10.2";
-    src = fetchFromGitHub {
-      owner = "meta";
-      repo = pname;
-      rev = "v${version}";
-      hash = "sha256-U2ReSrJwjAXUdRmwixC0DQXht/h/6rV8SOf5e2NozIs=";
-    };
-  };
-
-  rocksdb_6_23 = rocksdb.overrideAttrs rec {
-    pname = "rocksdb";
-    version = "6.23.3";
-    src = fetchFromGitHub {
-      owner = "meta";
-      repo = pname;
-      rev = "v${version}";
-      hash = "sha256-SsDqhjdCdtIGNlsMj5kfiuS3zSGwcxi4KV71d95h7yk=";
-    };
-  };
-
   SDL = sdl12-compat;
   SDL2 = sdl2-compat;
 
@@ -8572,13 +8520,6 @@ with pkgs;
     cinny-unwrapped = sable-unwrapped;
   };
 
-  sweethome3d = recurseIntoAttrs (
-    (callPackage ../applications/misc/sweethome3d { })
-    // (callPackage ../applications/misc/sweethome3d/editors.nix {
-      sweethome3dApp = sweethome3d.application;
-    })
-  );
-
   maestral = with python3Packages; toPythonApplication maestral;
 
   myfitnesspal = with python3Packages; toPythonApplication myfitnesspal;
@@ -9386,10 +9327,6 @@ with pkgs;
   molbar = with python3Packages; toPythonApplication molbar;
 
   pdb2pqr = with python3Packages; toPythonApplication pdb2pqr;
-
-  quantum-espresso = callPackage ../applications/science/chemistry/quantum-espresso {
-    hdf5 = hdf5-fortran;
-  };
 
   siesta-mpi = callPackage ../by-name/si/siesta/package.nix { useMpi = true; };
 
