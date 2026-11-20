@@ -1050,6 +1050,8 @@ with pkgs;
 
   gerrit_3_14 = callPackage ../by-name/ge/gerrit/3_14.nix { };
 
+  gerrit_3_15 = callPackage ../by-name/ge/gerrit/3_15.nix { };
+
   github-cli = gh;
 
   git-credential-aol = callPackage ../by-name/gi/git-credential-email/git-credential-aol { };
@@ -1415,8 +1417,6 @@ with pkgs;
           --prefix PATH ":" "${git}/bin:${cabal-install}/bin"
       '';
     });
-
-  clevercsv = with python3Packages; toPythonApplication clevercsv;
 
   cleanit = with python3Packages; toPythonApplication cleanit;
 
@@ -2212,53 +2212,6 @@ with pkgs;
     lerna_8
     ;
   lerna = lerna_8;
-
-  libintPsi4 = libint.override {
-    enableFortran = false;
-    enableSSE = false;
-    maxAm = 6;
-    eriDeriv = 2;
-    eri3Deriv = 2;
-    eri2Deriv = 2;
-    eriAm = [
-      6
-      5
-      4
-    ];
-    eri3Am = [
-      6
-      5
-      4
-    ];
-    eri2Am = [
-      6
-      5
-      4
-    ];
-    eriOptAm = [
-      3
-      2
-      2
-    ];
-    eri3OptAm = [
-      3
-      2
-      2
-    ];
-    eri2OptAm = [
-      3
-      2
-      2
-    ];
-    enableOneBody = true;
-    oneBodyDerivOrd = 2;
-    enableGeneric = false;
-    enableContracted = false;
-    cartGaussOrd = "standard";
-    shGaussOrd = "gaussian";
-    eri2PureSh = false;
-    eri3PureSh = false;
-  };
 
   libportal-gtk3 = libportal.override { variant = "gtk3"; };
   libportal-gtk4 = libportal.override { variant = "gtk4"; };
@@ -6286,14 +6239,12 @@ with pkgs;
     (rec {
       zigPackages = recurseIntoAttrs (callPackage ../development/compilers/zig { });
 
-      zig_0_13 = zigPackages."0.13";
       zig_0_14 = zigPackages."0.14";
       zig_0_15 = zigPackages."0.15";
       zig_0_16 = zigPackages."0.16";
       zig_0_17 = zigPackages."0.17";
     })
     zigPackages
-    zig_0_13
     zig_0_14
     zig_0_15
     zig_0_16
